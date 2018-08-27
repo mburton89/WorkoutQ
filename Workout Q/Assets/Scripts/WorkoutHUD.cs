@@ -19,14 +19,19 @@ public class WorkoutHUD : MonoBehaviour {
 	[SerializeField]private WorkoutPanel WorkoutPanelPrefab;
 	[SerializeField]private ExercisePanel ExercisePanelPrefab;
 
-	void Start(){
-		foreach(Workout workout in WorkoutManager.Instance.Workouts){
-			WorkoutPanel newWorkoutPanel = Instantiate(WorkoutPanelPrefab);
-			newWorkoutPanel.workout = workout;
-			newWorkoutPanel.UpdateText();
+	[SerializeField]private Button addButton;
 
-			newWorkoutPanel.transform.SetParent(workoutPanelsGridLayoutGroup.transform);
-			newWorkoutPanel.transform.localScale = Vector3.one;
+	void OnEnable(){
+		addButton.onClick.AddListener(delegate{AddWorkoutPanel(null);});
+	}
+
+	void OnDisable(){
+		addButton.onClick.RemoveListener(delegate{AddWorkoutPanel(null);});
+	}
+
+	void Start(){
+		foreach(WorkoutData workout in WorkoutManager.Instance.workoutData){
+			AddWorkoutPanel(workout);
 		}
 	}
 
@@ -41,16 +46,20 @@ public class WorkoutHUD : MonoBehaviour {
 	public void ShowWorkoutsMenu(){
 		workoutPanelsGridLayoutGroup.gameObject.SetActive(true);
 		exercisePanelsGridLayoutGroup.gameObject.SetActive(false);
+
+		foreach(ExercisePanel panel in exercisePanelsGridLayoutGroup.GetComponentsInChildren<ExercisePanel>()){
+			Destroy(panel.gameObject);
+		}
 	}
 
-	public void ShowExercisesForWorkout(Workout workoutToOpen){
+	public void ShowExercisesForWorkout(WorkoutData workoutToOpen){
 
 		Header.Instance.SetUpForExercisesMenu();
 
 		workoutPanelsGridLayoutGroup.gameObject.SetActive(false);
 		exercisePanelsGridLayoutGroup.gameObject.SetActive(true);
 
-		foreach(Exercise exercise in WorkoutManager.Instance.ActiveWorkout.Exercises){
+		foreach(ExerciseData exercise in workoutToOpen.ExerciseData){
 			ExercisePanel newExercisePanel = Instantiate(ExercisePanelPrefab);
 			newExercisePanel.exerciseName.text = exercise.name;
 			newExercisePanel.timeNumberCircle.UpdateValue(exercise.secondsToCompleteSet);
@@ -61,5 +70,18 @@ public class WorkoutHUD : MonoBehaviour {
 			newExercisePanel.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
 			newExercisePanel.transform.localScale = Vector3.one;
 		}
+	}
+
+	void AddWorkoutPanel(WorkoutData workout){
+		WorkoutPanel newWorkoutPanel = Instantiate(WorkoutPanelPrefab);
+
+		if(workout != null){
+			newWorkoutPanel.workoutData = workout;
+		}
+
+		newWorkoutPanel.UpdateText();
+
+		newWorkoutPanel.transform.SetParent(workoutPanelsGridLayoutGroup.transform);
+		newWorkoutPanel.transform.localScale = Vector3.one;
 	}
 }
