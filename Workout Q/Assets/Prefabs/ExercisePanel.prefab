@@ -2030,7 +2030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a384e8b621d7541961f50e0e15e8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  exercisePanel: {fileID: 114878977988078270}
+  type: 3
   circleOutline: {fileID: 114643867487833814}
   label: {fileID: 114912635839969664}
   inputField: {fileID: 114019555151244530}
@@ -2083,7 +2084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a384e8b621d7541961f50e0e15e8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  exercisePanel: {fileID: 114878977988078270}
+  type: 2
   circleOutline: {fileID: 114855705983756674}
   label: {fileID: 114578648080187180}
   inputField: {fileID: 114433933178500656}
@@ -2266,6 +2268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a384e8b621d7541961f50e0e15e8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exercisePanel: {fileID: 114878977988078270}
   type: 1
   circleOutline: {fileID: 114221851178410472}
   label: {fileID: 114264858102806590}
@@ -2433,6 +2436,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9998ffc0670924b9450de3fc6b4fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exerciseData:
+    name: 
+    secondsToCompleteSet: 0
+    totalSets: 0
+    repsPerSet: 0
+    weight: 0
   exerciseName: {fileID: 114592128387697672}
   timeNumberCircle: {fileID: 114902126805641474}
   setsNumberCircle: {fileID: 114812453422688004}
@@ -2677,6 +2686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a384e8b621d7541961f50e0e15e8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exercisePanel: {fileID: 114878977988078270}
   type: 0
   circleOutline: {fileID: 114573473384505776}
   label: {fileID: 114214544004746920}
