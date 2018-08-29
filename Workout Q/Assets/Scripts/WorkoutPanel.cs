@@ -6,7 +6,7 @@ using TMPro;
 
 public class WorkoutPanel : MonoBehaviour {
 
-	[HideInInspector]public WorkoutData workoutData;
+	public WorkoutData workoutData;
 	[SerializeField]private TMP_InputField _workoutName;
 	[SerializeField]private TextMeshProUGUI _minutesLabel;
 
@@ -34,6 +34,7 @@ public class WorkoutPanel : MonoBehaviour {
 	}
 
 	void HandleSelfClicked(){
+		WorkoutManager.Instance.ActiveWorkout = workoutData;
 		WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout(workoutData);
 	}
 

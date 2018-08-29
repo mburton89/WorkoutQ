@@ -11,9 +11,9 @@ public class WorkoutManager : MonoBehaviour {
 	public static WorkoutManager Instance;
 
 	public List<WorkoutData> workoutData;
-	public Workout ActiveWorkout;
+	public WorkoutData ActiveWorkout;
 	private int _activeExerciseIndex;
-	public Exercise ActiveExercise;
+	public ExerciseData ActiveExercise;
 	public WorkoutHUD workoutHUD;
 
 	public Button SaveButton;
@@ -24,10 +24,6 @@ public class WorkoutManager : MonoBehaviour {
 		}
 
 		Load();
-
-//		foreach(Workout workout in GetComponentsInChildren<Workout>()){
-//			Workouts.Add(workout);
-//		}
 	}
 
 	void OnEnable(){
@@ -36,11 +32,6 @@ public class WorkoutManager : MonoBehaviour {
 
 	void OnDisable(){
 		SaveButton.onClick.RemoveListener(Save);
-	}
-
-	void Start(){
-		workoutHUD.ActiveWorkoutText.text = ActiveWorkout.name;
-		workoutHUD.UpdateText(ActiveExercise); 
 	}
 
 	void Update(){
@@ -52,13 +43,11 @@ public class WorkoutManager : MonoBehaviour {
 	public void DecrementSetsRemaining(){
 		ActiveExercise.totalSets --;
 
-		if(ActiveExercise.totalSets == 0 && ActiveWorkout.Exercises.Count > (_activeExerciseIndex + 1)){
+		if(ActiveExercise.totalSets == 0 && ActiveWorkout.ExerciseData.Count > (_activeExerciseIndex + 1)){
 			//Handle Index Out of Range. End Workout
 			_activeExerciseIndex ++;
-			ActiveExercise = ActiveWorkout.Exercises[_activeExerciseIndex];
+			ActiveExercise = ActiveWorkout.ExerciseData[_activeExerciseIndex];
 		}
-
-		workoutHUD.UpdateText(ActiveExercise); 
 	}
 
 	public void Save(){
@@ -88,10 +77,6 @@ public class WorkoutManager : MonoBehaviour {
 			UserData data = (UserData)binaryFormatter.Deserialize(file); 
 			file.Close();
 
-//			foreach(WorkoutData workout in data.workoutData){
-//				workoutData.Add(workout);
-//			}
-
 			workoutData = data.workoutData;
 
 			print("Opened from: " + file);
@@ -101,7 +86,5 @@ public class WorkoutManager : MonoBehaviour {
 
 [System.Serializable]
 class UserData{
-
 	public List<WorkoutData> workoutData;
-
 }
