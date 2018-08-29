@@ -6,6 +6,8 @@ using TMPro;
 
 public class NumberCircle : MonoBehaviour {
 
+	[SerializeField]private ExercisePanel exercisePanel;
+
 	public enum Type{
 		Seconds,
 		Sets,
@@ -22,7 +24,7 @@ public class NumberCircle : MonoBehaviour {
 	private int _value;
 
 	void Start () {
-		inputField.onValueChanged.AddListener(delegate{HandleValueChanged();});
+		inputField.onSubmit.AddListener(delegate{HandleValueChanged();});
 	}
 	
 	 void HandleValueChanged(){
@@ -36,19 +38,36 @@ public class NumberCircle : MonoBehaviour {
 			
 		_value = int.Parse(inputField.text);
 
-		if(type == Type.Sets){
-			CreatePiesAndNotches();
+		if(type == Type.Seconds)
+		{
+			exercisePanel.exerciseData.secondsToCompleteSet = _value;
 		}
+		else if(type == Type.Sets)
+		{
+			CreatePiesAndNotches();
+			exercisePanel.exerciseData.totalSets = _value;
+		}
+		else if(type == Type.Reps)
+		{
+			exercisePanel.exerciseData.repsPerSet = _value;
+		}
+		else if(type == Type.Weight)
+		{
+			exercisePanel.exerciseData.weight = _value;
+		}
+
+		WorkoutManager.Instance.Save();
 	}
 
-	void CreatePiesAndNotches(){
-
+	void CreatePiesAndNotches()
+	{
 		for(int i = 0; i < _value; i++){
 			print("_value: " + _value);
 		}
 	}
 
-	public void UpdateValue(int value){
+	public void UpdateValue(int value)
+	{
 		inputField.text = value.ToString();
 		HandleValueChanged();
 	}
