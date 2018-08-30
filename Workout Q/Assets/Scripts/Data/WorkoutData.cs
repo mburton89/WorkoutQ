@@ -6,9 +6,16 @@ using UnityEngine;
 public class WorkoutData {
 
 	public string name;
-	public List<ExerciseData> ExerciseData;
+	public List<ExerciseData> exerciseData;
 
 	public int seconds;
 	public int minutes;
 
+	public void EstablishMinutes()
+	{
+		minutes = 0;
+		foreach(ExerciseData exercise in exerciseData){
+			minutes = minutes + ((exercise.totalSets * exercise.secondsToCompleteSet) / 60);
+		}
+	}
 }
