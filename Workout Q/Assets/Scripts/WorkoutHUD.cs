@@ -33,8 +33,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void ShowWorkoutsMenu()
 	{
-		addWorkoutPanelButton.transform.localScale = Vector3.zero;
-		addExercisePanelButton.transform.localScale = Vector3.one;
+		addWorkoutPanelButton.transform.localScale = Vector3.one;
+		addExercisePanelButton.transform.localScale = Vector3.zero;
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.one;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
@@ -53,7 +53,7 @@ public class WorkoutHUD : MonoBehaviour {
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
 
-		foreach(ExerciseData exercise in workoutToOpen.ExerciseData){
+		foreach(ExerciseData exercise in workoutToOpen.exerciseData){
 			AddExercisePanel(null, exercise);
 		}
 	}
@@ -77,7 +77,8 @@ public class WorkoutHUD : MonoBehaviour {
 		if(workoutData != null)
 		{
 			exerciseData = new ExerciseData();
-			workoutData.ExerciseData.Add(exerciseData);
+			exerciseData.parentWorkoutData = workoutData;
+			workoutData.exerciseData.Add(exerciseData);
 		}
 
 		if(exerciseData != null)
