@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ExercisePanel : MonoBehaviour {
+public class ExercisePanel : UIPanel {
 
 	public ExerciseData exerciseData;
 

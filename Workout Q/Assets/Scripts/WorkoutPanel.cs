@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WorkoutPanel : MonoBehaviour {
+public class WorkoutPanel : UIPanel {
 
 	public WorkoutData workoutData;
 	[SerializeField]private TMP_InputField _workoutName;
