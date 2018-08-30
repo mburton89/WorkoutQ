@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Data\WorkoutData.cs" />
      <Compile Include="Assets\Scripts\Exercise.cs" />
      <Compile Include="Assets\Scripts\ExercisePanel.cs" />
+     <Compile Include="Assets\Scripts\Footer\Footer.cs" />
      <Compile Include="Assets\Scripts\Header.cs" />
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
      <Compile Include="Assets\Scripts\PanelMover.cs" />

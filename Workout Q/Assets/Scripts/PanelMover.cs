@@ -8,13 +8,14 @@ public class PanelMover : MonoBehaviour
 	private UIPanel _panel;
 	private GridLayoutGroup _activeGridLayoutGroup;
 
-	[SerializeField]private Button moveUpButton;
 	[SerializeField]private Button deleteButton;
+	[SerializeField]private Button moveUpButton;
 	[SerializeField]private Button moveDownButton;
+	[SerializeField]private Button dismissButton;
 
 	void Start()
 	{
-		_panel = GetComponentInParent<UIPanel>();
+		_panel = FindObjectOfType<UIPanel>(); //TODO Make this work
 		_activeGridLayoutGroup = GetComponentInParent<GridLayoutGroup>();
 	}
 
@@ -23,6 +24,21 @@ public class PanelMover : MonoBehaviour
 		moveUpButton.onClick.AddListener(MovePanelUp);
 		deleteButton.onClick.AddListener(DeletePanel);
 		moveDownButton.onClick.AddListener(MovePanelDown);
+		//dismissButton.onClick.AddListener(Hide); //TODO remove the PanelMover object from the panels themselves
+	}
+
+	void OnDisable()
+	{
+		moveUpButton.onClick.RemoveListener(MovePanelUp);
+		deleteButton.onClick.RemoveListener(DeletePanel);
+		moveDownButton.onClick.RemoveListener(MovePanelDown);
+		dismissButton.onClick.RemoveListener(Hide);
+	}
+
+	void DeletePanel()
+	{
+		Destroy(_panel.gameObject);
+		WorkoutManager.Instance.Save();
 	}
 
 	void MovePanelUp()
@@ -36,12 +52,6 @@ public class PanelMover : MonoBehaviour
 		WorkoutManager.Instance.Save();
 	}
 
-	void DeletePanel()
-	{
-		Destroy(_panel.gameObject);
-		WorkoutManager.Instance.Save();
-	}
-
 	void MovePanelDown()
 	{
 		int siblingIndex = _panel.transform.GetSiblingIndex();
@@ -52,5 +62,15 @@ public class PanelMover : MonoBehaviour
 			_panel.transform.SetSiblingIndex(siblingIndex + 1);
 		}
 		WorkoutManager.Instance.Save();
+	}
+
+	void Hide()
+	{
+		gameObject.SetActive(false);
+	}
+
+	public void Show()
+	{
+		gameObject.SetActive(true);
 	}
 }
