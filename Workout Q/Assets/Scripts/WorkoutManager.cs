@@ -43,10 +43,10 @@ public class WorkoutManager : MonoBehaviour {
 	public void DecrementSetsRemaining(){
 		ActiveExercise.totalSets --;
 
-		if(ActiveExercise.totalSets == 0 && ActiveWorkout.ExerciseData.Count > (_activeExerciseIndex + 1)){
+		if(ActiveExercise.totalSets == 0 && ActiveWorkout.exerciseData.Count > (_activeExerciseIndex + 1)){
 			//Handle Index Out of Range. End Workout
 			_activeExerciseIndex ++;
-			ActiveExercise = ActiveWorkout.ExerciseData[_activeExerciseIndex];
+			ActiveExercise = ActiveWorkout.exerciseData[_activeExerciseIndex];
 		}
 	}
 
