@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class ExerciseData 
 {
-	public WorkoutData parentWorkoutData;
 	public string name;
 	public int secondsToCompleteSet;
 	public int totalSets;
