@@ -15,11 +15,13 @@ public class WorkoutPanel : UIPanel {
 	void OnEnable(){
 		selfButton.onClick.AddListener(HandleSelfClicked);
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
+		toggle.onValueChanged.AddListener(delegate{DetermineSelectability();});
 	}
 
 	void OnDisable(){
 		selfButton.onClick.RemoveListener(HandleSelfClicked);
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
+		toggle.onValueChanged.RemoveListener(delegate{DetermineSelectability();});
 	}
 
 	void Awake(){
@@ -29,6 +31,9 @@ public class WorkoutPanel : UIPanel {
 	}
 
 	public void UpdateText(){
+
+		workoutData.EstablishMinutes();
+
 		_workoutName.text = workoutData.name;
 		_minutesLabel.text = workoutData.minutes + " Minutes";
 	}

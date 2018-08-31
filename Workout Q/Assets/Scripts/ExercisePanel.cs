@@ -16,10 +16,12 @@ public class ExercisePanel : UIPanel {
 
 	void OnEnable(){
 		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
+		toggle.onValueChanged.AddListener(delegate{DetermineSelectability();});
 	}
 
 	void OnDisable(){
 		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
+		toggle.onValueChanged.RemoveListener(delegate{DetermineSelectability();});
 	}
 
 	void Awake(){
