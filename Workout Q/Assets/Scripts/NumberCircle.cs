@@ -41,13 +41,11 @@ public class NumberCircle : MonoBehaviour {
 		if(type == Type.Seconds)
 		{
 			exercisePanel.exerciseData.secondsToCompleteSet = _value;
-			exercisePanel.exerciseData.parentWorkoutData.EstablishMinutes();
 		}
 		else if(type == Type.Sets)
 		{
-			CreatePiesAndNotches();
+			//CreatePiesAndNotches();
 			exercisePanel.exerciseData.totalSets = _value;
-			exercisePanel.exerciseData.parentWorkoutData.EstablishMinutes();
 		}
 		else if(type == Type.Reps)
 		{
@@ -71,6 +69,5 @@ public class NumberCircle : MonoBehaviour {
 	public void UpdateValue(int value)
 	{
 		inputField.text = value.ToString();
-		HandleValueChanged();
 	}
 }
