@@ -15,6 +15,9 @@ public class WorkoutHUD : MonoBehaviour {
 	[SerializeField]private Button addWorkoutPanelButton;
 	[SerializeField]private Button addExercisePanelButton;
 
+	[HideInInspector]public UIPanel selectedPanel;
+	[HideInInspector]public GridLayoutGroup activeGridLayout;
+
 	void OnEnable(){
 		addWorkoutPanelButton.onClick.AddListener(delegate{AddWorkoutPanel(null);});
 		addExercisePanelButton.onClick.AddListener(delegate{AddExercisePanel(WorkoutManager.Instance.ActiveWorkout, null);});
@@ -77,7 +80,6 @@ public class WorkoutHUD : MonoBehaviour {
 		if(workoutData != null)
 		{
 			exerciseData = new ExerciseData();
-			exerciseData.parentWorkoutData = workoutData;
 			workoutData.exerciseData.Add(exerciseData);
 		}
 
@@ -93,5 +95,15 @@ public class WorkoutHUD : MonoBehaviour {
 
 		newExercisePanel.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
 		newExercisePanel.transform.localScale = Vector3.one;
+	}
+
+	public void SelectPanel(UIPanel panel){
+		if(selectedPanel != null)
+		{
+			selectedPanel.Deselect();			
+		}
+			
+		selectedPanel = panel;
+		activeGridLayout = panel.GetComponentInParent<GridLayoutGroup>();
 	}
 }
