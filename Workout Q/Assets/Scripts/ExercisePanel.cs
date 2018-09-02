@@ -16,12 +16,12 @@ public class ExercisePanel : UIPanel {
 
 	void OnEnable(){
 		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-		toggle.onValueChanged.AddListener(delegate{DetermineSelectability();});
+		toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
 	void OnDisable(){
 		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-		toggle.onValueChanged.RemoveListener(delegate{DetermineSelectability();});
+		toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
 
 	void Awake(){
@@ -37,5 +37,13 @@ public class ExercisePanel : UIPanel {
 	void HandleTitleChanged(){
 		exerciseData.name = exerciseName.text;
 		WorkoutManager.Instance.Save();
+	}
+
+	public void PopulateFields(string title, int seconds, int sets, int reps, int weight){
+		exerciseName.text = title;
+		timeNumberCircle.UpdateValue(seconds);
+		setsNumberCircle.UpdateValue(sets);
+		repsNumberCircle.UpdateValue(reps);
+		weightNumberCircle.UpdateValue(weight);
 	}
 }

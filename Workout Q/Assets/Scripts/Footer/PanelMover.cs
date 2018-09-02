@@ -28,8 +28,10 @@ public class PanelMover : MonoBehaviour
 
 	void DeletePanel()
 	{
-		Destroy(WorkoutManager.Instance.workoutHUD.selectedPanel.gameObject);
+		TrashBin.Instance.ThrowInTrash(WorkoutManager.Instance.workoutHUD.selectedPanel.gameObject.transform);
+		SaveExercisePanelOrder();
 		WorkoutManager.Instance.Save();
+		Hide();
 	}
 
 	void MovePanelUp()
@@ -59,7 +61,8 @@ public class PanelMover : MonoBehaviour
 
 	void Hide()
 	{
-		gameObject.SetActive(false);
+		WorkoutManager.Instance.workoutHUD.selectedPanel.Deselect();
+		Footer.Instance.Hide();
 	}
 
 	public void Show()

@@ -56,9 +56,12 @@
      <Compile Include="Assets\Scripts\Exercise.cs" />
      <Compile Include="Assets\Scripts\ExercisePanel.cs" />
      <Compile Include="Assets\Scripts\Footer\Footer.cs" />
+     <Compile Include="Assets\Scripts\Footer\PanelMover.cs" />
+     <Compile Include="Assets\Scripts\Footer\WorkoutControls.cs" />
      <Compile Include="Assets\Scripts\Header.cs" />
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
-     <Compile Include="Assets\Scripts\PanelMover.cs" />
+     <Compile Include="Assets\Scripts\PlayModeManager.cs" />
+     <Compile Include="Assets\Scripts\TrashBin.cs" />
      <Compile Include="Assets\Scripts\UIPanel.cs" />
      <Compile Include="Assets\Scripts\Workout.cs" />
      <Compile Include="Assets\Scripts\WorkoutHUD.cs" />

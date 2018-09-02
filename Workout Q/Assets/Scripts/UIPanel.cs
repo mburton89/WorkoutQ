@@ -8,18 +8,21 @@ public class UIPanel : MonoBehaviour {
 
 	public void Select(){
 		_outline.gameObject.SetActive(true);
-		WorkoutManager.Instance.workoutHUD.SelectPanel(this);
+		WorkoutManager.Instance.workoutHUD.HandlePanelSelected(this);
 	}
 
 	public void Deselect(){
 		toggle.isOn = false;
 		_outline.gameObject.SetActive(false);
+		Footer.Instance.Hide();
 	}
 
-	public void DetermineSelectability(){
-		if(toggle.isOn){
+	public void HandleTogglePressed(){
+		if(toggle.isOn)
+		{
 			Select();
-		}else{
+		}
+		else{
 			Deselect();
 		}
 	}

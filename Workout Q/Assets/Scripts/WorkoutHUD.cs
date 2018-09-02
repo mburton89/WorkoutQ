@@ -45,6 +45,8 @@ public class WorkoutHUD : MonoBehaviour {
 		foreach(ExercisePanel panel in exercisePanelsGridLayoutGroup.GetComponentsInChildren<ExercisePanel>()){
 			Destroy(panel.gameObject);
 		}
+
+		Footer.Instance.Hide();
 	}
 
 	public void ShowExercisesForWorkout(WorkoutData workoutToOpen)
@@ -59,6 +61,8 @@ public class WorkoutHUD : MonoBehaviour {
 		foreach(ExerciseData exercise in workoutToOpen.exerciseData){
 			AddExercisePanel(null, exercise);
 		}
+
+		Footer.Instance.ShowWorkoutControls();
 	}
 
 	void AddWorkoutPanel(WorkoutData workoutData){
@@ -97,13 +101,15 @@ public class WorkoutHUD : MonoBehaviour {
 		newExercisePanel.transform.localScale = Vector3.one;
 	}
 
-	public void SelectPanel(UIPanel panel){
-		if(selectedPanel != null)
+	public void HandlePanelSelected(UIPanel panel){
+		if(selectedPanel != null && selectedPanel != panel)
 		{
 			selectedPanel.Deselect();			
 		}
 			
 		selectedPanel = panel;
 		activeGridLayout = panel.GetComponentInParent<GridLayoutGroup>();
+
+		Footer.Instance.ShowPanelMover();
 	}
 }

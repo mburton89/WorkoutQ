@@ -21,7 +21,7 @@ public class NumberCircle : MonoBehaviour {
 	public TextMeshProUGUI label;
 	public TMP_InputField inputField;
 
-	private int _value;
+	[HideInInspector]public int value;
 
 	void Start () {
 		inputField.onSubmit.AddListener(delegate{HandleValueChanged();});
@@ -36,24 +36,28 @@ public class NumberCircle : MonoBehaviour {
 			circleOutline.color = Color.white;
 		}
 			
-		_value = int.Parse(inputField.text);
+		if(string.IsNullOrEmpty(inputField.text)){
+			value = 0;
+		}else{
+			value = int.Parse(inputField.text);
+		}
 
 		if(type == Type.Seconds)
 		{
-			exercisePanel.exerciseData.secondsToCompleteSet = _value;
+			exercisePanel.exerciseData.secondsToCompleteSet = value;
 		}
 		else if(type == Type.Sets)
 		{
 			//CreatePiesAndNotches();
-			exercisePanel.exerciseData.totalSets = _value;
+			exercisePanel.exerciseData.totalSets = value;
 		}
 		else if(type == Type.Reps)
 		{
-			exercisePanel.exerciseData.repsPerSet = _value;
+			exercisePanel.exerciseData.repsPerSet = value;
 		}
 		else if(type == Type.Weight)
 		{
-			exercisePanel.exerciseData.weight = _value;
+			exercisePanel.exerciseData.weight = value;
 		}
 
 		WorkoutManager.Instance.Save();
@@ -61,8 +65,8 @@ public class NumberCircle : MonoBehaviour {
 
 	void CreatePiesAndNotches()
 	{
-		for(int i = 0; i < _value; i++){
-			print("_value: " + _value);
+		for(int i = 0; i < value; i++){
+			print("_value: " + value);
 		}
 	}
 

@@ -2,15 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Footer : MonoBehaviour {
+public class Footer : MonoBehaviour
+{
+	public static Footer Instance;
 
-	// Use this for initialization
-	void Start () {
-		
+	public PanelMover MovePanelContatiner;
+	public WorkoutControls WorkoutControlsContatiner;
+
+	void Awake(){
+		if(Instance == null){
+			Instance = this;
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void Hide()
+	{
+		MovePanelContatiner.gameObject.SetActive(false);
+		WorkoutControlsContatiner.gameObject.SetActive(false);
+	}
+
+	public void ShowPanelMover()
+	{
+		MovePanelContatiner.gameObject.SetActive(true);
+		WorkoutControlsContatiner.gameObject.SetActive(false);
+	}
+
+	public void ShowWorkoutControls()
+	{
+		MovePanelContatiner.gameObject.SetActive(false);
+		WorkoutControlsContatiner.gameObject.SetActive(true);
 	}
 }

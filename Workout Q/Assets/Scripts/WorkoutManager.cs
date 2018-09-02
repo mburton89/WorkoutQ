@@ -12,10 +12,7 @@ public class WorkoutManager : MonoBehaviour {
 
 	public List<WorkoutData> workoutData;
 	public WorkoutData ActiveWorkout;
-	private int _activeExerciseIndex;
-	public ExerciseData ActiveExercise;
 	public WorkoutHUD workoutHUD;
-
 	public Button SaveButton;
 
 	void Awake(){
@@ -34,27 +31,12 @@ public class WorkoutManager : MonoBehaviour {
 		SaveButton.onClick.RemoveListener(Save);
 	}
 
-	void Update(){
-		if(Input.GetKeyDown(KeyCode.RightArrow)){
-			DecrementSetsRemaining();
-		}
-	}
-
-	public void DecrementSetsRemaining(){
-		ActiveExercise.totalSets --;
-
-		if(ActiveExercise.totalSets == 0 && ActiveWorkout.exerciseData.Count > (_activeExerciseIndex + 1)){
-			//Handle Index Out of Range. End Workout
-			_activeExerciseIndex ++;
-			ActiveExercise = ActiveWorkout.exerciseData[_activeExerciseIndex];
-		}
-	}
-
 	public void Save(){
 
 		workoutData.Clear();
 
-		foreach(WorkoutPanel panel in workoutHUD.workoutPanelsGridLayoutGroup.GetComponentsInChildren<WorkoutPanel>()){
+		foreach(WorkoutPanel panel in workoutHUD.workoutPanelsGridLayoutGroup.GetComponentsInChildren<WorkoutPanel>())
+		{
 			workoutData.Add(panel.workoutData);
 		}
 

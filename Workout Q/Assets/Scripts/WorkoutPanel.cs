@@ -15,13 +15,13 @@ public class WorkoutPanel : UIPanel {
 	void OnEnable(){
 		selfButton.onClick.AddListener(HandleSelfClicked);
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-		toggle.onValueChanged.AddListener(delegate{DetermineSelectability();});
+		toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
 	void OnDisable(){
 		selfButton.onClick.RemoveListener(HandleSelfClicked);
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-		toggle.onValueChanged.RemoveListener(delegate{DetermineSelectability();});
+		toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
 
 	void Awake(){
