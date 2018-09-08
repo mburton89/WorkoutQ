@@ -20,11 +20,18 @@ public class NumberCircle : MonoBehaviour {
 	public Image circleOutline;
 	public TextMeshProUGUI label;
 	public TMP_InputField inputField;
+	public Button inputFieldSelectButton;
 
 	[HideInInspector]public int value;
 
-	void Start () {
+	void OnEnable() {
+		inputFieldSelectButton.onClick.AddListener(SelectInputField);
 		inputField.onSubmit.AddListener(delegate{HandleValueChanged();});
+	}
+
+	void OnDisable() {
+		inputFieldSelectButton.onClick.RemoveListener(SelectInputField);
+		inputField.onSubmit.RemoveListener(delegate{HandleValueChanged();});
 	}
 	
 	 void HandleValueChanged(){
@@ -73,5 +80,9 @@ public class NumberCircle : MonoBehaviour {
 	public void UpdateValue(int value)
 	{
 		inputField.text = value.ToString();
+	}
+
+	void SelectInputField(){
+		inputField.Select();
 	}
 }

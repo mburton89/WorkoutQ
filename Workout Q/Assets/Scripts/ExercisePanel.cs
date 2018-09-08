@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ExercisePanel : UIPanel {
@@ -8,6 +9,7 @@ public class ExercisePanel : UIPanel {
 	public ExerciseData exerciseData;
 
 	public TMP_InputField exerciseName;
+	public Button titleButton;
 
 	public NumberCircle timeNumberCircle;
 	public NumberCircle setsNumberCircle;
@@ -15,11 +17,13 @@ public class ExercisePanel : UIPanel {
 	public NumberCircle weightNumberCircle;
 
 	void OnEnable(){
+		titleButton.onClick.AddListener(SelectTitle);
 		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
 		toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
 	void OnDisable(){
+		titleButton.onClick.AddListener(SelectTitle);
 		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
 		toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
@@ -45,5 +49,9 @@ public class ExercisePanel : UIPanel {
 		setsNumberCircle.UpdateValue(sets);
 		repsNumberCircle.UpdateValue(reps);
 		weightNumberCircle.UpdateValue(weight);
+	}
+
+	void SelectTitle(){
+		exerciseName.Select();
 	}
 }

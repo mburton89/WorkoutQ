@@ -17,18 +17,22 @@ public class Header : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		HomeButton.onClick.AddListener(SetUpForWorkoutsMenu);
+		HomeButton.onClick.AddListener(HandleHomePressed);
 	}
 
 	void OnDisable(){
-		HomeButton.onClick.RemoveListener(SetUpForWorkoutsMenu);
+		HomeButton.onClick.RemoveListener(HandleHomePressed);
 	}
 
-	public void SetUpForWorkoutsMenu(){
+	public void HandleHomePressed(){
 		SettingsButton.gameObject.SetActive(true);
 		HomeButton.gameObject.SetActive(false);
 
 		WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
+
+		PlayModeManager.Instance.Reset();
+
+		Footer.Instance.Hide();
 	}
 
 	public void SetUpForExercisesMenu(){

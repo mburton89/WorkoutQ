@@ -28,18 +28,25 @@ public class WorkoutControls : MonoBehaviour {
 
 	void HandlePlayPressed()
 	{
-		playButton.gameObject.SetActive(false);
-		pauseButton.gameObject.SetActive(true);
-		previousButton.gameObject.SetActive(true);
-		nextButton.gameObject.SetActive(true);
+		ShowCurrentlyPlayingMenu();
+
+		if(PlayModeManager.Instance.isPaused){
+			PlayModeManager.Instance.Resume();
+		}else{
+			WorkoutHUD.Instance.PlayActiveWorkout();
+		}
 	}
 
 	void HandlePausePressed()
 	{
+		ShowPausedMenu();
+
 		playButton.gameObject.SetActive(true);
 		pauseButton.gameObject.SetActive(false);
 		previousButton.gameObject.SetActive(false);
 		nextButton.gameObject.SetActive(false);
+
+		PlayModeManager.Instance.Pause();
 	}
 
 	void HandlePreviousPressed()
@@ -49,6 +56,20 @@ public class WorkoutControls : MonoBehaviour {
 
 	void HandleNextPressed()
 	{
+		PlayModeManager.Instance.DecrementSetsRemaining();
+	}
 
+	public void ShowPausedMenu(){
+		playButton.gameObject.SetActive(true);
+		pauseButton.gameObject.SetActive(false);
+		previousButton.gameObject.SetActive(false);
+		nextButton.gameObject.SetActive(false);
+	}
+
+	public void ShowCurrentlyPlayingMenu(){
+		playButton.gameObject.SetActive(false);
+		pauseButton.gameObject.SetActive(true);
+		previousButton.gameObject.SetActive(true);
+		nextButton.gameObject.SetActive(true);
 	}
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayModeManager : MonoBehaviour {
-	
+
+	public static PlayModeManager Instance;
+
 	private int _activeExerciseIndex;
 	public WorkoutData ActiveWorkout;
 	[HideInInspector]public ExerciseData ActiveExercise;
@@ -12,25 +14,29 @@ public class PlayModeManager : MonoBehaviour {
 	public ExercisePanel NextExercisePanel;
 
 	private float _secondsRemaining;
+	private bool _isInPlayMode;
 
-	void Start(){
-		_activeExerciseIndex = 0;
-		EstablishActiveExercise();
-		EstablishNextExercise();
-		_secondsRemaining = ActiveExercise.secondsToCompleteSet;
+	public bool isPaused;
+
+	void Awake(){
+		if(Instance == null){
+			Instance = this;
+		}
 	}
 
 	void Update(){
 
-		_secondsRemaining -= Time.deltaTime;
-		ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
+		if(_isInPlayMode){
+			_secondsRemaining -= Time.deltaTime;
+			ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
 
-		if(_secondsRemaining < 0){
-			HandleTimerHittingZero();
-		}
+			if(_secondsRemaining < 0){
+				HandleTimerHittingZero();
+			}
 
-		if(Input.GetKeyDown(KeyCode.RightArrow)){
-			DecrementSetsRemaining();
+			if(Input.GetKeyDown(KeyCode.RightArrow)){
+				DecrementSetsRemaining();
+			}
 		}
 	}
 
@@ -79,5 +85,46 @@ public class PlayModeManager : MonoBehaviour {
 
 	void HandleTimerHittingZero(){
 		DecrementSetsRemaining();
+	}
+
+	public void PlayWorkout(WorkoutData workout){
+
+		foreach(ExerciseData exercise in workout.exerciseData){
+
+			ExerciseData newExercise = ExerciseData.Copy(
+				exercise.name,
+				exercise.secondsToCompleteSet,
+				exercise.totalSets,
+				exercise.repsPerSet,
+				exercise.weight);
+
+			ActiveWorkout.exerciseData.Add(newExercise);
+		}
+
+		//ActiveWorkout = workout;
+
+		_activeExerciseIndex = 0;
+		EstablishActiveExercise();
+		EstablishNextExercise();
+		_secondsRemaining = ActiveExercise.secondsToCompleteSet;
+		_isInPlayMode = true;
+	}
+
+	public void Reset(){
+		ActiveWorkout.exerciseData.Clear();
+		_isInPlayMode = false;
+		isPaused = false;
+		ActiveExercisePanel.transform.localScale = Vector3.one;
+		NextExercisePanel.transform.localScale = Vector3.one;
+	}
+
+	public void Pause(){
+		_isInPlayMode = false;
+		isPaused = true;
+	}
+
+	public void Resume(){
+		_isInPlayMode = true;
+		isPaused = false;
 	}
 }

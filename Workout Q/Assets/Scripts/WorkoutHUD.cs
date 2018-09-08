@@ -6,8 +6,11 @@ using TMPro;
 
 public class WorkoutHUD : MonoBehaviour {
 
+	public static WorkoutHUD Instance;
+
 	public GridLayoutGroup workoutPanelsGridLayoutGroup;
 	public GridLayoutGroup exercisePanelsGridLayoutGroup;
+	public GridLayoutGroup playModeExercisePanelsGridLayoutGroup;
 
 	[SerializeField]private WorkoutPanel WorkoutPanelPrefab;
 	[SerializeField]private ExercisePanel ExercisePanelPrefab;
@@ -28,6 +31,12 @@ public class WorkoutHUD : MonoBehaviour {
 		addExercisePanelButton.onClick.RemoveListener(delegate{AddExercisePanel(WorkoutManager.Instance.ActiveWorkout, null);});
 	}
 
+	void Awake(){
+		if(Instance == null){
+			Instance = this;
+		}
+	}
+
 	void Start(){
 		foreach(WorkoutData workout in WorkoutManager.Instance.workoutData){
 			AddWorkoutPanel(workout);
@@ -41,6 +50,7 @@ public class WorkoutHUD : MonoBehaviour {
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.one;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
+		playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 
 		foreach(ExercisePanel panel in exercisePanelsGridLayoutGroup.GetComponentsInChildren<ExercisePanel>()){
 			Destroy(panel.gameObject);
@@ -57,12 +67,21 @@ public class WorkoutHUD : MonoBehaviour {
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
+		playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 
 		foreach(ExerciseData exercise in workoutToOpen.exerciseData){
 			AddExercisePanel(null, exercise);
 		}
 
 		Footer.Instance.ShowWorkoutControls();
+		Footer.Instance.WorkoutControlsContatiner.ShowPausedMenu();
+	}
+
+	public void PlayActiveWorkout(){
+		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
+		playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
+
+		PlayModeManager.Instance.PlayWorkout(WorkoutManager.Instance.ActiveWorkout);
 	}
 
 	void AddWorkoutPanel(WorkoutData workoutData){
@@ -91,7 +110,7 @@ public class WorkoutHUD : MonoBehaviour {
 		{
 			newExercisePanel.exerciseData = exerciseData;
 			newExercisePanel.exerciseName.text = exerciseData.name;
-			newExercisePanel.timeNumberCircle.UpdateValue(exerciseData.secondsToCompleteSet);
+			newExercisePanel.timeNumberCircle.UpdateValue(exerciseData.secondsToCompleteSet); //TODO put these lines in own method to populate panel
 			newExercisePanel.setsNumberCircle.UpdateValue(exerciseData.totalSets);
 			newExercisePanel.repsNumberCircle.UpdateValue(exerciseData.repsPerSet);
 			newExercisePanel.weightNumberCircle.UpdateValue(exerciseData.weight);

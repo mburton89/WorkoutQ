@@ -11,15 +11,18 @@ public class WorkoutPanel : UIPanel {
 	[SerializeField]private TextMeshProUGUI _minutesLabel;
 
 	public Button selfButton;
+	public Button titleButton;
 
 	void OnEnable(){
 		selfButton.onClick.AddListener(HandleSelfClicked);
+		titleButton.onClick.AddListener(SelectTitle);
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
 		toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
 	void OnDisable(){
 		selfButton.onClick.RemoveListener(HandleSelfClicked);
+		titleButton.onClick.RemoveListener(SelectTitle);
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
 		toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
@@ -46,5 +49,9 @@ public class WorkoutPanel : UIPanel {
 	void HandleTitleChanged(){
 		workoutData.name = _workoutName.text;
 		WorkoutManager.Instance.Save();
+	}
+
+	void SelectTitle(){
+		_workoutName.Select();
 	}
 }
