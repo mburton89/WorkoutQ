@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ColorElement.cs" />
      <Compile Include="Assets\Scripts\Data\ExerciseData.cs" />
      <Compile Include="Assets\Scripts\Data\WorkoutData.cs" />
      <Compile Include="Assets\Scripts\Exercise.cs" />
