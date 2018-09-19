@@ -20,7 +20,11 @@ public class WorkoutManager : MonoBehaviour {
 			Instance = this;
 		}
 
-		Load();
+		if (PlayerPrefs.GetInt ("hasOpenedApp") == 1) {
+			Load ();
+		} else {
+			PlayerPrefs.SetInt ("hasOpenedApp", 1);
+		}
 	}
 
 	void OnEnable(){

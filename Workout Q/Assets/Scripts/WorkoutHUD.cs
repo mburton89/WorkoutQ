@@ -61,7 +61,7 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void ShowExercisesForWorkout(WorkoutData workoutToOpen)
 	{
-		Header.Instance.SetUpForExercisesMenu();
+		Header.Instance.SetUpForExercisesMenu(workoutToOpen);
 		addWorkoutPanelButton.transform.localScale = Vector3.zero;
 		addExercisePanelButton.transform.localScale = Vector3.one;
 
@@ -77,7 +77,10 @@ public class WorkoutHUD : MonoBehaviour {
 		Footer.Instance.WorkoutControlsContatiner.ShowPausedMenu();
 	}
 
-	public void PlayActiveWorkout(){
+	public void PlayActiveWorkout()
+	{
+		addExercisePanelButton.transform.localScale = Vector3.zero;
+
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
 

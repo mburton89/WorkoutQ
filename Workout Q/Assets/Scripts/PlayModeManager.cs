@@ -101,8 +101,6 @@ public class PlayModeManager : MonoBehaviour {
 			ActiveWorkout.exerciseData.Add(newExercise);
 		}
 
-		//ActiveWorkout = workout;
-
 		_activeExerciseIndex = 0;
 		EstablishActiveExercise();
 		EstablishNextExercise();

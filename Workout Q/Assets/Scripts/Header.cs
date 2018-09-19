@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Header : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class Header : MonoBehaviour {
 
 	[SerializeField]private Button SettingsButton;
 	[SerializeField]private Button HomeButton;
+	[SerializeField]private TextMeshProUGUI title;
 
 	void Awake(){
 		if(Instance == null){
@@ -33,10 +35,13 @@ public class Header : MonoBehaviour {
 		PlayModeManager.Instance.Reset();
 
 		Footer.Instance.Hide();
+
+		title.text = "Workouts";
 	}
 
-	public void SetUpForExercisesMenu(){
+	public void SetUpForExercisesMenu(WorkoutData workout){
 		SettingsButton.gameObject.SetActive(false);
 		HomeButton.gameObject.SetActive(true);
+		title.text = workout.name;
 	}
 }
