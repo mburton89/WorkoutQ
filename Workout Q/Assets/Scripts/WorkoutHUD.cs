@@ -12,14 +12,16 @@ public class WorkoutHUD : MonoBehaviour {
 	public GridLayoutGroup exercisePanelsGridLayoutGroup;
 	public GridLayoutGroup playModeExercisePanelsGridLayoutGroup;
 
-	[SerializeField]private WorkoutPanel WorkoutPanelPrefab;
-	[SerializeField]private ExercisePanel ExercisePanelPrefab;
+	[SerializeField]private WorkoutPanel WorkoutMenuItemPrefab;
+	[SerializeField]private ExercisePanel ExerciseMenuItemPrefab;
 
 	[SerializeField]private Button addWorkoutPanelButton;
 	[SerializeField]private Button addExercisePanelButton;
 
 	[HideInInspector]public UIPanel selectedPanel;
 	[HideInInspector]public GridLayoutGroup activeGridLayout;
+
+	[SerializeField]private GameObject _raycastBlocker;
 
 	void OnEnable(){
 		addWorkoutPanelButton.onClick.AddListener(delegate{AddWorkoutPanel(null);});
@@ -57,6 +59,8 @@ public class WorkoutHUD : MonoBehaviour {
 		}
 
 		Footer.Instance.Hide();
+
+		_raycastBlocker.SetActive (false);
 	}
 
 	public void ShowExercisesForWorkout(WorkoutData workoutToOpen)
@@ -85,10 +89,12 @@ public class WorkoutHUD : MonoBehaviour {
 		playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
 
 		PlayModeManager.Instance.PlayWorkout(WorkoutManager.Instance.ActiveWorkout);
+
+		_raycastBlocker.SetActive (true);
 	}
 
 	void AddWorkoutPanel(WorkoutData workoutData){
-		WorkoutPanel newWorkoutPanel = Instantiate(WorkoutPanelPrefab);
+		WorkoutPanel newWorkoutPanel = Instantiate(WorkoutMenuItemPrefab);
 
 		if(workoutData != null){
 			newWorkoutPanel.workoutData = workoutData;
@@ -100,8 +106,9 @@ public class WorkoutHUD : MonoBehaviour {
 		newWorkoutPanel.transform.localScale = Vector3.one;
 	}
 
-	void AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData){
-		ExercisePanel newExercisePanel = Instantiate(ExercisePanelPrefab);
+	void AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData)
+	{
+		ExercisePanel newExerciseMenuItem = Instantiate(ExerciseMenuItemPrefab);
 
 		if(workoutData != null)
 		{
@@ -111,16 +118,24 @@ public class WorkoutHUD : MonoBehaviour {
 
 		if(exerciseData != null)
 		{
-			newExercisePanel.exerciseData = exerciseData;
-			newExercisePanel.exerciseName.text = exerciseData.name;
-			newExercisePanel.timeNumberCircle.UpdateValue(exerciseData.secondsToCompleteSet); //TODO put these lines in own method to populate panel
-			newExercisePanel.setsNumberCircle.UpdateValue(exerciseData.totalSets);
-			newExercisePanel.repsNumberCircle.UpdateValue(exerciseData.repsPerSet);
-			newExercisePanel.weightNumberCircle.UpdateValue(exerciseData.weight);
+			newExerciseMenuItem.exerciseData = exerciseData;
+//			newExerciseMenuItem.PopulateFields (
+//				exerciseData.name,
+//				exerciseData.secondsToCompleteSet,
+//				exerciseData.totalSets,
+//				exerciseData.repsPerSet,
+//				exerciseData.weight
+//			);
+
+			newExerciseMenuItem.exerciseName.text = exerciseData.name;
+			newExerciseMenuItem.timeNumberCircle.UpdateValue(exerciseData.secondsToCompleteSet); //TODO put these lines in own method to populate panel
+			newExerciseMenuItem.setsNumberCircle.UpdateValue(exerciseData.totalSets);
+			newExerciseMenuItem.repsNumberCircle.UpdateValue(exerciseData.repsPerSet);
+			newExerciseMenuItem.weightNumberCircle.UpdateValue(exerciseData.weight);
 		}
 
-		newExercisePanel.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
-		newExercisePanel.transform.localScale = Vector3.one;
+		newExerciseMenuItem.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
+		newExerciseMenuItem.transform.localScale = Vector3.one;
 	}
 
 	public void HandlePanelSelected(UIPanel panel){

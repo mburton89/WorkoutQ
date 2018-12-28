@@ -27,6 +27,10 @@ public class WorkoutManager : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	}
+
 	void OnEnable(){
 		SaveButton.onClick.AddListener(Save);
 	}

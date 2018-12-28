@@ -1,24 +1,46 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIPanel : MonoBehaviour {
 
-	[SerializeField]private Image _outline;
-	public Toggle toggle;
+	[SerializeField] private Image _fill;
+	[SerializeField] private TextMeshProUGUI[] _texts;
+
+	[HideInInspector] public bool isOn;
+
+	public Sprite lightSprite;
+	public Sprite darkSprite;
+
+	public void Highlight()
+	{
+		_fill.sprite = lightSprite;
+		foreach (TextMeshProUGUI text in _texts) 
+		{
+			text.color = Color.black;
+		}
+	}
+
+	public void Unhighlight()
+	{
+		_fill.sprite = darkSprite;
+		foreach (TextMeshProUGUI text in _texts) 
+		{
+			text.color = ColorManager.Instance.ActiveColor;
+		}
+	}
 
 	public void Select(){
-		_outline.gameObject.SetActive(true);
 		WorkoutManager.Instance.workoutHUD.HandlePanelSelected(this);
 	}
 
 	public void Deselect(){
-		toggle.isOn = false;
-		_outline.gameObject.SetActive(false);
+		isOn = false;
 		Footer.Instance.Hide();
 	}
 
 	public void HandleTogglePressed(){
-		if(toggle.isOn)
+		if(isOn)
 		{
 			Select();
 		}

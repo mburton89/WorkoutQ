@@ -17,7 +17,7 @@ public class NumberCircle : MonoBehaviour {
 
 	public Type type;
 
-	public Image circleOutline;
+	//public Image circleOutline;
 	public TextMeshProUGUI label;
 	public TMP_InputField inputField;
 	public Button inputFieldSelectButton;
@@ -37,10 +37,10 @@ public class NumberCircle : MonoBehaviour {
 	 void HandleValueChanged(){
 		if(string.IsNullOrEmpty(inputField.text)){
 			label.color = Color.grey;
-			circleOutline.color = Color.grey;
+			//circleOutline.color = Color.grey;
 		}else{
 			label.color = Color.white;
-			circleOutline.color = Color.white;
+			//circleOutline.color = Color.white;
 		}
 			
 		if(string.IsNullOrEmpty(inputField.text)){

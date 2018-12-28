@@ -4,31 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ExercisePanel : UIPanel {
+public class ExerciseMenuItem : UIPanel {
 
 	public ExerciseData exerciseData;
-
 	public TMP_InputField exerciseName;
-	public Button titleButton;
+	public TextMeshProUGUI secondsText;
+	public TextMeshProUGUI setsRepsText;
+	public TextMeshProUGUI weightText;
 
-	public NumberCircle timeNumberCircle;
-	public NumberCircle setsNumberCircle;
-	public NumberCircle repsNumberCircle;
-	public NumberCircle weightNumberCircle;
-
-	void OnEnable(){
-		titleButton.onClick.AddListener(SelectTitle);
+	void OnEnable()
+	{
 		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-		//toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
-	void OnDisable(){
-		titleButton.onClick.AddListener(SelectTitle);
+	void OnDisable()
+	{
 		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-		//toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
 
-	void Awake(){
+	void Awake()
+	{
 		if(exerciseData != null){
 			UpdateText();
 		}
@@ -45,10 +40,9 @@ public class ExercisePanel : UIPanel {
 
 	public void PopulateFields(string title, int seconds, int sets, int reps, int weight){
 		exerciseName.text = title;
-		timeNumberCircle.UpdateValue(seconds);
-		setsNumberCircle.UpdateValue(sets);
-		repsNumberCircle.UpdateValue(reps);
-		weightNumberCircle.UpdateValue(weight);
+		secondsText.text = seconds + "s";
+		setsRepsText.text = sets + "x" + reps;
+		weightText.text = weight + "lb";
 	}
 
 	void SelectTitle(){

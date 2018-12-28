@@ -1,30 +1,25 @@
-﻿	using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WorkoutPanel : UIPanel {
+public class WorkoutMenuItem : UIPanel {
 
 	public WorkoutData workoutData;
 	[SerializeField]private TMP_InputField _workoutName;
 	[SerializeField]private TextMeshProUGUI _minutesLabel;
-
-	public Button selfButton;
-	public Button titleButton;
+	[SerializeField]private TextMeshProUGUI _workoutNameLabel;
+	//public Button selfButton;
 
 	void OnEnable(){
-		selfButton.onClick.AddListener(HandleSelfClicked);
-		titleButton.onClick.AddListener(SelectTitle);
+		//selfButton.onClick.AddListener(HandleSelfClicked);
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-		//toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
 	void OnDisable(){
-		selfButton.onClick.RemoveListener(HandleSelfClicked);
-		titleButton.onClick.RemoveListener(SelectTitle);
+		//selfButton.onClick.RemoveListener(HandleSelfClicked);
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-		//toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
 
 	void Awake(){
@@ -34,14 +29,13 @@ public class WorkoutPanel : UIPanel {
 	}
 
 	public void UpdateText(){
-
 		workoutData.EstablishMinutes();
-
 		_workoutName.text = workoutData.name;
 		_minutesLabel.text = workoutData.minutes + " min";
 	}
 
-	void HandleSelfClicked(){
+	public void HandleSelfClicked(){
+		Unhighlight ();
 		WorkoutManager.Instance.ActiveWorkout = workoutData;
 		WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout(workoutData);
 	}
@@ -51,7 +45,7 @@ public class WorkoutPanel : UIPanel {
 		WorkoutManager.Instance.Save();
 	}
 
-	void SelectTitle(){
+	public void SelectTitle(){
 		_workoutName.Select();
 	}
 }
