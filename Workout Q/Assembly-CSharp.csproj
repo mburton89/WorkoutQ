@@ -62,11 +62,14 @@
      <Compile Include="Assets\Scripts\Header.cs" />
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
      <Compile Include="Assets\Scripts\PlayModeManager.cs" />
+     <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\TrashBin.cs" />
      <Compile Include="Assets\Scripts\UIPanel.cs" />
      <Compile Include="Assets\Scripts\V2\ExercisePanelV2.cs" />
      <Compile Include="Assets\Scripts\V3\ColorManager.cs" />
      <Compile Include="Assets\Scripts\V3\ExerciseMenuItem.cs" />
+     <Compile Include="Assets\Scripts\V3\LineSegment.cs" />
+     <Compile Include="Assets\Scripts\V3\LineSegmenter.cs" />
      <Compile Include="Assets\Scripts\V3\LongClickButton.cs" />
      <Compile Include="Assets\Scripts\V3\WorkoutMenuItem.cs" />
      <Compile Include="Assets\Scripts\Workout.cs" />

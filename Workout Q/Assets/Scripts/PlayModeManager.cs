@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayModeManager : MonoBehaviour {
 
@@ -8,15 +9,21 @@ public class PlayModeManager : MonoBehaviour {
 
 	private int _activeExerciseIndex;
 	public WorkoutData ActiveWorkout;
+	[HideInInspector]public ExerciseData PreviousExercise;
 	[HideInInspector]public ExerciseData ActiveExercise;
 	[HideInInspector]public ExerciseData NextExercise;
+	public ExercisePanel PreviousExercisePanel;
 	public ExercisePanel ActiveExercisePanel;
 	public ExercisePanel NextExercisePanel;
+
+	public Image timerLine;
 
 	private float _secondsRemaining;
 	private bool _isInPlayMode;
 
 	public bool isPaused;
+
+	[SerializeField] private LineSegmenter _lineSegmenter;
 
 	void Awake(){
 		if(Instance == null){
@@ -37,20 +44,71 @@ public class PlayModeManager : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.RightArrow)){
 				DecrementSetsRemaining();
 			}
+
+			timerLine.fillAmount = 1 - 	_secondsRemaining/ActiveExercise.secondsToCompleteSet;
+			//timerLine.fillAmount = _secondsRemaining/ActiveWorkout.exerciseData[_activeExerciseIndex];
 		}
 	}
 
+	public void IncrementSetsRemaining(){
+
+		print ("YOYOYOYOYO");
+
+		if (_activeExerciseIndex == 0 && ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
+			_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
+			return;
+		}
+			
+		if (_secondsRemaining >= ActiveExercise.secondsToCompleteSet - 1) 
+		{
+			if (ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
+				_activeExerciseIndex--;
+				EstablishPreviousExercise ();
+				EstablishActiveExercise ();
+				EstablishNextExercise ();
+			} else {
+				ActiveExercise.totalSets++;
+				ActiveExercisePanel.setsNumberCircle.UpdateValue (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+			}
+		}
+			
+		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
+
+		_lineSegmenter.ShowSegmentActive (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+	}
+
 	public void DecrementSetsRemaining(){
-		ActiveExercise.totalSets --;
-		if(ActiveExercise.totalSets == 0){
+		if(ActiveExercise.totalSets == 1){
 			_activeExerciseIndex ++;
+			EstablishPreviousExercise ();
 			EstablishActiveExercise();
 			EstablishNextExercise();
+			SoundManager.Instance.PlayNewExerciseSound ();
 		}else{
-			ActiveExercisePanel.setsNumberCircle.UpdateValue(ActiveExercise.totalSets);
+			ActiveExercise.totalSets --;
+			ActiveExercisePanel.setsNumberCircle.UpdateValue(ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+			SoundManager.Instance.PlayNewSetSound ();
 		}
 
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
+
+		_lineSegmenter.ShowSegmentActive (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+	}
+
+	void EstablishPreviousExercise(){
+		if(_activeExerciseIndex < ActiveWorkout.exerciseData.Count && _activeExerciseIndex > 0){
+			PreviousExercise = ActiveWorkout.exerciseData[_activeExerciseIndex - 1];
+			PreviousExercisePanel.PopulateFields(
+				PreviousExercise.name,
+				PreviousExercise.secondsToCompleteSet,
+				PreviousExercise.totalSets,
+				PreviousExercise.repsPerSet,
+				PreviousExercise.weight
+			);
+			PreviousExercisePanel.transform.localScale = Vector3.one;
+		}else{
+			PreviousExercisePanel.transform.localScale = Vector3.zero;
+		}
 	}
 
 	void EstablishActiveExercise(){
@@ -59,13 +117,16 @@ public class PlayModeManager : MonoBehaviour {
 			ActiveExercisePanel.PopulateFields(
 				ActiveExercise.name,
 				ActiveExercise.secondsToCompleteSet,
-				ActiveExercise.totalSets,
+				ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1),
 				ActiveExercise.repsPerSet,
 				ActiveExercise.weight
 			);
 		}else{
 			ActiveExercisePanel.transform.localScale = Vector3.zero;
 		}
+
+		_lineSegmenter.Init (ActiveExercise.totalInitialSets);
+		_lineSegmenter.ShowSegmentActive (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	void EstablishNextExercise(){
@@ -102,6 +163,7 @@ public class PlayModeManager : MonoBehaviour {
 		}
 
 		_activeExerciseIndex = 0;
+		EstablishPreviousExercise ();
 		EstablishActiveExercise();
 		EstablishNextExercise();
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet;

@@ -6,11 +6,13 @@ public class UIPanel : MonoBehaviour {
 
 	[SerializeField] private Image _fill;
 	[SerializeField] private TextMeshProUGUI[] _texts;
+	[SerializeField] private Image[] _images;
 
 	[HideInInspector] public bool isOn;
 
 	public Sprite lightSprite;
 	public Sprite darkSprite;
+	public GameObject fakeLine;
 
 	public void Highlight()
 	{
@@ -19,6 +21,7 @@ public class UIPanel : MonoBehaviour {
 		{
 			text.color = Color.black;
 		}
+		fakeLine.SetActive (true);
 	}
 
 	public void Unhighlight()
@@ -28,6 +31,7 @@ public class UIPanel : MonoBehaviour {
 		{
 			text.color = ColorManager.Instance.ActiveColor;
 		}
+		fakeLine.SetActive (false);
 	}
 
 	public void Select(){
@@ -37,6 +41,7 @@ public class UIPanel : MonoBehaviour {
 	public void Deselect(){
 		isOn = false;
 		Footer.Instance.Hide();
+		Unhighlight ();
 	}
 
 	public void HandleTogglePressed(){
@@ -46,6 +51,19 @@ public class UIPanel : MonoBehaviour {
 		}
 		else{
 			Deselect();
+		}
+	}
+
+	public void UpdateColor(){
+
+		Color ActiveColor = ColorManager.Instance.ActiveColor;
+
+		foreach (TextMeshProUGUI text in _texts) {
+			text.color = ActiveColor;
+		}
+
+		foreach (Image image in _images) {
+			image.color = ActiveColor;
 		}
 	}
 }

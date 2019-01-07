@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Footer : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Footer : MonoBehaviour
 
 	public PanelMover MovePanelContatiner;
 	public WorkoutControls WorkoutControlsContatiner;
+
+	public Image timerLine;
 
 	void Awake(){
 		if(Instance == null){
@@ -31,5 +34,9 @@ public class Footer : MonoBehaviour
 	{
 		MovePanelContatiner.gameObject.SetActive(false);
 		WorkoutControlsContatiner.gameObject.SetActive(true);
+	}
+
+	public void ResetTimerLine(){
+		timerLine.fillAmount = 1f;
 	}
 }

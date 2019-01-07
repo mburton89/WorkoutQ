@@ -37,6 +37,8 @@ public class Header : MonoBehaviour {
 		Footer.Instance.Hide();
 
 		title.text = "Workouts";
+
+		Footer.Instance.ResetTimerLine ();
 	}
 
 	public void SetUpForExercisesMenu(WorkoutData workout){

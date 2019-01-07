@@ -7,6 +7,7 @@ public class ExerciseData
 {
 	public string name;
 	public int secondsToCompleteSet;
+	public int totalInitialSets;
 	public int totalSets;
 	public int repsPerSet;
 	public int weight;
@@ -17,6 +18,7 @@ public class ExerciseData
 
 		newExercise.name = newName;
 		newExercise.secondsToCompleteSet = newSeconds;
+		newExercise.totalInitialSets = newTotalSets;
 		newExercise.totalSets = newTotalSets;
 		newExercise.repsPerSet = newRepsPerSet;
 		newExercise.weight = newWeight;

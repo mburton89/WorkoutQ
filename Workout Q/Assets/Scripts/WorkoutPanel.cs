@@ -41,9 +41,10 @@ public class WorkoutPanel : UIPanel {
 		_minutesLabel.text = workoutData.minutes + " min";
 	}
 
-	void HandleSelfClicked(){
+	public void HandleSelfClicked(){
 		WorkoutManager.Instance.ActiveWorkout = workoutData;
 		WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout(workoutData);
+		Unhighlight ();
 	}
 
 	void HandleTitleChanged(){

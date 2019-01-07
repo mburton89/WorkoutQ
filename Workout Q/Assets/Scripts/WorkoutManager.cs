@@ -25,6 +25,8 @@ public class WorkoutManager : MonoBehaviour {
 		} else {
 			PlayerPrefs.SetInt ("hasOpenedApp", 1);
 		}
+
+		Application.runInBackground = true;
 	}
 
 	void Start(){

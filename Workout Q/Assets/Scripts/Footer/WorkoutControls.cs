@@ -51,7 +51,7 @@ public class WorkoutControls : MonoBehaviour {
 
 	void HandlePreviousPressed()
 	{
-
+		PlayModeManager.Instance.IncrementSetsRemaining();
 	}
 
 	void HandleNextPressed()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Exercise : MonoBehaviour {
 
-	public string name;
+	public string exerciseName;
 	public int secondsToCompleteSet;
 	public int totalSets;
 	public int repsPerSet;

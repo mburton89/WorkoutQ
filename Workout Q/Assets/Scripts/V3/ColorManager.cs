@@ -9,6 +9,9 @@ public class ColorManager : MonoBehaviour {
 	public static ColorManager Instance;
 	public Color ActiveColor;
 
+	[SerializeField] private TextMeshProUGUI[] _texts;
+	[SerializeField] private Image[] _images;
+
 	void Awake()
 	{
 		Instance = this;
@@ -16,16 +19,16 @@ public class ColorManager : MonoBehaviour {
 
 	void Start()
 	{
-//		Image[] AllImages = FindObjectsOfType<Image> ();
-//		foreach (Image image in AllImages) 
-//		{
-//			image.color = ActiveColor;
-//		}
-//
-//		TextMeshProUGUI[] AllText = FindObjectsOfType<TextMeshProUGUI> ();
-//		foreach (TextMeshProUGUI text in AllText) 
-//		{
-//			text.color = ActiveColor;
-//		}
+		UpdateColors ();
+	}
+
+	public void UpdateColors(){
+		foreach (TextMeshProUGUI text in _texts) {
+			text.color = ActiveColor;
+		}
+
+		foreach (Image image in _images) {
+			image.color = ActiveColor;
+		}
 	}
 }

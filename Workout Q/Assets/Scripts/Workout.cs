@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Workout : MonoBehaviour {
 
-	public string name;
+	public string workoutName;
 	public List<Exercise> Exercises;
 
 	public int seconds;

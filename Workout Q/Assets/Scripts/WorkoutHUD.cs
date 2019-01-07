@@ -6,6 +6,13 @@ using TMPro;
 
 public class WorkoutHUD : MonoBehaviour {
 
+	public enum Mode
+	{
+		ViewingWorkouts,
+		ViewingExercises,
+		PlayingExercises
+	}
+
 	public static WorkoutHUD Instance;
 
 	public GridLayoutGroup workoutPanelsGridLayoutGroup;
@@ -22,6 +29,8 @@ public class WorkoutHUD : MonoBehaviour {
 	[HideInInspector]public GridLayoutGroup activeGridLayout;
 
 	[SerializeField]private GameObject _raycastBlocker;
+
+	public Mode currentMode;
 
 	void OnEnable(){
 		addWorkoutPanelButton.onClick.AddListener(delegate{AddWorkoutPanel(null);});
@@ -43,6 +52,8 @@ public class WorkoutHUD : MonoBehaviour {
 		foreach(WorkoutData workout in WorkoutManager.Instance.workoutData){
 			AddWorkoutPanel(workout);
 		}
+
+		currentMode = Mode.ViewingWorkouts;
 	}
 
 	public void ShowWorkoutsMenu()
@@ -61,6 +72,8 @@ public class WorkoutHUD : MonoBehaviour {
 		Footer.Instance.Hide();
 
 		_raycastBlocker.SetActive (false);
+
+		currentMode = Mode.ViewingWorkouts;
 	}
 
 	public void ShowExercisesForWorkout(WorkoutData workoutToOpen)
@@ -79,6 +92,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 		Footer.Instance.ShowWorkoutControls();
 		Footer.Instance.WorkoutControlsContatiner.ShowPausedMenu();
+
+		currentMode = Mode.ViewingExercises;
 	}
 
 	public void PlayActiveWorkout()
@@ -91,6 +106,8 @@ public class WorkoutHUD : MonoBehaviour {
 		PlayModeManager.Instance.PlayWorkout(WorkoutManager.Instance.ActiveWorkout);
 
 		_raycastBlocker.SetActive (true);
+
+		currentMode = Mode.PlayingExercises;
 	}
 
 	void AddWorkoutPanel(WorkoutData workoutData){
@@ -101,6 +118,7 @@ public class WorkoutHUD : MonoBehaviour {
 		}
 
 		newWorkoutPanel.UpdateText();
+		newWorkoutPanel.UpdateColor();
 
 		newWorkoutPanel.transform.SetParent(workoutPanelsGridLayoutGroup.transform);
 		newWorkoutPanel.transform.localScale = Vector3.one;
@@ -134,6 +152,7 @@ public class WorkoutHUD : MonoBehaviour {
 			newExerciseMenuItem.weightNumberCircle.UpdateValue(exerciseData.weight);
 		}
 
+		newExerciseMenuItem.UpdateColor(); 
 		newExerciseMenuItem.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
 		newExerciseMenuItem.transform.localScale = Vector3.one;
 	}

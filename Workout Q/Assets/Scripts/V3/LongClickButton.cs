@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
+public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
 	private bool pointerIsDown;
 	private bool hasLongPressed;
@@ -13,6 +13,7 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
 	public UnityEvent onPointerDown;
 	public UnityEvent onShortClick;
+	public UnityEvent onPointerUp;
 	public UnityEvent onLongClick;
 
 	//[SerializeField]
@@ -21,6 +22,7 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		pointerIsDown = true;
+		hasLongPressed = false;
 		if (onPointerDown != null) 
 		{
 			onPointerDown.Invoke ();
@@ -32,15 +34,31 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	{
 		if (!hasLongPressed) 
 		{
+			if (onPointerUp != null) 
+			{
+				onPointerUp.Invoke ();
+				Debug.Log ("onPointerUp.Invoke ();");
+			}	
+		}
+		//hasLongPressed = false;
+		pointerIsDown = false;
+		Reset();
+		Debug.Log ("OnPointerUp");
+	}
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		if (!hasLongPressed) 
+		{
 			if (onShortClick != null) 
 			{
 				onShortClick.Invoke ();
-				Debug.Log ("onShortClick.Invoke ();");
+				Debug.Log ("onOnPointerClickClick.Invoke ();");
 			}	
 		}
-		hasLongPressed = false;
+		//hasLongPressed = false;
 		Reset();
-		Debug.Log ("OnPointerUp");
+		Debug.Log ("OnPointerClick");
 	}
 
 	private void Update()
@@ -56,7 +74,7 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 					onLongClick.Invoke ();
 					Debug.Log ("onLongClick.Invoke ();");
 				}
-				Reset();
+				//Reset();
 			}
 			//fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
 		}
@@ -64,7 +82,6 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
 	private void Reset()
 	{
-		pointerIsDown = false;
 		pointerDownTimer = 0f;
 		//fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
 	}

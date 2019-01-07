@@ -62,7 +62,12 @@ public class PanelMover : MonoBehaviour
 	void Hide()
 	{
 		WorkoutManager.Instance.workoutHUD.selectedPanel.Deselect();
-		Footer.Instance.Hide();
+
+		if (WorkoutHUD.Instance.currentMode == WorkoutHUD.Mode.ViewingWorkouts) {
+			Footer.Instance.Hide ();		
+		} else {
+			Footer.Instance.ShowWorkoutControls ();
+		}
 	}
 
 	public void Show()
