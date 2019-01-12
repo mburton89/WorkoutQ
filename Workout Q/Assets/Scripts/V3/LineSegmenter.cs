@@ -10,7 +10,7 @@ public class LineSegmenter : MonoBehaviour {
 
 	private LineSegment _activeLine;
 
-	public void Init(int numberOfSets){
+	public void Init(int numberOfSegments){
 
 		if (_lineSegments != null) {
 			foreach (LineSegment line in _lineSegments) {
@@ -20,14 +20,14 @@ public class LineSegmenter : MonoBehaviour {
 
 		_lineSegments = new List<LineSegment>();
 
-		for (int i = 0; i < numberOfSets; i++) {
+		for (int i = 0; i < numberOfSegments; i++) {
 			LineSegment newLine = Instantiate (_lineSegmentPrefab, this.transform);
 			newLine.lineImage.color = ColorManager.Instance.ActiveColor;
 			_lineSegments.Add (newLine);
 		}
 	}
 
-	public void ShowSegmentActive(int setNumber){
+	public void ShowSegmentBlinking(int setNumber){
 
 		if (_activeLine != null) {
 			_activeLine.StopBlinking ();
@@ -47,4 +47,13 @@ public class LineSegmenter : MonoBehaviour {
 		_activeLine.StartBlinking ();
 	}
 
+	public void ShowSegmentLit(int segmentIndex)
+	{
+		if (_activeLine != null) {
+			_activeLine.Darken ();
+		}
+
+		_activeLine = _lineSegments [segmentIndex];
+		_activeLine.LightUp ();
+	}
 }

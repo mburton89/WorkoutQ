@@ -12,6 +12,7 @@ public class WorkoutManager : MonoBehaviour {
 
 	public List<WorkoutData> workoutData;
 	public WorkoutData ActiveWorkout;
+	public ExerciseData ActiveExercise;
 	public WorkoutHUD workoutHUD;
 	public Button SaveButton;
 

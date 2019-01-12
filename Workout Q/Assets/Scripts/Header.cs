@@ -9,7 +9,7 @@ public class Header : MonoBehaviour {
 	public static Header Instance;
 
 	[SerializeField]private Button SettingsButton;
-	[SerializeField]private Button HomeButton;
+	[SerializeField]private Button BackButton;
 	[SerializeField]private TextMeshProUGUI title;
 
 	void Awake(){
@@ -19,31 +19,39 @@ public class Header : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		HomeButton.onClick.AddListener(HandleHomePressed);
+		BackButton.onClick.AddListener(HandleBackPressed);
 	}
 
 	void OnDisable(){
-		HomeButton.onClick.RemoveListener(HandleHomePressed);
+		BackButton.onClick.RemoveListener(HandleBackPressed);
 	}
 
-	public void HandleHomePressed(){
-		SettingsButton.gameObject.SetActive(true);
-		HomeButton.gameObject.SetActive(false);
-
-		WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
-
-		PlayModeManager.Instance.Reset();
-
-		Footer.Instance.Hide();
-
-		title.text = "Workouts";
-
-		Footer.Instance.ResetTimerLine ();
+	public void HandleBackPressed()
+	{
+		if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
+		{
+			SettingsButton.gameObject.SetActive(true);
+			BackButton.gameObject.SetActive(false);
+			WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
+			Footer.Instance.Hide();
+			title.text = "Workouts";
+		}
+		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
+		{
+			WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout (WorkoutManager.Instance.ActiveWorkout);
+			title.text = WorkoutManager.Instance.ActiveWorkout.name;
+			PlayModeManager.Instance.Reset();
+			Footer.Instance.ResetTimerLine ();
+		}
 	}
 
-	public void SetUpForExercisesMenu(WorkoutData workout){
+	public void SetUpForExercisesMenu(string workoutName){
 		SettingsButton.gameObject.SetActive(false);
-		HomeButton.gameObject.SetActive(true);
-		title.text = workout.name;
+		BackButton.gameObject.SetActive(true);
+		title.text = workoutName;
+	}
+
+	public void UpdateTitle(string newTitle){
+		title.text = newTitle;
 	}
 }

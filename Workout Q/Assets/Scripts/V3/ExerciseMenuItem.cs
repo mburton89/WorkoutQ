@@ -7,26 +7,25 @@ using TMPro;
 public class ExerciseMenuItem : UIPanel {
 
 	public ExerciseData exerciseData;
-	public TMP_InputField exerciseName;
-	public TextMeshProUGUI secondsText;
-	public TextMeshProUGUI setsRepsText;
-	public TextMeshProUGUI weightText;
-
-	void OnEnable()
-	{
-		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-	}
-
-	void OnDisable()
-	{
-		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-	}
+	public TextMeshProUGUI exerciseName;
+	public TextMeshProUGUI statsText;
+	[HideInInspector] public string weightLabel = "lb";	
 
 	void Awake()
 	{
 		if(exerciseData != null){
 			UpdateText();
 		}
+	}
+
+	public void Init(ExerciseData exerciseData){
+		this.exerciseData = exerciseData;
+		exerciseName.text = exerciseData.name;
+		statsText.text = exerciseData.totalSets 
+			+ "x" + exerciseData.repsPerSet 
+			+ "   " + exerciseData.weight + weightLabel 
+			+ "   " + exerciseData.secondsToCompleteSet 
+			+ "s";
 	}
 
 	public void UpdateText(){
@@ -37,15 +36,10 @@ public class ExerciseMenuItem : UIPanel {
 		exerciseData.name = exerciseName.text;
 		WorkoutManager.Instance.Save();
 	}
-
-	public void PopulateFields(string title, int seconds, int sets, int reps, int weight){
-		exerciseName.text = title;
-		secondsText.text = seconds + "s";
-		setsRepsText.text = sets + "x" + reps;
-		weightText.text = weight + "lb";
-	}
-
-	void SelectTitle(){
-		exerciseName.Select();
+		
+	public void HandleSelfClicked(){
+		Unhighlight ();
+		WorkoutManager.Instance.ActiveExercise = exerciseData;
+		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExercise(exerciseData);
 	}
 }

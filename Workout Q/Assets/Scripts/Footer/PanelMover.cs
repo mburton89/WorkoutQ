@@ -63,7 +63,7 @@ public class PanelMover : MonoBehaviour
 	{
 		WorkoutManager.Instance.workoutHUD.selectedPanel.Deselect();
 
-		if (WorkoutHUD.Instance.currentMode == WorkoutHUD.Mode.ViewingWorkouts) {
+		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) {
 			Footer.Instance.Hide ();		
 		} else {
 			Footer.Instance.ShowWorkoutControls ();
@@ -76,11 +76,11 @@ public class PanelMover : MonoBehaviour
 	}
 
 	void SaveExercisePanelOrder(){
-		if(WorkoutManager.Instance.workoutHUD.selectedPanel.GetComponent<ExercisePanel>())
+		if(WorkoutManager.Instance.workoutHUD.selectedPanel.GetComponent<ExerciseMenuItem>())
 		{
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Clear();
 			print("SaveExercisePanelOrder");
-			foreach(ExercisePanel panel in WorkoutManager.Instance.workoutHUD.exercisePanelsGridLayoutGroup.GetComponentsInChildren<ExercisePanel>())
+			foreach(ExerciseMenuItem panel in WorkoutManager.Instance.workoutHUD.exercisePanelsGridLayoutGroup.GetComponentsInChildren<ExerciseMenuItem>())
 			{
 				WorkoutManager.Instance.ActiveWorkout.exerciseData.Add(panel.exerciseData);
 			}

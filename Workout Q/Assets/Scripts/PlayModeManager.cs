@@ -74,7 +74,7 @@ public class PlayModeManager : MonoBehaviour {
 			
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 
-		_lineSegmenter.ShowSegmentActive (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		_lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	public void DecrementSetsRemaining(){
@@ -92,7 +92,7 @@ public class PlayModeManager : MonoBehaviour {
 
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 
-		_lineSegmenter.ShowSegmentActive (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		_lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	void EstablishPreviousExercise(){
@@ -126,7 +126,7 @@ public class PlayModeManager : MonoBehaviour {
 		}
 
 		_lineSegmenter.Init (ActiveExercise.totalInitialSets);
-		_lineSegmenter.ShowSegmentActive (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		_lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	void EstablishNextExercise(){
