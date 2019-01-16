@@ -12,6 +12,8 @@ public class Header : MonoBehaviour {
 	[SerializeField]private Button BackButton;
 	[SerializeField]private TextMeshProUGUI title;
 
+	public LineSegmenter lineSegmenter;
+
 	void Awake(){
 		if(Instance == null){
 			Instance = this;
@@ -43,6 +45,8 @@ public class Header : MonoBehaviour {
 			PlayModeManager.Instance.Reset();
 			Footer.Instance.ResetTimerLine ();
 		}
+
+		WorkoutManager.Instance.Save ();
 	}
 
 	public void SetUpForExercisesMenu(string workoutName){
@@ -53,5 +57,11 @@ public class Header : MonoBehaviour {
 
 	public void UpdateTitle(string newTitle){
 		title.text = newTitle;
+	}
+
+	public void UpdateExerciseView(int currentExerciseIndex, int totalExercises)
+	{
+		lineSegmenter.Init (totalExercises);
+		lineSegmenter.ShowSegmentLit (currentExerciseIndex);
 	}
 }

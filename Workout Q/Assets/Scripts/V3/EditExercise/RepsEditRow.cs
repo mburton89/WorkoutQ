@@ -71,6 +71,6 @@ public class RepsEditRow : StatEditRow
 
 	void UpdateStatView()
 	{
-		ViewExerciseView.Instance.UpdateRepsAndWeightView (value, controller.currentExerciseData.weight);
+		//ViewExerciseView.Instance.UpdateRepsAndWeightView (value, controller.currentExerciseData.weight);
 	}
 }

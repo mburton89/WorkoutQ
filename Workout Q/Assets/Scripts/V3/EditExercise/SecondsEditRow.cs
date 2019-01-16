@@ -71,6 +71,7 @@ public class SecondsEditRow : StatEditRow
 
 	void UpdateStatView()
 	{
-		ViewExerciseView.Instance.UpdateSecondsView (labelString, value);
+		//ViewExerciseView.Instance.UpdateSecondsView (labelString, value);
+		Footer.Instance.lineSegmenter.Init (value);
 	}
 }

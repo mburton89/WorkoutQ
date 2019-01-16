@@ -10,6 +10,11 @@ public class StatViewRow : MonoBehaviour
 	public LineSegmenter lineSegmenter;
 	public string labelString;
 
+	public void UpdateValue(int value)
+	{
+		lineSegmenter.Init (value);
+	}
+
 	public void UpdateView(string labelText, int value)
 	{
 		label.text = labelText + " " + value;

@@ -106,19 +106,17 @@ public class WorkoutHUD : MonoBehaviour {
 		currentMode = Mode.ViewingExercises;
 	}
 
-	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen){
-	
-		Header.Instance.UpdateTitle(exerciseToOpen.name);
-
+	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen)
+	{
 		addExercisePanelButton.transform.localScale = Vector3.zero;
 
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 
 		_editExerciseView.Init (exerciseToOpen);
-		_viewExerciseView.Init ("Exercise",
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(exerciseToOpen),
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
+		_viewExerciseView.Init (exerciseToOpen.name);
+
+		Header.Instance.UpdateExerciseView (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(exerciseToOpen), WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
 		Footer.Instance.ShowWorkoutControls();
 		Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu();
@@ -138,9 +136,9 @@ public class WorkoutHUD : MonoBehaviour {
 		ExerciseData nextExercise = WorkoutManager.Instance.ActiveWorkout.exerciseData [index];
 
 		_editExerciseView.Init (nextExercise);
-		_viewExerciseView.Init ("Exercise",
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(nextExercise),
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
+		_viewExerciseView.Init (nextExercise.name);
+
+		Header.Instance.UpdateExerciseView (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(nextExercise), WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
 		WorkoutManager.Instance.ActiveExercise = nextExercise;
 	}

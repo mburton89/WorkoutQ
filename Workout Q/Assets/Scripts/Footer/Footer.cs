@@ -12,6 +12,8 @@ public class Footer : MonoBehaviour
 
 	public Image timerLine;
 
+	public LineSegmenter lineSegmenter;
+
 	void Awake(){
 		if(Instance == null){
 			Instance = this;
