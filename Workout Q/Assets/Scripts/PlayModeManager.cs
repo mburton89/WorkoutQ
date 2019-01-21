@@ -131,11 +131,12 @@ public class PlayModeManager : MonoBehaviour {
 //				ActiveExercise.weight
 //			);
 		}
-//		else{
-//			ActiveExercisePanel.transform.localScale = Vector3.zero;
-//		}
+		//		else{
+		//			ActiveExercisePanel.transform.localScale = Vector3.zero;
+		//		}
 
-		ViewExerciseView.Instance.exerciseViewRow.UpdateLabel (ActiveExercise.name);
+		Header.Instance.UpdateMiddleLabel(ActiveExercise.name);
+		//ViewExerciseView.Instance.exerciseViewRow.UpdateLabel (ActiveExercise.name);
 		ViewExerciseView.Instance.exerciseViewRow.lineSegmenter.ShowSegmentCummulativelyLit (ActiveWorkout.exerciseData.IndexOf(ActiveExercise));
 
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.Init (ActiveExercise.totalInitialSets);
