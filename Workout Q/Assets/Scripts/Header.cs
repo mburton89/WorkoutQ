@@ -52,6 +52,7 @@ public class Header : MonoBehaviour {
 			PlayModeManager.Instance.Reset();
 			Footer.Instance.ResetTimerLine ();
 			_topLabel.text = PlayerPrefs.GetString("userTitle");
+			Footer.Instance.WorkoutControlsContatiner.editButton.gameObject.SetActive(false);
 		}
 	}
 
