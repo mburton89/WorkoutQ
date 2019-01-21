@@ -10,20 +10,28 @@ public class Header : MonoBehaviour {
 
 	[SerializeField]private Button SettingsButton;
 	[SerializeField]private Button BackButton;
-	[SerializeField]private TextMeshProUGUI title;
+	[SerializeField]private TextMeshProUGUI _topLabel;
+	//[SerializeField]private TextMeshProUGUI _middleLabel;
+
+	[SerializeField] private TMP_InputField _middleLabel;
+
+	public LineSegmenter lineSegmenter;
 
 	void Awake(){
 		if(Instance == null){
 			Instance = this;
 		}
+		_middleLabel.text = PlayerPrefs.GetString("userTitle");
 	}
 
 	void OnEnable(){
 		BackButton.onClick.AddListener(HandleBackPressed);
+		_middleLabel.onSubmit.AddListener(delegate{HandleTitleChanged();});
 	}
 
 	void OnDisable(){
 		BackButton.onClick.RemoveListener(HandleBackPressed);
+		_middleLabel.onSubmit.AddListener(delegate{HandleTitleChanged();});
 	}
 
 	public void HandleBackPressed()
@@ -34,24 +42,49 @@ public class Header : MonoBehaviour {
 			BackButton.gameObject.SetActive(false);
 			WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
 			Footer.Instance.Hide();
-			title.text = "Workouts";
+			_middleLabel.text = PlayerPrefs.GetString("userTitle");
+			lineSegmenter.Clear ();
 		}
 		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
 			WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout (WorkoutManager.Instance.ActiveWorkout);
-			title.text = WorkoutManager.Instance.ActiveWorkout.name;
+			_middleLabel.text = WorkoutManager.Instance.ActiveWorkout.name;
 			PlayModeManager.Instance.Reset();
 			Footer.Instance.ResetTimerLine ();
+			_topLabel.text = PlayerPrefs.GetString("userTitle");
 		}
 	}
 
-	public void SetUpForExercisesMenu(string workoutName){
+	public void SetUpForExercisesMenu(WorkoutData workoutData){
 		SettingsButton.gameObject.SetActive(false);
 		BackButton.gameObject.SetActive(true);
-		title.text = workoutName;
+		_middleLabel.text = workoutData.name;
+		lineSegmenter.Init(workoutData.exerciseData.Count);
 	}
 
-	public void UpdateTitle(string newTitle){
-		title.text = newTitle;
+	public void UpdateMiddleLabel(string newTitle){
+		_middleLabel.text = newTitle;
+	}
+
+	public void UpdateTopLabel(string newTitle){
+		_topLabel.text = newTitle;
+	}
+
+	void HandleTitleChanged()
+	{
+		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
+		{
+			PlayerPrefs.SetString("userTitle", _middleLabel.text);
+		}
+		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
+		{
+			WorkoutManager.Instance.ActiveWorkout.name = _middleLabel.text;
+			WorkoutManager.Instance.Save();
+		}
+		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise) 
+		{
+			WorkoutManager.Instance.ActiveExercise.name = _middleLabel.text;
+			WorkoutManager.Instance.Save();
+		}
 	}
 }

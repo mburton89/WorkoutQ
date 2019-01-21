@@ -5,18 +5,14 @@ using UnityEngine.UI;
 
 public class LineSegmenter : MonoBehaviour {
 
+	[SerializeField] private Image _bg;
 	[SerializeField] private LineSegment _lineSegmentPrefab;
 	private List<LineSegment> _lineSegments;
-
 	private LineSegment _activeLine;
 
 	public void Init(int numberOfSegments){
 
-		if (_lineSegments != null) {
-			foreach (LineSegment line in _lineSegments) {
-				Destroy (line.gameObject);
-			}
-		}
+		Clear ();
 
 		_lineSegments = new List<LineSegment>();
 
@@ -25,6 +21,8 @@ public class LineSegmenter : MonoBehaviour {
 			newLine.lineImage.color = ColorManager.Instance.ActiveColor;
 			_lineSegments.Add (newLine);
 		}
+
+		//_bg.enabled = false;
 	}
 
 	public void ShowSegmentBlinking(int setNumber){
@@ -55,5 +53,33 @@ public class LineSegmenter : MonoBehaviour {
 
 		_activeLine = _lineSegments [segmentIndex];
 		_activeLine.LightUp ();
+	}
+
+	public void ShowSegmentCummulativelyLit(int segmentIndex)
+	{
+		for (int i = 0; i < segmentIndex; i++) {
+			_lineSegments [i].LightUp ();
+		}
+
+		for (int i = 0; i < _lineSegments.Count; i++) {
+			if (i > segmentIndex && i <= _lineSegments.Count) {
+				_lineSegments [i].Darken ();
+			}
+		}
+
+		_activeLine = _lineSegments [segmentIndex];
+		_activeLine.LightUp ();
+	}
+
+	public void Clear()
+	{
+		if (_lineSegments != null) {
+			foreach (LineSegment line in _lineSegments) {
+				Destroy (line.gameObject);
+			}
+			_lineSegments.Clear ();
+		}
+
+		_bg.enabled = true;
 	}
 }

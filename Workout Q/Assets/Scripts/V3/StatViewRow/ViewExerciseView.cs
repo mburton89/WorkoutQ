@@ -8,10 +8,10 @@ public class ViewExerciseView : MonoBehaviour {
 	public static ViewExerciseView Instance;
 
 	[SerializeField] private GameObject _container;
-	[SerializeField] private StatViewRow _exerciseViewRow;
-	[SerializeField] private StatViewRow _setsViewRow;
-	[SerializeField] private StatViewRow _secondsViewRow;
 	[SerializeField] private TextMeshProUGUI _repsAndWeight;
+
+	public StatViewRow exerciseViewRow;
+	public StatViewRow setsViewRow;
 
 	void Awake()
 	{
@@ -36,18 +36,19 @@ public class ViewExerciseView : MonoBehaviour {
 
 	public void UpdateExerciseView(string label, int currentExerciseIndex, int totalExercises)
 	{
-		_exerciseViewRow.UpdateViewCustomLabel ("XRC: " + (currentExerciseIndex + 1) + " of " + totalExercises, totalExercises);
-		_exerciseViewRow.lineSegmenter.ShowSegmentLit (currentExerciseIndex);
+		//exerciseViewRow.UpdateViewCustomLabel ("XRC: " + (currentExerciseIndex + 1) + " of " + totalExercises, totalExercises);
+		Header.Instance.UpdateMiddleLabel(label);
+		exerciseViewRow.lineSegmenter.ShowSegmentLit (currentExerciseIndex);
 	}
 
 	public void UpdateSetsView(string label, int value)
 	{
-		_setsViewRow.UpdateView (label, value);
+		setsViewRow.UpdateView (label, value);
 	}
 
-	public void UpdateSecondsView(string label, int value)
+	public void ShowActiveSet(string label, int currentExerciseIndex)
 	{
-		_secondsViewRow.UpdateView (label, value);
+		setsViewRow.lineSegmenter.ShowSegmentLit (currentExerciseIndex);
 	}
 
 	public void UpdateRepsAndWeightView(int reps, int weight)

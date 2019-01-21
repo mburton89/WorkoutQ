@@ -67,6 +67,7 @@ public class WeightEditRow : StatEditRow
 	{
 		controller.currentExerciseData.weight = value;
 		UpdateStatView ();
+		WorkoutManager.Instance.Save();
 	}
 
 	void UpdateStatView()

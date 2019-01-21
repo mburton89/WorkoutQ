@@ -81,6 +81,7 @@
      <Compile Include="Assets\Scripts\V3\StatViewRow\ViewExerciseView.cs" />
      <Compile Include="Assets\Scripts\V3\WorkoutMenuItem.cs" />
      <Compile Include="Assets\Scripts\Workout.cs" />
+     <Compile Include="Assets\Scripts\WorkoutGenerator.cs" />
      <Compile Include="Assets\Scripts\WorkoutHUD.cs" />
      <Compile Include="Assets\Scripts\WorkoutManager.cs" />
      <Compile Include="Assets\Scripts\WorkoutPanel.cs" />

@@ -11,6 +11,7 @@ public class WorkoutControls : MonoBehaviour {
 	[SerializeField]private Button nextSetButton;
 	[SerializeField]private Button previousExerciseButton;
 	[SerializeField]private Button nextExerciseButton;
+	[SerializeField]private Button editButton;
 
 	void OnEnable()
 	{
@@ -20,6 +21,7 @@ public class WorkoutControls : MonoBehaviour {
 		nextSetButton.onClick.AddListener(HandleNextSetPressed);
 		previousExerciseButton.onClick.AddListener(HandlePreviousExercisePressed);
 		nextExerciseButton.onClick.AddListener(HandleNextExercisePressed);
+		editButton.onClick.AddListener (HandleEditPressed);
 	}
 
 	void OnDisable()
@@ -30,6 +32,7 @@ public class WorkoutControls : MonoBehaviour {
 		nextSetButton.onClick.RemoveListener(HandleNextSetPressed);
 		previousExerciseButton.onClick.RemoveListener(HandlePreviousExercisePressed);
 		nextExerciseButton.onClick.RemoveListener(HandleNextExercisePressed);
+		editButton.onClick.RemoveListener (HandleEditPressed);
 	}
 
 	void HandlePlayPressed()
@@ -39,7 +42,8 @@ public class WorkoutControls : MonoBehaviour {
 		if(PlayModeManager.Instance.isPaused){
 			PlayModeManager.Instance.Resume();
 		}else{
-			WorkoutHUD.Instance.PlayActiveWorkout();
+			//WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
+			WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
 		}
 	}
 
@@ -51,6 +55,7 @@ public class WorkoutControls : MonoBehaviour {
 		pauseButton.gameObject.SetActive(false);
 		previousSetButton.gameObject.SetActive(false);
 		nextSetButton.gameObject.SetActive(false);
+		editButton.gameObject.SetActive(true);
 
 		PlayModeManager.Instance.Pause();
 	}
@@ -67,7 +72,6 @@ public class WorkoutControls : MonoBehaviour {
 
 	void HandlePreviousExercisePressed()
 	{
-		print ("Hey there");
 		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) - 1);
 	}
 
@@ -92,6 +96,8 @@ public class WorkoutControls : MonoBehaviour {
 		nextSetButton.gameObject.SetActive(true);
 		previousExerciseButton.gameObject.SetActive(false);
 		nextExerciseButton.gameObject.SetActive(false);
+		editButton.gameObject.SetActive(false);
+		Footer.Instance.UpdateTitle ("SEC: ");
 	}
 
 	public void ShowEditingExerciseMenu()
@@ -102,5 +108,12 @@ public class WorkoutControls : MonoBehaviour {
 		nextSetButton.gameObject.SetActive(false);
 		previousExerciseButton.gameObject.SetActive(true);
 		nextExerciseButton.gameObject.SetActive(true);
+	}
+
+	public void HandleEditPressed()
+	{
+		editButton.gameObject.SetActive(false);
+		PlayModeManager.Instance.isPaused = false;
+		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
 	}
 }

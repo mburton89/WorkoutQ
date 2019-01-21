@@ -67,6 +67,7 @@ public class RepsEditRow : StatEditRow
 	{
 		controller.currentExerciseData.repsPerSet = value;
 		UpdateStatView ();
+		WorkoutManager.Instance.Save();
 	}
 
 	void UpdateStatView()

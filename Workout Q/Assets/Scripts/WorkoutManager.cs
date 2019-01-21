@@ -25,6 +25,7 @@ public class WorkoutManager : MonoBehaviour {
 			Load ();
 		} else {
 			PlayerPrefs.SetInt ("hasOpenedApp", 1);
+			LoadExampleWorkouts ();
 		}
 
 		Application.runInBackground = true;
@@ -74,6 +75,16 @@ public class WorkoutManager : MonoBehaviour {
 
 			print("Opened from: " + file);
 		}
+	}
+
+	public void LoadExampleWorkouts()
+	{
+		workoutData = new List<WorkoutData>();
+		workoutData.Add (WorkoutGenerator.Instance.ExampleChestTricep);
+		workoutData.Add (WorkoutGenerator.Instance.ExampleBackBicep);
+		workoutData.Add (WorkoutGenerator.Instance.ExampleLegs);
+		workoutData.Add (WorkoutGenerator.Instance.ExampleShoulders);
+		workoutData.Add (WorkoutGenerator.Instance.ExampleCore);
 	}
 }
 

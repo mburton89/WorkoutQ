@@ -9,7 +9,7 @@ public class SecondsEditRow : StatEditRow
 		controller = editExerciseView;
 		value = controller.currentExerciseData.secondsToCompleteSet;
 		numberInput.text = value.ToString();
-		labelString = "Sec:";
+		labelString = "Sec: ";
 		UpdateStatView ();
 	}
 
@@ -29,13 +29,17 @@ public class SecondsEditRow : StatEditRow
 
 	public void HandleInputFieldSubmitted()
 	{
-		if(string.IsNullOrEmpty(numberInput.text))
+
+		int newValue = int.Parse (numberInput.text);
+
+		if(string.IsNullOrEmpty(numberInput.text) ||  newValue < 1)
 		{
-			value = 0;
+			value = 1;
+			numberInput.text = value.ToString();
 		}
 		else
 		{
-			value = int.Parse(numberInput.text);
+			value = newValue;
 		}
 
 		UpdateData ();
@@ -43,7 +47,7 @@ public class SecondsEditRow : StatEditRow
 
 	void Decrement()
 	{
-		if (value > 0) 
+		if (value > 6) 
 		{
 			value = value - 5;			
 		}
@@ -67,10 +71,11 @@ public class SecondsEditRow : StatEditRow
 	{
 		controller.currentExerciseData.secondsToCompleteSet = value;
 		UpdateStatView ();
+		WorkoutManager.Instance.Save();
 	}
 
 	void UpdateStatView()
 	{
-		ViewExerciseView.Instance.UpdateSecondsView (labelString, value);
+		Footer.Instance.UpdateTitle (labelString);
 	}
 }

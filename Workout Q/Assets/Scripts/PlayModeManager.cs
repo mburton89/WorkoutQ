@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayModeManager : MonoBehaviour {
 
 	public static PlayModeManager Instance;
 
-	private int _activeExerciseIndex;
+	[HideInInspector] public int activeExerciseIndex;
 	public WorkoutData ActiveWorkout;
 	[HideInInspector]public ExerciseData PreviousExercise;
 	[HideInInspector]public ExerciseData ActiveExercise;
 	[HideInInspector]public ExerciseData NextExercise;
-	public ExercisePanel PreviousExercisePanel;
-	public ExercisePanel ActiveExercisePanel;
-	public ExercisePanel NextExercisePanel;
+//	public ExercisePanel PreviousExercisePanel;
+//	public ExercisePanel ActiveExercisePanel;
+//	public ExercisePanel NextExercisePanel;
 
 	public Image timerLine;
 
@@ -23,19 +24,22 @@ public class PlayModeManager : MonoBehaviour {
 
 	public bool isPaused;
 
-	[SerializeField] private LineSegmenter _lineSegmenter;
+	private TextMeshProUGUI _secondsLabel;
 
 	void Awake(){
 		if(Instance == null){
 			Instance = this;
 		}
+
+		_secondsLabel = Footer.Instance.seconds;
 	}
 
 	void Update(){
 
 		if(_isInPlayMode){
 			_secondsRemaining -= Time.deltaTime;
-			ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
+			//ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
+			_secondsLabel.SetText (_secondsRemaining.ToString ("F0"));
 
 			if(_secondsRemaining < 0){
 				HandleTimerHittingZero();
@@ -51,10 +55,7 @@ public class PlayModeManager : MonoBehaviour {
 	}
 
 	public void IncrementSetsRemaining(){
-
-		print ("YOYOYOYOYO");
-
-		if (_activeExerciseIndex == 0 && ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
+		if (activeExerciseIndex == 0 && ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
 			_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 			return;
 		}
@@ -62,85 +63,96 @@ public class PlayModeManager : MonoBehaviour {
 		if (_secondsRemaining >= ActiveExercise.secondsToCompleteSet - 1) 
 		{
 			if (ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
-				_activeExerciseIndex--;
+				activeExerciseIndex--;
 				EstablishPreviousExercise ();
 				EstablishActiveExercise ();
 				EstablishNextExercise ();
 			} else {
 				ActiveExercise.totalSets++;
-				ActiveExercisePanel.setsNumberCircle.UpdateValue (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+				//ActiveExercisePanel.setsNumberCircle.UpdateValue (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+
+				string activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1)).ToString();
+				string totalSets = ActiveExercise.totalInitialSets.ToString ();	
+
+				ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
 			}
 		}
 			
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
-
-		_lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	public void DecrementSetsRemaining(){
 		if(ActiveExercise.totalSets == 1){
-			_activeExerciseIndex ++;
-			EstablishPreviousExercise ();
+			activeExerciseIndex ++;
+			//EstablishPreviousExercise ();
 			EstablishActiveExercise();
 			EstablishNextExercise();
 			SoundManager.Instance.PlayNewExerciseSound ();
 		}else{
 			ActiveExercise.totalSets --;
-			ActiveExercisePanel.setsNumberCircle.UpdateValue(ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+			//ActiveExercisePanel.setsNumberCircle.UpdateValue(ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+
+			string activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1)).ToString();
+			string totalSets = ActiveExercise.totalInitialSets.ToString ();
+			ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
+
 			SoundManager.Instance.PlayNewSetSound ();
 		}
 
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
-
-		_lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	void EstablishPreviousExercise(){
-		if(_activeExerciseIndex < ActiveWorkout.exerciseData.Count && _activeExerciseIndex > 0){
-			PreviousExercise = ActiveWorkout.exerciseData[_activeExerciseIndex - 1];
-			PreviousExercisePanel.PopulateFields(
-				PreviousExercise.name,
-				PreviousExercise.secondsToCompleteSet,
-				PreviousExercise.totalSets,
-				PreviousExercise.repsPerSet,
-				PreviousExercise.weight
-			);
-			PreviousExercisePanel.transform.localScale = Vector3.one;
-		}else{
-			PreviousExercisePanel.transform.localScale = Vector3.zero;
-		}
+//		if(_activeExerciseIndex < ActiveWorkout.exerciseData.Count && _activeExerciseIndex > 0){
+//			PreviousExercise = ActiveWorkout.exerciseData[_activeExerciseIndex - 1];
+//			PreviousExercisePanel.PopulateFields(
+//				PreviousExercise.name,
+//				PreviousExercise.secondsToCompleteSet,
+//				PreviousExercise.totalSets,
+//				PreviousExercise.repsPerSet,
+//				PreviousExercise.weight
+//			);
+//			PreviousExercisePanel.transform.localScale = Vector3.one;
+//		}else{
+//			PreviousExercisePanel.transform.localScale = Vector3.zero;
+//		}
 	}
 
 	void EstablishActiveExercise(){
-		if(_activeExerciseIndex < ActiveWorkout.exerciseData.Count){
-			ActiveExercise = ActiveWorkout.exerciseData[_activeExerciseIndex];
-			ActiveExercisePanel.PopulateFields(
-				ActiveExercise.name,
-				ActiveExercise.secondsToCompleteSet,
-				ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1),
-				ActiveExercise.repsPerSet,
-				ActiveExercise.weight
-			);
-		}else{
-			ActiveExercisePanel.transform.localScale = Vector3.zero;
+		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count){
+			ActiveExercise = ActiveWorkout.exerciseData[activeExerciseIndex];
+//			ActiveExercisePanel.PopulateFields(
+//				ActiveExercise.name,
+//				ActiveExercise.secondsToCompleteSet,
+//				ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1),
+//				ActiveExercise.repsPerSet,
+//				ActiveExercise.weight
+//			);
 		}
+//		else{
+//			ActiveExercisePanel.transform.localScale = Vector3.zero;
+//		}
 
-		_lineSegmenter.Init (ActiveExercise.totalInitialSets);
-		_lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		ViewExerciseView.Instance.exerciseViewRow.UpdateLabel (ActiveExercise.name);
+		ViewExerciseView.Instance.exerciseViewRow.lineSegmenter.ShowSegmentCummulativelyLit (ActiveWorkout.exerciseData.IndexOf(ActiveExercise));
+
+		ViewExerciseView.Instance.setsViewRow.lineSegmenter.Init (ActiveExercise.totalInitialSets);
+		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+		string activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1)).ToString();
+		string totalSets = ActiveExercise.totalInitialSets.ToString ();
+		ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
+
+		ViewExerciseView.Instance.UpdateRepsAndWeightView (ActiveExercise.repsPerSet, ActiveExercise.weight);
 	}
 
 	void EstablishNextExercise(){
-		if(_activeExerciseIndex < ActiveWorkout.exerciseData.Count - 1){
-			NextExercise = ActiveWorkout.exerciseData[_activeExerciseIndex + 1];
-			NextExercisePanel.PopulateFields(
-				NextExercise.name,
-				NextExercise.secondsToCompleteSet,
-				NextExercise.totalSets,
-				NextExercise.repsPerSet,
-				NextExercise.weight
-			);
+		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count - 1){
+			NextExercise = ActiveWorkout.exerciseData[activeExerciseIndex + 1];
+			Header.Instance.UpdateTopLabel ("Next: " + NextExercise.name);
 		}else{
-			NextExercisePanel.transform.localScale = Vector3.zero;
+			Header.Instance.UpdateTopLabel ("");
 		}
 	}
 
@@ -148,7 +160,11 @@ public class PlayModeManager : MonoBehaviour {
 		DecrementSetsRemaining();
 	}
 
-	public void PlayWorkout(WorkoutData workout){
+	public void PlayWorkout(WorkoutData workout, int exerciseIndex){
+
+		if (ActiveWorkout != null) {
+			ActiveWorkout.exerciseData.Clear ();
+		}
 
 		foreach(ExerciseData exercise in workout.exerciseData){
 
@@ -162,7 +178,7 @@ public class PlayModeManager : MonoBehaviour {
 			ActiveWorkout.exerciseData.Add(newExercise);
 		}
 
-		_activeExerciseIndex = 0;
+		activeExerciseIndex = exerciseIndex;
 		EstablishPreviousExercise ();
 		EstablishActiveExercise();
 		EstablishNextExercise();
@@ -174,8 +190,8 @@ public class PlayModeManager : MonoBehaviour {
 		ActiveWorkout.exerciseData.Clear();
 		_isInPlayMode = false;
 		isPaused = false;
-		ActiveExercisePanel.transform.localScale = Vector3.one;
-		NextExercisePanel.transform.localScale = Vector3.one;
+//		ActiveExercisePanel.transform.localScale = Vector3.one;
+//		NextExercisePanel.transform.localScale = Vector3.one;
 	}
 
 	public void Pause(){

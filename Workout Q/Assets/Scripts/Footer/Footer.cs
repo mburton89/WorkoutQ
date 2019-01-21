@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Footer : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class Footer : MonoBehaviour
 
 	public PanelMover MovePanelContatiner;
 	public WorkoutControls WorkoutControlsContatiner;
-
 	public Image timerLine;
+	public TextMeshProUGUI title;
+	public TextMeshProUGUI seconds;
 
 	void Awake(){
 		if(Instance == null){
@@ -37,6 +39,11 @@ public class Footer : MonoBehaviour
 	}
 
 	public void ResetTimerLine(){
-		timerLine.fillAmount = 1f;
+		timerLine.fillAmount = 0f;
+		seconds.SetText ("");
+	}
+
+	public void UpdateTitle(string newTitle){
+		title.text = newTitle;
 	}
 }

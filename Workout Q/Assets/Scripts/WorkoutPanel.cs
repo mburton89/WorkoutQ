@@ -52,7 +52,7 @@ public class WorkoutPanel : UIPanel {
 		WorkoutManager.Instance.Save();
 	}
 
-	void SelectTitle(){
+	public void SelectTitle(){
 		_workoutName.Select();
 	}
 }

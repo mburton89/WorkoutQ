@@ -7,15 +7,25 @@ using TMPro;
 public class ExerciseMenuItem : UIPanel {
 
 	public ExerciseData exerciseData;
-	public TextMeshProUGUI exerciseName;
+	//public TextMeshProUGUI exerciseName;
 	public TextMeshProUGUI statsText;
 	[HideInInspector] public string weightLabel = "lb";	
+
+	public TMP_InputField exerciseName;
 
 	void Awake()
 	{
 		if(exerciseData != null){
 			UpdateText();
 		}
+	}
+
+	void OnEnable(){
+		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
+	}
+
+	void OnDisable(){
+		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
 	}
 
 	public void Init(ExerciseData exerciseData){
@@ -41,5 +51,9 @@ public class ExerciseMenuItem : UIPanel {
 		Unhighlight ();
 		WorkoutManager.Instance.ActiveExercise = exerciseData;
 		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExercise(exerciseData);
+	}
+
+	public void SelectTitle(){
+		exerciseName.Select();
 	}
 }
