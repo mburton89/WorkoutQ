@@ -26368,7 +26368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91de6aa67071ba14597f705d8cc7fa1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveColor: {r: 0, g: 1, b: 0.048275948, a: 1}
+  ActiveColor: {r: 1, g: 0.8452333, b: 0.19852942, a: 1}
   _texts:
   - {fileID: 1606270203}
   - {fileID: 433222356}
