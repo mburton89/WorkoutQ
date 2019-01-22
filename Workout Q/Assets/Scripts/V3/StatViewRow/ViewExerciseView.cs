@@ -37,7 +37,11 @@ public class ViewExerciseView : MonoBehaviour {
 	public void UpdateExerciseView(string label, int currentExerciseIndex, int totalExercises)
 	{
 		//exerciseViewRow.UpdateViewCustomLabel ("XRC: " + (currentExerciseIndex + 1) + " of " + totalExercises, totalExercises);
-		Header.Instance.UpdateMiddleLabel(label);
+		if (string.IsNullOrEmpty (label)) {
+			Header.Instance.UpdateMiddleLabel("Enter Exercise Name");
+		} else {
+			Header.Instance.UpdateMiddleLabel(label);		
+		}
 		exerciseViewRow.lineSegmenter.ShowSegmentLit (currentExerciseIndex);
 	}
 

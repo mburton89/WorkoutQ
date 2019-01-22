@@ -54,12 +54,20 @@ public class Header : MonoBehaviour {
 			_topLabel.text = PlayerPrefs.GetString("userTitle");
 			Footer.Instance.WorkoutControlsContatiner.editButton.gameObject.SetActive(false);
 		}
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	public void SetUpForExercisesMenu(WorkoutData workoutData){
 		SettingsButton.gameObject.SetActive(false);
 		BackButton.gameObject.SetActive(true);
-		_middleLabel.text = workoutData.name;
+
+		if (string.IsNullOrEmpty (workoutData.name)) {
+			UpdateMiddleLabel ("Enter workout name");
+		} else {
+			_middleLabel.text = workoutData.name;
+		}
+
 		lineSegmenter.Init(workoutData.exerciseData.Count);
 	}
 

@@ -45,6 +45,8 @@ public class WorkoutPanel : UIPanel {
 		WorkoutManager.Instance.ActiveWorkout = workoutData;
 		WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout(workoutData);
 		Unhighlight ();
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandleTitleChanged(){

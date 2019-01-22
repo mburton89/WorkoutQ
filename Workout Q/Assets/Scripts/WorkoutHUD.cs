@@ -56,6 +56,12 @@ public class WorkoutHUD : MonoBehaviour {
 		}
 
 		currentMode = Mode.ViewingWorkouts;
+
+		if(PlayerPrefs.GetInt("hasOpenedApp") != 1)
+		{
+			PlayerPrefs.SetInt ("hasOpenedApp", 1);
+			WorkoutManager.Instance.Save();
+		}
 	}
 
 	public void ShowWorkoutsMenu()
@@ -119,7 +125,6 @@ public class WorkoutHUD : MonoBehaviour {
 	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen){
 	
 		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
-		Header.Instance.UpdateMiddleLabel(exerciseToOpen.name);
 
 		addExercisePanelButton.transform.localScale = Vector3.zero;
 

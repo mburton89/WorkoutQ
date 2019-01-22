@@ -17,6 +17,7 @@ public class WorkoutManager : MonoBehaviour {
 	public Button SaveButton;
 
 	void Awake(){
+
 		if(Instance == null){
 			Instance = this;
 		}
@@ -24,7 +25,6 @@ public class WorkoutManager : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("hasOpenedApp") == 1) {
 			Load ();
 		} else {
-			PlayerPrefs.SetInt ("hasOpenedApp", 1);
 			LoadExampleWorkouts ();
 		}
 

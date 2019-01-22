@@ -8,6 +8,9 @@ public class SoundManager : MonoBehaviour {
 
 	public AudioClip nextSet;
 	public AudioClip nextExercise;
+	public AudioClip buttonPress;
+	public AudioClip levelUp;
+	public AudioClip goBack;
 
 	public AudioSource audioSource;
 
@@ -22,6 +25,21 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlayNewExerciseSound(){
 		audioSource.clip = nextExercise;
+		audioSource.Play ();
+	}
+
+	public void PlayButtonPressSound(){
+		audioSource.clip = buttonPress;
+		audioSource.Play ();
+	}
+
+	public void PlayLevelUpSound(){
+		audioSource.clip = levelUp;
+		audioSource.Play ();
+	}
+
+	public void PlayGoBackSound(){
+		audioSource.clip = goBack;
 		audioSource.Play ();
 	}
 }

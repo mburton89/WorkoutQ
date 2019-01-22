@@ -22,7 +22,10 @@ public class LineSegmenter : MonoBehaviour {
 			_lineSegments.Add (newLine);
 		}
 
-		//_bg.enabled = false;
+		if (_lineSegments.Count > 0) 
+		{
+			_bg.enabled = false;		
+		}
 	}
 
 	public void ShowSegmentBlinking(int setNumber){

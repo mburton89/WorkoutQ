@@ -51,6 +51,8 @@ public class ExerciseMenuItem : UIPanel {
 		Unhighlight ();
 		WorkoutManager.Instance.ActiveExercise = exerciseData;
 		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExercise(exerciseData);
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	public void SelectTitle(){

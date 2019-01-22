@@ -80,11 +80,20 @@ public class PlayModeManager : MonoBehaviour {
 			
 		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+
+		SoundManager.Instance.PlayGoBackSound ();
 	}
 
 	public void DecrementSetsRemaining(){
 		if(ActiveExercise.totalSets == 1){
+
 			activeExerciseIndex ++;
+
+			if (activeExerciseIndex == ActiveWorkout.exerciseData.Count) {
+				HandleWorkoutFinished ();
+				return;
+			}
+
 			//EstablishPreviousExercise ();
 			EstablishActiveExercise();
 			EstablishNextExercise();
@@ -100,7 +109,7 @@ public class PlayModeManager : MonoBehaviour {
 			SoundManager.Instance.PlayNewSetSound ();
 		}
 
-		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
+		_secondsRemaining = ActiveExercise.secondsToCompleteSet;
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
@@ -203,5 +212,10 @@ public class PlayModeManager : MonoBehaviour {
 	public void Resume(){
 		_isInPlayMode = true;
 		isPaused = false;
+	}
+
+	void HandleWorkoutFinished()
+	{
+		Header.Instance.HandleBackPressed ();
 	}
 }

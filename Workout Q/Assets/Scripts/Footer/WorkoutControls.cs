@@ -11,7 +11,7 @@ public class WorkoutControls : MonoBehaviour {
 	[SerializeField]private Button nextSetButton;
 	[SerializeField]private Button previousExerciseButton;
 	[SerializeField]private Button nextExerciseButton;
-	[SerializeField]private Button editButton;
+	public Button editButton;
 
 	void OnEnable()
 	{
@@ -45,6 +45,8 @@ public class WorkoutControls : MonoBehaviour {
 			//WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
 			WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
 		}
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandlePausePressed()
@@ -58,6 +60,8 @@ public class WorkoutControls : MonoBehaviour {
 		editButton.gameObject.SetActive(true);
 
 		PlayModeManager.Instance.Pause();
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandlePreviousSetPressed()
@@ -73,11 +77,15 @@ public class WorkoutControls : MonoBehaviour {
 	void HandlePreviousExercisePressed()
 	{
 		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) - 1);
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandleNextExercisePressed()
 	{
 		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1);
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	public void ShowPausedMenu(){
@@ -115,5 +123,7 @@ public class WorkoutControls : MonoBehaviour {
 		editButton.gameObject.SetActive(false);
 		PlayModeManager.Instance.isPaused = false;
 		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
+		previousExerciseButton.gameObject.SetActive(true);
+		nextExerciseButton.gameObject.SetActive(true);
 	}
 }
