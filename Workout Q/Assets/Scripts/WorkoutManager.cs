@@ -18,6 +18,8 @@ public class WorkoutManager : MonoBehaviour {
 
 	void Awake(){
 
+		//PlayerPrefs.DeleteAll ();
+
 		if(Instance == null){
 			Instance = this;
 		}
@@ -25,6 +27,7 @@ public class WorkoutManager : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("hasOpenedApp") == 1) {
 			Load ();
 		} else {
+			PlayerPrefs.SetString("userTitle", "Workouts");
 			LoadExampleWorkouts ();
 		}
 

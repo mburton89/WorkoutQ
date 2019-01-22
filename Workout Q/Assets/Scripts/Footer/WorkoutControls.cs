@@ -125,5 +125,6 @@ public class WorkoutControls : MonoBehaviour {
 		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
 		previousExerciseButton.gameObject.SetActive(true);
 		nextExerciseButton.gameObject.SetActive(true);
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 }

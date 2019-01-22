@@ -53,6 +53,7 @@ public class SetsEditRow : StatEditRow
 
 		numberInput.text = value.ToString();
 		UpdateData ();
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void Increment()
@@ -64,6 +65,7 @@ public class SetsEditRow : StatEditRow
 
 		numberInput.text = value.ToString();
 		UpdateData ();
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void UpdateData()
