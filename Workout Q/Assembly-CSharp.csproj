@@ -53,6 +53,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BugsList.cs" />
      <Compile Include="Assets\Scripts\ColorElement.cs" />
+     <Compile Include="Assets\Scripts\Config\ColorConfigurer.cs" />
+     <Compile Include="Assets\Scripts\Config\NicknameConfigurer.cs" />
      <Compile Include="Assets\Scripts\Data\ExerciseData.cs" />
      <Compile Include="Assets\Scripts\Data\WorkoutData.cs" />
      <Compile Include="Assets\Scripts\Exercise.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -26,11 +27,13 @@ public class Header : MonoBehaviour {
 
 	void OnEnable(){
 		BackButton.onClick.AddListener(HandleBackPressed);
+		SettingsButton.onClick.AddListener(HandleSettingsPressed);
 		_middleLabel.onSubmit.AddListener(delegate{HandleTitleChanged();});
 	}
 
 	void OnDisable(){
 		BackButton.onClick.RemoveListener(HandleBackPressed);
+		SettingsButton.onClick.RemoveListener(HandleSettingsPressed);
 		_middleLabel.onSubmit.AddListener(delegate{HandleTitleChanged();});
 	}
 
@@ -44,6 +47,7 @@ public class Header : MonoBehaviour {
 			Footer.Instance.Hide();
 			_middleLabel.text = PlayerPrefs.GetString("userTitle");
 			lineSegmenter.Clear ();
+			SettingsButton.gameObject.SetActive (true);
 		}
 		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
@@ -56,6 +60,11 @@ public class Header : MonoBehaviour {
 		}
 
 		SoundManager.Instance.PlayButtonPressSound ();
+	}
+
+	void HandleSettingsPressed()
+	{
+		SceneManager.LoadScene (1);	
 	}
 
 	public void SetUpForExercisesMenu(WorkoutData workoutData){
