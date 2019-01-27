@@ -10,7 +10,10 @@ public class WorkoutGenerator : MonoBehaviour {
 	public WorkoutData ExampleBackBicep;
 	public WorkoutData ExampleLegs;
 	public WorkoutData ExampleShoulders;
-	public WorkoutData ExampleCore;	
+	public WorkoutData ExampleCore;
+    
+	public List<WorkoutData> preloadedWorkouts;
+	public List<ExerciseData> preloadedExercises;
 
 	void Awake()
 	{

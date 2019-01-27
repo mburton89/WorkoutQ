@@ -34,14 +34,16 @@ public class WorkoutHUD : MonoBehaviour {
 	[SerializeField] private EditExerciseView _editExerciseView;
 	[SerializeField] private ViewExerciseView _viewExerciseView;
 
-	void OnEnable(){
-		addWorkoutPanelButton.onClick.AddListener(delegate{AddWorkoutPanel(null);});
-		addExercisePanelButton.onClick.AddListener(delegate{AddExercisePanel(WorkoutManager.Instance.ActiveWorkout, null, true);});
+	void OnEnable()
+	{
+		addWorkoutPanelButton.onClick.AddListener(HandleAddWorkoutPressed);
+		addExercisePanelButton.onClick.AddListener(HandleAddExercisePressed);
 	}
 
-	void OnDisable(){
-		addWorkoutPanelButton.onClick.RemoveListener(delegate{AddWorkoutPanel(null);});
-		addExercisePanelButton.onClick.RemoveListener(delegate{AddExercisePanel(WorkoutManager.Instance.ActiveWorkout, null, true);});
+	void OnDisable()
+	{
+		addWorkoutPanelButton.onClick.RemoveListener(HandleAddWorkoutPressed);
+		addExercisePanelButton.onClick.RemoveListener(HandleAddExercisePressed);
 	}
 
 	void Awake(){
@@ -184,7 +186,7 @@ public class WorkoutHUD : MonoBehaviour {
 		currentMode = Mode.PlayingExercise;
 	}
 
-	void AddWorkoutPanel(WorkoutData workoutData){
+	public void AddWorkoutPanel(WorkoutData workoutData){
 		WorkoutPanel newWorkoutPanel = Instantiate(WorkoutMenuItemPrefab);
 
 		if (workoutData != null) {
@@ -200,7 +202,7 @@ public class WorkoutHUD : MonoBehaviour {
 		newWorkoutPanel.transform.localScale = Vector3.one;
 	}
 
-	void AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData, bool isFromButton)
+	public void AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData, bool isFromButton)
 	{
 		ExerciseMenuItem newExerciseMenuItem = Instantiate(_exerciseMenuItemPrefab);
 
@@ -242,4 +244,14 @@ public class WorkoutHUD : MonoBehaviour {
 
 		Footer.Instance.ShowPanelMover();
 	}
+
+	void HandleAddWorkoutPressed()
+    {
+        AddPanel.Instance.ShowForAddWorkouts();
+    }
+
+    void HandleAddExercisePressed()
+    {
+        AddPanel.Instance.ShowForAddExercises();
+    }
 }

@@ -1,4 +1,4 @@
-﻿	using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,23 +11,19 @@ public class WorkoutPanel : UIPanel {
 	[SerializeField]private TextMeshProUGUI _minutesLabel;
 
 	public Button selfButton;
-	public Button titleButton;
 
-	void OnEnable(){
-		selfButton.onClick.AddListener(HandleSelfClicked);
-		titleButton.onClick.AddListener(SelectTitle);
+	void OnEnable()
+	{
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-		//toggle.onValueChanged.AddListener(delegate{HandleTogglePressed();});
 	}
 
-	void OnDisable(){
-		selfButton.onClick.RemoveListener(HandleSelfClicked);
-		titleButton.onClick.RemoveListener(SelectTitle);
+	void OnDisable()
+	{
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-		//toggle.onValueChanged.RemoveListener(delegate{HandleTogglePressed();});
 	}
 
-	void Awake(){
+	void Awake()
+	{
 		if(workoutData != null){
 			UpdateText();
 		}
@@ -48,6 +44,14 @@ public class WorkoutPanel : UIPanel {
 
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
+
+	public void HandleSelfClickedOnAddMenu()
+    {
+        Unhighlight();
+		WorkoutHUD.Instance.AddWorkoutPanel(workoutData);
+        SoundManager.Instance.PlayButtonPressSound();
+		WorkoutManager.Instance.Save();
+    }
 
 	void HandleTitleChanged(){
 		workoutData.name = _workoutName.text;
