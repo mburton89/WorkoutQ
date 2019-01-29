@@ -625,7 +625,6 @@ MonoBehaviour:
   _workoutName: {fileID: 114287774596892276}
   _minutesLabel: {fileID: 114778157134869814}
   selfButton: {fileID: 114152405876503708}
-  titleButton: {fileID: 114423015963120870}
 --- !u!114 &114239738275436856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -645,7 +644,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: efd028dbeb77d3c40b7cc31abf3977f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41841cfc150659b44af2a3be361f9d28, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

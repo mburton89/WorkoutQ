@@ -25,7 +25,7 @@ public class PlayModeManager : MonoBehaviour {
 	public bool isPaused;
 
 	private TextMeshProUGUI _secondsLabel;
-
+    
 	void Awake(){
 		if(Instance == null){
 			Instance = this;
@@ -155,6 +155,8 @@ public class PlayModeManager : MonoBehaviour {
 		ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
 
 		ViewExerciseView.Instance.UpdateRepsAndWeightView (ActiveExercise.repsPerSet, ActiveExercise.weight);
+
+		ViewExerciseView.Instance.fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(ActiveExercise.exerciseType));
 	}
 
 	void EstablishNextExercise(){
@@ -183,7 +185,9 @@ public class PlayModeManager : MonoBehaviour {
 				exercise.secondsToCompleteSet,
 				exercise.totalSets,
 				exercise.repsPerSet,
-				exercise.weight);
+				exercise.weight,
+				exercise.exerciseType
+			);
 
 			ActiveWorkout.exerciseData.Add(newExercise);
 		}

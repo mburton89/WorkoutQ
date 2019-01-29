@@ -5,25 +5,25 @@ using UnityEngine.UI;
 
 public class PanelMover : MonoBehaviour 
 {
-	[SerializeField]private Button deleteButton;
-	[SerializeField]private Button moveUpButton;
-	[SerializeField]private Button moveDownButton;
-	[SerializeField]private Button dismissButton;
+	[SerializeField]private ShadowButton _deleteButton;
+	[SerializeField]private ShadowButton _moveUpButton;
+	[SerializeField]private ShadowButton _moveDownButton;
+	[SerializeField]private ShadowButton _dismissButton;
 
 	void OnEnable()
 	{
-		moveUpButton.onClick.AddListener(MovePanelUp);
-		deleteButton.onClick.AddListener(DeletePanel);
-		moveDownButton.onClick.AddListener(MovePanelDown);
-		dismissButton.onClick.AddListener(Hide);
+		_moveUpButton.onShortClick.AddListener(MovePanelUp);
+		_deleteButton.onShortClick.AddListener(DeletePanel);
+		_moveDownButton.onShortClick.AddListener(MovePanelDown);
+		_dismissButton.onShortClick.AddListener(Hide);
 	}
 
 	void OnDisable()
 	{
-		moveUpButton.onClick.RemoveListener(MovePanelUp);
-		deleteButton.onClick.RemoveListener(DeletePanel);
-		moveDownButton.onClick.RemoveListener(MovePanelDown);
-		dismissButton.onClick.RemoveListener(Hide);
+		_moveUpButton.onShortClick.RemoveListener(MovePanelUp);
+		_deleteButton.onShortClick.RemoveListener(DeletePanel);
+		_moveDownButton.onShortClick.RemoveListener(MovePanelDown);
+		_dismissButton.onShortClick.RemoveListener(Hide);
 	}
 
 	void DeletePanel()

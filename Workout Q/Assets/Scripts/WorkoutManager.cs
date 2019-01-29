@@ -80,12 +80,12 @@ public class WorkoutManager : MonoBehaviour {
 
 	public void LoadExampleWorkouts()
 	{
-		workoutData = new List<WorkoutData>();
-		workoutData.Add (WorkoutGenerator.Instance.ExampleChestTricep);
-		workoutData.Add (WorkoutGenerator.Instance.ExampleBackBicep);
-		workoutData.Add (WorkoutGenerator.Instance.ExampleLegs);
-		workoutData.Add (WorkoutGenerator.Instance.ExampleShoulders);
-		workoutData.Add (WorkoutGenerator.Instance.ExampleCore);
+		//workoutData = new List<WorkoutData>();
+		//workoutData.Add (WorkoutGenerator.Instance.ExampleChestTricep);
+		//workoutData.Add (WorkoutGenerator.Instance.ExampleBackBicep);
+		//workoutData.Add (WorkoutGenerator.Instance.ExampleLegs);
+		//workoutData.Add (WorkoutGenerator.Instance.ExampleShoulders);
+		//workoutData.Add (WorkoutGenerator.Instance.ExampleCore);
 	}
 }
 

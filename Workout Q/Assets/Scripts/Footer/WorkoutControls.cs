@@ -5,34 +5,34 @@ using UnityEngine.UI;
 
 public class WorkoutControls : MonoBehaviour {
 	
-	[SerializeField]private Button playButton;
-	[SerializeField]private Button pauseButton;
-	[SerializeField]private Button previousSetButton;
-	[SerializeField]private Button nextSetButton;
-	[SerializeField]private Button previousExerciseButton;
-	[SerializeField]private Button nextExerciseButton;
-	public Button editButton;
+	[SerializeField]private ShadowButton _playButton;
+	[SerializeField]private ShadowButton _pauseButton;
+	[SerializeField]private ShadowButton _previousSetButton;
+	[SerializeField]private ShadowButton _nextSetButton;
+	[SerializeField]private ShadowButton _previousExerciseButton;
+	[SerializeField]private ShadowButton _nextExerciseButton;
+	public ShadowButton editButton;
 
 	void OnEnable()
 	{
-		playButton.onClick.AddListener(HandlePlayPressed);
-		pauseButton.onClick.AddListener(HandlePausePressed);
-		previousSetButton.onClick.AddListener(HandlePreviousSetPressed);
-		nextSetButton.onClick.AddListener(HandleNextSetPressed);
-		previousExerciseButton.onClick.AddListener(HandlePreviousExercisePressed);
-		nextExerciseButton.onClick.AddListener(HandleNextExercisePressed);
-		editButton.onClick.AddListener (HandleEditPressed);
+		_playButton.onShortClick.AddListener(HandlePlayPressed);
+		_pauseButton.onShortClick.AddListener(HandlePausePressed);
+		_previousSetButton.onShortClick.AddListener(HandlePreviousSetPressed);
+		_nextSetButton.onShortClick.AddListener(HandleNextSetPressed);
+		_previousExerciseButton.onShortClick.AddListener(HandlePreviousExercisePressed);
+		_nextExerciseButton.onShortClick.AddListener(HandleNextExercisePressed);
+		editButton.onShortClick.AddListener (HandleEditPressed);
 	}
 
 	void OnDisable()
 	{
-		playButton.onClick.RemoveListener(HandlePlayPressed);
-		pauseButton.onClick.RemoveListener(HandlePausePressed);
-		previousSetButton.onClick.RemoveListener(HandlePreviousSetPressed);
-		nextSetButton.onClick.RemoveListener(HandleNextSetPressed);
-		previousExerciseButton.onClick.RemoveListener(HandlePreviousExercisePressed);
-		nextExerciseButton.onClick.RemoveListener(HandleNextExercisePressed);
-		editButton.onClick.RemoveListener (HandleEditPressed);
+		_playButton.onShortClick.RemoveListener(HandlePlayPressed);
+		_pauseButton.onShortClick.RemoveListener(HandlePausePressed);
+		_previousSetButton.onShortClick.RemoveListener(HandlePreviousSetPressed);
+		_nextSetButton.onShortClick.RemoveListener(HandleNextSetPressed);
+		_previousExerciseButton.onShortClick.RemoveListener(HandlePreviousExercisePressed);
+		_nextExerciseButton.onShortClick.RemoveListener(HandleNextExercisePressed);
+		editButton.onShortClick.RemoveListener (HandleEditPressed);
 	}
 
 	void HandlePlayPressed()
@@ -53,10 +53,10 @@ public class WorkoutControls : MonoBehaviour {
 	{
 		ShowPausedMenu();
 
-		playButton.gameObject.SetActive(true);
-		pauseButton.gameObject.SetActive(false);
-		previousSetButton.gameObject.SetActive(false);
-		nextSetButton.gameObject.SetActive(false);
+		_playButton.gameObject.SetActive(true);
+		_pauseButton.gameObject.SetActive(false);
+		_previousSetButton.gameObject.SetActive(false);
+		_nextSetButton.gameObject.SetActive(false);
 		editButton.gameObject.SetActive(true);
 
 		PlayModeManager.Instance.Pause();
@@ -89,33 +89,33 @@ public class WorkoutControls : MonoBehaviour {
 	}
 
 	public void ShowPausedMenu(){
-		playButton.gameObject.SetActive(true);
-		pauseButton.gameObject.SetActive(false);
-		previousSetButton.gameObject.SetActive(false);
-		nextSetButton.gameObject.SetActive(false);
-		previousExerciseButton.gameObject.SetActive(false);
-		nextExerciseButton.gameObject.SetActive(false);
+		_playButton.gameObject.SetActive(true);
+		_pauseButton.gameObject.SetActive(false);
+		_previousSetButton.gameObject.SetActive(false);
+		_nextSetButton.gameObject.SetActive(false);
+		_previousExerciseButton.gameObject.SetActive(false);
+		_nextExerciseButton.gameObject.SetActive(false);
 	}
 
 	public void ShowCurrentlyPlayingMenu(){
-		playButton.gameObject.SetActive(false);
-		pauseButton.gameObject.SetActive(true);
-		previousSetButton.gameObject.SetActive(true);
-		nextSetButton.gameObject.SetActive(true);
-		previousExerciseButton.gameObject.SetActive(false);
-		nextExerciseButton.gameObject.SetActive(false);
+		_playButton.gameObject.SetActive(false);
+		_pauseButton.gameObject.SetActive(true);
+		_previousSetButton.gameObject.SetActive(true);
+		_nextSetButton.gameObject.SetActive(true);
+		_previousExerciseButton.gameObject.SetActive(false);
+		_nextExerciseButton.gameObject.SetActive(false);
 		editButton.gameObject.SetActive(false);
 		Footer.Instance.UpdateTitle ("SEC: ");
 	}
 
 	public void ShowEditingExerciseMenu()
 	{
-		playButton.gameObject.SetActive(true);
-		pauseButton.gameObject.SetActive(false);
-		previousSetButton.gameObject.SetActive(false);
-		nextSetButton.gameObject.SetActive(false);
-		previousExerciseButton.gameObject.SetActive(true);
-		nextExerciseButton.gameObject.SetActive(true);
+		_playButton.gameObject.SetActive(true);
+		_pauseButton.gameObject.SetActive(false);
+		_previousSetButton.gameObject.SetActive(false);
+		_nextSetButton.gameObject.SetActive(false);
+		_previousExerciseButton.gameObject.SetActive(true);
+		_nextExerciseButton.gameObject.SetActive(true);
 	}
 
 	public void HandleEditPressed()
@@ -123,8 +123,8 @@ public class WorkoutControls : MonoBehaviour {
 		editButton.gameObject.SetActive(false);
 		PlayModeManager.Instance.isPaused = false;
 		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
-		previousExerciseButton.gameObject.SetActive(true);
-		nextExerciseButton.gameObject.SetActive(true);
+		_previousExerciseButton.gameObject.SetActive(true);
+		_nextExerciseButton.gameObject.SetActive(true);
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
 }

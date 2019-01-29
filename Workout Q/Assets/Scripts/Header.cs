@@ -9,8 +9,8 @@ public class Header : MonoBehaviour {
 
 	public static Header Instance;
 
-	[SerializeField]private Button SettingsButton;
-	[SerializeField]private Button BackButton;
+	[SerializeField]private ShadowButton _settingsButton;
+	[SerializeField]private ShadowButton _backButton;
 	[SerializeField]private TextMeshProUGUI _topLabel;
 	//[SerializeField]private TextMeshProUGUI _middleLabel;
 
@@ -26,14 +26,14 @@ public class Header : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		BackButton.onClick.AddListener(HandleBackPressed);
-		SettingsButton.onClick.AddListener(HandleSettingsPressed);
+		_backButton.onShortClick.AddListener(HandleBackPressed);
+		_settingsButton.onShortClick.AddListener(HandleSettingsPressed);
 		_middleLabel.onSubmit.AddListener(delegate{HandleTitleChanged();});
 	}
 
 	void OnDisable(){
-		BackButton.onClick.RemoveListener(HandleBackPressed);
-		SettingsButton.onClick.RemoveListener(HandleSettingsPressed);
+		_backButton.onShortClick.RemoveListener(HandleBackPressed);
+		_settingsButton.onShortClick.RemoveListener(HandleSettingsPressed);
 		_middleLabel.onSubmit.AddListener(delegate{HandleTitleChanged();});
 	}
 
@@ -41,13 +41,13 @@ public class Header : MonoBehaviour {
 	{
 		if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
 		{
-			SettingsButton.gameObject.SetActive(true);
-			BackButton.gameObject.SetActive(false);
+			_settingsButton.gameObject.SetActive(true);
+			_backButton.gameObject.SetActive(false);
 			WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
 			Footer.Instance.Hide();
 			_middleLabel.text = PlayerPrefs.GetString("userTitle");
 			lineSegmenter.Clear ();
-			SettingsButton.gameObject.SetActive (true);
+			_settingsButton.gameObject.SetActive (true);
 		}
 		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
@@ -68,8 +68,8 @@ public class Header : MonoBehaviour {
 	}
 
 	public void SetUpForExercisesMenu(WorkoutData workoutData){
-		SettingsButton.gameObject.SetActive(false);
-		BackButton.gameObject.SetActive(true);
+		_settingsButton.gameObject.SetActive(false);
+		_backButton.gameObject.SetActive(true);
 
 		if (string.IsNullOrEmpty (workoutData.name)) {
 			UpdateMiddleLabel ("Enter workout name");

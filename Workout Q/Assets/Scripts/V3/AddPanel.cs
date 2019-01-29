@@ -7,9 +7,10 @@ public class AddPanel : MonoBehaviour {
 	public static AddPanel Instance;
     
 	[SerializeField] private GameObject _container;
-	[SerializeField] private TextMeshProUGUI title;
+	[SerializeField] private TextMeshProUGUI _title;
 	[SerializeField] private ShadowTextButton _addCustomButton;
 	[SerializeField] private ShadowTextButton _doneButton;
+	[SerializeField] private Button _clickOverlay;
 	[SerializeField] private WorkoutPanel _addWorkoutItemPrefab;
 	[SerializeField] private ExerciseMenuItem _addExerciseItemPrefab;
 	[SerializeField] private GridLayoutGroup _gridLayout;
@@ -25,17 +26,20 @@ public class AddPanel : MonoBehaviour {
 	{
 		_addCustomButton.onShortClick.AddListener(AddCustom);
 		_doneButton.onShortClick.AddListener(Exit);
+		_clickOverlay.onClick.AddListener(Exit);
 	}
 
 	private void OnDisable()
     {
 		_addCustomButton.onShortClick.RemoveListener(AddCustom);
 		_doneButton.onShortClick.RemoveListener(Exit);
-    }
+		_clickOverlay.onClick.RemoveListener(Exit);
+	}
 
     public void ShowForAddWorkouts()
 	{
 		_container.SetActive(true);
+		_title.text = "Add Workouts";
 		ShowPreloadedWorkouts();
 		_isForWorkouts = true;
 	}
@@ -43,6 +47,7 @@ public class AddPanel : MonoBehaviour {
 	public void ShowForAddExercises()
     {
         _container.SetActive(true);
+		_title.text = "Add Exercises";
         ShowPreloadedExercises();
 		_isForWorkouts = false;
 	}
@@ -51,10 +56,13 @@ public class AddPanel : MonoBehaviour {
 	{
 		TryClear();
 		_container.SetActive(false);
+		SoundManager.Instance.PlayButtonPressSound();
 	}
 
     void AddCustom()
 	{
+		SoundManager.Instance.PlayButtonPressSound();
+
 		if(_isForWorkouts)
 		{
 			WorkoutHUD.Instance.AddWorkoutPanel(null);

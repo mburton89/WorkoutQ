@@ -23,8 +23,8 @@ public class WorkoutHUD : MonoBehaviour {
 	[SerializeField]private WorkoutPanel WorkoutMenuItemPrefab;
 	[SerializeField]private ExerciseMenuItem _exerciseMenuItemPrefab;
 
-	[SerializeField]private Button addWorkoutPanelButton;
-	[SerializeField]private Button addExercisePanelButton;
+	[SerializeField]private ShadowButton addWorkoutButton;
+	[SerializeField]private ShadowButton addExerciseButton;
 
 	[HideInInspector]public UIPanel selectedPanel;
 	[HideInInspector]public GridLayoutGroup activeGridLayout;
@@ -36,14 +36,14 @@ public class WorkoutHUD : MonoBehaviour {
 
 	void OnEnable()
 	{
-		addWorkoutPanelButton.onClick.AddListener(HandleAddWorkoutPressed);
-		addExercisePanelButton.onClick.AddListener(HandleAddExercisePressed);
+		addWorkoutButton.onShortClick.AddListener(HandleAddWorkoutPressed);
+		addExerciseButton.onShortClick.AddListener(HandleAddExercisePressed);
 	}
 
 	void OnDisable()
 	{
-		addWorkoutPanelButton.onClick.RemoveListener(HandleAddWorkoutPressed);
-		addExercisePanelButton.onClick.RemoveListener(HandleAddExercisePressed);
+		addWorkoutButton.onShortClick.RemoveListener(HandleAddWorkoutPressed);
+		addExerciseButton.onShortClick.RemoveListener(HandleAddExercisePressed);
 	}
 
 	void Awake(){
@@ -70,8 +70,8 @@ public class WorkoutHUD : MonoBehaviour {
 	{
 		Header.Instance.UpdateTopLabel ("");
 
-		addWorkoutPanelButton.transform.localScale = Vector3.one;
-		addExercisePanelButton.transform.localScale = Vector3.zero;
+		addWorkoutButton.transform.localScale = Vector3.one;
+		addExerciseButton.transform.localScale = Vector3.zero;
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.one;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
@@ -104,8 +104,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 		Header.Instance.SetUpForExercisesMenu(workoutToOpen);
 		Header.Instance.UpdateTopLabel (PlayerPrefs.GetString("userTitle"));
-		addWorkoutPanelButton.transform.localScale = Vector3.zero;
-		addExercisePanelButton.transform.localScale = Vector3.one;
+		addWorkoutButton.transform.localScale = Vector3.zero;
+		addExerciseButton.transform.localScale = Vector3.one;
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
@@ -128,13 +128,13 @@ public class WorkoutHUD : MonoBehaviour {
 	
 		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
 
-		addExercisePanelButton.transform.localScale = Vector3.zero;
+		addExerciseButton.transform.localScale = Vector3.zero;
 
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		//playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 
 		_editExerciseView.Init (exerciseToOpen);
-		_viewExerciseView.Init (exerciseToOpen.name,
+		_viewExerciseView.Init (exerciseToOpen,
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(exerciseToOpen),
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
@@ -156,7 +156,7 @@ public class WorkoutHUD : MonoBehaviour {
 		ExerciseData nextExercise = WorkoutManager.Instance.ActiveWorkout.exerciseData [index];
 
 		_editExerciseView.Init (nextExercise);
-		_viewExerciseView.Init (nextExercise.name,
+		_viewExerciseView.Init (nextExercise,
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(nextExercise),
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
@@ -167,7 +167,7 @@ public class WorkoutHUD : MonoBehaviour {
 	{
 		Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
 
-		addExercisePanelButton.transform.localScale = Vector3.zero;
+		addExerciseButton.transform.localScale = Vector3.zero;
 
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		_editExerciseView.Hide ();
@@ -177,7 +177,7 @@ public class WorkoutHUD : MonoBehaviour {
 		}
 
 		ExerciseData exerciseToPlay = WorkoutManager.Instance.ActiveWorkout.exerciseData [exerciseIndex];
-		_viewExerciseView.Init (exerciseToPlay.name,
+		_viewExerciseView.Init (exerciseToPlay,
 			exerciseIndex,
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
@@ -247,11 +247,14 @@ public class WorkoutHUD : MonoBehaviour {
 
 	void HandleAddWorkoutPressed()
     {
+		print("UH HELLO");
         AddPanel.Instance.ShowForAddWorkouts();
+		SoundManager.Instance.PlayButtonPressSound();
     }
 
     void HandleAddExercisePressed()
     {
         AddPanel.Instance.ShowForAddExercises();
+		SoundManager.Instance.PlayButtonPressSound();
     }
 }

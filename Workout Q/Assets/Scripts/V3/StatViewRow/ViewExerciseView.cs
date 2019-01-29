@@ -13,15 +13,18 @@ public class ViewExerciseView : MonoBehaviour {
 	public StatViewRow exerciseViewRow;
 	public StatViewRow setsViewRow;
 
+	public FitBoyAnimator fitBoyAnimator;
+
 	void Awake()
 	{
 		Instance = this;
 	}
 
-	public void Init(string label, int currentExerciseIndex, int totalExercises)
+	public void Init(ExerciseData exercise, int currentExerciseIndex, int totalExercises)
 	{
 		Show ();
-		UpdateExerciseView (label, currentExerciseIndex, totalExercises);
+		UpdateExerciseView (exercise.name, currentExerciseIndex, totalExercises);
+		fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exercise.exerciseType));
 	}
 
 	public void Show()

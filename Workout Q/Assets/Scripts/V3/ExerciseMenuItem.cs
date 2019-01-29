@@ -7,11 +7,10 @@ using TMPro;
 public class ExerciseMenuItem : UIPanel {
 
 	public ExerciseData exerciseData;
-	//public TextMeshProUGUI exerciseName;
 	public TextMeshProUGUI statsText;
 	[HideInInspector] public string weightLabel = "lb";	
-
 	public TMP_InputField exerciseName;
+	public FitBoyAnimator fitBoyAnimator;
 
 	void Awake()
 	{
@@ -28,7 +27,8 @@ public class ExerciseMenuItem : UIPanel {
 		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
 	}
 
-	public void Init(ExerciseData exerciseData){
+	public void Init(ExerciseData exerciseData)
+	{
 		this.exerciseData = exerciseData;
 		exerciseName.text = exerciseData.name;
 		statsText.text = exerciseData.totalSets 
@@ -36,6 +36,8 @@ public class ExerciseMenuItem : UIPanel {
 			+ "   " + exerciseData.weight + weightLabel 
 			+ "   " + exerciseData.secondsToCompleteSet 
 			+ "s";
+
+   		fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exerciseData.exerciseType));
 	}
 
 	public void UpdateText(){
