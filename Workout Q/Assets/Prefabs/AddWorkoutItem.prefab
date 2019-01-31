@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fill: {fileID: 114800034328037640}
+  _lineSeperator: {fileID: 114816285125367220}
   _texts:
   - {fileID: 114774033926930258}
   - {fileID: 114283035713950108}
@@ -456,7 +457,8 @@ MonoBehaviour:
   - {fileID: 114816285125367220}
   isOn: 0
   lightSprite: {fileID: 21300000, guid: efd028dbeb77d3c40b7cc31abf3977f9, type: 3}
-  darkSprite: {fileID: 21300000, guid: 30bfaf28096ed17478f1ef544b416a6f, type: 3}
+  darkSprite: {fileID: 21300000, guid: 41841cfc150659b44af2a3be361f9d28, type: 3}
+  blackSprite: {fileID: 21300000, guid: 30bfaf28096ed17478f1ef544b416a6f, type: 3}
   fakeLine: {fileID: 1154745539023248}
   workoutData:
     name: 

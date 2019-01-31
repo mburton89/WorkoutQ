@@ -5,6 +5,7 @@ using TMPro;
 public class UIPanel : MonoBehaviour {
 
 	[SerializeField] private Image _fill;
+	[SerializeField] private Image _lineSeperator;
 	[SerializeField] private TextMeshProUGUI[] _texts;
 	[SerializeField] private Image[] _images;
 
@@ -12,11 +13,13 @@ public class UIPanel : MonoBehaviour {
 
 	public Sprite lightSprite;
 	public Sprite darkSprite;
+	public Sprite blackSprite;
 	public GameObject fakeLine;
 
 	public void Highlight()
 	{
 		_fill.sprite = lightSprite;
+		_lineSeperator.sprite = lightSprite;
 		foreach (TextMeshProUGUI text in _texts) 
 		{
 			text.color = Color.black;
@@ -26,7 +29,8 @@ public class UIPanel : MonoBehaviour {
 
 	public void Unhighlight()
 	{
-		_fill.sprite = darkSprite;
+		_fill.sprite = blackSprite;
+		_lineSeperator.sprite = darkSprite;
 		foreach (TextMeshProUGUI text in _texts) 
 		{
 			text.color = ColorManager.Instance.ActiveColor;

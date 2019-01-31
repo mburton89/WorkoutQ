@@ -12,7 +12,6 @@ public class Header : MonoBehaviour {
 	[SerializeField]private ShadowButton _settingsButton;
 	[SerializeField]private ShadowButton _backButton;
 	[SerializeField]private TextMeshProUGUI _topLabel;
-	//[SerializeField]private TextMeshProUGUI _middleLabel;
 
 	[SerializeField] private TMP_InputField _middleLabel;
 
@@ -76,6 +75,8 @@ public class Header : MonoBehaviour {
 		} else {
 			_middleLabel.text = workoutData.name;
 		}
+
+		_topLabel.text = "";
 
 		lineSegmenter.Init(workoutData.exerciseData.Count);
 	}

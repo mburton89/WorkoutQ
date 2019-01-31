@@ -100,6 +100,7 @@ public class WorkoutControls : MonoBehaviour {
 		_nextSetButton.gameObject.SetActive(false);
 		_previousExerciseButton.gameObject.SetActive(false);
 		_nextExerciseButton.gameObject.SetActive(false);
+		_peakNextButton.gameObject.SetActive (false);
 	}
 
 	public void ShowCurrentlyPlayingMenu(){
@@ -109,6 +110,7 @@ public class WorkoutControls : MonoBehaviour {
 		_nextSetButton.gameObject.SetActive(true);
 		_previousExerciseButton.gameObject.SetActive(false);
 		_nextExerciseButton.gameObject.SetActive(false);
+		_peakNextButton.gameObject.SetActive (true);
 		editButton.gameObject.SetActive(false);
 		Footer.Instance.UpdateTitle ("SEC: ");
 	}
@@ -121,6 +123,7 @@ public class WorkoutControls : MonoBehaviour {
 		_nextSetButton.gameObject.SetActive(false);
 		_previousExerciseButton.gameObject.SetActive(true);
 		_nextExerciseButton.gameObject.SetActive(true);
+		_peakNextButton.gameObject.SetActive (false);
 	}
 
 	public void HandleEditPressed()
@@ -130,16 +133,17 @@ public class WorkoutControls : MonoBehaviour {
 		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
 		_previousExerciseButton.gameObject.SetActive(true);
 		_nextExerciseButton.gameObject.SetActive(true);
+		_peakNextButton.gameObject.SetActive (false);
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandlePeakPressed()
 	{
-		
+		PeakView.Instance.PeakAtExercise (PlayModeManager.Instance.NextExercise);
 	}
 
 	void HandlePeakLetGo()
     {
-
+		PeakView.Instance.FinishPeaking ();
     }
 }

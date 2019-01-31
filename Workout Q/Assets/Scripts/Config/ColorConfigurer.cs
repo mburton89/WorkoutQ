@@ -10,18 +10,18 @@ public class ColorConfigurer : MonoBehaviour {
 	float m_Hue;
 	float m_Saturation;
 	public Slider m_SliderHue, m_SliderSaturation;
-	public Button nextButton;
+	public ShadowButton confirmButton;
 	[SerializeField] private TextMeshProUGUI[] _texts;
 	[SerializeField] private Image[] _images;
 
 	void OnEnable()
 	{
-		nextButton.onClick.AddListener (HandleNextButtonPressed);
+		confirmButton.onShortClick.AddListener (HandleNextButtonPressed);
 	}
 
 	void OnDisable()
 	{
-		nextButton.onClick.RemoveListener(HandleNextButtonPressed);
+		confirmButton.onShortClick.RemoveListener(HandleNextButtonPressed);
 	}
 
 	void Start()

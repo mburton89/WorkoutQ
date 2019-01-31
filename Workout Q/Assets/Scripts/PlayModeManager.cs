@@ -24,14 +24,12 @@ public class PlayModeManager : MonoBehaviour {
 
 	public bool isPaused;
 
-	private TextMeshProUGUI _secondsLabel;
+	[SerializeField] private TextMeshProUGUI _secondsLabel;
     
 	void Awake(){
 		if(Instance == null){
 			Instance = this;
 		}
-
-		_secondsLabel = Footer.Instance.seconds;
 	}
 
 	void Update(){
@@ -39,7 +37,7 @@ public class PlayModeManager : MonoBehaviour {
 		if(_isInPlayMode){
 			_secondsRemaining -= Time.deltaTime;
 			//ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
-			_secondsLabel.SetText (_secondsRemaining.ToString ("F0"));
+			_secondsLabel.SetText (_secondsRemaining.ToString ("F0") + "s");
 
 			if(_secondsRemaining < 0){
 				HandleTimerHittingZero();
@@ -71,10 +69,11 @@ public class PlayModeManager : MonoBehaviour {
 				ActiveExercise.totalSets++;
 				//ActiveExercisePanel.setsNumberCircle.UpdateValue (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 
-				string activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1)).ToString();
+				int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 				string totalSets = ActiveExercise.totalInitialSets.ToString ();	
 
 				ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
+				ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
 			}
 		}
 			
@@ -102,9 +101,10 @@ public class PlayModeManager : MonoBehaviour {
 			ActiveExercise.totalSets --;
 			//ActiveExercisePanel.setsNumberCircle.UpdateValue(ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 
-			string activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1)).ToString();
+			int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 			string totalSets = ActiveExercise.totalInitialSets.ToString ();
 			ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
+			ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
 
 			SoundManager.Instance.PlayNewSetSound ();
 		}
@@ -144,17 +144,17 @@ public class PlayModeManager : MonoBehaviour {
 		//			ActiveExercisePanel.transform.localScale = Vector3.zero;
 		//		}
 
-		Header.Instance.UpdateMiddleLabel(ActiveExercise.name);
-		//ViewExerciseView.Instance.exerciseViewRow.UpdateLabel (ActiveExercise.name);
+		ViewExerciseView.Instance.UpdateExerciseName (ActiveExercise.name);
 		ViewExerciseView.Instance.exerciseViewRow.lineSegmenter.ShowSegmentCummulativelyLit (ActiveWorkout.exerciseData.IndexOf(ActiveExercise));
 
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.Init (ActiveExercise.totalInitialSets);
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
-		string activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1)).ToString();
-		string totalSets = ActiveExercise.totalInitialSets.ToString ();
-		ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
 
-		ViewExerciseView.Instance.UpdateRepsAndWeightView (ActiveExercise.repsPerSet, ActiveExercise.weight);
+		int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+
+		ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
+		ViewExerciseView.Instance.UpdateRepsView (ActiveExercise.repsPerSet);
+		ViewExerciseView.Instance.UpdateWeightView (ActiveExercise.weight);
 
 		ViewExerciseView.Instance.fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(ActiveExercise.exerciseType));
 	}
@@ -162,9 +162,9 @@ public class PlayModeManager : MonoBehaviour {
 	void EstablishNextExercise(){
 		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count - 1){
 			NextExercise = ActiveWorkout.exerciseData[activeExerciseIndex + 1];
-			Header.Instance.UpdateTopLabel ("Next: " + NextExercise.name);
+			//Header.Instance.UpdateTopLabel ("Next: " + NextExercise.name);
 		}else{
-			Header.Instance.UpdateTopLabel ("");
+			//Header.Instance.UpdateTopLabel ("");
 		}
 	}
 

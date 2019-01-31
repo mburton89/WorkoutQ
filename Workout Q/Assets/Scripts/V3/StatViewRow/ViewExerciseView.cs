@@ -8,7 +8,10 @@ public class ViewExerciseView : MonoBehaviour {
 	public static ViewExerciseView Instance;
 
 	[SerializeField] private GameObject _container;
-	[SerializeField] private TextMeshProUGUI _repsAndWeight;
+	[SerializeField] private TextMeshProUGUI _setsText;
+	[SerializeField] private TextMeshProUGUI _repsText;
+	[SerializeField] private TextMeshProUGUI _weightText;
+	[SerializeField] private TMP_InputField _exerciseName;
 
 	public StatViewRow exerciseViewRow;
 	public StatViewRow setsViewRow;
@@ -39,11 +42,10 @@ public class ViewExerciseView : MonoBehaviour {
 
 	public void UpdateExerciseView(string label, int currentExerciseIndex, int totalExercises)
 	{
-		//exerciseViewRow.UpdateViewCustomLabel ("XRC: " + (currentExerciseIndex + 1) + " of " + totalExercises, totalExercises);
 		if (string.IsNullOrEmpty (label)) {
-			Header.Instance.UpdateMiddleLabel("Enter Exercise Name");
+			_exerciseName.text = "Enter Exercise Name";
 		} else {
-			Header.Instance.UpdateMiddleLabel(label);		
+			_exerciseName.text = label;
 		}
 		exerciseViewRow.lineSegmenter.ShowSegmentLit (currentExerciseIndex);
 	}
@@ -58,8 +60,23 @@ public class ViewExerciseView : MonoBehaviour {
 		setsViewRow.lineSegmenter.ShowSegmentLit (currentExerciseIndex);
 	}
 
-	public void UpdateRepsAndWeightView(int reps, int weight)
+	public void UpdateSetsView(int currentSet, int totalSets)
 	{
-		_repsAndWeight.text = reps + " Reps @ " + weight + "LBs";
+		_setsText.text = currentSet + " of " + totalSets;
+	}
+
+	public void UpdateRepsView(int reps)
+	{
+		_repsText.text = "x " + reps;
+	}
+
+	public void UpdateWeightView(int weight)
+	{
+		_weightText.text = weight + " lb";
+	}
+
+	public void UpdateExerciseName(string exerciseName)
+	{
+		_exerciseName.text = exerciseName;
 	}
 }

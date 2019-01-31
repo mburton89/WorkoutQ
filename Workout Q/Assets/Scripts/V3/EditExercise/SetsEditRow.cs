@@ -78,6 +78,6 @@ public class SetsEditRow : StatEditRow
 
 	void UpdateStatView()
 	{
-		ViewExerciseView.Instance.UpdateSetsView (labelString, value);
+		ViewExerciseView.Instance.UpdateSetsView (controller.currentExerciseData.name, value);
 	}
 }

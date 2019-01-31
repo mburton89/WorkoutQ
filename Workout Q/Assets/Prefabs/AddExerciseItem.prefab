@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fill: {fileID: 114923460007557446}
+  _lineSeperator: {fileID: 114659596806875584}
   _texts:
   - {fileID: 114942370886299724}
   _images:
@@ -237,7 +238,8 @@ MonoBehaviour:
   - {fileID: 114626660506624494}
   isOn: 0
   lightSprite: {fileID: 21300000, guid: efd028dbeb77d3c40b7cc31abf3977f9, type: 3}
-  darkSprite: {fileID: 21300000, guid: 30bfaf28096ed17478f1ef544b416a6f, type: 3}
+  darkSprite: {fileID: 21300000, guid: 41841cfc150659b44af2a3be361f9d28, type: 3}
+  blackSprite: {fileID: 21300000, guid: 30bfaf28096ed17478f1ef544b416a6f, type: 3}
   fakeLine: {fileID: 1816670043424960}
   exerciseData:
     name: 

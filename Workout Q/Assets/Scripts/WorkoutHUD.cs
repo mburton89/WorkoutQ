@@ -126,7 +126,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen){
 	
-		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
+		Header.Instance.UpdateTopLabel ("");
+		Header.Instance.UpdateMiddleLabel (WorkoutManager.Instance.ActiveWorkout.name);
 
 		addExerciseButton.transform.localScale = Vector3.zero;
 
@@ -146,7 +147,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void ShowEditStatsViewForExerciseAtIndex(int index)
 	{
-		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
+		Header.Instance.UpdateTopLabel ("");
+		Header.Instance.UpdateMiddleLabel (WorkoutManager.Instance.ActiveWorkout.name);
 
 		if (index < 0 || index >= WorkoutManager.Instance.ActiveWorkout.exerciseData.Count)
 		{
