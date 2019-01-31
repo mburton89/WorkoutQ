@@ -10,6 +10,8 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private Vector2 _initialPosition;
     [SerializeField] private float _amountToPress;
 
+	public UnityEvent onPointerDown;
+	public UnityEvent onPointerUp;
     public UnityEvent onShortClick;
 
     void Awake()
@@ -22,12 +24,22 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         _rect.anchoredPosition = new Vector2(_initialPosition.x, _initialPosition.y - _amountToPress);
         _buttonShadow.enabled = false;
+
+		if (onPointerDown != null) 
+        {
+			onPointerDown.Invoke ();
+        }   
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         _rect.anchoredPosition = _initialPosition;
         _buttonShadow.enabled = true; 
+
+		if (onPointerUp != null) 
+        {
+			onPointerUp.Invoke ();
+        }   
     }
 
 	public void OnPointerClick(PointerEventData eventData)

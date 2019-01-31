@@ -11,6 +11,7 @@ public class WorkoutControls : MonoBehaviour {
 	[SerializeField]private ShadowButton _nextSetButton;
 	[SerializeField]private ShadowButton _previousExerciseButton;
 	[SerializeField]private ShadowButton _nextExerciseButton;
+	[SerializeField]private ShadowButton _peakNextButton;
 	public ShadowButton editButton;
 
 	void OnEnable()
@@ -21,6 +22,8 @@ public class WorkoutControls : MonoBehaviour {
 		_nextSetButton.onShortClick.AddListener(HandleNextSetPressed);
 		_previousExerciseButton.onShortClick.AddListener(HandlePreviousExercisePressed);
 		_nextExerciseButton.onShortClick.AddListener(HandleNextExercisePressed);
+		_peakNextButton.onPointerDown.AddListener(HandlePeakPressed);
+		_peakNextButton.onPointerUp.AddListener(HandlePeakLetGo);
 		editButton.onShortClick.AddListener (HandleEditPressed);
 	}
 
@@ -32,6 +35,8 @@ public class WorkoutControls : MonoBehaviour {
 		_nextSetButton.onShortClick.RemoveListener(HandleNextSetPressed);
 		_previousExerciseButton.onShortClick.RemoveListener(HandlePreviousExercisePressed);
 		_nextExerciseButton.onShortClick.RemoveListener(HandleNextExercisePressed);
+		_peakNextButton.onPointerDown.RemoveListener(HandlePeakPressed);
+		_peakNextButton.onPointerUp.RemoveListener(HandlePeakLetGo);
 		editButton.onShortClick.RemoveListener (HandleEditPressed);
 	}
 
@@ -127,4 +132,14 @@ public class WorkoutControls : MonoBehaviour {
 		_nextExerciseButton.gameObject.SetActive(true);
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
+
+	void HandlePeakPressed()
+	{
+		
+	}
+
+	void HandlePeakLetGo()
+    {
+
+    }
 }

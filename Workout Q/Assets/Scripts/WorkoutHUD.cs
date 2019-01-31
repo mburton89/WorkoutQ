@@ -247,7 +247,6 @@ public class WorkoutHUD : MonoBehaviour {
 
 	void HandleAddWorkoutPressed()
     {
-		print("UH HELLO");
         AddPanel.Instance.ShowForAddWorkouts();
 		SoundManager.Instance.PlayButtonPressSound();
     }
