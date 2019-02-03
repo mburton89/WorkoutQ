@@ -47,6 +47,7 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 		if (onShortClick != null) 
         {
             onShortClick.Invoke ();
-        }   
+        }  
+		SoundManager.Instance.PlayButtonPressSound ();
     }
 }

@@ -88,12 +88,13 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		if (pointerIsDown) 
 		{
 			pointerDownTimer += Time.deltaTime;
-			if (pointerDownTimer > requiredHoldTime) 
+			if (pointerDownTimer > requiredHoldTime && !hasLongPressed) 
 			{
 				if (onLongClick != null) 
 				{
 					hasLongPressed = true;
 					onLongClick.Invoke ();
+					SoundManager.Instance.PlayButtonPressSound ();
 				}
 				//Reset();
 			}

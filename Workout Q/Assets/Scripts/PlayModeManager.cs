@@ -162,9 +162,10 @@ public class PlayModeManager : MonoBehaviour {
 	void EstablishNextExercise(){
 		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count - 1){
 			NextExercise = ActiveWorkout.exerciseData[activeExerciseIndex + 1];
-			//Header.Instance.UpdateTopLabel ("Next: " + NextExercise.name);
+			Footer.Instance.WorkoutControlsContatiner.ShowPeakButton ();
 		}else{
-			//Header.Instance.UpdateTopLabel ("");
+			NextExercise = null;
+			Footer.Instance.WorkoutControlsContatiner.HidePeakButton ();
 		}
 	}
 

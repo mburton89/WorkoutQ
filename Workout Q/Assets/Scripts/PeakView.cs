@@ -8,13 +8,16 @@ public class PeakView : MonoBehaviour {
 	public static PeakView Instance;
 
 	[SerializeField] private GameObject _container;
-	[SerializeField] private LineSegment _lineSegmentToLight;
+	[SerializeField] private LineSegment _headerLineSegmentToLight;
+	[SerializeField] private LineSegmenter _lineSegmenter;
 	[SerializeField] private FitBoyAnimator _fitBoy;
 	[SerializeField] private TextMeshProUGUI _exerciseName;
 	[SerializeField] private TextMeshProUGUI _setAmount;
 	[SerializeField] private TextMeshProUGUI _repAmount;
 	[SerializeField] private TextMeshProUGUI _weightAmount;
 	[SerializeField] private TextMeshProUGUI _secondsAmount;
+
+	private int _peakIndex;
 
 	void Awake()
 	{
@@ -23,8 +26,10 @@ public class PeakView : MonoBehaviour {
 
 	public void PeakAtExercise(ExerciseData exerciseToPeakAt)
 	{
+		_peakIndex = PlayModeManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseToPeakAt);
 		_container.SetActive (true);
-		//TOOD light Line Segment
+		Header.Instance.lineSegmenter.ShowSegmentLit(_peakIndex);
+		_lineSegmenter.Init(exerciseToPeakAt.totalInitialSets);
 		_fitBoy.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exerciseToPeakAt.exerciseType));
 		_exerciseName.text = exerciseToPeakAt.name.ToString();
 		_setAmount.text = exerciseToPeakAt.totalInitialSets.ToString();
@@ -35,6 +40,7 @@ public class PeakView : MonoBehaviour {
 
 	public void FinishPeaking()
 	{
+		Header.Instance.lineSegmenter.ShowSegmentLit(_peakIndex - 1);
 		_container.SetActive (false);
 	}
 }

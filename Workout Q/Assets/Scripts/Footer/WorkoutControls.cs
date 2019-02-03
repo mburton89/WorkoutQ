@@ -50,8 +50,6 @@ public class WorkoutControls : MonoBehaviour {
 			//WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
 			WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
 		}
-
-		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandlePausePressed()
@@ -65,8 +63,6 @@ public class WorkoutControls : MonoBehaviour {
 		editButton.gameObject.SetActive(true);
 
 		PlayModeManager.Instance.Pause();
-
-		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandlePreviousSetPressed()
@@ -82,15 +78,11 @@ public class WorkoutControls : MonoBehaviour {
 	void HandlePreviousExercisePressed()
 	{
 		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) - 1);
-
-		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandleNextExercisePressed()
 	{
 		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1);
-
-		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	public void ShowPausedMenu(){
@@ -134,7 +126,6 @@ public class WorkoutControls : MonoBehaviour {
 		_previousExerciseButton.gameObject.SetActive(true);
 		_nextExerciseButton.gameObject.SetActive(true);
 		_peakNextButton.gameObject.SetActive (false);
-		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandlePeakPressed()
@@ -146,4 +137,14 @@ public class WorkoutControls : MonoBehaviour {
     {
 		PeakView.Instance.FinishPeaking ();
     }
+
+	public void ShowPeakButton()
+	{
+		_peakNextButton.gameObject.SetActive(true);	
+	}
+
+	public void HidePeakButton()
+	{
+		_peakNextButton.gameObject.SetActive(false);	
+	}
 }

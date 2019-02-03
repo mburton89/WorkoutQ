@@ -57,8 +57,6 @@ public class Header : MonoBehaviour {
 			_topLabel.text = PlayerPrefs.GetString("userTitle");
 			Footer.Instance.WorkoutControlsContatiner.editButton.gameObject.SetActive(false);
 		}
-
-		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandleSettingsPressed()

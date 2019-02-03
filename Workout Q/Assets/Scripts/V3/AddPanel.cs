@@ -56,13 +56,10 @@ public class AddPanel : MonoBehaviour {
 	{
 		TryClear();
 		_container.SetActive(false);
-		SoundManager.Instance.PlayButtonPressSound();
 	}
 
     void AddCustom()
 	{
-		SoundManager.Instance.PlayButtonPressSound();
-
 		if(_isForWorkouts)
 		{
 			WorkoutHUD.Instance.AddWorkoutPanel(null);

@@ -38,7 +38,8 @@ public class UIPanel : MonoBehaviour {
 		fakeLine.SetActive (false);
 	}
 
-	public void Select(){
+	public void Select()
+	{
 		WorkoutManager.Instance.workoutHUD.HandlePanelSelected(this);
 	}
 
