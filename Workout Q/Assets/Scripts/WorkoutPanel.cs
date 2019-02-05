@@ -48,7 +48,27 @@ public class WorkoutPanel : UIPanel {
 	public void HandleSelfClickedOnAddMenu()
     {
         Unhighlight();
-		WorkoutHUD.Instance.AddWorkoutPanel(workoutData);
+
+		WorkoutData copiedWorkout = new WorkoutData ();
+		copiedWorkout.name = workoutData.name;
+
+		copiedWorkout.exerciseData = new List<ExerciseData> ();
+
+		foreach(ExerciseData exercise in workoutData.exerciseData){
+
+			ExerciseData copiedExercise = ExerciseData.Copy(
+				exercise.name,
+				exercise.secondsToCompleteSet,
+				exercise.totalSets,
+				exercise.repsPerSet,
+				exercise.weight,
+				exercise.exerciseType
+			);
+
+			copiedWorkout.exerciseData.Add(copiedExercise);
+		}
+
+		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout);
         SoundManager.Instance.PlayButtonPressSound();
 		WorkoutManager.Instance.Save();
     }
