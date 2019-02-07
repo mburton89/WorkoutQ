@@ -71,6 +71,8 @@ public class WorkoutPanel : UIPanel {
 		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout);
         SoundManager.Instance.PlayButtonPressSound();
 		WorkoutManager.Instance.Save();
+
+		AddPanel.Instance.Exit ();
     }
 
 	void HandleTitleChanged(){

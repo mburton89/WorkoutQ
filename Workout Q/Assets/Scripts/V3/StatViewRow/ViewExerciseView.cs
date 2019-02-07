@@ -10,6 +10,7 @@ public class ViewExerciseView : MonoBehaviour {
 	[SerializeField] private GameObject _container;
 	[SerializeField] private TextMeshProUGUI _setsText;
 	[SerializeField] private TextMeshProUGUI _repsText;
+	[SerializeField] private TextMeshProUGUI _weightLabel;
 	[SerializeField] private TextMeshProUGUI _weightText;
 	[SerializeField] private TMP_InputField _exerciseName;
 
@@ -28,6 +29,7 @@ public class ViewExerciseView : MonoBehaviour {
 		Show ();
 		UpdateExerciseView (exercise.name, currentExerciseIndex, totalExercises);
 		fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exercise.exerciseType));
+		_weightLabel.text = PlayerPrefs.GetString ("weightType") + "s";
 	}
 
 	public void Show()
@@ -72,7 +74,7 @@ public class ViewExerciseView : MonoBehaviour {
 
 	public void UpdateWeightView(int weight)
 	{
-		_weightText.text = weight + " lb";
+		_weightText.text = weight + PlayerPrefs.GetString ("weightType");
 	}
 
 	public void UpdateExerciseName(string exerciseName)

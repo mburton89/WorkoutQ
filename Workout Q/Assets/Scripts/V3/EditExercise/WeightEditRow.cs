@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WeightEditRow : StatEditRow 
 {
+	[SerializeField] TextMeshProUGUI _weightLabel;
+
 	public void Init(EditExerciseView editExerciseView)
 	{
 		controller = editExerciseView;
 		value = controller.currentExerciseData.weight;
 		labelString = "LBS:";
 		numberInput.text = value.ToString();
+		_weightLabel.text = "Weight (" + PlayerPrefs.GetString ("weightType") + ")";
 		UpdateStatView ();
 	}
 

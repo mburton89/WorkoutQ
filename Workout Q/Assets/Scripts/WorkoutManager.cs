@@ -26,6 +26,7 @@ public class WorkoutManager : MonoBehaviour {
 			Load ();
 		} else {
 			PlayerPrefs.SetString("userTitle", "Workouts");
+			PlayerPrefs.SetString ("weightType", "lb");
 			LoadExampleWorkouts ();
 		}
 

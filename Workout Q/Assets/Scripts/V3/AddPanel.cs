@@ -16,6 +16,7 @@ public class AddPanel : MonoBehaviour {
 	[SerializeField] private ExerciseMenuItem _addExerciseItemPrefab;
 	[SerializeField] private GridLayoutGroup _gridLayout;
 	[SerializeField] private TMP_InputField _searchInputField;
+	[SerializeField] private Image _searchIcon;
 
 	private List<WorkoutPanel> _workoutPanels = new List<WorkoutPanel>();
 	private List<ExerciseMenuItem> _exerciseMenuItems = new List<ExerciseMenuItem>();
@@ -59,7 +60,7 @@ public class AddPanel : MonoBehaviour {
 		_isForWorkouts = false;
 	}
 
-	void Exit () 
+	public void Exit () 
 	{
 		TryClear();
 		_container.SetActive(false);
@@ -130,14 +131,18 @@ public class AddPanel : MonoBehaviour {
 				foreach (WorkoutPanel workoutPanel in _workoutPanels) {
 					workoutPanel.gameObject.SetActive (true);
 				}
+				_searchIcon.gameObject.SetActive (true);
 				return;
 			}
 
-			foreach (WorkoutPanel workoutPanel in _workoutPanels) {
+			foreach (WorkoutPanel workoutPanel in _workoutPanels) 
+			{
 				if (!workoutPanel.workoutData.name.ToLower ().Contains (searchText.ToLower ())) {
 					workoutPanel.gameObject.SetActive (false);
 				}
 			}
+
+			_searchIcon.gameObject.SetActive (false);
 		} 
 		else 
 		{
@@ -147,6 +152,7 @@ public class AddPanel : MonoBehaviour {
 				{
 					exerciseMenuItem.gameObject.SetActive (true);
 				}
+				_searchIcon.gameObject.SetActive (true);
 				return;
 			}
 
@@ -157,6 +163,8 @@ public class AddPanel : MonoBehaviour {
 					exerciseMenuItem.gameObject.SetActive (false);
 				}
 			}
+
+			_searchIcon.gameObject.SetActive (false);
 		}
 	}
 }

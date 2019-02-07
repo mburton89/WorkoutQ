@@ -33,7 +33,7 @@ public class ExerciseMenuItem : UIPanel {
 		exerciseName.text = exerciseData.name;
 		statsText.text = exerciseData.totalSets 
 			+ "x" + exerciseData.repsPerSet 
-			+ "   " + exerciseData.weight + weightLabel 
+			+ "   " + exerciseData.weight + PlayerPrefs.GetString ("weightType")
 			+ "   " + exerciseData.secondsToCompleteSet 
 			+ "s";
 
@@ -74,6 +74,8 @@ public class ExerciseMenuItem : UIPanel {
         SoundManager.Instance.PlayButtonPressSound();
 		Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
 		WorkoutManager.Instance.Save();
+
+		AddPanel.Instance.Exit ();
     }
 
 	public void SelectTitle(){
