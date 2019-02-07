@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class AddPanel : MonoBehaviour {
 
@@ -14,6 +15,10 @@ public class AddPanel : MonoBehaviour {
 	[SerializeField] private WorkoutPanel _addWorkoutItemPrefab;
 	[SerializeField] private ExerciseMenuItem _addExerciseItemPrefab;
 	[SerializeField] private GridLayoutGroup _gridLayout;
+	[SerializeField] private TMP_InputField _searchInputField;
+
+	private List<WorkoutPanel> _workoutPanels = new List<WorkoutPanel>();
+	private List<ExerciseMenuItem> _exerciseMenuItems = new List<ExerciseMenuItem>();
 
 	private bool _isForWorkouts;
 
@@ -27,6 +32,7 @@ public class AddPanel : MonoBehaviour {
 		_addCustomButton.onShortClick.AddListener(AddCustom);
 		_doneButton.onShortClick.AddListener(Exit);
 		_clickOverlay.onClick.AddListener(Exit);
+		_searchInputField.onValueChanged.AddListener (HandleSearch);
 	}
 
 	private void OnDisable()
@@ -34,6 +40,7 @@ public class AddPanel : MonoBehaviour {
 		_addCustomButton.onShortClick.RemoveListener(AddCustom);
 		_doneButton.onShortClick.RemoveListener(Exit);
 		_clickOverlay.onClick.RemoveListener(Exit);
+		_searchInputField.onValueChanged.RemoveListener (HandleSearch);
 	}
 
     public void ShowForAddWorkouts()
@@ -82,6 +89,8 @@ public class AddPanel : MonoBehaviour {
 			workoutMenuItem.UpdateColor();
             workoutMenuItem.transform.SetParent(_gridLayout.transform);
             workoutMenuItem.transform.localScale = Vector3.one;
+
+			_workoutPanels.Add (workoutMenuItem);
         }
     }
 
@@ -94,6 +103,8 @@ public class AddPanel : MonoBehaviour {
 			exerciseMenuItem.UpdateColor();
 			exerciseMenuItem.transform.SetParent(_gridLayout.transform);
 			exerciseMenuItem.transform.localScale = Vector3.one;
+
+			_exerciseMenuItems.Add (exerciseMenuItem);
         }
 	}
 
@@ -102,11 +113,50 @@ public class AddPanel : MonoBehaviour {
 		foreach (ExerciseMenuItem exercisePanel in _gridLayout.GetComponentsInChildren<ExerciseMenuItem>())
         {
             Destroy(exercisePanel.gameObject);
+			_exerciseMenuItems.Clear ();
         }
 
 		foreach (WorkoutPanel workoutPanel in _gridLayout.GetComponentsInChildren<WorkoutPanel>())
         {
             Destroy(workoutPanel.gameObject);
+			_workoutPanels.Clear ();
         }
+	}
+
+	void HandleSearch(string searchText)
+	{
+		if (_isForWorkouts) {
+			if (string.IsNullOrEmpty (searchText)) {
+				foreach (WorkoutPanel workoutPanel in _workoutPanels) {
+					workoutPanel.gameObject.SetActive (true);
+				}
+				return;
+			}
+
+			foreach (WorkoutPanel workoutPanel in _workoutPanels) {
+				if (!workoutPanel.workoutData.name.ToLower ().Contains (searchText.ToLower ())) {
+					workoutPanel.gameObject.SetActive (false);
+				}
+			}
+		} 
+		else 
+		{
+			if (string.IsNullOrEmpty (searchText)) 
+			{
+				foreach (ExerciseMenuItem exerciseMenuItem in _exerciseMenuItems)
+				{
+					exerciseMenuItem.gameObject.SetActive (true);
+				}
+				return;
+			}
+
+			foreach (ExerciseMenuItem exerciseMenuItem in _exerciseMenuItems) 
+			{
+				if (!exerciseMenuItem.exerciseData.name.ToLower ().Contains (searchText.ToLower ())) 
+				{
+					exerciseMenuItem.gameObject.SetActive (false);
+				}
+			}
+		}
 	}
 }
