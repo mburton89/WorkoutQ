@@ -55,7 +55,9 @@
      <Compile Include="Assets\Scripts\ColorElement.cs" />
      <Compile Include="Assets\Scripts\Config\ColorConfigurer.cs" />
      <Compile Include="Assets\Scripts\Config\NicknameConfigurer.cs" />
+     <Compile Include="Assets\Scripts\Config\WeightTypeConfigurer.cs" />
      <Compile Include="Assets\Scripts\Data\ExerciseData.cs" />
+     <Compile Include="Assets\Scripts\Data\PlanData.cs" />
      <Compile Include="Assets\Scripts\Data\WorkoutData.cs" />
      <Compile Include="Assets\Scripts\Exercise.cs" />
      <Compile Include="Assets\Scripts\ExercisePanel.cs" />
@@ -67,11 +69,14 @@
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
      <Compile Include="Assets\Scripts\PeakView.cs" />
      <Compile Include="Assets\Scripts\PlayModeManager.cs" />
+     <Compile Include="Assets\Scripts\PreloadedWorkouts\PilatesBeginnerUpperBodyWorkout.cs" />
+     <Compile Include="Assets\Scripts\SetupPanel.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\TrashBin.cs" />
      <Compile Include="Assets\Scripts\UIPanel.cs" />
      <Compile Include="Assets\Scripts\V2\ExercisePanelV2.cs" />
      <Compile Include="Assets\Scripts\V3\AddPanel.cs" />
+     <Compile Include="Assets\Scripts\V3\AddPlanPanel.cs" />
      <Compile Include="Assets\Scripts\V3\ColorManager.cs" />
      <Compile Include="Assets\Scripts\V3\EditExercise\EditExerciseView.cs" />
      <Compile Include="Assets\Scripts\V3\EditExercise\RepsEditRow.cs" />
@@ -83,6 +88,7 @@
      <Compile Include="Assets\Scripts\V3\LineSegment.cs" />
      <Compile Include="Assets\Scripts\V3\LineSegmenter.cs" />
      <Compile Include="Assets\Scripts\V3\LongClickButton.cs" />
+     <Compile Include="Assets\Scripts\V3\PlanMenuItem.cs" />
      <Compile Include="Assets\Scripts\V3\ShadowButton.cs" />
      <Compile Include="Assets\Scripts\V3\ShadowTextButton.cs" />
      <Compile Include="Assets\Scripts\V3\StatViewRow\StatViewRow.cs" />

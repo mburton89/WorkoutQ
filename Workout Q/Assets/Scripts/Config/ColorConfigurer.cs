@@ -10,9 +10,11 @@ public class ColorConfigurer : MonoBehaviour {
 	float m_Hue;
 	float m_Saturation;
 	public Slider m_SliderHue, m_SliderSaturation;
-	public ShadowButton confirmButton;
+	public ShadowTextButton confirmButton;
 	[SerializeField] private TextMeshProUGUI[] _texts;
 	[SerializeField] private Image[] _images;
+
+	[SerializeField] private TextMeshProUGUI _headerTitle;
 
 	void OnEnable()
 	{
@@ -34,6 +36,8 @@ public class ColorConfigurer : MonoBehaviour {
 
 		m_SliderHue.value = PlayerPrefs.GetFloat("hue");
 		m_SliderSaturation.value = PlayerPrefs.GetFloat("saturation");
+
+		_headerTitle.text = PlayerPrefs.GetString("userTitle");
 	}
 
 	void Update()

@@ -8,7 +8,6 @@ public class ExerciseMenuItem : UIPanel {
 
 	public ExerciseData exerciseData;
 	public TextMeshProUGUI statsText;
-	[HideInInspector] public string weightLabel = "lb";	
 	public TMP_InputField exerciseName;
 	public FitBoyAnimator fitBoyAnimator;
 

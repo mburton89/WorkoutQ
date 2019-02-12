@@ -137,8 +137,13 @@ public class AddPanel : MonoBehaviour {
 
 			foreach (WorkoutPanel workoutPanel in _workoutPanels) 
 			{
-				if (!workoutPanel.workoutData.name.ToLower ().Contains (searchText.ToLower ())) {
+				if (!workoutPanel.workoutData.name.ToLower ().Contains (searchText.ToLower ())) 
+				{
 					workoutPanel.gameObject.SetActive (false);
+				}
+				else 
+				{
+					workoutPanel.gameObject.SetActive (true);
 				}
 			}
 
@@ -158,9 +163,10 @@ public class AddPanel : MonoBehaviour {
 
 			foreach (ExerciseMenuItem exerciseMenuItem in _exerciseMenuItems) 
 			{
-				if (!exerciseMenuItem.exerciseData.name.ToLower ().Contains (searchText.ToLower ())) 
-				{
+				if (!exerciseMenuItem.exerciseData.name.ToLower ().Contains (searchText.ToLower ())) {
 					exerciseMenuItem.gameObject.SetActive (false);
+				} else {
+					exerciseMenuItem.gameObject.SetActive (true);
 				}
 			}
 

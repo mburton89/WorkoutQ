@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -61,7 +60,7 @@ public class Header : MonoBehaviour {
 
 	void HandleSettingsPressed()
 	{
-		SceneManager.LoadScene (1);	
+		SetupPanel.Instance.Show ();
 	}
 
 	public void SetUpForExercisesMenu(WorkoutData workoutData){
