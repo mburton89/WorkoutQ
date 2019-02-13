@@ -10,6 +10,7 @@ public class GymAdvancedBackBiceps : MonoBehaviour
         workoutData.name = "Gym - Advanced - Back & Biceps";
         workoutData.exerciseData = new List<ExerciseData>();
 
+        ExerciseData cardio = new ExerciseData();
         cardio.Init("Cardio", 480, 1, 1, 0, ExerciseType.running);
         workoutData.exerciseData.Add(cardio);
 
