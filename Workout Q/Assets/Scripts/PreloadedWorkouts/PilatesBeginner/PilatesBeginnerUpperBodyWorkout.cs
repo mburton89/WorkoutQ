@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class PilatesBeginnerUpperBodyWorkout : WorkoutData {
 
-	void Start(){
-		name = "Pilates Upper Body";
-		exerciseData = new List<ExerciseData>();
+	public PilatesBeginnerUpperBodyWorkout GetWorkoutData(){
+
+        name = "Pilates Upper Body - Beginner";
+        exerciseData = new List<ExerciseData>();
 
 		ExerciseData jumpingJacks = new ExerciseData ();
 		jumpingJacks.Init ("Jumping Jacks", 75, 5, 20, 0, ExerciseType.jumpingJacks);
@@ -43,5 +42,7 @@ public class PilatesBeginnerUpperBodyWorkout : WorkoutData {
 		exerciseData.Add (chairDips);
 		exerciseData.Add (leftSidePlanks);
 		exerciseData.Add (rightSidePlanks);
+
+        return this;
 	}
 }
