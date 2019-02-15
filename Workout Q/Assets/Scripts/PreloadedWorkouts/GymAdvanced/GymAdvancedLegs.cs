@@ -5,9 +5,9 @@ public class GymAdvancedLegs : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Gym - Advanced - Legs";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Advanced Legs";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -46,14 +46,6 @@ public class GymAdvancedLegs : MonoBehaviour
         obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 15, ExerciseType._custom); //TODO Update Animation
         workoutData.exerciseData.Add(obliqueSideRaisesRight);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(boxJumps);
-        workoutData.exerciseData.Add(squatJumps);
-        workoutData.exerciseData.Add(squats);
-        workoutData.exerciseData.Add(deadlift);
-        workoutData.exerciseData.Add(lunges);
-        workoutData.exerciseData.Add(calfRaises);
-        workoutData.exerciseData.Add(obliqueSideRaisesLeft);
-        workoutData.exerciseData.Add(obliqueSideRaisesRight);
+		return workoutData;
     }
 }

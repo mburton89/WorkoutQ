@@ -5,9 +5,9 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Gym - Advanced - Core & More";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Advanced Core & More";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -46,14 +46,6 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
         backPlanks.Init("Back Planks - 30 sec", 60, 3, 1, 0, ExerciseType._custom); //TODO Update Animation
         workoutData.exerciseData.Add(backPlanks);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(squatJumps);
-        workoutData.exerciseData.Add(cleansWarmup);
-        workoutData.exerciseData.Add(cleans);
-        workoutData.exerciseData.Add(deadlift);
-        workoutData.exerciseData.Add(frontPlanks);
-        workoutData.exerciseData.Add(leftSidePlanks);
-        workoutData.exerciseData.Add(rightSidePlanks);
-        workoutData.exerciseData.Add(backPlanks);
+		return workoutData;
     }
 }

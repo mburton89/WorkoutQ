@@ -5,9 +5,9 @@ public class HomeGymBeginnerPush : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
+	public WorkoutData GetWorkoutData()
     {
-        workoutData.name = "Home Gym - Beginner - Push";
+        workoutData.name = "Beginner Push";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData jumpingJacks = new ExerciseData();
@@ -38,12 +38,6 @@ public class HomeGymBeginnerPush : MonoBehaviour
         crunches.Init("Pushups", 75, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
         workoutData.exerciseData.Add(crunches);
 
-        workoutData.exerciseData.Add(jumpingJacks);
-        workoutData.exerciseData.Add(modifiedPushups);
-        workoutData.exerciseData.Add(shoulderPress);
-        workoutData.exerciseData.Add(chairDips);
-        workoutData.exerciseData.Add(frontRaises);
-        workoutData.exerciseData.Add(overheadTricepExtensions);
-        workoutData.exerciseData.Add(crunches);
+		return workoutData;
     }
 }

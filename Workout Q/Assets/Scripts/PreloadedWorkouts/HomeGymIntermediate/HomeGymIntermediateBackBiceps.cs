@@ -5,9 +5,9 @@ public class HomeGymIntermediateBackBiceps : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Home Gym - Intermediate - Back & Biceps";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Intermediate Back & Biceps";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -38,12 +38,6 @@ public class HomeGymIntermediateBackBiceps : MonoBehaviour
         reverseCurls.Init("Reverse Curls", 75, 3, 10, 10, ExerciseType.curls); //TODO Update Animation... maybe
         workoutData.exerciseData.Add(reverseCurls);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(bentOverRows);
-        workoutData.exerciseData.Add(dbRowsLeft);
-        workoutData.exerciseData.Add(dbRowsRight);
-        workoutData.exerciseData.Add(straightLegDeadlift);
-        workoutData.exerciseData.Add(curls);
-        workoutData.exerciseData.Add(reverseCurls);
+		return workoutData;
     }
 }

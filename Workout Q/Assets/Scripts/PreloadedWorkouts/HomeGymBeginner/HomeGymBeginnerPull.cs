@@ -5,9 +5,9 @@ public class HomeGymBeginnerPull : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Home Gym - Beginner - Push";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Beginner Pull";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData jumpingJacks = new ExerciseData();
@@ -38,12 +38,6 @@ public class HomeGymBeginnerPull : MonoBehaviour
         curls.Init("Curls", 75, 3, 10, 0, ExerciseType.curls);
         workoutData.exerciseData.Add(curls);
 
-        workoutData.exerciseData.Add(jumpingJacks);
-        workoutData.exerciseData.Add(bentOverRows);
-        workoutData.exerciseData.Add(dbRowsLeftArm);
-        workoutData.exerciseData.Add(dbRowsRightArm);
-        workoutData.exerciseData.Add(shrugs);
-        workoutData.exerciseData.Add(dbToeTouches);
-        workoutData.exerciseData.Add(curls);
+		return workoutData;
     }
 }

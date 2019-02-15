@@ -5,9 +5,9 @@ public class HomeGymIntermediateChestTriceps : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Home Gym - Intermediate - Chest & Triceps";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Intermediate Chest & Triceps";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -38,12 +38,6 @@ public class HomeGymIntermediateChestTriceps : MonoBehaviour
         crunches.Init("Crunches", 60, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
         workoutData.exerciseData.Add(crunches);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(pushups);
-        workoutData.exerciseData.Add(dbBenchPress);
-        workoutData.exerciseData.Add(chairDips);
-        workoutData.exerciseData.Add(flies);
-        workoutData.exerciseData.Add(overheadTricepExtensions);
-        workoutData.exerciseData.Add(crunches);
+		return workoutData;
     }
 }

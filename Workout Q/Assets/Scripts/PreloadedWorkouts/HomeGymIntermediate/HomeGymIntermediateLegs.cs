@@ -5,9 +5,9 @@ public class HomeGymIntermediateLegs : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Home Gym - Intermediate - Legs & Core";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Intermediate Legs & Core";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -38,12 +38,6 @@ public class HomeGymIntermediateLegs : MonoBehaviour
         obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 10, ExerciseType._custom); //TODO Update Animation
         workoutData.exerciseData.Add(obliqueSideRaisesRight);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(squatJumps);
-        workoutData.exerciseData.Add(dbSquats);
-        workoutData.exerciseData.Add(lunges);
-        workoutData.exerciseData.Add(calfRaises);
-        workoutData.exerciseData.Add(obliqueSideRaisesLeft);
-        workoutData.exerciseData.Add(obliqueSideRaisesRight);
-    }
+		return workoutData;
+	}
 }

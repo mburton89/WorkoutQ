@@ -5,9 +5,9 @@ public class HomeGymBeginnerLegs : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Home Gym - Beginner - Legs";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Beginner Legs";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData jumpingJacks = new ExerciseData();
@@ -34,11 +34,6 @@ public class HomeGymBeginnerLegs : MonoBehaviour
         backPlanks.Init("Back Plank - 15 sec", 75, 3, 10, 0, ExerciseType.planks); //TODO Update Animation
         workoutData.exerciseData.Add(backPlanks);
 
-        workoutData.exerciseData.Add(jumpingJacks);
-        workoutData.exerciseData.Add(bodySquats);
-        workoutData.exerciseData.Add(lunges);
-        workoutData.exerciseData.Add(calfRaises);
-        workoutData.exerciseData.Add(frontPlanks);
-        workoutData.exerciseData.Add(backPlanks);
+		return workoutData;
     }
 }

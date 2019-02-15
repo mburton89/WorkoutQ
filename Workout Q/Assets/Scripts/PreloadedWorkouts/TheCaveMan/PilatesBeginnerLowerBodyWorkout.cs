@@ -1,38 +1,35 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class PilatesBeginnerLowerBodyWorkout : WorkoutData {
+public class PilatesBeginnerLowerBodyWorkout : MonoBehaviour
+{
+    [HideInInspector] public WorkoutData workoutData;
 
-	public PilatesBeginnerLowerBodyWorkout GetWorkoutData(){
+    public WorkoutData GetWorkoutData(){
 
-        name = "Pilates Lower Body - Beginner";
-        exerciseData = new List<ExerciseData>();
+        name = "Lower Body Pilates";
+        workoutData.exerciseData = new List<ExerciseData>();
 
 		ExerciseData jumpingJacks = new ExerciseData ();
 		jumpingJacks.Init ("Jumping Jacks", 75, 5, 20, 0, ExerciseType.jumpingJacks);
-		exerciseData.Add (jumpingJacks);
+        workoutData.exerciseData.Add (jumpingJacks);
 
 		ExerciseData bodySquats = new ExerciseData ();
         bodySquats.Init ("Body Squats", 90, 3, 10, 0, ExerciseType.pushups);
-		exerciseData.Add (bodySquats);
+        workoutData.exerciseData.Add (bodySquats);
 
 		ExerciseData squatJumps = new ExerciseData ();
         squatJumps.Init ("Squat Jumps", 90, 3, 10, 0, ExerciseType.planks);
-		exerciseData.Add (squatJumps);
+        workoutData.exerciseData.Add (squatJumps);
 
 		ExerciseData lunges = new ExerciseData ();
         lunges.Init ("Lunges", 90, 3, 10, 0, ExerciseType.planks);
-		exerciseData.Add (lunges);
+        workoutData.exerciseData.Add (lunges);
 
 		ExerciseData calfRaises = new ExerciseData ();
         calfRaises.Init ("Calf Raises", 90, 3, 10, 0, ExerciseType.dips);
-		exerciseData.Add (calfRaises);
+        workoutData.exerciseData.Add (calfRaises);
 
-		exerciseData.Add (jumpingJacks);
-        exerciseData.Add (bodySquats);
-        exerciseData.Add (squatJumps);
-        exerciseData.Add (lunges);
-        exerciseData.Add (calfRaises);
-
-        return this;
+        return workoutData;
 	}
 }

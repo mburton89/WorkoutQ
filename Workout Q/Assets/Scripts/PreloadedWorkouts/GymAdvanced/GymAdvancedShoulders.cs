@@ -5,9 +5,9 @@ public class GymAdvancedShoulders : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Gym - Advanced - Shoulders";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Advanced Shoulders";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -46,14 +46,6 @@ public class GymAdvancedShoulders : MonoBehaviour
         reverseFlies.Init("Reverse Flies", 75, 3, 10, 10, ExerciseType.db_side_raises);
         workoutData.exerciseData.Add(reverseFlies);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(militaryPressWarmup);
-        workoutData.exerciseData.Add(militaryPress);
-        workoutData.exerciseData.Add(dbShoulderPress);
-        workoutData.exerciseData.Add(uprightRows);
-        workoutData.exerciseData.Add(shrugs);
-        workoutData.exerciseData.Add(frontRaises);
-        workoutData.exerciseData.Add(sideRaises);
-        workoutData.exerciseData.Add(reverseFlies);
+		return workoutData;
     }
 }

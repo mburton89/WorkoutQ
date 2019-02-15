@@ -5,9 +5,9 @@ public class GymAdvancedChestTriceps : MonoBehaviour
 {
     [HideInInspector] public WorkoutData workoutData;
 
-    void Awake()
-    {
-        workoutData.name = "Gym - Advanced - Chest & Triceps";
+	public WorkoutData GetWorkoutData()
+	{
+        workoutData.name = "Advanced Chest & Triceps";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData cardio = new ExerciseData();
@@ -46,13 +46,6 @@ public class GymAdvancedChestTriceps : MonoBehaviour
         abWheel.Init("Ab Wheel", 60, 3, 5, 0, ExerciseType.abWheel);
         workoutData.exerciseData.Add(abWheel);
 
-        workoutData.exerciseData.Add(cardio);
-        workoutData.exerciseData.Add(pushups);
-        workoutData.exerciseData.Add(benchPressWarmup);
-        workoutData.exerciseData.Add(benchPress);
-        workoutData.exerciseData.Add(dips);
-        workoutData.exerciseData.Add(flies);
-        workoutData.exerciseData.Add(overheadTricepExtensions);
-        workoutData.exerciseData.Add(abWheel);
+		return workoutData;
     }
 }
