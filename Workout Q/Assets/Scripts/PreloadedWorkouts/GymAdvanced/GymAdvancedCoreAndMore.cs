@@ -7,6 +7,8 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
+		workoutData.workoutType = WorkoutType.fullBody;
+
         workoutData.name = "Advanced Core & More";
         workoutData.exerciseData = new List<ExerciseData>();
 

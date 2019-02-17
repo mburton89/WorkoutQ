@@ -7,6 +7,8 @@ public class GymAdvancedChestTriceps : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
+		workoutData.workoutType = WorkoutType.chestTriceps;
+
         workoutData.name = "Advanced Chest & Triceps";
         workoutData.exerciseData = new List<ExerciseData>();
 

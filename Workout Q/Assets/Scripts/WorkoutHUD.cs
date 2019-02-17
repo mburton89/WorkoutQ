@@ -54,7 +54,7 @@ public class WorkoutHUD : MonoBehaviour {
 
 	void Start(){
 		foreach(WorkoutData workout in WorkoutManager.Instance.workoutData){
-			AddWorkoutPanel(workout);
+			AddWorkoutPanel(workout, false);
 		}
 
 		currentMode = Mode.ViewingWorkouts;
@@ -88,7 +88,7 @@ public class WorkoutHUD : MonoBehaviour {
 		}
 
 		foreach(WorkoutData workout in WorkoutManager.Instance.workoutData){
-			AddWorkoutPanel(workout);
+			AddWorkoutPanel(workout, false);
 		}
 
 		Footer.Instance.Hide();
@@ -188,20 +188,29 @@ public class WorkoutHUD : MonoBehaviour {
 		currentMode = Mode.PlayingExercise;
 	}
 
-	public void AddWorkoutPanel(WorkoutData workoutData){
+	public void AddWorkoutPanel(WorkoutData workoutData, bool isFromButton){
 		WorkoutPanel newWorkoutPanel = Instantiate(WorkoutMenuItemPrefab);
 
 		if (workoutData != null) {
 			newWorkoutPanel.workoutData = workoutData;
-		} else {
-			newWorkoutPanel.SelectTitle ();
+		} 
+
+		if (isFromButton) 
+		{
+			workoutData = new WorkoutData ();
+			workoutData.exerciseData = new List<ExerciseData> ();
+			workoutData.minutes = 0;
+			workoutData.workoutType = WorkoutType._custom;
 		}
 
-		newWorkoutPanel.UpdateText();
-		newWorkoutPanel.UpdateColor();
-
+		newWorkoutPanel.Init (workoutData);
 		newWorkoutPanel.transform.SetParent(workoutPanelsGridLayoutGroup.transform);
 		newWorkoutPanel.transform.localScale = Vector3.one;
+
+		if (isFromButton) 
+		{
+			newWorkoutPanel.SelectTitle ();
+		}
 	}
 
 	public void AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData, bool isFromButton)

@@ -13,7 +13,9 @@ public class GymAdvancedPlan : MonoBehaviour {
 
 	void Awake()
 	{
+		planData.planDifficulty = PlanDifficulty.hard;
 		planData.name = "Advanced";
+		planData.description = "Dumbells, Bench, Pull-Up Bar, Dips Bar, Barbell required";
 		planData.workoutData.Add (WorkoutData.Copy(gymAdvancedChestTriceps.GetWorkoutData()));
 		planData.workoutData.Add (WorkoutData.Copy(gymAdvancedBackBiceps.GetWorkoutData()));
 		planData.workoutData.Add (WorkoutData.Copy(gymAdvancedLegs.GetWorkoutData()));

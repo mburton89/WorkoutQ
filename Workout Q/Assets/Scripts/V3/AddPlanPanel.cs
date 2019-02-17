@@ -24,7 +24,6 @@ public class AddPlanPanel : MonoBehaviour {
 
 	private const string TITLE_TEXT = "Choose a plan";
 	private const string CHOOSE_PLAN_INFO = "Or tap 'SKIP' to plug in your own workouts and exercises.";
-	private const string VIEWING_EXERCISES_INFO = "";
 
 	void Awake()
 	{
@@ -75,9 +74,7 @@ public class AddPlanPanel : MonoBehaviour {
 		foreach (WorkoutData workout in plan.workoutData)
 		{
 			WorkoutPanel workoutPanel = Instantiate(_addWorkoutItemPrefab);
-			workoutPanel.workoutData = workout;
-			workoutPanel.UpdateText();
-			workoutPanel.UpdateColor();
+			workoutPanel.Init (workout);
 			workoutPanel.transform.SetParent(_gridLayout.transform);
 			workoutPanel.transform.localScale = Vector3.one;
 			_workoutPanels.Add (workoutPanel);
@@ -85,7 +82,7 @@ public class AddPlanPanel : MonoBehaviour {
 
 		_topTitle.gameObject.SetActive (true);
 		_bottomTitle.text = plan.name;
-		_textBody.text = VIEWING_EXERCISES_INFO;
+		_textBody.text = plan.description;
 		_skipButton.gameObject.SetActive (false);
 		_choosePlanButton.gameObject.SetActive (true);	
 		_backButton.gameObject.SetActive (true);

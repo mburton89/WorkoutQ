@@ -7,6 +7,8 @@ public class GymAdvancedShoulders : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
+		workoutData.workoutType = WorkoutType.shoulders;
+
         workoutData.name = "Advanced Shoulders";
         workoutData.exerciseData = new List<ExerciseData>();
 

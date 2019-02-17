@@ -67,20 +67,56 @@ public class WorkoutGenerator : MonoBehaviour {
     squats,
     tricepKickBack;
 
-	[HideInInspector]public List<List<Sprite>> listOfSpriteLists = new List<List<Sprite>>();
+	[HideInInspector]public List<List<Sprite>> listOfExerciseSpriteLists = new List<List<Sprite>>();
+
+	//SPRITES FOR FITBOY ILLUMINATIONS 
+	public Sprite 
+	_custom,
+	backBiceps,
+	chestTriceps,
+	fullBody,
+	legsCore,
+	shoulders,
+	upperBody;
+
+	[HideInInspector]public List<Sprite> listOfWorktoutSprites = new List<Sprite>();
+
+	//SPRITES FOR PLAN DIFFICULTIES
+	public Sprite 
+	easy,
+	medium,
+	hard;
+
+	[HideInInspector]public List<Sprite> listOfDifficultySprites = new List<Sprite>();
     
 	void Awake()
 	{
-		AddSpritesListsToSpriteListList();
+		AddExerciseSpritesListsToExerciseSpriteListList();
+		AddWorkoutSpriteToWorkoutSpriteList ();
+		AddPlanSpriteToPlanSpriteList ();
 		AddExercisesToPreloadedExercisesList();
-		AddWorkoutsToPreloadedWorkoutsList();
 		AddPlansToPreloadedPlansList ();
 		Instance = this;
 	}
 
+	void Start()
+	{
+		AddWorkoutsToPreloadedWorkoutsList();
+	}
+
 	public List<Sprite> GetSpritesForExercise(ExerciseType exerciseType)
 	{
-		return listOfSpriteLists[(int)exerciseType];
+		return listOfExerciseSpriteLists[(int)exerciseType];
+	}
+
+	public Sprite GetSpriteForWorkout(WorkoutType workoutType)
+	{
+		return listOfWorktoutSprites[(int)workoutType];
+	}
+
+	public Sprite GetSpriteForDifficulty(PlanDifficulty planDifficulty)
+	{
+		return listOfDifficultySprites[(int)planDifficulty];
 	}
 
 	void AddPlansToPreloadedPlansList()
@@ -92,47 +128,6 @@ public class WorkoutGenerator : MonoBehaviour {
 
     void AddWorkoutsToPreloadedWorkoutsList()
 	{
-		WorkoutData ChestAndTriceps1 = new WorkoutData();
-		ChestAndTriceps1.name = "Chest and Triceps";
-		ChestAndTriceps1.exerciseData = new List<ExerciseData>();
-		ChestAndTriceps1.exerciseData.Add(pushupsExercise);
-		ChestAndTriceps1.exerciseData.Add(benchPressExercise);
-		ChestAndTriceps1.exerciseData.Add(dipsExercise);
-
-		WorkoutData BackAndBiceps1 = new WorkoutData();
-		BackAndBiceps1.name = "Back and Biceps";
-		BackAndBiceps1.exerciseData = new List<ExerciseData>();
-		BackAndBiceps1.exerciseData.Add(pullUpsExercise);
-		BackAndBiceps1.exerciseData.Add(bentOverRowExercise);
-		BackAndBiceps1.exerciseData.Add(curlsExercise);
-
-		WorkoutData Legs1 = new WorkoutData();
-		Legs1.name = "Legs";
-		Legs1.exerciseData = new List<ExerciseData>();
-		Legs1.exerciseData.Add(boxJumpsExercise);
-		Legs1.exerciseData.Add(squatsExercise);
-		Legs1.exerciseData.Add(deadliftsExercise);
-
-		WorkoutData Shoulders1 = new WorkoutData();
-		Shoulders1.name = "Shoulders";
-		Shoulders1.exerciseData = new List<ExerciseData>();
-		Shoulders1.exerciseData.Add(dbShoulderPressExercise);
-		Shoulders1.exerciseData.Add(dbFrontRaisesExercise);
-		Shoulders1.exerciseData.Add(dbSideRaisesExercise);
-
-		WorkoutData Core1 = new WorkoutData();
-		Core1.name = "Core";
-		Core1.exerciseData = new List<ExerciseData>();
-		Core1.exerciseData.Add(jumpingJacksExercise);
-		Core1.exerciseData.Add(abWheelExercise);
-		Core1.exerciseData.Add(planksExercise);
-
-		preloadedWorkouts.Add(ChestAndTriceps1);
-		preloadedWorkouts.Add(BackAndBiceps1);
-		preloadedWorkouts.Add(Legs1);
-		preloadedWorkouts.Add(Shoulders1);
-		preloadedWorkouts.Add(Core1);
-
 		foreach (WorkoutData workout in homeBeginnerPlan.planData.workoutData) 
 		{
 			preloadedWorkouts.Add (workout);
@@ -200,31 +195,49 @@ public class WorkoutGenerator : MonoBehaviour {
 		preloadedExercises.Add(tricepKickBackExercise);
 	}
 
-    void AddSpritesListsToSpriteListList()
+    void AddExerciseSpritesListsToExerciseSpriteListList()
 	{
-		listOfSpriteLists.Add(_generic);
-        listOfSpriteLists.Add(abWheel);
-        listOfSpriteLists.Add(benchPress);
-        listOfSpriteLists.Add(bentOverRow);
-		listOfSpriteLists.Add(boxJumps);
-        listOfSpriteLists.Add(calfRaises);
-        listOfSpriteLists.Add(cleans);
-        listOfSpriteLists.Add(curls);
-		listOfSpriteLists.Add(dbFrontRaises);
-        listOfSpriteLists.Add(dbRows);
-        listOfSpriteLists.Add(db_shoulder_press);
-        listOfSpriteLists.Add(db_side_raises);
-        listOfSpriteLists.Add(deadlifts);
-        listOfSpriteLists.Add(dips);
-        listOfSpriteLists.Add(inclineBench);
-        listOfSpriteLists.Add(jumpingJacks);
-        listOfSpriteLists.Add(lunges);
-        listOfSpriteLists.Add(planks);
-        listOfSpriteLists.Add(pullUps);
-        listOfSpriteLists.Add(pushups);
-        listOfSpriteLists.Add(running);
-        listOfSpriteLists.Add(shrugs);
-        listOfSpriteLists.Add(squats);
-        listOfSpriteLists.Add(tricepKickBack);
+		listOfExerciseSpriteLists.Add(_generic);
+        listOfExerciseSpriteLists.Add(abWheel);
+        listOfExerciseSpriteLists.Add(benchPress);
+        listOfExerciseSpriteLists.Add(bentOverRow);
+		listOfExerciseSpriteLists.Add(boxJumps);
+        listOfExerciseSpriteLists.Add(calfRaises);
+        listOfExerciseSpriteLists.Add(cleans);
+        listOfExerciseSpriteLists.Add(curls);
+		listOfExerciseSpriteLists.Add(dbFrontRaises);
+        listOfExerciseSpriteLists.Add(dbRows);
+        listOfExerciseSpriteLists.Add(db_shoulder_press);
+        listOfExerciseSpriteLists.Add(db_side_raises);
+        listOfExerciseSpriteLists.Add(deadlifts);
+        listOfExerciseSpriteLists.Add(dips);
+        listOfExerciseSpriteLists.Add(inclineBench);
+        listOfExerciseSpriteLists.Add(jumpingJacks);
+        listOfExerciseSpriteLists.Add(lunges);
+        listOfExerciseSpriteLists.Add(planks);
+        listOfExerciseSpriteLists.Add(pullUps);
+        listOfExerciseSpriteLists.Add(pushups);
+        listOfExerciseSpriteLists.Add(running);
+        listOfExerciseSpriteLists.Add(shrugs);
+        listOfExerciseSpriteLists.Add(squats);
+        listOfExerciseSpriteLists.Add(tricepKickBack);
+	}
+
+	void AddWorkoutSpriteToWorkoutSpriteList()
+	{
+		listOfWorktoutSprites.Add(_custom);
+		listOfWorktoutSprites.Add(backBiceps);
+		listOfWorktoutSprites.Add(chestTriceps);
+		listOfWorktoutSprites.Add(fullBody);
+		listOfWorktoutSprites.Add(legsCore);
+		listOfWorktoutSprites.Add(shoulders);
+		listOfWorktoutSprites.Add(upperBody);
+	}
+
+	void AddPlanSpriteToPlanSpriteList()
+	{
+		listOfDifficultySprites.Add(easy);
+		listOfDifficultySprites.Add(medium);
+		listOfDifficultySprites.Add(hard);
 	}
 }

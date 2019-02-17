@@ -11,6 +11,7 @@ public class PlanMenuItem : UIPanel {
 	public PlanData planData;
 	public TextMeshProUGUI planName;
 	public TextMeshProUGUI statsText;
+	public FitBoyDifficulty fitBoyDifficulty;
 
 	private const string WORKOUTS_PER_WEEK_LABEL = " workouts per week";
 
@@ -21,6 +22,7 @@ public class PlanMenuItem : UIPanel {
 		planName.text = planData.name;
 		statsText.text = planData.workoutsPerWeek() + WORKOUTS_PER_WEEK_LABEL; 
 		UpdateColor ();
+		fitBoyDifficulty.Init(WorkoutGenerator.Instance.GetSpriteForDifficulty(planData.planDifficulty));
 	}
 		
 	public void HandleSelfClicked(){

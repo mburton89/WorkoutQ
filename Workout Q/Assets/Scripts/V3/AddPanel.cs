@@ -70,7 +70,7 @@ public class AddPanel : MonoBehaviour {
 	{
 		if(_isForWorkouts)
 		{
-			WorkoutHUD.Instance.AddWorkoutPanel(null);
+			WorkoutHUD.Instance.AddWorkoutPanel(null, true);
 		}
 		else
 		{
@@ -85,12 +85,9 @@ public class AddPanel : MonoBehaviour {
 		foreach (WorkoutData workout in WorkoutGenerator.Instance.preloadedWorkouts)
         {
 			WorkoutPanel workoutMenuItem = Instantiate(_addWorkoutItemPrefab);
-			workoutMenuItem.workoutData = workout;
-			workoutMenuItem.UpdateText();
-			workoutMenuItem.UpdateColor();
+			workoutMenuItem.Init (workout);
             workoutMenuItem.transform.SetParent(_gridLayout.transform);
             workoutMenuItem.transform.localScale = Vector3.one;
-
 			_workoutPanels.Add (workoutMenuItem);
         }
     }
@@ -156,6 +153,7 @@ public class AddPanel : MonoBehaviour {
 				foreach (ExerciseMenuItem exerciseMenuItem in _exerciseMenuItems)
 				{
 					exerciseMenuItem.gameObject.SetActive (true);
+					exerciseMenuItem.fitBoyAnimator.Play ();
 				}
 				_searchIcon.gameObject.SetActive (true);
 				return;
@@ -167,6 +165,7 @@ public class AddPanel : MonoBehaviour {
 					exerciseMenuItem.gameObject.SetActive (false);
 				} else {
 					exerciseMenuItem.gameObject.SetActive (true);
+					exerciseMenuItem.fitBoyAnimator.Play ();
 				}
 			}
 

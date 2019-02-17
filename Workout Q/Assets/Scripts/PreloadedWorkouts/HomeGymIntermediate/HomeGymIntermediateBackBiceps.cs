@@ -7,6 +7,8 @@ public class HomeGymIntermediateBackBiceps : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
+		workoutData.workoutType = WorkoutType.backBiceps;
+
         workoutData.name = "Intermediate Back & Biceps";
         workoutData.exerciseData = new List<ExerciseData>();
 

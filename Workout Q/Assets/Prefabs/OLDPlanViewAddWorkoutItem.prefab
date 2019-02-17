@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 114646279855136794}
   - component: {fileID: 114030717768670044}
   m_Layer: 5
-  m_Name: PlanViewAddWorkoutItem
+  m_Name: OLDPlanViewAddWorkoutItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,7 +12,9 @@ public class HomeIntermediatePlan : MonoBehaviour {
 
 	void Awake()
 	{
+		planData.planDifficulty = PlanDifficulty.medium;
 		planData.name = "Intermediate";
+		planData.description = "Dumbells, Bench, Pull-Up Bar required";
 		planData.workoutData.Add (WorkoutData.Copy(homeGymIntermediateChestTriceps.GetWorkoutData()));
 		planData.workoutData.Add (WorkoutData.Copy(homeGymIntermediateBackBiceps.GetWorkoutData()));
 		planData.workoutData.Add (WorkoutData.Copy(homeGymIntermediateLegs.GetWorkoutData()));

@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WorkoutType
+{
+	_custom,
+	backBiceps,
+	chestTriceps,
+	fullBody,
+	legsCore,
+	shoulders,
+	upperBody
+}
+
 [System.Serializable]
 public class WorkoutData {
 
@@ -10,6 +21,8 @@ public class WorkoutData {
 
 	public int seconds;
 	public int minutes;
+
+	public WorkoutType workoutType;
 
 	public void EstablishMinutes()
 	{
@@ -22,9 +35,8 @@ public class WorkoutData {
 	public static WorkoutData Copy(WorkoutData workoutDataToCopy){
 
 		WorkoutData copiedWorkout = new WorkoutData();
-
 		copiedWorkout.name = workoutDataToCopy.name;
-
+		copiedWorkout.workoutType = workoutDataToCopy.workoutType;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in workoutDataToCopy.exerciseData){

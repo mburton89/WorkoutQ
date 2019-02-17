@@ -7,6 +7,8 @@ public class HomeGymIntermediateLegs : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
+		workoutData.workoutType = WorkoutType.legsCore;
+
         workoutData.name = "Intermediate Legs & Core";
         workoutData.exerciseData = new List<ExerciseData>();
 

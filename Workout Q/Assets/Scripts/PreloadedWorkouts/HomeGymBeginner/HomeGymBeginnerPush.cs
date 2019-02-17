@@ -7,7 +7,9 @@ public class HomeGymBeginnerPush : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
     {
-        workoutData.name = "Beginner Push";
+		workoutData.workoutType = WorkoutType.chestTriceps;
+
+        workoutData.name = "Beginner Push Workout";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData jumpingJacks = new ExerciseData();

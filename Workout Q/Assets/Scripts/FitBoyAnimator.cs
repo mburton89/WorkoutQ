@@ -12,7 +12,6 @@ public class FitBoyAnimator : MonoBehaviour {
 
 	public void Init(List<Sprite> sprites)
 	{
-		StopCoroutine("playAnimationCo");
 		frames = sprites;
 		activeFrame.color = ColorManager.Instance.ActiveColor;
 		Play();
@@ -21,6 +20,7 @@ public class FitBoyAnimator : MonoBehaviour {
 	public void Play()
 	{
 		_frameIndex = 0;
+		StopCoroutine("playAnimationCo");
 		StartCoroutine("playAnimationCo");
 	}
     

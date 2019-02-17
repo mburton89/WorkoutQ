@@ -7,7 +7,9 @@ public class HomeGymBeginnerLegs : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
-        workoutData.name = "Beginner Legs";
+		workoutData.workoutType = WorkoutType.legsCore;
+
+        workoutData.name = "Beginner Legs Workout";
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData jumpingJacks = new ExerciseData();

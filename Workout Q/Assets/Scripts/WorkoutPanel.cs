@@ -9,8 +9,8 @@ public class WorkoutPanel : UIPanel {
 	public WorkoutData workoutData;
 	[SerializeField]private TMP_InputField _workoutName;
 	[SerializeField]private TextMeshProUGUI _minutesLabel;
-
 	public Button selfButton;
+	public FitBoyIlluminator fitBoyIlluminator;
 
 	void OnEnable()
 	{
@@ -22,6 +22,14 @@ public class WorkoutPanel : UIPanel {
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
 	}
 
+	public void Init(WorkoutData workoutData)
+	{
+		this.workoutData = workoutData;
+		UpdateColor ();
+		fitBoyIlluminator.Init(WorkoutGenerator.Instance.GetSpriteForWorkout(workoutData.workoutType));
+		UpdateText ();
+	}
+
 	void Awake()
 	{
 		if(workoutData != null){
@@ -29,10 +37,9 @@ public class WorkoutPanel : UIPanel {
 		}
 	}
 
-	public void UpdateText(){
-
+	public void UpdateText()
+	{
 		workoutData.EstablishMinutes();
-
 		_workoutName.text = workoutData.name;
 		_minutesLabel.text = workoutData.minutes + " min";
 	}
@@ -51,7 +58,7 @@ public class WorkoutPanel : UIPanel {
 
 		WorkoutData copiedWorkout = new WorkoutData ();
 		copiedWorkout.name = workoutData.name;
-
+		copiedWorkout.workoutType = workoutData.workoutType;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in workoutData.exerciseData){
@@ -68,7 +75,7 @@ public class WorkoutPanel : UIPanel {
 			copiedWorkout.exerciseData.Add(copiedExercise);
 		}
 
-		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout);
+		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout, false);
         SoundManager.Instance.PlayButtonPressSound();
 		WorkoutManager.Instance.Save();
 
