@@ -17,13 +17,24 @@ public class AddPlanPanel : MonoBehaviour {
 	[SerializeField] private ShadowButton _backButton;
 	[SerializeField] private PlanMenuItem _addPlanItemPrefab;
 	[SerializeField] private WorkoutPanel _addWorkoutItemPrefab;
+	[SerializeField] private ExerciseMenuItem _addExerciseItemPrefab;
 	[SerializeField] private GridLayoutGroup _gridLayout;
 
 	private List<PlanMenuItem> _planPanels = new List<PlanMenuItem>();
 	private List<WorkoutPanel> _workoutPanels = new List<WorkoutPanel>();
+	private List<ExerciseMenuItem> _exerciseMenuItems = new List<ExerciseMenuItem>();
 
 	private const string TITLE_TEXT = "Choose a plan";
 	private const string CHOOSE_PLAN_INFO = "Or tap 'SKIP' to plug in your own workouts and exercises.";
+	private PlanData _currentPlanData;
+
+	private enum PlanPanelViewMode{
+		ShowingPlans,
+		ShowingWorkouts,
+		ShowingExercises
+	}
+
+	private PlanPanelViewMode _currentMode;
 
 	void Awake()
 	{
@@ -34,14 +45,14 @@ public class AddPlanPanel : MonoBehaviour {
 	{
 		_skipButton.onShortClick.AddListener (HandleSkipPressed);
 		_choosePlanButton.onShortClick.AddListener (HandleChoosePlanPressed);
-		_backButton.onShortClick.AddListener (ShowPlans);
+		_backButton.onShortClick.AddListener (HandleBackPressed);
 	}
 
 	void OnDisable()
 	{
 		_skipButton.onShortClick.RemoveListener (HandleSkipPressed);
 		_choosePlanButton.onShortClick.RemoveListener (HandleChoosePlanPressed);
-		_backButton.onShortClick.RemoveListener (ShowPlans);
+		_backButton.onShortClick.RemoveListener (HandleBackPressed);
 	}
 
 	public void ShowPlans()
@@ -59,12 +70,13 @@ public class AddPlanPanel : MonoBehaviour {
 			_planPanels.Add (planMenuItem);
 		}
 
-		_topTitle.gameObject.SetActive (false);
+		_topTitle.text = "";
 		_bottomTitle.text = TITLE_TEXT;
 		_textBody.text = CHOOSE_PLAN_INFO;
 		_skipButton.gameObject.SetActive (true);
 		_choosePlanButton.gameObject.SetActive (false);
 		_backButton.gameObject.SetActive (false);
+		_currentMode = PlanPanelViewMode.ShowingPlans;
 	}
 
 	public void ShowWorkoutsForPlan(PlanData plan)
@@ -80,12 +92,32 @@ public class AddPlanPanel : MonoBehaviour {
 			_workoutPanels.Add (workoutPanel);
 		}
 
-		_topTitle.gameObject.SetActive (true);
+		_topTitle.text = TITLE_TEXT;
 		_bottomTitle.text = plan.name;
 		_textBody.text = plan.description;
 		_skipButton.gameObject.SetActive (false);
 		_choosePlanButton.gameObject.SetActive (true);	
 		_backButton.gameObject.SetActive (true);
+		_currentPlanData = plan;
+		_currentMode = PlanPanelViewMode.ShowingWorkouts;
+	}
+
+	public void ShowExercisesForWorkout(WorkoutData workout)
+	{
+		TryClear ();
+
+		foreach (ExerciseData exercise in workout.exerciseData)
+		{
+			ExerciseMenuItem exerciseMenuItem = Instantiate(_addExerciseItemPrefab);
+			exerciseMenuItem.Init (exercise);
+			exerciseMenuItem.transform.SetParent(_gridLayout.transform);
+			exerciseMenuItem.transform.localScale = Vector3.one;
+			_exerciseMenuItems.Add (exerciseMenuItem);
+		}
+
+		_topTitle.text = _currentPlanData.name;
+		_bottomTitle.text = workout.name;
+		_currentMode = PlanPanelViewMode.ShowingExercises;
 	}
 
 	void TryClear()
@@ -100,6 +132,12 @@ public class AddPlanPanel : MonoBehaviour {
 		{
 			Destroy(workoutPanel.gameObject);
 			_workoutPanels.Clear ();
+		}
+
+		foreach (ExerciseMenuItem exerciseMenuItem in _gridLayout.GetComponentsInChildren<ExerciseMenuItem>())
+		{
+			Destroy(exerciseMenuItem.gameObject);
+			_exerciseMenuItems.Clear ();
 		}
 	}
 
@@ -121,5 +159,17 @@ public class AddPlanPanel : MonoBehaviour {
 		}
 
 		Exit ();
+	}
+
+	void HandleBackPressed()
+	{
+		if (_currentMode == PlanPanelViewMode.ShowingWorkouts) 
+		{
+			ShowPlans ();
+		}
+		else if (_currentMode == PlanPanelViewMode.ShowingExercises) 
+		{
+			ShowWorkoutsForPlan (_currentPlanData);
+		}
 	}
 }

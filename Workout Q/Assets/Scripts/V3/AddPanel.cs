@@ -98,7 +98,6 @@ public class AddPanel : MonoBehaviour {
 		{
 			ExerciseMenuItem exerciseMenuItem = Instantiate(_addExerciseItemPrefab);
 			exerciseMenuItem.Init(exercise);
-			exerciseMenuItem.UpdateColor();
 			exerciseMenuItem.transform.SetParent(_gridLayout.transform);
 			exerciseMenuItem.transform.localScale = Vector3.one;
 

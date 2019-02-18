@@ -82,6 +82,11 @@ public class WorkoutPanel : UIPanel {
 		AddPanel.Instance.Exit ();
     }
 
+	public void HandleSelfClickedOnAddPlanMenu()
+	{
+		AddPlanPanel.Instance.ShowExercisesForWorkout (this.workoutData);
+	}
+
 	void HandleTitleChanged(){
 		workoutData.name = _workoutName.text;
 		WorkoutManager.Instance.Save();

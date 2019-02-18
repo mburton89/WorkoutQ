@@ -239,7 +239,6 @@ public class WorkoutHUD : MonoBehaviour {
 			Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
 		}
 
-		newExerciseMenuItem.UpdateColor(); 
 		newExerciseMenuItem.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
 		newExerciseMenuItem.transform.localScale = Vector3.one;
 	}

@@ -37,6 +37,7 @@ public class ExerciseMenuItem : UIPanel {
 			+ "s";
 
    		fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exerciseData.exerciseType));
+		UpdateColor(); 
 	}
 
 	public void UpdateText(){
