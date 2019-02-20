@@ -19,11 +19,11 @@ public class PilatesBeginnerUpperBodyWorkout : MonoBehaviour
         workoutData.exerciseData.Add (pushups);
 
 		ExerciseData frontPlanks = new ExerciseData ();
-		frontPlanks.Init ("Front Planks - 15sec", 60, 3, 10, 0, ExerciseType.planks);
+		frontPlanks.Init ("Front Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (frontPlanks);
 
 		ExerciseData backPlanks = new ExerciseData ();
-		backPlanks.Init ("Back Planks - 15sec", 60, 3, 10, 0, ExerciseType.planks);
+		backPlanks.Init ("Back Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (backPlanks);
 
 		ExerciseData chairDips = new ExerciseData ();
@@ -31,11 +31,11 @@ public class PilatesBeginnerUpperBodyWorkout : MonoBehaviour
         workoutData.exerciseData.Add (chairDips);
 
 		ExerciseData leftSidePlanks = new ExerciseData ();
-		leftSidePlanks.Init ("Left Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planks);
+		leftSidePlanks.Init ("Left Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (leftSidePlanks);
 
 		ExerciseData rightSidePlanks = new ExerciseData ();
-		rightSidePlanks.Init ("Right Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planks);
+		rightSidePlanks.Init ("Right Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (rightSidePlanks);
 
         return workoutData;

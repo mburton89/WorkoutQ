@@ -19,11 +19,11 @@ public class PilatesBeginnerLowerBodyWorkout : MonoBehaviour
         workoutData.exerciseData.Add (bodySquats);
 
 		ExerciseData squatJumps = new ExerciseData ();
-        squatJumps.Init ("Squat Jumps", 90, 3, 10, 0, ExerciseType.planks);
+        squatJumps.Init ("Squat Jumps", 90, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (squatJumps);
 
 		ExerciseData lunges = new ExerciseData ();
-        lunges.Init ("Lunges", 90, 3, 10, 0, ExerciseType.planks);
+        lunges.Init ("Lunges", 90, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (lunges);
 
 		ExerciseData calfRaises = new ExerciseData ();

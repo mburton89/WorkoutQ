@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SetupPanel : MonoBehaviour {
@@ -11,6 +12,7 @@ public class SetupPanel : MonoBehaviour {
 	[SerializeField] private ShadowTextButton _changeColorButton;
 	[SerializeField] private ShadowTextButton _addWorkoutPlanButton;
 	[SerializeField] private ShadowTextButton _doneButton;
+	[SerializeField] private Button _clickOverlay;
 
 	void Awake()
 	{
@@ -22,6 +24,7 @@ public class SetupPanel : MonoBehaviour {
 		_changeColorButton.onShortClick.AddListener (HandleChangeColorButtonPressed);
 		_addWorkoutPlanButton.onShortClick.AddListener (HandleAddWorkoutPlansPressed);
 		_doneButton.onShortClick.AddListener (Exit);
+		_clickOverlay.onClick.AddListener(Exit);
 	}
 
 	void OnDisable()
@@ -29,6 +32,7 @@ public class SetupPanel : MonoBehaviour {
 		_changeColorButton.onShortClick.RemoveListener (HandleChangeColorButtonPressed);
 		_addWorkoutPlanButton.onShortClick.RemoveListener (HandleAddWorkoutPlansPressed);
 		_doneButton.onShortClick.RemoveListener (Exit);
+		_clickOverlay.onClick.RemoveListener(Exit);
 	}
 
 	void HandleChangeColorButtonPressed()

@@ -33,7 +33,7 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
         workoutData.exerciseData.Add(deadlift);
 
         ExerciseData frontPlanks = new ExerciseData();
-        frontPlanks.Init("Front Planks - 30 sec", 60, 3, 1, 0, ExerciseType.planks);
+        frontPlanks.Init("Front Planks - 30 sec", 60, 3, 1, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add(frontPlanks);
 
         ExerciseData leftSidePlanks = new ExerciseData();

@@ -19,7 +19,7 @@ public class JustPullUps : MonoBehaviour
         workoutData.exerciseData.Add (chinUps);
 
         ExerciseData pullUps = new ExerciseData ();
-		pullUps.Init ("Front Planks - 15sec", 60, 3, 10, 0, ExerciseType.planks);
+		pullUps.Init ("Front Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add (pullUps);
 
         return workoutData;

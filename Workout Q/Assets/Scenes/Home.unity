@@ -4083,7 +4083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 321.81, y: -227.64441}
+  m_AnchoredPosition: {x: 321.81, y: -250.97775}
   m_SizeDelta: {x: 643.62, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119452635
@@ -5363,7 +5363,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -150, y: -500}
+  m_SizeDelta: {x: -150, y: -430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &153722589
 MonoBehaviour:
@@ -13474,6 +13474,7 @@ MonoBehaviour:
   _changeColorButton: {fileID: 119452635}
   _addWorkoutPlanButton: {fileID: 674511037}
   _doneButton: {fileID: 193366224}
+  _clickOverlay: {fileID: 480010252}
 --- !u!222 &384025721
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13522,7 +13523,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 385372657}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -24510,7 +24511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 321.81, y: -395.28882}
+  m_AnchoredPosition: {x: 321.81, y: -441.9555}
   m_SizeDelta: {x: 643.62, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674511037
@@ -24570,7 +24571,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -150, y: -150}
+  m_SizeDelta: {x: -150, y: -430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674717925
 MonoBehaviour:
@@ -27561,7 +27562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140, y: 235.8}
+  m_AnchoredPosition: {x: 140, y: 272.5}
   m_SizeDelta: {x: 52, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &778911815
@@ -46441,7 +46442,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -150, y: -150}
+  m_SizeDelta: {x: -150, y: -430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347733880
 MonoBehaviour:
@@ -47088,7 +47089,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -60528,6 +60529,7 @@ MonoBehaviour:
   _skipButton: {fileID: 2092455680}
   _choosePlanButton: {fileID: 1402062418}
   _backButton: {fileID: 1121628290}
+  _clickOverlay: {fileID: 385372659}
   _addPlanItemPrefab: {fileID: 114432684028507954, guid: 2a0ce781d3034eb4c9ee58336e0d1655,
     type: 2}
   _addWorkoutItemPrefab: {fileID: 114207556867200414, guid: 6897e4c81dfa5824fb2e51ded68a2575,
@@ -61938,7 +61940,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -67443,7 +67445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2081820474
 RectTransform:
   m_ObjectHideFlags: 0

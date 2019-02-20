@@ -15,6 +15,7 @@ public class AddPlanPanel : MonoBehaviour {
 	[SerializeField] private ShadowTextButton _skipButton;
 	[SerializeField] private ShadowTextButton _choosePlanButton;
 	[SerializeField] private ShadowButton _backButton;
+	[SerializeField] private Button _clickOverlay;
 	[SerializeField] private PlanMenuItem _addPlanItemPrefab;
 	[SerializeField] private WorkoutPanel _addWorkoutItemPrefab;
 	[SerializeField] private ExerciseMenuItem _addExerciseItemPrefab;
@@ -46,6 +47,7 @@ public class AddPlanPanel : MonoBehaviour {
 		_skipButton.onShortClick.AddListener (HandleSkipPressed);
 		_choosePlanButton.onShortClick.AddListener (HandleChoosePlanPressed);
 		_backButton.onShortClick.AddListener (HandleBackPressed);
+		_clickOverlay.onClick.AddListener(Exit);
 	}
 
 	void OnDisable()
@@ -53,6 +55,7 @@ public class AddPlanPanel : MonoBehaviour {
 		_skipButton.onShortClick.RemoveListener (HandleSkipPressed);
 		_choosePlanButton.onShortClick.RemoveListener (HandleChoosePlanPressed);
 		_backButton.onShortClick.RemoveListener (HandleBackPressed);
+		_clickOverlay.onClick.RemoveListener(Exit);
 	}
 
 	public void ShowPlans()

@@ -2,32 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ExerciseType
+public enum ExerciseType //TODO add the exercises 2/19/2019
 {
 	_custom,
     abWheel,
+	bandsExternal,
+	bandsInternal,
     benchPress,
     bentOverRow,
+	bodySquats,
     boxJumps,
     calfRaises,
+	chairDips,
+	chinUps,
     cleans,
+	cleanPress,
+	crunches,
     curls,
     dbFrontRaises,
     dbRows,
     db_shoulder_press,
     db_side_raises,
+	dbToeTouches,
     deadlifts,
     dips,
+	hammerCurls,
+	hangingKneeRaises,
     inclineBench,
     jumpingJacks,
     lunges,
-    planks,
+	militaryPress,
+	obliqueSideRaises,
+	overheadTricepExtensions,
+	reverseCurls,
+	reverseFlies,
+	rowMachine,
+	planksBack,
+    planksFront,
+	planksSide,
     pullUps,
     pushups,
     running,
     shrugs,
+	skullCrushers,
     squats,
-    tricepKickBack
+	squatJumps,
+	straightLegDeadlift,
+    tricepKickBack,
+	uprightRows,
+	windmills
 }
 
 [System.Serializable]

@@ -29,11 +29,11 @@ public class HomeGymBeginnerLegs : MonoBehaviour
         workoutData.exerciseData.Add(calfRaises);
 
         ExerciseData frontPlanks = new ExerciseData();
-        frontPlanks.Init("Front Planks - 15 sec", 75, 3, 10, 0, ExerciseType.planks);
+        frontPlanks.Init("Front Planks - 15 sec", 75, 3, 10, 0, ExerciseType.planksFront);
         workoutData.exerciseData.Add(frontPlanks);
 
         ExerciseData backPlanks = new ExerciseData();
-        backPlanks.Init("Back Plank - 15 sec", 75, 3, 10, 0, ExerciseType.planks); //TODO Update Animation
+        backPlanks.Init("Back Plank - 15 sec", 75, 3, 10, 0, ExerciseType.planksFront); //TODO Update Animation
         workoutData.exerciseData.Add(backPlanks);
 
 		return workoutData;
