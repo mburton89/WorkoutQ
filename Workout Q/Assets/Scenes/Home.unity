@@ -17748,6 +17748,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 039d7e262e457457889b2542e98f2422, type: 3}
   - {fileID: 21300000, guid: 7762a3019aaf74fa0af5dd587d9cad9c, type: 3}
   - {fileID: 21300000, guid: 039d7e262e457457889b2542e98f2422, type: 3}
+  bandsExternal:
+  - {fileID: 21300000, guid: a9bf9fb5d36a985438e249406aca8f78, type: 3}
+  - {fileID: 21300000, guid: 2c4964ca4ef6180458b79444e467b50c, type: 3}
+  - {fileID: 21300000, guid: ca29bb7c204a48b40b5e6418b0034441, type: 3}
+  - {fileID: 21300000, guid: 2c4964ca4ef6180458b79444e467b50c, type: 3}
+  bandsInternal:
+  - {fileID: 21300000, guid: c2c2781af3613db41b7d6115433bfef4, type: 3}
+  - {fileID: 21300000, guid: 403237fae1414034287b1036df56c391, type: 3}
+  - {fileID: 21300000, guid: ebfda28834ec92c40a278ce3d389b977, type: 3}
+  - {fileID: 21300000, guid: 403237fae1414034287b1036df56c391, type: 3}
   benchPress:
   - {fileID: 21300000, guid: cc8e4e620e9014d2ba4d98d9376656cd, type: 3}
   - {fileID: 21300000, guid: a1604c6419d96442396945ca389e6ea5, type: 3}
@@ -17758,6 +17768,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 367ac1d2db79e4c4082841386d8e58eb, type: 3}
   - {fileID: 21300000, guid: 3ea830cc2f73c4b69bbfd84317e798d1, type: 3}
   - {fileID: 21300000, guid: 367ac1d2db79e4c4082841386d8e58eb, type: 3}
+  bodySquats:
+  - {fileID: 21300000, guid: 12b058bb7b5dd6f4fba524d2bdeb8ed1, type: 3}
+  - {fileID: 21300000, guid: 06685c26dd9fd8f43a9da64e21562bd5, type: 3}
+  - {fileID: 21300000, guid: 05f9523ef865e9a409b9b67aef199178, type: 3}
+  - {fileID: 21300000, guid: 06685c26dd9fd8f43a9da64e21562bd5, type: 3}
   boxJumps:
   - {fileID: 21300000, guid: bf6fb36e19d654ef0b33d1bd0dde6ce8, type: 3}
   - {fileID: 21300000, guid: b5ce626d0c4184422890486a4d1d7518, type: 3}
@@ -17768,12 +17783,39 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 57939f9d61f1248e697c085494b45e54, type: 3}
   - {fileID: 21300000, guid: cc208bbaa55184ddfb70b23761d0686e, type: 3}
   - {fileID: 21300000, guid: cc208bbaa55184ddfb70b23761d0686e, type: 3}
+  chairDips:
+  - {fileID: 21300000, guid: e5199eda7513de446bb09bb9d24e7e76, type: 3}
+  - {fileID: 21300000, guid: e5199eda7513de446bb09bb9d24e7e76, type: 3}
+  - {fileID: 21300000, guid: d663e88625609f64b826766626cbab6c, type: 3}
+  - {fileID: 21300000, guid: d663e88625609f64b826766626cbab6c, type: 3}
+  chinUps:
+  - {fileID: 21300000, guid: 5c60125feca6d0d428316f53a69ade82, type: 3}
+  - {fileID: 21300000, guid: aced4f7a2b6470c4da95b93e4c88de29, type: 3}
+  - {fileID: 21300000, guid: 1e83db785f70f87478bc3ecaf9908cd6, type: 3}
+  - {fileID: 21300000, guid: aced4f7a2b6470c4da95b93e4c88de29, type: 3}
   cleans:
   - {fileID: 21300000, guid: 5a2605c99071e4af59b65f5a46ce8de7, type: 3}
   - {fileID: 21300000, guid: 0f367688839c7478c82ce7421444af87, type: 3}
   - {fileID: 21300000, guid: 984ea46c3799e4e8e9099ea051ba1244, type: 3}
   - {fileID: 21300000, guid: 75488cdb2a7d7489da7bb83d605ae4a5, type: 3}
   - {fileID: 21300000, guid: 862e60f177a3d48408a09e2ad6affa6a, type: 3}
+  cleanPress:
+  - {fileID: 21300000, guid: efcd402cf3a3d7649b47ba69811eb724, type: 3}
+  - {fileID: 21300000, guid: 838118fd0602b4a448a02c9b5eb686c9, type: 3}
+  - {fileID: 21300000, guid: a1fbefb9863bb624291f2f9f602f5350, type: 3}
+  - {fileID: 21300000, guid: 223b9491553d52041b86d8482f896420, type: 3}
+  - {fileID: 21300000, guid: e1b8a264b29d000458529d68be3735d5, type: 3}
+  - {fileID: 21300000, guid: 499162abf80dcd84d876c4a79efad6e8, type: 3}
+  - {fileID: 21300000, guid: afcf320e8e91be547b3d68a97990bcd6, type: 3}
+  - {fileID: 21300000, guid: 21ff7207adf4abd41a41817c91307b17, type: 3}
+  - {fileID: 21300000, guid: 7cfee56b00c70984282e9915424ba2b7, type: 3}
+  - {fileID: 21300000, guid: fc9a6867d9d89fb469a175ebe74f1c6a, type: 3}
+  - {fileID: 21300000, guid: b48b61747c0c14c44b0efcc99da1e7e8, type: 3}
+  crunches:
+  - {fileID: 21300000, guid: b71989c5f0272474da3d9206feb394f1, type: 3}
+  - {fileID: 21300000, guid: b71989c5f0272474da3d9206feb394f1, type: 3}
+  - {fileID: 21300000, guid: 7b29b7a5d07331c449134b646de41bef, type: 3}
+  - {fileID: 21300000, guid: 7b29b7a5d07331c449134b646de41bef, type: 3}
   curls:
   - {fileID: 21300000, guid: 8b8a6b4e68c644f379a1f3bc892d38ba, type: 3}
   - {fileID: 21300000, guid: b6167d0ab60764bf3a5bcc3173955f43, type: 3}
@@ -17799,6 +17841,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c8235a8a0f1ea432ebc628dd6df28141, type: 3}
   - {fileID: 21300000, guid: 20ae4bda7af01485a9c3565a40d78f93, type: 3}
   - {fileID: 21300000, guid: c8235a8a0f1ea432ebc628dd6df28141, type: 3}
+  dbToeTouches:
+  - {fileID: 21300000, guid: 887908a7e47ffd944bafae2169963dd6, type: 3}
+  - {fileID: 21300000, guid: fddbd212dbaf69445b16025be67f2fec, type: 3}
+  - {fileID: 21300000, guid: 3063a0d0b201e7b469ff7227d32f1d9f, type: 3}
+  - {fileID: 21300000, guid: fddbd212dbaf69445b16025be67f2fec, type: 3}
   deadlifts:
   - {fileID: 21300000, guid: 6f4de920e46d34090a4a1232f833d829, type: 3}
   - {fileID: 21300000, guid: 29f9e982a6f384796a02992bc0255f25, type: 3}
@@ -17809,6 +17856,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b99552620ee51491c8ffddd33733ae41, type: 3}
   - {fileID: 21300000, guid: 0cd39e51d4f2247af87bbc8bb90e38ae, type: 3}
   - {fileID: 21300000, guid: b99552620ee51491c8ffddd33733ae41, type: 3}
+  hammerCurls:
+  - {fileID: 21300000, guid: 323e7ac46f839ab4bbddbbee7ecb130b, type: 3}
+  - {fileID: 21300000, guid: 7b3143b1c2f7f0641ac72f1e67998a80, type: 3}
+  - {fileID: 21300000, guid: 23c7ec6f302ec684c89530dc3d475e1f, type: 3}
+  - {fileID: 21300000, guid: 7b3143b1c2f7f0641ac72f1e67998a80, type: 3}
+  hangingKneeRaises:
+  - {fileID: 21300000, guid: 6ed1b45c3ddd6a14f905a3577f186a26, type: 3}
+  - {fileID: 21300000, guid: bd767e49d959ea7428f2ff868b5dab5b, type: 3}
+  - {fileID: 21300000, guid: 891e6dff89d104e44abb32e210452819, type: 3}
+  - {fileID: 21300000, guid: bd767e49d959ea7428f2ff868b5dab5b, type: 3}
   inclineBench:
   - {fileID: 21300000, guid: fb3e674fc1f834c6baa79f6ab218b2a5, type: 3}
   - {fileID: 21300000, guid: 323dbd84b0412403892c60c6bbc878c5, type: 3}
@@ -17824,8 +17881,42 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 41fcfb9e1f9ba4dc383225ba5ffa8431, type: 3}
   - {fileID: 21300000, guid: ba8084656af604c908122bd2015b6c2c, type: 3}
   - {fileID: 21300000, guid: 41fcfb9e1f9ba4dc383225ba5ffa8431, type: 3}
-  planks:
+  militaryPress:
+  - {fileID: 21300000, guid: 4bbd99c4eb1b77e46bcaa90c995a00ef, type: 3}
+  - {fileID: 21300000, guid: cd6678a164b8af24d8cfe849545c545e, type: 3}
+  - {fileID: 21300000, guid: 655dd02a1e49aaa4e9c82c236e1cfa73, type: 3}
+  - {fileID: 21300000, guid: cd6678a164b8af24d8cfe849545c545e, type: 3}
+  obliqueSideRaises:
+  - {fileID: 21300000, guid: 68ecfffbc859ac44bbd0338abcac8d1a, type: 3}
+  - {fileID: 21300000, guid: 68ecfffbc859ac44bbd0338abcac8d1a, type: 3}
+  - {fileID: 21300000, guid: 5408428cb14a5154bb4f0f2ead34d94b, type: 3}
+  - {fileID: 21300000, guid: 5408428cb14a5154bb4f0f2ead34d94b, type: 3}
+  overheadTricepExtensions:
+  - {fileID: 21300000, guid: ca995fdee8242df4c98922bdc1369b54, type: 3}
+  - {fileID: 21300000, guid: 5bde84db8b084464daf8e614cd4aee02, type: 3}
+  - {fileID: 21300000, guid: b1401226103b7ce45ae5e42cdd85a8a2, type: 3}
+  - {fileID: 21300000, guid: 5bde84db8b084464daf8e614cd4aee02, type: 3}
+  reverseCurls:
+  - {fileID: 21300000, guid: ae85b70a10159a643b6a146cd450b976, type: 3}
+  - {fileID: 21300000, guid: 539f50c29801e1345861c59583117fb2, type: 3}
+  - {fileID: 21300000, guid: 2d9847980e9957b448ab09803b19078e, type: 3}
+  - {fileID: 21300000, guid: 539f50c29801e1345861c59583117fb2, type: 3}
+  reverseFlies:
+  - {fileID: 21300000, guid: b2a4b4ff13326534091d24e335d929b3, type: 3}
+  - {fileID: 21300000, guid: 7c54d9b5b7c2bc44aa280560c07ca6ec, type: 3}
+  - {fileID: 21300000, guid: 5b8abf065c86b1442974600fca19db5b, type: 3}
+  - {fileID: 21300000, guid: 7c54d9b5b7c2bc44aa280560c07ca6ec, type: 3}
+  rowMachine:
+  - {fileID: 21300000, guid: 7443c6245eb01e5449692db963a3a1a9, type: 3}
+  - {fileID: 21300000, guid: ee6d9fd235aa7ae45b6e9a0323a816ec, type: 3}
+  - {fileID: 21300000, guid: 54779e865ec3ec448a2c5a2a126468c7, type: 3}
+  - {fileID: 21300000, guid: ee6d9fd235aa7ae45b6e9a0323a816ec, type: 3}
+  planksBack:
+  - {fileID: 21300000, guid: 6b4dfda66c92385448cb34388cd108b9, type: 3}
+  planksFront:
   - {fileID: 21300000, guid: 29120a187f7c249ed911d116b86efc3b, type: 3}
+  planksSide:
+  - {fileID: 21300000, guid: 527e3a25bfab30543a84b7be2a3329cf, type: 3}
   pullUps:
   - {fileID: 21300000, guid: 8f494b3d74b2f4b14aeb6fe14ca6f395, type: 3}
   - {fileID: 21300000, guid: f67567c9e439d4d3487c30cebf12a51d, type: 3}
@@ -17841,17 +17932,51 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8c40aab49a3af4608b63cedf33679b44, type: 3}
   shrugs:
   - {fileID: 21300000, guid: 01581212816b74e318ac99a7e97f96b3, type: 3}
+  - {fileID: 21300000, guid: 01581212816b74e318ac99a7e97f96b3, type: 3}
   - {fileID: 21300000, guid: e19e3692df7a6418083928b8c22e5b16, type: 3}
+  - {fileID: 21300000, guid: e19e3692df7a6418083928b8c22e5b16, type: 3}
+  skullCrushers:
+  - {fileID: 21300000, guid: e7ee22131d693f94d9bee238e4865099, type: 3}
+  - {fileID: 21300000, guid: 14d4cc7b09ecf3f40b08d8e457fa0bb4, type: 3}
+  - {fileID: 21300000, guid: efe0c1f6642f09d48ae6d00acd63a347, type: 3}
+  - {fileID: 21300000, guid: 14d4cc7b09ecf3f40b08d8e457fa0bb4, type: 3}
   squats:
   - {fileID: 21300000, guid: 9de141bfd8e1c4af596eec54ae8d337d, type: 3}
   - {fileID: 21300000, guid: 9dc42db13658343a7a9bfc4194bc47de, type: 3}
   - {fileID: 21300000, guid: a300efda7b0bb420cbec9239e11e4eb7, type: 3}
   - {fileID: 21300000, guid: 9dc42db13658343a7a9bfc4194bc47de, type: 3}
+  squatJumps:
+  - {fileID: 21300000, guid: 4eafc4d6287c39e478dff3794890c6f9, type: 3}
+  - {fileID: 21300000, guid: 5c634c1ab4ec16c42986a16cf5ad5bf9, type: 3}
+  - {fileID: 21300000, guid: c135d8bafe8d64544985516f2ab10812, type: 3}
+  - {fileID: 21300000, guid: 56bb28c4b1f66d74faeb104f482d7f1d, type: 3}
+  - {fileID: 21300000, guid: f3ac47b716d5a5f4a86dd883c43f9f2f, type: 3}
+  straightLegDeadlift:
+  - {fileID: 21300000, guid: 6e0ba0670aa161047893dfebbd3b648f, type: 3}
+  - {fileID: 21300000, guid: e019b6554a929f64ea55627e4076cb51, type: 3}
+  - {fileID: 21300000, guid: 84171c7cb23627246858b422dd2172db, type: 3}
+  - {fileID: 21300000, guid: e019b6554a929f64ea55627e4076cb51, type: 3}
   tricepKickBack:
   - {fileID: 21300000, guid: 6136bf65ae1e74c3c9ac2af080c99983, type: 3}
-  - {fileID: 21300000, guid: c7e33b2ce04174541851898bcaf51f18, type: 3}
+  - {fileID: 21300000, guid: 6136bf65ae1e74c3c9ac2af080c99983, type: 3}
   - {fileID: 21300000, guid: 8983f4486a0404ebdbb0f0facd4c5dd3, type: 3}
-  - {fileID: 21300000, guid: c7e33b2ce04174541851898bcaf51f18, type: 3}
+  - {fileID: 21300000, guid: 8983f4486a0404ebdbb0f0facd4c5dd3, type: 3}
+  uprightRows:
+  - {fileID: 21300000, guid: 1b944aaef98e1ac4b902bdf226d2cf14, type: 3}
+  - {fileID: 21300000, guid: 9d55c16a96cc1c1438c135e44bb15d27, type: 3}
+  - {fileID: 21300000, guid: 21da7627047f942488a0d264774371fd, type: 3}
+  - {fileID: 21300000, guid: 9d55c16a96cc1c1438c135e44bb15d27, type: 3}
+  windmills:
+  - {fileID: 21300000, guid: 5095a6fae629e5543b1e36414878adfe, type: 3}
+  - {fileID: 21300000, guid: 5095a6fae629e5543b1e36414878adfe, type: 3}
+  - {fileID: 21300000, guid: aad7994f53685c54596ebcea8dd3c97c, type: 3}
+  - {fileID: 21300000, guid: 4db1ac03ad52c6a4db21289171f45b4c, type: 3}
+  - {fileID: 21300000, guid: 9bb2dee356cc6f840881c160be808ee7, type: 3}
+  - {fileID: 21300000, guid: 5095a6fae629e5543b1e36414878adfe, type: 3}
+  - {fileID: 21300000, guid: 5095a6fae629e5543b1e36414878adfe, type: 3}
+  - {fileID: 21300000, guid: 9bb2dee356cc6f840881c160be808ee7, type: 3}
+  - {fileID: 21300000, guid: 4db1ac03ad52c6a4db21289171f45b4c, type: 3}
+  - {fileID: 21300000, guid: aad7994f53685c54596ebcea8dd3c97c, type: 3}
   _custom: {fileID: 21300000, guid: 5cfac34cb06d3bc42a8aeef5b6e2e329, type: 3}
   backBiceps: {fileID: 21300000, guid: 0a3c95b444ddba442938a50d207294f1, type: 3}
   chestTriceps: {fileID: 21300000, guid: 01c51f63bfcc5514f91fe5d18d947dd0, type: 3}

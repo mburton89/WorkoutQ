@@ -33,7 +33,7 @@ public class HomeGymBeginnerPull : MonoBehaviour
         workoutData.exerciseData.Add(shrugs);
 
         ExerciseData dbToeTouches = new ExerciseData();
-        dbToeTouches.Init("DB Toe Touches", 75, 3, 10, 0, ExerciseType.deadlifts); //TODO Update Animation
+		dbToeTouches.Init("DB Toe Touches", 75, 3, 10, 0, ExerciseType.dbToeTouches);
         workoutData.exerciseData.Add(dbToeTouches);
 
         ExerciseData curls = new ExerciseData();

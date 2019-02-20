@@ -17,7 +17,7 @@ public class HomeGymBeginnerLegs : MonoBehaviour
         workoutData.exerciseData.Add(jumpingJacks);
 
         ExerciseData bodySquats = new ExerciseData();
-        bodySquats.Init("Body Squats", 90, 3, 10, 0, ExerciseType.squats); //TODO Update Animation
+		bodySquats.Init("Body Squats", 90, 3, 10, 0, ExerciseType.bodySquats);
         workoutData.exerciseData.Add(bodySquats);
 
         ExerciseData lunges = new ExerciseData();
@@ -33,7 +33,7 @@ public class HomeGymBeginnerLegs : MonoBehaviour
         workoutData.exerciseData.Add(frontPlanks);
 
         ExerciseData backPlanks = new ExerciseData();
-        backPlanks.Init("Back Plank - 15 sec", 75, 3, 10, 0, ExerciseType.planksFront); //TODO Update Animation
+		backPlanks.Init("Back Plank - 15 sec", 75, 3, 10, 0, ExerciseType.planksBack);
         workoutData.exerciseData.Add(backPlanks);
 
 		return workoutData;
