@@ -122,6 +122,7 @@
      <Compile Include="Assets\Scripts\V3\EditExercise\SetsEditRow.cs" />
      <Compile Include="Assets\Scripts\V3\EditExercise\StatEditRow.cs" />
      <Compile Include="Assets\Scripts\V3\EditExercise\WeightEditRow.cs" />
+     <Compile Include="Assets\Scripts\V3\EditExercisePanel.cs" />
      <Compile Include="Assets\Scripts\V3\ExerciseMenuItem.cs" />
      <Compile Include="Assets\Scripts\V3\LineSegment.cs" />
      <Compile Include="Assets\Scripts\V3\LineSegmenter.cs" />

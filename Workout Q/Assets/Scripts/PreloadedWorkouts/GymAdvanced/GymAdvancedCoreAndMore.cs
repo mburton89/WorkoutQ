@@ -17,11 +17,11 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
         workoutData.exerciseData.Add(cardio);
 
         ExerciseData squatJumps = new ExerciseData();
-        squatJumps.Init("Squat Jumps", 75, 3, 10, 0, ExerciseType.squats); //TODO Update Animation
+		squatJumps.Init("Squat Jumps", 75, 3, 10, 0, ExerciseType.squatJumps);
         workoutData.exerciseData.Add(squatJumps);
 
         ExerciseData cleansWarmup = new ExerciseData();
-        cleansWarmup.Init("Cleans Warmup", 60, 3, 10, 45, ExerciseType.cleans);
+		cleansWarmup.Init("Cleans Warmup", 60, 3, 10, 45, ExerciseType.cleans);
         workoutData.exerciseData.Add(cleansWarmup);
 
         ExerciseData cleans = new ExerciseData();
@@ -37,15 +37,15 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
         workoutData.exerciseData.Add(frontPlanks);
 
         ExerciseData leftSidePlanks = new ExerciseData();
-        leftSidePlanks.Init("Left Side Planks - 30 sec", 60, 3, 1, 0, ExerciseType._custom); //TODO Update Animation
+		leftSidePlanks.Init("Left Side Planks - 30 sec", 60, 3, 1, 0, ExerciseType.planksSide);
         workoutData.exerciseData.Add(leftSidePlanks);
 
         ExerciseData rightSidePlanks = new ExerciseData();
-        rightSidePlanks.Init("Right Side Planks - 30 sec", 60, 3, 1, 0, ExerciseType._custom); //TODO Update Animation
+        rightSidePlanks.Init("Right Side Planks - 30 sec", 60, 3, 1, 0, ExerciseType._custom);
         workoutData.exerciseData.Add(rightSidePlanks);
 
         ExerciseData backPlanks = new ExerciseData();
-        backPlanks.Init("Back Planks - 30 sec", 60, 3, 1, 0, ExerciseType._custom); //TODO Update Animation
+		backPlanks.Init("Back Planks - 30 sec", 60, 3, 1, 0, ExerciseType.planksBack);
         workoutData.exerciseData.Add(backPlanks);
 
 		return workoutData;

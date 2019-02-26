@@ -17,11 +17,11 @@ public class HomeGymBeginnerPull : MonoBehaviour
         workoutData.exerciseData.Add(jumpingJacks);
 
         ExerciseData bentOverRows = new ExerciseData();
-        bentOverRows.Init("Bent Over Rows", 90, 3, 10, 5, ExerciseType.bentOverRow);
+        bentOverRows.Init("Bent Over Rows", 90, 3, 10, 0, ExerciseType.bentOverRow);
         workoutData.exerciseData.Add(bentOverRows);
 
         ExerciseData dbRowsLeftArm = new ExerciseData();
-        dbRowsLeftArm.Init("Dumbbell Rows Left Arm", 75, 3, 10, 5, ExerciseType.dbRows);
+        dbRowsLeftArm.Init("Dumbbell Rows Left Arm", 75, 3, 10, 0, ExerciseType.dbRows);
         workoutData.exerciseData.Add(dbRowsLeftArm);
 
         ExerciseData dbRowsRightArm = new ExerciseData();

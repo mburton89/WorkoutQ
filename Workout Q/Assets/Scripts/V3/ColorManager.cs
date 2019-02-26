@@ -10,12 +10,15 @@ public class ColorManager : MonoBehaviour {
 
 	public static ColorManager Instance;
 	public Color ActiveColor;
+	public Color ActiveColorDark;
 
 	[SerializeField] private TextMeshProUGUI[] _texts;
 	[SerializeField] private Image[] _images;
 
 	private const float DEFAULT_HUE = 48f/359f;
 	private const float DEFAULT_SATURATION = 204f/255f;
+
+	private const float DARKENER_DIVIDER = 1.75f;
 
 	void Awake()
 	{
@@ -30,6 +33,9 @@ public class ColorManager : MonoBehaviour {
 			PlayerPrefs.GetFloat("hue"),
 			PlayerPrefs.GetFloat("saturation"),
 			1);
+
+		ActiveColorDark = new Color (ActiveColor.r / DARKENER_DIVIDER, ActiveColor.g / DARKENER_DIVIDER, ActiveColor.b / DARKENER_DIVIDER);
+
 		Instance = this;
 	}
 

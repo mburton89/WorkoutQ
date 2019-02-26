@@ -25,7 +25,7 @@ public class HomeGymIntermediateChestTriceps : MonoBehaviour
         workoutData.exerciseData.Add(dbBenchPress);
 
         ExerciseData chairDips = new ExerciseData();
-        chairDips.Init("Chair Dips", 75, 3, 10, 0, ExerciseType.dips); //TODO Update Animation
+		chairDips.Init("Chair Dips", 75, 3, 10, 0, ExerciseType.chairDips);
         workoutData.exerciseData.Add(chairDips);
 
         ExerciseData flies = new ExerciseData();
@@ -33,11 +33,11 @@ public class HomeGymIntermediateChestTriceps : MonoBehaviour
         workoutData.exerciseData.Add(flies);
 
         ExerciseData overheadTricepExtensions = new ExerciseData();
-        overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 20, ExerciseType._custom); //TODO Update Animation
+		overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 20, ExerciseType.overheadTricepExtensions);
         workoutData.exerciseData.Add(overheadTricepExtensions);
 
         ExerciseData crunches = new ExerciseData();
-        crunches.Init("Crunches", 60, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
+		crunches.Init("Crunches", 60, 3, 10, 0, ExerciseType.crunches);
         workoutData.exerciseData.Add(crunches);
 
 		return workoutData;

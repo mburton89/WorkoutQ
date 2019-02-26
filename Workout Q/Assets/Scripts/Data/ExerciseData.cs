@@ -32,6 +32,7 @@ public enum ExerciseType //TODO add the exercises 2/19/2019
     jumpingJacks,
     lunges,
 	militaryPress,
+	modifiedPushups,
 	obliqueSideRaises,
 	overheadTricepExtensions,
 	reverseCurls,

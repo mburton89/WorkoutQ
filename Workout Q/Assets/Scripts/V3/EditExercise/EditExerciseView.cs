@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class EditExerciseView : MonoBehaviour {
 
 	[SerializeField] private GameObject _container;

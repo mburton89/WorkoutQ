@@ -29,7 +29,7 @@ public class HomeGymIntermediateBackBiceps : MonoBehaviour
         workoutData.exerciseData.Add(dbRowsRight);
 
         ExerciseData straightLegDeadlift = new ExerciseData();
-        straightLegDeadlift.Init("Straight Leg Deadlift", 90, 3, 10, 50, ExerciseType.deadlifts); //TODO Update Animation... maybe
+		straightLegDeadlift.Init("Straight Leg Deadlift", 90, 3, 10, 50, ExerciseType.straightLegDeadlift);
         workoutData.exerciseData.Add(straightLegDeadlift);
 
         ExerciseData curls = new ExerciseData();
@@ -37,7 +37,7 @@ public class HomeGymIntermediateBackBiceps : MonoBehaviour
         workoutData.exerciseData.Add(curls);
 
         ExerciseData reverseCurls = new ExerciseData();
-        reverseCurls.Init("Reverse Curls", 75, 3, 10, 10, ExerciseType.curls); //TODO Update Animation... maybe
+		reverseCurls.Init("Reverse Curls", 75, 3, 10, 10, ExerciseType.reverseCurls); 
         workoutData.exerciseData.Add(reverseCurls);
 
 		return workoutData;

@@ -33,7 +33,7 @@ public class GymAdvancedChestTriceps : MonoBehaviour
         workoutData.exerciseData.Add(inclineBench);
 
         ExerciseData dips = new ExerciseData();
-        dips.Init("Dips", 90, 3, 10, 0, ExerciseType.dips); //TODO Update Animation
+        dips.Init("Dips", 90, 3, 10, 0, ExerciseType.dips);
         workoutData.exerciseData.Add(dips);
 
         ExerciseData flies = new ExerciseData();
@@ -41,7 +41,7 @@ public class GymAdvancedChestTriceps : MonoBehaviour
         workoutData.exerciseData.Add(flies);
 
         ExerciseData overheadTricepExtensions = new ExerciseData();
-        overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 20, ExerciseType._custom); //TODO Update Animation
+		overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 20, ExerciseType.overheadTricepExtensions);
         workoutData.exerciseData.Add(overheadTricepExtensions);
 
         ExerciseData abWheel = new ExerciseData();

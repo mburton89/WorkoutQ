@@ -21,7 +21,7 @@ public class GymAdvancedLegs : MonoBehaviour
         workoutData.exerciseData.Add(boxJumps);
 
         ExerciseData squatJumps = new ExerciseData();
-        squatJumps.Init("Squat Jumps", 60, 3, 10, 0, ExerciseType.squats); //TODO Update Animation
+		squatJumps.Init("Squat Jumps", 60, 3, 10, 0, ExerciseType.squatJumps);
         workoutData.exerciseData.Add(squatJumps);
 
         ExerciseData squats = new ExerciseData();
@@ -41,11 +41,11 @@ public class GymAdvancedLegs : MonoBehaviour
         workoutData.exerciseData.Add(calfRaises);
 
         ExerciseData obliqueSideRaisesLeft = new ExerciseData();
-        obliqueSideRaisesLeft.Init("Oblique Side Raises - Left Side", 60, 3, 10, 15, ExerciseType._custom); //TODO Update Animation
+		obliqueSideRaisesLeft.Init("Oblique Side Raises - Left Side", 60, 3, 10, 15, ExerciseType.obliqueSideRaises);
         workoutData.exerciseData.Add(obliqueSideRaisesLeft);
 
         ExerciseData obliqueSideRaisesRight = new ExerciseData();
-        obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 15, ExerciseType._custom); //TODO Update Animation
+		obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 15, ExerciseType.obliqueSideRaises);
         workoutData.exerciseData.Add(obliqueSideRaisesRight);
 
 		return workoutData;

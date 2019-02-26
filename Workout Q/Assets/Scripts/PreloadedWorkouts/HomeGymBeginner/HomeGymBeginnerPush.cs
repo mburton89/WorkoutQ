@@ -17,11 +17,11 @@ public class HomeGymBeginnerPush : MonoBehaviour
         workoutData.exerciseData.Add(jumpingJacks);
 
         ExerciseData modifiedPushups = new ExerciseData();
-        modifiedPushups.Init("Modified Pushups", 90, 3, 10, 0, ExerciseType.pushups);
+		modifiedPushups.Init("Modified Pushups", 90, 3, 10, 0, ExerciseType.modifiedPushups);
         workoutData.exerciseData.Add(modifiedPushups);
 
         ExerciseData shoulderPress = new ExerciseData();
-        shoulderPress.Init("Dumbbell Shoulder Press", 90, 3, 10, 5, ExerciseType.db_shoulder_press);
+        shoulderPress.Init("Dumbbell Shoulder Press", 90, 3, 10, 0, ExerciseType.db_shoulder_press);
         workoutData.exerciseData.Add(shoulderPress);
 
         ExerciseData chairDips = new ExerciseData();
@@ -29,11 +29,11 @@ public class HomeGymBeginnerPush : MonoBehaviour
         workoutData.exerciseData.Add(chairDips);
 
         ExerciseData frontRaises = new ExerciseData();
-        frontRaises.Init("DB Front Raises", 75, 3, 10, 5, ExerciseType.dbFrontRaises);
+        frontRaises.Init("DB Front Raises", 75, 3, 10, 0, ExerciseType.dbFrontRaises);
         workoutData.exerciseData.Add(frontRaises);
 
         ExerciseData overheadTricepExtensions = new ExerciseData();
-		overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 5, ExerciseType.overheadTricepExtensions); 
+		overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 0, ExerciseType.overheadTricepExtensions); 
         workoutData.exerciseData.Add(overheadTricepExtensions);
 
         ExerciseData crunches = new ExerciseData();

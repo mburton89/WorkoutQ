@@ -25,7 +25,7 @@ public class GymAdvancedBackBiceps : MonoBehaviour
         workoutData.exerciseData.Add(bentOverRows);
 
         ExerciseData chinUps = new ExerciseData();
-        chinUps.Init("Chin Ups", 60, 3, 10, 0, ExerciseType.pullUps); //TODO: Update animation... maybe
+        chinUps.Init("Chin Ups", 60, 3, 10, 0, ExerciseType.pullUps);
         workoutData.exerciseData.Add(chinUps);
 
         ExerciseData dbRowsLeft = new ExerciseData();
@@ -37,7 +37,7 @@ public class GymAdvancedBackBiceps : MonoBehaviour
         workoutData.exerciseData.Add(dbRowsRight);
 
         ExerciseData straightLegDeadlift = new ExerciseData();
-        straightLegDeadlift.Init("Straight Leg Deadlift", 90, 3, 10, 95, ExerciseType.deadlifts); //TODO Update Animation... maybe
+		straightLegDeadlift.Init ("Straight Leg Deadlift", 90, 3, 10, 95, ExerciseType.straightLegDeadlift);
         workoutData.exerciseData.Add(straightLegDeadlift);
 
         ExerciseData curls = new ExerciseData();
@@ -45,7 +45,7 @@ public class GymAdvancedBackBiceps : MonoBehaviour
         workoutData.exerciseData.Add(curls);
 
         ExerciseData reverseCurls = new ExerciseData();
-        reverseCurls.Init("Reverse Curls", 75, 3, 10, 20, ExerciseType.curls); //TODO Update Animation... maybe
+		reverseCurls.Init("Reverse Curls", 75, 3, 10, 20, ExerciseType.reverseCurls);
         workoutData.exerciseData.Add(reverseCurls);
 
 		return workoutData;

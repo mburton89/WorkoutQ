@@ -43,6 +43,7 @@ public class WorkoutGenerator : MonoBehaviour {
 	ExerciseData jumpingJacksExercise = new ExerciseData();
 	ExerciseData lungesExercise = new ExerciseData();
 	ExerciseData militaryPressExercise = new ExerciseData(); //2/19/2019
+	ExerciseData modifiedPushupsExercise = new ExerciseData(); //2/19/2019
 	ExerciseData obliqueSideRaisesExercise = new ExerciseData(); //2/19/2019
 	ExerciseData overheadTricepExtensionsExercise = new ExerciseData(); //2/19/2019
 	ExerciseData reverseCurlsExercise = new ExerciseData(); //2/19/2019
@@ -94,6 +95,7 @@ public class WorkoutGenerator : MonoBehaviour {
     jumpingJacks,
     lunges,
 	militaryPress,
+	modifiedPushups,
 	obliqueSideRaises,
 	overheadTricepExtensions,
 	reverseCurls,
@@ -220,6 +222,7 @@ public class WorkoutGenerator : MonoBehaviour {
 		jumpingJacksExercise.Init("Jumping Jacks", 60, 3, 10, 0, ExerciseType.jumpingJacks);
 		lungesExercise.Init("Lunges", 60, 3, 10, 0, ExerciseType.lunges);
 		militaryPressExercise.Init("Military Press", 90, 3, 10, 0, ExerciseType.militaryPress);
+		modifiedPushupsExercise.Init("Modified Pushups", 90, 3, 10, 0, ExerciseType.modifiedPushups);
 		obliqueSideRaisesExercise.Init("Oblique Side Raises", 90, 3, 10, 0, ExerciseType.obliqueSideRaises);
 		overheadTricepExtensionsExercise.Init("Overhead Tricep Extensions", 90, 3, 10, 0, ExerciseType.overheadTricepExtensions);
 		reverseCurlsExercise.Init("Reverse Curls", 90, 3, 10, 0, ExerciseType.reverseCurls);
@@ -267,6 +270,7 @@ public class WorkoutGenerator : MonoBehaviour {
 		preloadedExercises.Add(jumpingJacksExercise);
 		preloadedExercises.Add(lungesExercise);
 		preloadedExercises.Add (militaryPressExercise);
+		preloadedExercises.Add (modifiedPushupsExercise);
 		preloadedExercises.Add (obliqueSideRaisesExercise);
 		preloadedExercises.Add (overheadTricepExtensionsExercise);
 		preloadedExercises.Add (reverseCurlsExercise);
@@ -318,6 +322,7 @@ public class WorkoutGenerator : MonoBehaviour {
         listOfExerciseSpriteLists.Add(jumpingJacks);
         listOfExerciseSpriteLists.Add(lunges);
 		listOfExerciseSpriteLists.Add (militaryPress);
+		listOfExerciseSpriteLists.Add (modifiedPushups);
 		listOfExerciseSpriteLists.Add (obliqueSideRaises);
 		listOfExerciseSpriteLists.Add (overheadTricepExtensions);
 		listOfExerciseSpriteLists.Add (reverseCurls);

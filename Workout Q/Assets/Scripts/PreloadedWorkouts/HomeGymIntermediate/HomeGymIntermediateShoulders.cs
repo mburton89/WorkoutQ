@@ -21,7 +21,7 @@ public class HomeGymIntermediateShoulders : MonoBehaviour
         workoutData.exerciseData.Add(dbShoulderPress);
 
         ExerciseData uprightRows = new ExerciseData();
-        uprightRows.Init("Upright Rows", 90, 3, 10, 30, ExerciseType._custom); //TODO Update Animation
+		uprightRows.Init("Upright Rows", 90, 3, 10, 30, ExerciseType.uprightRows);
         workoutData.exerciseData.Add(uprightRows);
 
         ExerciseData shrugs = new ExerciseData();

@@ -17,11 +17,11 @@ public class GymAdvancedShoulders : MonoBehaviour
         workoutData.exerciseData.Add(cardio);
 
         ExerciseData militaryPressWarmup = new ExerciseData();
-        militaryPressWarmup.Init("Clean Press Warmup", 60, 3, 10, 45, ExerciseType.db_shoulder_press); //TODO Update Animation
+		militaryPressWarmup.Init("Clean Press Warmup", 60, 3, 10, 45, ExerciseType.militaryPress);
         workoutData.exerciseData.Add(militaryPressWarmup);
 
         ExerciseData militaryPress = new ExerciseData();
-        militaryPress.Init("Clean Press", 90, 5, 5, 95, ExerciseType.db_shoulder_press); //TODO Update Animation
+		militaryPress.Init("Clean Press", 90, 5, 5, 95, ExerciseType.militaryPress);
         workoutData.exerciseData.Add(militaryPress);
 
         ExerciseData dbShoulderPress = new ExerciseData();
@@ -29,7 +29,7 @@ public class GymAdvancedShoulders : MonoBehaviour
         workoutData.exerciseData.Add(dbShoulderPress);
 
         ExerciseData uprightRows = new ExerciseData();
-        uprightRows.Init("Upright Rows", 90 , 3, 10, 30, ExerciseType._custom); //TODO Update Animation
+		uprightRows.Init("Upright Rows", 90 , 3, 10, 30, ExerciseType.uprightRows);
         workoutData.exerciseData.Add(uprightRows);
 
         ExerciseData shrugs = new ExerciseData();
@@ -45,7 +45,7 @@ public class GymAdvancedShoulders : MonoBehaviour
         workoutData.exerciseData.Add(sideRaises);
 
         ExerciseData reverseFlies = new ExerciseData();
-        reverseFlies.Init("Reverse Flies", 75, 3, 10, 10, ExerciseType.db_side_raises);
+		reverseFlies.Init("Reverse Flies", 75, 3, 10, 10, ExerciseType.reverseFlies);
         workoutData.exerciseData.Add(reverseFlies);
 
 		return workoutData;

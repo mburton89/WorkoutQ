@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
-    [SerializeField] private Image _buttonShadow;
+	[SerializeField] private Image _buttonTop;
+	[SerializeField] private Image _buttonShadow;
     private RectTransform _rect;
     private Vector2 _initialPosition;
     [SerializeField] private float _amountToPress;
@@ -19,6 +20,12 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         _rect = GetComponent<RectTransform>();
         _initialPosition = _rect.anchoredPosition;
     }
+
+	void Start()
+	{
+		_buttonTop.color = ColorManager.Instance.ActiveColor;
+		_buttonShadow.color = ColorManager.Instance.ActiveColorDark;
+	}
 
     public void OnPointerDown(PointerEventData eventData)
     {

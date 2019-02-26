@@ -17,11 +17,11 @@ public class HomeGymIntermediateLegs : MonoBehaviour
         workoutData.exerciseData.Add(cardio);
 
         ExerciseData squatJumps = new ExerciseData();
-        squatJumps.Init("Squat Jumps", 75, 3, 10, 0, ExerciseType.squats); //TODO Update Animation
-        workoutData.exerciseData.Add(squatJumps);
+		squatJumps.Init("Squat Jumps", 75, 3, 10, 0, ExerciseType.squatJumps);
+		workoutData.exerciseData.Add(squatJumps);
 
         ExerciseData dbSquats = new ExerciseData();
-        dbSquats.Init("Dumbell Squats", 90, 3, 8, 50, ExerciseType.squats); //TODO Update Animation... maybe
+		dbSquats.Init("Dumbell Squats", 90, 3, 8, 50, ExerciseType.squats); //TODO Update Animation... maybe
         workoutData.exerciseData.Add(dbSquats);
 
         ExerciseData lunges = new ExerciseData();
@@ -33,7 +33,7 @@ public class HomeGymIntermediateLegs : MonoBehaviour
         workoutData.exerciseData.Add(calfRaises);
 
         ExerciseData obliqueSideRaisesLeft = new ExerciseData();
-        obliqueSideRaisesLeft.Init("Oblique Side Raises - Left Side", 60, 3, 10, 10, ExerciseType._custom); //TODO Update Animation
+		obliqueSideRaisesLeft.Init("Oblique Side Raises - Left Side", 60, 3, 10, 10, ExerciseType.obliqueSideRaises);
         workoutData.exerciseData.Add(obliqueSideRaisesLeft);
 
         ExerciseData obliqueSideRaisesRight = new ExerciseData();
