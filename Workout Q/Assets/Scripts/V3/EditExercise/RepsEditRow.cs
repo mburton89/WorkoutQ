@@ -15,15 +15,15 @@ public class RepsEditRow : StatEditRow
 
 	void OnEnable () 
 	{
-		lessButton.onClick.AddListener (Decrement);
-		moreButton.onClick.AddListener (Increment);
+		lessButton.onShortClick.AddListener (Decrement);
+		moreButton.onShortClick.AddListener (Increment);
 		numberInput.onSubmit.AddListener(delegate{HandleInputFieldSubmitted();});
 	}
 
 	void OnDisable () 
 	{
-		lessButton.onClick.RemoveListener (Decrement);
-		moreButton.onClick.RemoveListener (Increment);
+		lessButton.onShortClick.RemoveListener (Decrement);
+		moreButton.onShortClick.RemoveListener (Increment);
 		numberInput.onSubmit.RemoveListener(delegate{HandleInputFieldSubmitted();});
 	}
 
@@ -43,6 +43,9 @@ public class RepsEditRow : StatEditRow
 
 	void Decrement()
 	{
+
+		print ("YO");
+
 		if (value > 0) 
 		{
 			value--;			
@@ -68,6 +71,12 @@ public class RepsEditRow : StatEditRow
 	void UpdateData()
 	{
 		controller.currentExerciseData.repsPerSet = value;
+
+		if (controller.currentExerciseMenuItem != null)
+		{
+			controller.currentExerciseMenuItem.UpdateStatsText();
+		}
+
 		UpdateStatView ();
 		WorkoutManager.Instance.Save();
 	}

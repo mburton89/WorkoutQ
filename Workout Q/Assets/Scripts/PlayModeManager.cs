@@ -156,7 +156,7 @@ public class PlayModeManager : MonoBehaviour {
 		ViewExerciseView.Instance.UpdateRepsView (ActiveExercise.repsPerSet);
 		ViewExerciseView.Instance.UpdateWeightView (ActiveExercise.weight);
 
-		ViewExerciseView.Instance.fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(ActiveExercise.exerciseType));
+		ViewExerciseView.Instance.fitBoyAnimator.Init(ActiveExercise.exerciseType);
 	}
 
 	void EstablishNextExercise(){

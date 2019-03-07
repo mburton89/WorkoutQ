@@ -10,6 +10,6 @@ public class FitBoyDifficulty : MonoBehaviour {
 	public void Init(Sprite sprite)
 	{
 		activeFrame.sprite = sprite;
-		activeFrame.color = ColorManager.Instance.ActiveColor;
+		activeFrame.color = ColorManager.Instance.ActiveColorLight;
 	}
 }

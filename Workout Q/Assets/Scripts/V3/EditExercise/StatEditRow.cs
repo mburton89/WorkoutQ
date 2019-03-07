@@ -8,8 +8,8 @@ public class StatEditRow : MonoBehaviour
 {
 	public int value;
 	public TMP_InputField numberInput;
-	public Button lessButton;
-	public Button moreButton;
+	public ShadowButton lessButton;
+	public ShadowButton moreButton;
 	[HideInInspector] public string labelString;
 	[HideInInspector] public EditExerciseView controller;
 }

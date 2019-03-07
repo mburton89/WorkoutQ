@@ -23,8 +23,8 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 	void Start()
 	{
-		_buttonTop.color = ColorManager.Instance.ActiveColor;
-		_buttonShadow.color = ColorManager.Instance.ActiveColorDark;
+		_buttonTop.color = ColorManager.Instance.ActiveColorLight;
+		_buttonShadow.color = ColorManager.Instance.ActiveColorMedium;
 	}
 
     public void OnPointerDown(PointerEventData eventData)

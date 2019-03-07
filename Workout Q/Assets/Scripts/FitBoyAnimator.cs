@@ -8,12 +8,19 @@ public class FitBoyAnimator : MonoBehaviour {
 	private const float FRAME_RATE = 0.18f;
 	public List<Sprite> frames;
 	public Image activeFrame;
+	//public Image bg;
 	private int _frameIndex;
+	public ExerciseType exerciseType;
 
-	public void Init(List<Sprite> sprites)
+	public void Init(ExerciseType exerciseType)
 	{
-		frames = sprites;
-		activeFrame.color = ColorManager.Instance.ActiveColor;
+		this.exerciseType = exerciseType;
+		frames = WorkoutGenerator.Instance.GetSpritesForExercise(exerciseType);
+		Image[] images = GetComponentsInChildren<Image> ();
+		foreach (Image image in images) {
+			image.color =  ColorManager.Instance.ActiveColorLight;
+		}
+
 		Play();
 	}
 

@@ -17,8 +17,8 @@ public class FitBoyIlluminator : MonoBehaviour {
 		StopCoroutine("playAnimationCo");
 		glowFrameSprite = sprite;
 		activeFrame.sprite = glowFrameSprite;
-		activeFrame.color = ColorManager.Instance.ActiveColor;
-		fitBotBase.color = ColorManager.Instance.ActiveColor;
+		activeFrame.color = ColorManager.Instance.ActiveColorLight;
+		fitBotBase.color = ColorManager.Instance.ActiveColorLight;
 		Play();
 	}
 

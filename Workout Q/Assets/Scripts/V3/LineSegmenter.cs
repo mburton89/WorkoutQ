@@ -18,7 +18,7 @@ public class LineSegmenter : MonoBehaviour {
 
 		for (int i = 0; i < numberOfSegments; i++) {
 			LineSegment newLine = Instantiate (_lineSegmentPrefab, this.transform);
-			newLine.lineImage.color = ColorManager.Instance.ActiveColor;
+			newLine.lineImage.color = ColorManager.Instance.ActiveColorLight;
 			_lineSegments.Add (newLine);
 		}
 

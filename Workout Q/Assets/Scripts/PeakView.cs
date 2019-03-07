@@ -30,7 +30,7 @@ public class PeakView : MonoBehaviour {
 		_container.SetActive (true);
 		Header.Instance.lineSegmenter.ShowSegmentLit(_peakIndex);
 		_lineSegmenter.Init(exerciseToPeakAt.totalInitialSets);
-		_fitBoy.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exerciseToPeakAt.exerciseType));
+		_fitBoy.Init(exerciseToPeakAt.exerciseType);
 		_exerciseName.text = exerciseToPeakAt.name.ToString();
 		_setAmount.text = exerciseToPeakAt.totalInitialSets.ToString();
 		_repAmount.text = "x " + exerciseToPeakAt.repsPerSet.ToString();

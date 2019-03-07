@@ -31,7 +31,7 @@ public class UIPanel : MonoBehaviour {
 
 	public void Unhighlight()
 	{
-		Color primaryColor = ColorManager.Instance.ActiveColor;
+		Color primaryColor = ColorManager.Instance.ActiveColorLight;
 		Color secondaryColor = new Color (primaryColor.r / DARKENER_DIVIDER, primaryColor.g / DARKENER_DIVIDER, primaryColor.b / DARKENER_DIVIDER);
 
 		_fill.sprite = blackSprite;
@@ -65,7 +65,7 @@ public class UIPanel : MonoBehaviour {
 
 	public void UpdateColor(){
 
-		Color primaryColor = ColorManager.Instance.ActiveColor;
+		Color primaryColor = ColorManager.Instance.ActiveColorLight;
 		Color secondaryColor = new Color (primaryColor.r / DARKENER_DIVIDER, primaryColor.g / DARKENER_DIVIDER, primaryColor.b / DARKENER_DIVIDER);
 
 		_mainText.color = primaryColor;

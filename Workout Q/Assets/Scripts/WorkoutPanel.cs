@@ -11,15 +11,18 @@ public class WorkoutPanel : UIPanel {
 	[SerializeField]private TextMeshProUGUI _minutesLabel;
 	public Button selfButton;
 	public FitBoyIlluminator fitBoyIlluminator;
+	[SerializeField] private Button editButton;
 
 	void OnEnable()
 	{
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
+		editButton.onClick.AddListener (HandleEditPressed);
 	}
 
 	void OnDisable()
 	{
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
+		editButton.onClick.RemoveListener (HandleEditPressed);
 	}
 
 	public void Init(WorkoutData workoutData)
@@ -94,5 +97,10 @@ public class WorkoutPanel : UIPanel {
 
 	public void SelectTitle(){
 		_workoutName.Select();
+	}
+
+	void HandleEditPressed()
+	{
+		//EditExercisePanel.Instance.Init (this);
 	}
 }

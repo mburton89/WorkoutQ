@@ -28,7 +28,7 @@ public class ViewExerciseView : MonoBehaviour {
 	{
 		Show ();
 		UpdateExerciseView (exercise.name, currentExerciseIndex, totalExercises);
-		fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exercise.exerciseType));
+		fitBoyAnimator.Init(exercise.exerciseType);
 		_weightLabel.text = PlayerPrefs.GetString ("weightType") + "s";
 	}
 

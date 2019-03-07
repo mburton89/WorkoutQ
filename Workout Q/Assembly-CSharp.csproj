@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Footer\PanelMover.cs" />
      <Compile Include="Assets\Scripts\Footer\WorkoutControls.cs" />
      <Compile Include="Assets\Scripts\Header.cs" />
+     <Compile Include="Assets\Scripts\IconSelectMenu.cs" />
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
      <Compile Include="Assets\Scripts\PeakView.cs" />
      <Compile Include="Assets\Scripts\PlayModeManager.cs" />
@@ -138,6 +139,7 @@
      <Compile Include="Assets\Scripts\WorkoutHUD.cs" />
      <Compile Include="Assets\Scripts\WorkoutManager.cs" />
      <Compile Include="Assets\Scripts\WorkoutPanel.cs" />
+     <Compile Include="Assets\SelectableFitBoy.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -358,6 +360,9 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
+ <Reference Include="DOTween">
+ <HintPath>C:/Users/burto/Documents/WorkoutQ/Workout Q/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
  <Reference Include="TextMeshPro-2017.3-Editor">
  <HintPath>C:/Users/burto/Documents/WorkoutQ/Workout Q/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Editor.dll</HintPath>
  </Reference>
@@ -372,9 +377,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/burto/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="DOTween">
- <HintPath>C:/Users/burto/Documents/WorkoutQ/Workout Q/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

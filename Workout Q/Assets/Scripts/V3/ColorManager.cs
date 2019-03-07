@@ -9,7 +9,8 @@ public class ColorManager : MonoBehaviour {
 	//Main color: FFD833FF
 
 	public static ColorManager Instance;
-	public Color ActiveColor;
+	public Color ActiveColorLight;
+	public Color ActiveColorMedium;
 	public Color ActiveColorDark;
 
 	[SerializeField] private TextMeshProUGUI[] _texts;
@@ -18,7 +19,8 @@ public class ColorManager : MonoBehaviour {
 	private const float DEFAULT_HUE = 48f/359f;
 	private const float DEFAULT_SATURATION = 204f/255f;
 
-	private const float DARKENER_DIVIDER = 1.75f;
+	private const float MEDIUM_DARKENER_DIVIDER = 1.75f;
+	private const float DARK_DARKENER_DIVIDER = 3f;
 
 	void Awake()
 	{
@@ -29,12 +31,13 @@ public class ColorManager : MonoBehaviour {
 			PlayerPrefs.SetInt ("hasSetColor", 1);
 		} 
 
-		ActiveColor = Color.HSVToRGB(
+		ActiveColorLight = Color.HSVToRGB(
 			PlayerPrefs.GetFloat("hue"),
 			PlayerPrefs.GetFloat("saturation"),
 			1);
 
-		ActiveColorDark = new Color (ActiveColor.r / DARKENER_DIVIDER, ActiveColor.g / DARKENER_DIVIDER, ActiveColor.b / DARKENER_DIVIDER);
+		ActiveColorMedium = new Color (ActiveColorLight.r / MEDIUM_DARKENER_DIVIDER, ActiveColorLight.g / MEDIUM_DARKENER_DIVIDER, ActiveColorLight.b / MEDIUM_DARKENER_DIVIDER);
+		ActiveColorDark = new Color (ActiveColorLight.r / DARK_DARKENER_DIVIDER, ActiveColorLight.g / DARK_DARKENER_DIVIDER, ActiveColorLight.b / DARK_DARKENER_DIVIDER);
 
 		Instance = this;
 	}
@@ -46,11 +49,11 @@ public class ColorManager : MonoBehaviour {
 
 	public void UpdateColors(){
 		foreach (TextMeshProUGUI text in _texts) {
-			text.color = ActiveColor;
+			text.color = ActiveColorLight;
 		}
 
 		foreach (Image image in _images) {
-			image.color = ActiveColor;
+			image.color = ActiveColorLight;
 		}
 	}
 }

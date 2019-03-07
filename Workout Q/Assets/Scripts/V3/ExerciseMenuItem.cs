@@ -10,6 +10,7 @@ public class ExerciseMenuItem : UIPanel {
 	public TextMeshProUGUI statsText;
 	public TMP_InputField exerciseName;
 	public FitBoyAnimator fitBoyAnimator;
+	[SerializeField] private Button editButton;
 
 	void Awake()
 	{
@@ -20,23 +21,28 @@ public class ExerciseMenuItem : UIPanel {
 
 	void OnEnable(){
 		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
+
+		if (editButton != null) 
+		{
+			editButton.onClick.AddListener (HandleEditPressed);		
+		}
 	}
 
 	void OnDisable(){
 		exerciseName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
+
+		if (editButton != null) 
+		{
+			editButton.onClick.RemoveListener (HandleEditPressed);
+		}
 	}
 
 	public void Init(ExerciseData exerciseData)
 	{
 		this.exerciseData = exerciseData;
 		exerciseName.text = exerciseData.name;
-		statsText.text = exerciseData.totalSets 
-			+ "x" + exerciseData.repsPerSet 
-			+ "   " + exerciseData.weight + PlayerPrefs.GetString ("weightType")
-			+ "   " + exerciseData.secondsToCompleteSet 
-			+ "s";
-
-   		fitBoyAnimator.Init(WorkoutGenerator.Instance.GetSpritesForExercise(exerciseData.exerciseType));
+		UpdateStatsText (exerciseData.totalSets, exerciseData.repsPerSet, exerciseData.weight, exerciseData.secondsToCompleteSet);
+   		fitBoyAnimator.Init(exerciseData.exerciseType);
 		UpdateColor(); 
 	}
 
@@ -80,5 +86,28 @@ public class ExerciseMenuItem : UIPanel {
 
 	public void SelectTitle(){
 		exerciseName.Select();
+	}
+
+	void HandleEditPressed()
+	{
+		EditExercisePanel.Instance.Init (this);
+	}
+
+	public void UpdateStatsText(int sets, int reps, int weight, int seconds)
+	{
+		statsText.text = sets 
+			+ "x" + reps 
+			+ "   " + weight + PlayerPrefs.GetString ("weightType")
+			+ "   " + seconds
+			+ "s";
+	}
+
+	public void UpdateStatsText()
+	{
+		statsText.text = exerciseData.totalInitialSets 
+			+ "x" + exerciseData.repsPerSet 
+			+ "   " + exerciseData.weight + PlayerPrefs.GetString ("weightType")
+			+ "   " + exerciseData.secondsToCompleteSet
+			+ "s";
 	}
 }
