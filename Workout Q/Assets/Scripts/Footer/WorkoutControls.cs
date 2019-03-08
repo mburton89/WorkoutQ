@@ -77,12 +77,18 @@ public class WorkoutControls : MonoBehaviour {
 
 	void HandlePreviousExercisePressed()
 	{
-		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) - 1);
+		int index = WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) - 1;
+		if (index > -1) {
+			WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (index);
+		}
 	}
 
 	void HandleNextExercisePressed()
 	{
-		WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1);
+		int index = WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1;
+		if (index < WorkoutManager.Instance.ActiveWorkout.exerciseData.Count) {
+			WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1);
+		}
 	}
 
 	public void ShowPausedMenu(){

@@ -23,6 +23,11 @@ public class Header : MonoBehaviour {
 		_middleLabel.text = PlayerPrefs.GetString("userTitle");
 	}
 
+	void Start()
+	{
+		_topLabel.color = ColorManager.Instance.ActiveColorMedium;
+	}
+
 	void OnEnable(){
 		_backButton.onShortClick.AddListener(HandleBackPressed);
 		_settingsButton.onShortClick.AddListener(HandleSettingsPressed);

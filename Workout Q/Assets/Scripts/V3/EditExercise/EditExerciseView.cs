@@ -16,8 +16,11 @@ public class EditExerciseView : MonoBehaviour {
 	public ExerciseData currentExerciseData;
 	[HideInInspector] public ExerciseMenuItem currentExerciseMenuItem;
 
-	public void Init(ExerciseData exerciseToEdit)
+	public bool isCreatingNewExercise;
+
+	public void Init(ExerciseData exerciseToEdit, bool isCreatingNewExercise, bool shouldAutoSelectInputField)
 	{
+		currentExerciseMenuItem = null;
 		currentExerciseData = exerciseToEdit;
 		_exerciseNameInputField.text = exerciseToEdit.name;
 		_setsRow.Init (this);
@@ -29,9 +32,15 @@ public class EditExerciseView : MonoBehaviour {
 		if (fitBoyAnimator != null) {
 			fitBoyAnimator.Init(exerciseToEdit.exerciseType);
 		}
+
+		this.isCreatingNewExercise = isCreatingNewExercise;
+
+		if (shouldAutoSelectInputField) {
+			_exerciseNameInputField.Select ();
+		}
 	}
 
-	public void Init(ExerciseMenuItem exerciseMenuItem)
+	public void Init(ExerciseMenuItem exerciseMenuItem, bool isCreatingNewExercise, bool shouldAutoSelectInputField)
 	{
 		currentExerciseMenuItem = exerciseMenuItem;
 		currentExerciseData = currentExerciseMenuItem.exerciseData;
@@ -44,6 +53,12 @@ public class EditExerciseView : MonoBehaviour {
 
 		if (fitBoyAnimator != null) {
 			fitBoyAnimator.Init(currentExerciseData.exerciseType);
+		}
+
+		this.isCreatingNewExercise = isCreatingNewExercise;
+
+		if (shouldAutoSelectInputField) {
+			_exerciseNameInputField.Select ();
 		}
 	}
 
@@ -59,10 +74,13 @@ public class EditExerciseView : MonoBehaviour {
 
 	public void HandleInputFieldSubmitted(string title)
 	{
-		print ("KSJHDKJF");
 		currentExerciseData.name = _exerciseNameInputField.text;
-		currentExerciseMenuItem.exerciseData.name = _exerciseNameInputField.text;
-		currentExerciseMenuItem.UpdateText ();
+
+		if (currentExerciseMenuItem != null) 
+		{
+			currentExerciseMenuItem.exerciseData.name = _exerciseNameInputField.text;
+			currentExerciseMenuItem.UpdateText ();
+		}
 	}
 
 	public void UpdateCurrentExerciseItem()

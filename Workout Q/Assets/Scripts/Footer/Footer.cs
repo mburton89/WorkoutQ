@@ -24,12 +24,30 @@ public class Footer : MonoBehaviour
 	{
 		MovePanelContatiner.gameObject.SetActive(false);
 		WorkoutControlsContatiner.gameObject.SetActive(false);
+
+		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
+		{
+			WorkoutHUD.Instance.addWorkoutButton.gameObject.SetActive (true);
+		}
+		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
+		{
+			WorkoutHUD.Instance.addExerciseButton.gameObject.SetActive (true);
+		}
 	}
 
 	public void ShowPanelMover()
 	{
 		MovePanelContatiner.gameObject.SetActive(true);
 		WorkoutControlsContatiner.gameObject.SetActive(false);
+
+		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
+		{
+			WorkoutHUD.Instance.addWorkoutButton.gameObject.SetActive (false);
+		}
+		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
+		{
+			WorkoutHUD.Instance.addExerciseButton.gameObject.SetActive (false);
+		}
 	}
 
 	public void ShowWorkoutControls()
@@ -44,6 +62,6 @@ public class Footer : MonoBehaviour
 	}
 
 	public void UpdateTitle(string newTitle){
-		title.text = newTitle;
+		//title.text = newTitle;
 	}
 }

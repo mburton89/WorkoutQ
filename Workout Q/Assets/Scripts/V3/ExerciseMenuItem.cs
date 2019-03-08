@@ -65,23 +65,8 @@ public class ExerciseMenuItem : UIPanel {
 	public void HandleSelfClickedOnAddMenu()
     {
         Unhighlight();
-
-		ExerciseData copiedExercise = ExerciseData.Copy(
-			exerciseData.name,
-			exerciseData.secondsToCompleteSet,
-			exerciseData.totalSets,
-			exerciseData.repsPerSet,
-			exerciseData.weight,
-			exerciseData.exerciseType
-		);
-
-		WorkoutManager.Instance.ActiveWorkout.exerciseData.Add(copiedExercise);
-		WorkoutHUD.Instance.AddExercisePanel(null, copiedExercise, false);
-        SoundManager.Instance.PlayButtonPressSound();
-		Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
-		WorkoutManager.Instance.Save();
-
 		AddPanel.Instance.Exit ();
+		EditExercisePanel.Instance.Init (exerciseData, true, false);
     }
 
 	public void SelectTitle(){
@@ -90,7 +75,7 @@ public class ExerciseMenuItem : UIPanel {
 
 	void HandleEditPressed()
 	{
-		EditExercisePanel.Instance.Init (this);
+		EditExercisePanel.Instance.Init (this, false, false);
 	}
 
 	public void UpdateStatsText(int sets, int reps, int weight, int seconds)

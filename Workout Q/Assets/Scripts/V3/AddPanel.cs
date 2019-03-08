@@ -74,10 +74,22 @@ public class AddPanel : MonoBehaviour {
 		}
 		else
 		{
-			WorkoutHUD.Instance.AddExercisePanel(WorkoutManager.Instance.ActiveWorkout, null, true);
+			//WorkoutHUD.Instance.AddExercisePanel(WorkoutManager.Instance.ActiveWorkout, null, true);
+			ExerciseData emptyExerciseData = new ExerciseData ();
+			emptyExerciseData.name = "New Exercise";
+			emptyExerciseData.totalInitialSets = 3;
+			emptyExerciseData.totalSets = 3;
+			emptyExerciseData.repsPerSet = 10;
+			emptyExerciseData.weight = 0;
+			emptyExerciseData.secondsToCompleteSet = 90;
+			EditExercisePanel.Instance.Init (emptyExerciseData, true, true);
 		}
 
 		Exit();
+
+		Canvas.ForceUpdateCanvases ();
+		WorkoutHUD.Instance.workoutsScrollRect.verticalScrollbar.value = 0f;
+		Canvas.ForceUpdateCanvases ();
 	}
 
 	void ShowPreloadedWorkouts()

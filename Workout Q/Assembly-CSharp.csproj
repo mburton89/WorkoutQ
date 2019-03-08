@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Footer\WorkoutControls.cs" />
      <Compile Include="Assets\Scripts\Header.cs" />
      <Compile Include="Assets\Scripts\IconSelectMenu.cs" />
+     <Compile Include="Assets\Scripts\NotchHeader.cs" />
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
      <Compile Include="Assets\Scripts\PeakView.cs" />
      <Compile Include="Assets\Scripts\PlayModeManager.cs" />

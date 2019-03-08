@@ -130,6 +130,9 @@ public class PlayModeManager : MonoBehaviour {
 	}
 
 	void EstablishActiveExercise(){
+
+		Header.Instance.UpdateMiddleLabel ("XRC " + (activeExerciseIndex + 1) + " of " + ActiveWorkout.exerciseData.Count);
+
 		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count){
 			ActiveExercise = ActiveWorkout.exerciseData[activeExerciseIndex];
 //			ActiveExercisePanel.PopulateFields(

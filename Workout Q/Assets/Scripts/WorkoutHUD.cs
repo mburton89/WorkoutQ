@@ -23,8 +23,8 @@ public class WorkoutHUD : MonoBehaviour {
 	[SerializeField]private WorkoutPanel WorkoutMenuItemPrefab;
 	[SerializeField]private ExerciseMenuItem _exerciseMenuItemPrefab;
 
-	[SerializeField]private ShadowButton addWorkoutButton;
-	[SerializeField]private ShadowButton addExerciseButton;
+	public ShadowButton addWorkoutButton;
+	public ShadowButton addExerciseButton;
 
 	[HideInInspector]public UIPanel selectedPanel;
 	[HideInInspector]public GridLayoutGroup activeGridLayout;
@@ -33,6 +33,9 @@ public class WorkoutHUD : MonoBehaviour {
 
 	[SerializeField] private EditExerciseView _editExerciseView;
 	[SerializeField] private ViewExerciseView _viewExerciseView;
+
+	public ScrollRect exercisesScrollRect;
+	public ScrollRect workoutsScrollRect;
 
 	void OnEnable()
 	{
@@ -125,19 +128,20 @@ public class WorkoutHUD : MonoBehaviour {
 	}
 
 	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen){
-	
-		Header.Instance.UpdateTopLabel ("");
-		Header.Instance.UpdateMiddleLabel (WorkoutManager.Instance.ActiveWorkout.name);
 
 		addExerciseButton.transform.localScale = Vector3.zero;
 
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		//playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 
-		_editExerciseView.Init (exerciseToOpen);
-		_viewExerciseView.Init (exerciseToOpen,
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(exerciseToOpen),
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
+		int exerciseIndex = WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseToOpen);
+		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
+
+		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
+		Header.Instance.UpdateMiddleLabel ("XRC " + (exerciseIndex + 1) + " of " + exerciseCount);
+
+		_editExerciseView.Init (exerciseToOpen, false, false);
+		_viewExerciseView.Init (exerciseToOpen, exerciseIndex, exerciseCount);
 
 		Footer.Instance.ShowWorkoutControls();
 		Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu();
@@ -147,17 +151,19 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void ShowEditStatsViewForExerciseAtIndex(int index)
 	{
-		Header.Instance.UpdateTopLabel ("");
-		Header.Instance.UpdateMiddleLabel (WorkoutManager.Instance.ActiveWorkout.name);
+		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
 
-		if (index < 0 || index >= WorkoutManager.Instance.ActiveWorkout.exerciseData.Count)
+		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
+		Header.Instance.UpdateMiddleLabel ("XRC " + (index + 1) + " of " + exerciseCount);
+
+		if (index < 0 || index >= exerciseCount)
 		{
 			return;
 		} 
 
 		ExerciseData nextExercise = WorkoutManager.Instance.ActiveWorkout.exerciseData [index];
 
-		_editExerciseView.Init (nextExercise);
+		_editExerciseView.Init (nextExercise, false, false);
 		_viewExerciseView.Init (nextExercise,
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf(nextExercise),
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
@@ -167,7 +173,11 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void PlayActiveWorkout(int exerciseIndex)
 	{
-		Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
+		//Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
+		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
+
+		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
+		Header.Instance.UpdateMiddleLabel ("XRC " + (exerciseIndex + 1) + " of " + exerciseCount);
 
 		addExerciseButton.transform.localScale = Vector3.zero;
 

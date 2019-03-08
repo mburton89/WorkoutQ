@@ -16,13 +16,19 @@ public class WorkoutPanel : UIPanel {
 	void OnEnable()
 	{
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
-		editButton.onClick.AddListener (HandleEditPressed);
+
+		if (editButton != null) {
+			editButton.onClick.AddListener (HandleEditPressed);		
+		}
 	}
 
 	void OnDisable()
 	{
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
-		editButton.onClick.RemoveListener (HandleEditPressed);
+
+		if (editButton != null) {
+			editButton.onClick.RemoveListener (HandleEditPressed);
+		}
 	}
 
 	public void Init(WorkoutData workoutData)
@@ -83,6 +89,10 @@ public class WorkoutPanel : UIPanel {
 		WorkoutManager.Instance.Save();
 
 		AddPanel.Instance.Exit ();
+
+		Canvas.ForceUpdateCanvases ();
+		WorkoutHUD.Instance.workoutsScrollRect.verticalScrollbar.value = 0f;
+		Canvas.ForceUpdateCanvases ();
     }
 
 	public void HandleSelfClickedOnAddPlanMenu()
@@ -102,5 +112,6 @@ public class WorkoutPanel : UIPanel {
 	void HandleEditPressed()
 	{
 		//EditExercisePanel.Instance.Init (this);
+		_workoutName.Select();
 	}
 }
