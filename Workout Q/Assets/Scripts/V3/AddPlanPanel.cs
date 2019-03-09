@@ -156,6 +156,7 @@ public class AddPlanPanel : MonoBehaviour {
 
 	void HandleChoosePlanPressed()
 	{
+		ShowWorkoutsForPlan (_currentPlanData);
 		foreach (WorkoutPanel workoutPanel in _workoutPanels) 
 		{
 			workoutPanel.HandleSelfClickedOnAddMenu ();
@@ -174,5 +175,10 @@ public class AddPlanPanel : MonoBehaviour {
 		{
 			ShowWorkoutsForPlan (_currentPlanData);
 		}
+	}
+
+	public void UpdateTopTitle(string newTopTitle)
+	{
+		_topTitle.text = newTopTitle;
 	}
 }

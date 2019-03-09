@@ -66,6 +66,7 @@ public class WorkoutHUD : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt ("hasOpenedApp", 1);
 			WorkoutManager.Instance.Save();
+			WorkoutManager.Instance.ShowWelcomeMenu ();
 		}
 	}
 

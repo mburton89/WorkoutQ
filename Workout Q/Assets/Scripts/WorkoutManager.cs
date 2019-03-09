@@ -27,7 +27,6 @@ public class WorkoutManager : MonoBehaviour {
 		} else {
 			PlayerPrefs.SetString("userTitle", "Workouts");
 			PlayerPrefs.SetString ("weightType", "lb");
-			LoadExampleWorkouts ();
 		}
 
 		Application.runInBackground = true;
@@ -79,14 +78,10 @@ public class WorkoutManager : MonoBehaviour {
 		}
 	}
 
-	public void LoadExampleWorkouts()
+	public void ShowWelcomeMenu()
 	{
-		//workoutData = new List<WorkoutData>();
-		//workoutData.Add (WorkoutGenerator.Instance.ExampleChestTricep);
-		//workoutData.Add (WorkoutGenerator.Instance.ExampleBackBicep);
-		//workoutData.Add (WorkoutGenerator.Instance.ExampleLegs);
-		//workoutData.Add (WorkoutGenerator.Instance.ExampleShoulders);
-		//workoutData.Add (WorkoutGenerator.Instance.ExampleCore);
+		AddPlanPanel.Instance.ShowPlans ();
+		AddPlanPanel.Instance.UpdateTopTitle ("Welcome!");
 	}
 }
 

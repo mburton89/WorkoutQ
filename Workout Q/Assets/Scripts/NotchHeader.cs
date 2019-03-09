@@ -22,8 +22,17 @@ public class NotchHeader : MonoBehaviour {
 			hour = hour - 12;
 		}
 
+		string minuteString;
+		int minute = dateTime.Minute;
+
+		if (minute < 10) {
+			minuteString = "0" + minute;
+		} else {
+			minuteString = minute.ToString ();
+		}
+
 		//string time = dateTime.ToString ("HH:mm");
-		string time = dateTime.ToString (hour + ":" + dateTime.Minute);
+		string time = dateTime.ToString (hour + ":" + minuteString);
 		timeText.text = time;
 
 		int batteryPercentage = (int)(SystemInfo.batteryLevel * 100f);
