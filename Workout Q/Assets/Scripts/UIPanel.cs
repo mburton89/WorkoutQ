@@ -32,13 +32,12 @@ public class UIPanel : MonoBehaviour {
 	public void Unhighlight()
 	{
 		Color primaryColor = ColorManager.Instance.ActiveColorLight;
-		Color secondaryColor = new Color (primaryColor.r / DARKENER_DIVIDER, primaryColor.g / DARKENER_DIVIDER, primaryColor.b / DARKENER_DIVIDER);
 
 		_fill.sprite = blackSprite;
 		_lineSeperator.sprite = darkSprite;
 		_mainText.color = primaryColor;
 		_placeHolderText.color = primaryColor;
-		_secondaryText.color = secondaryColor;
+		_secondaryText.color = primaryColor;
 		fakeLine.SetActive (false);
 	}
 
@@ -66,11 +65,10 @@ public class UIPanel : MonoBehaviour {
 	public void UpdateColor(){
 
 		Color primaryColor = ColorManager.Instance.ActiveColorLight;
-		Color secondaryColor = new Color (primaryColor.r / DARKENER_DIVIDER, primaryColor.g / DARKENER_DIVIDER, primaryColor.b / DARKENER_DIVIDER);
 
 		_mainText.color = primaryColor;
 		_placeHolderText.color = primaryColor;
-		_secondaryText.color = secondaryColor;
+		_secondaryText.color = primaryColor;
 
 		foreach (Image image in _images) {
 			image.color = primaryColor;
