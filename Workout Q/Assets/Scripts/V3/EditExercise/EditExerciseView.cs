@@ -80,6 +80,7 @@ public class EditExerciseView : MonoBehaviour {
 		{
 			currentExerciseMenuItem.exerciseData.name = _exerciseNameInputField.text;
 			currentExerciseMenuItem.UpdateText ();
+			WorkoutManager.Instance.Save ();
 		}
 	}
 

@@ -7,7 +7,7 @@ public class GymAdvancedLegs : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
-		workoutData.workoutType = WorkoutType.legsCore;
+		workoutData.workoutType = WorkoutType.squatRack;
 
         workoutData.name = "Advanced Legs";
         workoutData.exerciseData = new List<ExerciseData>();

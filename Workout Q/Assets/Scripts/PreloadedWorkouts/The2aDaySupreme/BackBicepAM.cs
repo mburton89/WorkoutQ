@@ -11,7 +11,7 @@ public class BackBicepAM : MonoBehaviour
         workoutData.exerciseData = new List<ExerciseData>();
 
         ExerciseData rowMachine = new ExerciseData();
-        rowMachine.Init("Row Machine", 300, 1, 1, 0, ExerciseType._custom); //TODO: Update animation
+		rowMachine.Init("Row Machine", 300, 1, 1, 0, ExerciseType.rowMachine);
         workoutData.exerciseData.Add(rowMachine);
 
         ExerciseData bentOverRowsWarmup = new ExerciseData();
@@ -23,7 +23,7 @@ public class BackBicepAM : MonoBehaviour
         workoutData.exerciseData.Add(bentOverRows);
 
         ExerciseData straightLegDeadlift = new ExerciseData();
-        straightLegDeadlift.Init("Straight Leg Deadlift", 90, 5, 5, 0, ExerciseType.deadlifts); //TODO Update Animation... maybe
+		straightLegDeadlift.Init("Straight Leg Deadlift", 90, 5, 5, 0, ExerciseType.straightLegDeadlift);
         workoutData.exerciseData.Add(straightLegDeadlift);
 
         ExerciseData dbRowsLeft = new ExerciseData();

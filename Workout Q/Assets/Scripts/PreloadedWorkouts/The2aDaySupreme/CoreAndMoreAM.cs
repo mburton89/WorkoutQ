@@ -15,7 +15,7 @@ public class CoreAndMoreAM : MonoBehaviour
         workoutData.exerciseData.Add(cardio);
 
         ExerciseData squatJumps = new ExerciseData();
-        squatJumps.Init("Squat Jumps", 75, 3, 10, 0, ExerciseType.squats); //TODO Update Animation
+        squatJumps.Init("Squat Jumps", 75, 3, 10, 0, ExerciseType.squatJumps);
         workoutData.exerciseData.Add(squatJumps);
 
         ExerciseData cleansWarmup = new ExerciseData();

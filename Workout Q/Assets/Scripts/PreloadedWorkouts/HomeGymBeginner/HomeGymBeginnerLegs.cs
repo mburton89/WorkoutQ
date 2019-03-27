@@ -7,7 +7,7 @@ public class HomeGymBeginnerLegs : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
-		workoutData.workoutType = WorkoutType.legsCore;
+		workoutData.workoutType = WorkoutType.doubleDumbell;
 
         workoutData.name = "Beginner Legs Workout";
         workoutData.exerciseData = new List<ExerciseData>();

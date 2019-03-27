@@ -60,8 +60,11 @@ public class EditExercisePanel : EditExerciseView {
 	{
 		currentExerciseData.exerciseType = newExerciseType;
 		fitBoyAnimator.Init (newExerciseType);
-		currentExerciseMenuItem.fitBoyAnimator.Init (newExerciseType);
+		if (currentExerciseMenuItem != null) {
+			currentExerciseMenuItem.fitBoyAnimator.Init (newExerciseType);
+		}
 		ShowEditPage ();
+		WorkoutManager.Instance.Save ();
 	}
 
 	void ShowEditPage(){

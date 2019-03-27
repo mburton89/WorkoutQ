@@ -35,7 +35,7 @@ public class WorkoutPanel : UIPanel {
 	{
 		this.workoutData = workoutData;
 		UpdateColor ();
-		fitBoyIlluminator.Init(WorkoutGenerator.Instance.GetSpriteForWorkout(workoutData.workoutType));
+		fitBoyIlluminator.Init(workoutData.workoutType);
 		UpdateText ();
 	}
 
@@ -61,39 +61,45 @@ public class WorkoutPanel : UIPanel {
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
+//	public void HandleSelfClickedOnAddMenu()
+//    {
+//        Unhighlight();
+//
+//		WorkoutData copiedWorkout = new WorkoutData ();
+//		copiedWorkout.name = workoutData.name;
+//		copiedWorkout.workoutType = workoutData.workoutType;
+//		copiedWorkout.exerciseData = new List<ExerciseData> ();
+//
+//		foreach(ExerciseData exercise in workoutData.exerciseData){
+//
+//			ExerciseData copiedExercise = ExerciseData.Copy(
+//				exercise.name,
+//				exercise.secondsToCompleteSet,
+//				exercise.totalSets,
+//				exercise.repsPerSet,
+//				exercise.weight,
+//				exercise.exerciseType
+//			);
+//
+//			copiedWorkout.exerciseData.Add(copiedExercise);
+//		}
+//
+//		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout, false);
+//        SoundManager.Instance.PlayButtonPressSound();
+//		WorkoutManager.Instance.Save();
+//
+//		AddPanel.Instance.Exit ();
+//
+//		Canvas.ForceUpdateCanvases ();
+//		WorkoutHUD.Instance.workoutsScrollRect.verticalScrollbar.value = 0f;
+//		Canvas.ForceUpdateCanvases ();
+//    }
+
 	public void HandleSelfClickedOnAddMenu()
-    {
-        Unhighlight();
-
-		WorkoutData copiedWorkout = new WorkoutData ();
-		copiedWorkout.name = workoutData.name;
-		copiedWorkout.workoutType = workoutData.workoutType;
-		copiedWorkout.exerciseData = new List<ExerciseData> ();
-
-		foreach(ExerciseData exercise in workoutData.exerciseData){
-
-			ExerciseData copiedExercise = ExerciseData.Copy(
-				exercise.name,
-				exercise.secondsToCompleteSet,
-				exercise.totalSets,
-				exercise.repsPerSet,
-				exercise.weight,
-				exercise.exerciseType
-			);
-
-			copiedWorkout.exerciseData.Add(copiedExercise);
-		}
-
-		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout, false);
-        SoundManager.Instance.PlayButtonPressSound();
-		WorkoutManager.Instance.Save();
-
-		AddPanel.Instance.Exit ();
-
-		Canvas.ForceUpdateCanvases ();
-		WorkoutHUD.Instance.workoutsScrollRect.verticalScrollbar.value = 0f;
-		Canvas.ForceUpdateCanvases ();
-    }
+	{
+		Unhighlight();
+		AddPanel.Instance.ShowExercisesForWorkout (workoutData);
+	}
 
 	public void HandleSelfClickedOnAddPlanMenu()
 	{
@@ -105,13 +111,13 @@ public class WorkoutPanel : UIPanel {
 		WorkoutManager.Instance.Save();
 	}
 
-	public void SelectTitle(){
+	public void SelectTitle()
+	{
 		_workoutName.Select();
 	}
 
 	void HandleEditPressed()
 	{
-		//EditExercisePanel.Instance.Init (this);
-		_workoutName.Select();
+		EditWorkoutPanel.Instance.Init (this, false, false);
 	}
 }

@@ -15,15 +15,15 @@ public class ShouldersAM : MonoBehaviour
         workoutData.exerciseData.Add(cardio);
 
         ExerciseData cleanPressWarmup = new ExerciseData();
-        cleanPressWarmup.Init("Clean Press Warmup", 60, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
+		cleanPressWarmup.Init("Clean Press Warmup", 60, 3, 10, 0, ExerciseType.cleanPress);
         workoutData.exerciseData.Add(cleanPressWarmup);
 
         ExerciseData cleanPress = new ExerciseData();
-        cleanPress.Init("Clean Press", 90, 5, 5, 0, ExerciseType._custom); //TODO Update Animation
+		cleanPress.Init("Clean Press", 90, 5, 5, 0, ExerciseType.cleanPress);
         workoutData.exerciseData.Add(cleanPress);
 
         ExerciseData uprightRows = new ExerciseData();
-        uprightRows.Init("Upright Rows", 90 , 3, 10, 0, ExerciseType._custom); //TODO Update Animation
+		uprightRows.Init("Upright Rows", 90 , 3, 10, 0, ExerciseType.uprightRows);
         workoutData.exerciseData.Add(uprightRows);
 
         ExerciseData shrugs = new ExerciseData();

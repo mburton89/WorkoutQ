@@ -3,9 +3,9 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler//, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler//, IEndDragHandler, IDragHandler, IBeginDragHandler 
 {
-	private bool pointerIsDown;
+	public bool pointerIsDown;
 	private bool hasLongPressed;
 	private float pointerDownTimer;
 
@@ -19,13 +19,13 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	//[SerializeField]
 	//private Image fillImage;
 
-	[SerializeField]private ScrollRect ScrollRectParent;
+	//[SerializeField]private ScrollRect ScrollRectParent;
 
-	public void Start()
-	{
-		// find our ScrollRect parent
-		ScrollRectParent = GetComponentInParent<ScrollRect>();
-	}
+//	public void Start()
+//	{
+//		// find our ScrollRect parent
+//		//ScrollRectParent = GetComponentInParent<ScrollRect>();
+//	}
 
 
 	public void OnPointerDown(PointerEventData eventData)
@@ -65,6 +65,8 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		}
 		//hasLongPressed = false;
 		Reset();
+
+		Debug.Log ("Clicks");
 	}
 
 //	public void OnDrag(PointerEventData eventData)
@@ -76,6 +78,9 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 //	{
 //		if(ScrollRectParent != null)
 //			ScrollRectParent.OnEndDrag(eventData);
+//
+//		Debug.Log ("OnEndDrag");
+//
 //	}
 //	public void OnBeginDrag(PointerEventData eventData)
 //	{

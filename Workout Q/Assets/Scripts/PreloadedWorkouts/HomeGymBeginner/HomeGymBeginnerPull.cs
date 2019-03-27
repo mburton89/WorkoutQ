@@ -7,7 +7,7 @@ public class HomeGymBeginnerPull : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
-		workoutData.workoutType = WorkoutType.backBiceps;
+		workoutData.workoutType = WorkoutType.dumbellsOnBench;
 
         workoutData.name = "Beginner Pull Workout";
         workoutData.exerciseData = new List<ExerciseData>();

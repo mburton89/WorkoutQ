@@ -138,6 +138,7 @@ public class WorkoutHUD : MonoBehaviour {
 		int exerciseIndex = WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseToOpen);
 		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
 
+		Header.Instance.lineSegmenter.gameObject.SetActive (true);
 		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
 		Header.Instance.UpdateMiddleLabel ("XRC " + (exerciseIndex + 1) + " of " + exerciseCount);
 
@@ -177,6 +178,7 @@ public class WorkoutHUD : MonoBehaviour {
 		//Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
 		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
 
+		Header.Instance.lineSegmenter.gameObject.SetActive (true);
 		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
 		Header.Instance.UpdateMiddleLabel ("XRC " + (exerciseIndex + 1) + " of " + exerciseCount);
 
@@ -211,7 +213,7 @@ public class WorkoutHUD : MonoBehaviour {
 			workoutData = new WorkoutData ();
 			workoutData.exerciseData = new List<ExerciseData> ();
 			workoutData.minutes = 0;
-			workoutData.workoutType = WorkoutType._custom;
+			workoutData.workoutType = WorkoutType._singleDumbell;
 		}
 
 		newWorkoutPanel.Init (workoutData);
@@ -270,6 +272,9 @@ public class WorkoutHUD : MonoBehaviour {
     {
         AddPanel.Instance.ShowForAddWorkouts();
 		SoundManager.Instance.PlayButtonPressSound();
+
+//		AddPlanPanel.Instance.Show ();
+//		AddPlanPanel.Instance.ShowWorkoutsForPlan (WorkoutGenerator.Instance.homeIntermediatePlan.planData);
     }
 
     void HandleAddExercisePressed()

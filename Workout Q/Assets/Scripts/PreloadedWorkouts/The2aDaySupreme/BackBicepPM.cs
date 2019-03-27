@@ -15,7 +15,7 @@ public class BackBicepPM : MonoBehaviour
         workoutData.exerciseData.Add(jumpingJacks);
 
         ExerciseData chinUps = new ExerciseData();
-        chinUps.Init("Chin Ups", 90, 5, 5, 0, ExerciseType.pullUps); //TODO: Update animation... maybe
+        chinUps.Init("Chin Ups", 90, 5, 5, 0, ExerciseType.pullUps);
         workoutData.exerciseData.Add(chinUps);
 
         ExerciseData curls = new ExerciseData();
@@ -23,7 +23,7 @@ public class BackBicepPM : MonoBehaviour
         workoutData.exerciseData.Add(curls);
 
         ExerciseData reverseCurls = new ExerciseData();
-        reverseCurls.Init("Reverse Curls", 75, 3, 10, 0, ExerciseType.curls); //TODO Update Animation... maybe
+        reverseCurls.Init("Reverse Curls", 75, 3, 10, 0, ExerciseType.reverseCurls);
         workoutData.exerciseData.Add(reverseCurls);
 
         return workoutData;

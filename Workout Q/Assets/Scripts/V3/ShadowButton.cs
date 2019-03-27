@@ -8,8 +8,8 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 	[SerializeField] private Image _buttonTop;
 	[SerializeField] private Image _buttonShadow;
     private RectTransform _rect;
-    private Vector2 _initialPosition;
-    [SerializeField] private float _amountToPress;
+	private Vector2 _initialPosition;
+	[SerializeField] private float _amountToPress;
 
 	public UnityEvent onPointerDown;
 	public UnityEvent onPointerUp;
@@ -40,7 +40,7 @@ public class ShadowButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _rect.anchoredPosition = _initialPosition;
+		_rect.anchoredPosition = _initialPosition;
         _buttonShadow.enabled = true; 
 
 		if (onPointerUp != null) 

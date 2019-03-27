@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Footer\WorkoutControls.cs" />
      <Compile Include="Assets\Scripts\Header.cs" />
      <Compile Include="Assets\Scripts\IconSelectMenu.cs" />
+     <Compile Include="Assets\Scripts\NextUpTextController.cs" />
      <Compile Include="Assets\Scripts\NotchHeader.cs" />
      <Compile Include="Assets\Scripts\NumberCircle.cs" />
      <Compile Include="Assets\Scripts\PeakView.cs" />
@@ -110,10 +111,13 @@
      <Compile Include="Assets\Scripts\PreloadedWorkouts\TheCaveMan\PilatesBeginnerUpperBodyWorkout.cs" />
      <Compile Include="Assets\Scripts\PreloadedWorkouts\TheFiveByFiver\LowerBodyFiveByFives.cs" />
      <Compile Include="Assets\Scripts\PreloadedWorkouts\TheFiveByFiver\UpperBodyFiveByFives.cs" />
+     <Compile Include="Assets\Scripts\SelectableWorkoutIcon.cs" />
      <Compile Include="Assets\Scripts\SetupPanel.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
+     <Compile Include="Assets\Scripts\TimeSlider.cs" />
      <Compile Include="Assets\Scripts\TrashBin.cs" />
      <Compile Include="Assets\Scripts\UIPanel.cs" />
+     <Compile Include="Assets\Scripts\UISelectHandler.cs" />
      <Compile Include="Assets\Scripts\V2\ExercisePanelV2.cs" />
      <Compile Include="Assets\Scripts\V3\AddPanel.cs" />
      <Compile Include="Assets\Scripts\V3\AddPlanPanel.cs" />
@@ -125,6 +129,7 @@
      <Compile Include="Assets\Scripts\V3\EditExercise\StatEditRow.cs" />
      <Compile Include="Assets\Scripts\V3\EditExercise\WeightEditRow.cs" />
      <Compile Include="Assets\Scripts\V3\EditExercisePanel.cs" />
+     <Compile Include="Assets\Scripts\V3\EditWorkoutPanel.cs" />
      <Compile Include="Assets\Scripts\V3\ExerciseMenuItem.cs" />
      <Compile Include="Assets\Scripts\V3\LineSegment.cs" />
      <Compile Include="Assets\Scripts\V3\LineSegmenter.cs" />
@@ -134,6 +139,7 @@
      <Compile Include="Assets\Scripts\V3\ShadowTextButton.cs" />
      <Compile Include="Assets\Scripts\V3\StatViewRow\StatViewRow.cs" />
      <Compile Include="Assets\Scripts\V3\StatViewRow\ViewExerciseView.cs" />
+     <Compile Include="Assets\Scripts\V3\WorkoutIconSelectMenu.cs" />
      <Compile Include="Assets\Scripts\V3\WorkoutMenuItem.cs" />
      <Compile Include="Assets\Scripts\Workout.cs" />
      <Compile Include="Assets\Scripts\WorkoutGenerator.cs" />

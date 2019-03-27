@@ -7,18 +7,18 @@ using DG.Tweening;
 public class FitBoyIlluminator : MonoBehaviour {
 
 	private const float GLOW_DURATION = .5f;
-	private const float FADE_OUT_AMOUNT = 0f;
+	private const float FADE_OUT_AMOUNT = .75f;
 	[HideInInspector] public Sprite glowFrameSprite;
 	public Image activeFrame;
-	public Image fitBotBase;
+	[HideInInspector] public WorkoutType workoutType;
 
-	public void Init(Sprite sprite)
+	public void Init(WorkoutType workoutType)
 	{
 		StopCoroutine("playAnimationCo");
-		glowFrameSprite = sprite;
+		this.workoutType = workoutType;
+		glowFrameSprite = WorkoutGenerator.Instance.GetSpriteForWorkout(workoutType);
 		activeFrame.sprite = glowFrameSprite;
 		activeFrame.color = ColorManager.Instance.ActiveColorLight;
-		fitBotBase.color = ColorManager.Instance.ActiveColorLight;
 		Play();
 	}
 

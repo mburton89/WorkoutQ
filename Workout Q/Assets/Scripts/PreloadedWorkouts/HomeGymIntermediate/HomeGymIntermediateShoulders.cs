@@ -7,7 +7,7 @@ public class HomeGymIntermediateShoulders : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
     {
-		workoutData.workoutType = WorkoutType.shoulders;
+		workoutData.workoutType = WorkoutType.doubleDumbell;
 
         workoutData.name = "Intermediate Shoulders";
         workoutData.exerciseData = new List<ExerciseData>();
@@ -37,7 +37,7 @@ public class HomeGymIntermediateShoulders : MonoBehaviour
         workoutData.exerciseData.Add(sideRaises);
 
         ExerciseData reverseFlies = new ExerciseData();
-        reverseFlies.Init("Reverse Flies", 75, 3, 10, 10, ExerciseType.db_side_raises);
+		reverseFlies.Init("Reverse Flies", 75, 3, 10, 10, ExerciseType.reverseFlies);
         workoutData.exerciseData.Add(reverseFlies);
 
 		return workoutData;

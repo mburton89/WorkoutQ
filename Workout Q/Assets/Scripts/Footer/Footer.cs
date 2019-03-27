@@ -10,9 +10,11 @@ public class Footer : MonoBehaviour
 
 	public PanelMover MovePanelContatiner;
 	public WorkoutControls WorkoutControlsContatiner;
-	public Image timerLine;
+	//public Image timerLine;
 	public TextMeshProUGUI title;
 	public TextMeshProUGUI seconds;
+
+	public TimeSlider timeSlider;
 
 	void Awake(){
 		if(Instance == null){
@@ -57,7 +59,7 @@ public class Footer : MonoBehaviour
 	}
 
 	public void ResetTimerLine(){
-		timerLine.fillAmount = 0f;
+		timeSlider.slider.value = 0f;
 		seconds.SetText ("");
 	}
 

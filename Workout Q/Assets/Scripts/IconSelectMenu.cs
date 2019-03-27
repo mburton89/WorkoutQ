@@ -29,11 +29,6 @@ public class IconSelectMenu : MonoBehaviour {
 		}
 	}
 
-	public void ShowWorkoutIcons()
-	{
-		
-	}
-
 	public void Hide()
 	{
 		foreach (SelectableFitBoy newFitBoyAnimator in gridLayoutGroup.GetComponentsInChildren<SelectableFitBoy>())

@@ -17,14 +17,17 @@ public class PlayModeManager : MonoBehaviour {
 //	public ExercisePanel ActiveExercisePanel;
 //	public ExercisePanel NextExercisePanel;
 
-	public Image timerLine;
+//	public Image timerLine;
+	public TimeSlider timeSlider;
 
-	private float _secondsRemaining;
+	[HideInInspector] public float secondsRemaining;
 	private bool _isInPlayMode;
 
 	public bool isPaused;
 
 	[SerializeField] private TextMeshProUGUI _secondsLabel;
+
+	[SerializeField] private NextUpTextController _nextUpTextController;
     
 	void Awake(){
 		if(Instance == null){
@@ -32,14 +35,25 @@ public class PlayModeManager : MonoBehaviour {
 		}
 	}
 
+	void Start()
+	{
+		timeSlider = Footer.Instance.timeSlider;
+	}
+
 	void Update(){
 
 		if(_isInPlayMode){
-			_secondsRemaining -= Time.deltaTime;
+			
 			//ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
-			_secondsLabel.SetText (_secondsRemaining.ToString ("F0") + "s");
 
-			if(_secondsRemaining < 0){
+			if (!timeSlider.selectHandler.pointerIsDown) {
+				secondsRemaining -= Time.deltaTime;
+				timeSlider.slider.value = 1 - secondsRemaining/ActiveExercise.secondsToCompleteSet;
+			}
+
+			_secondsLabel.SetText (secondsRemaining.ToString ("F0") + "s");
+
+			if(secondsRemaining < 0){
 				HandleTimerHittingZero();
 			}
 
@@ -47,18 +61,18 @@ public class PlayModeManager : MonoBehaviour {
 				DecrementSetsRemaining();
 			}
 
-			timerLine.fillAmount = 1 - 	_secondsRemaining/ActiveExercise.secondsToCompleteSet;
 			//timerLine.fillAmount = _secondsRemaining/ActiveWorkout.exerciseData[_activeExerciseIndex];
+			//Footer.Instance.UpdateTimerSlider(1 - _secondsRemaining/ActiveExercise.secondsToCompleteSet);
 		}
 	}
 
 	public void IncrementSetsRemaining(){
 		if (activeExerciseIndex == 0 && ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
-			_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
+			secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 			return;
 		}
 			
-		if (_secondsRemaining >= ActiveExercise.secondsToCompleteSet - 1) 
+		if (secondsRemaining >= ActiveExercise.secondsToCompleteSet - 1) 
 		{
 			if (ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
 				activeExerciseIndex--;
@@ -77,7 +91,7 @@ public class PlayModeManager : MonoBehaviour {
 			}
 		}
 			
-		_secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
+		secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 
 		SoundManager.Instance.PlayGoBackSound ();
@@ -109,7 +123,7 @@ public class PlayModeManager : MonoBehaviour {
 			SoundManager.Instance.PlayNewSetSound ();
 		}
 
-		_secondsRemaining = ActiveExercise.secondsToCompleteSet;
+		secondsRemaining = ActiveExercise.secondsToCompleteSet;
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
@@ -148,6 +162,7 @@ public class PlayModeManager : MonoBehaviour {
 		//		}
 
 		ViewExerciseView.Instance.UpdateExerciseName (ActiveExercise.name);
+		//TODO Init exerciseViewRow.lineSegmenter if not already
 		ViewExerciseView.Instance.exerciseViewRow.lineSegmenter.ShowSegmentCummulativelyLit (ActiveWorkout.exerciseData.IndexOf(ActiveExercise));
 
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.Init (ActiveExercise.totalInitialSets);
@@ -166,6 +181,7 @@ public class PlayModeManager : MonoBehaviour {
 		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count - 1){
 			NextExercise = ActiveWorkout.exerciseData[activeExerciseIndex + 1];
 			Footer.Instance.WorkoutControlsContatiner.ShowPeakButton ();
+			_nextUpTextController.ShowNextExerciseText (NextExercise);
 		}else{
 			NextExercise = null;
 			Footer.Instance.WorkoutControlsContatiner.HidePeakButton ();
@@ -196,11 +212,13 @@ public class PlayModeManager : MonoBehaviour {
 			ActiveWorkout.exerciseData.Add(newExercise);
 		}
 
+		timeSlider.gameObject.SetActive (true);
+
 		activeExerciseIndex = exerciseIndex;
 		EstablishPreviousExercise ();
 		EstablishActiveExercise();
 		EstablishNextExercise();
-		_secondsRemaining = ActiveExercise.secondsToCompleteSet;
+		secondsRemaining = ActiveExercise.secondsToCompleteSet;
 		_isInPlayMode = true;
 	}
 

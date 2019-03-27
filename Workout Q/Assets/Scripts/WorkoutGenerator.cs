@@ -120,13 +120,31 @@ public class WorkoutGenerator : MonoBehaviour {
 
 	//SPRITES FOR FITBOY ILLUMINATIONS 
 	public Sprite 
-	_custom,
-	backBiceps,
-	chestTriceps,
-	fullBody,
-	legsCore,
-	shoulders,
-	upperBody;
+		_singleDumbell,
+		doubleDumbell,
+		dumbellsOnBench,
+		benchRack,
+		squatRack,
+		pullupBar,
+		barbell,
+		kettleBell,
+		noWeights,
+		stopWatch,
+		heartRate,
+		mon,
+		tue,
+		wed,
+		thu,
+		fri,
+		sat,
+		sun,
+		day1,
+		day2,
+		day3,
+		day4,
+		day5,
+		day6,
+		day7;
 
 	[HideInInspector]public List<Sprite> listOfWorktoutSprites = new List<Sprite>();
 
@@ -342,18 +360,35 @@ public class WorkoutGenerator : MonoBehaviour {
         listOfExerciseSpriteLists.Add(tricepKickBack);
 		listOfExerciseSpriteLists.Add (uprightRows);
 		listOfExerciseSpriteLists.Add (windmills);
-
 	}
 
 	void AddWorkoutSpriteToWorkoutSpriteList()
 	{
-		listOfWorktoutSprites.Add(_custom);
-		listOfWorktoutSprites.Add(backBiceps);
-		listOfWorktoutSprites.Add(chestTriceps);
-		listOfWorktoutSprites.Add(fullBody);
-		listOfWorktoutSprites.Add(legsCore);
-		listOfWorktoutSprites.Add(shoulders);
-		listOfWorktoutSprites.Add(upperBody);
+		listOfWorktoutSprites.Add(_singleDumbell);
+		listOfWorktoutSprites.Add(doubleDumbell);
+		listOfWorktoutSprites.Add(dumbellsOnBench);
+		listOfWorktoutSprites.Add(benchRack);
+		listOfWorktoutSprites.Add(squatRack);
+		listOfWorktoutSprites.Add(pullupBar);
+		listOfWorktoutSprites.Add(barbell);
+		listOfWorktoutSprites.Add(kettleBell);
+		listOfWorktoutSprites.Add(noWeights);
+		listOfWorktoutSprites.Add(stopWatch);
+		listOfWorktoutSprites.Add(heartRate);
+		listOfWorktoutSprites.Add(mon);
+		listOfWorktoutSprites.Add(tue);
+		listOfWorktoutSprites.Add(wed);
+		listOfWorktoutSprites.Add(thu);
+		listOfWorktoutSprites.Add(fri);
+		listOfWorktoutSprites.Add(sat);
+		listOfWorktoutSprites.Add(sun);
+		listOfWorktoutSprites.Add(day1);
+		listOfWorktoutSprites.Add(day2);
+		listOfWorktoutSprites.Add(day3);
+		listOfWorktoutSprites.Add(day4);
+		listOfWorktoutSprites.Add(day5);
+		listOfWorktoutSprites.Add(day6);
+		listOfWorktoutSprites.Add(day7);
 	}
 
 	void AddPlanSpriteToPlanSpriteList()

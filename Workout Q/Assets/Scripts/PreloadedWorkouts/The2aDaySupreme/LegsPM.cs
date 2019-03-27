@@ -23,11 +23,11 @@ public class LegsPM : MonoBehaviour
         workoutData.exerciseData.Add(calfRaises);
 
         ExerciseData obliqueSideRaisesLeft = new ExerciseData();
-        obliqueSideRaisesLeft.Init("Oblique Side Raises - Left Side", 60, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
+		obliqueSideRaisesLeft.Init("Oblique Side Raises - Left Side", 60, 3, 10, 0, ExerciseType.obliqueSideRaises); 
         workoutData.exerciseData.Add(obliqueSideRaisesLeft);
 
         ExerciseData obliqueSideRaisesRight = new ExerciseData();
-        obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
+		obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 0, ExerciseType.obliqueSideRaises);
         workoutData.exerciseData.Add(obliqueSideRaisesRight);
 
         return workoutData;

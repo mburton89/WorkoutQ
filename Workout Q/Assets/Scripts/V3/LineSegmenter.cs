@@ -31,7 +31,7 @@ public class LineSegmenter : MonoBehaviour {
 	public void ShowSegmentBlinking(int setNumber){
 
 		if (_activeLine != null) {
-			_activeLine.StopBlinking ();
+			_activeLine.StopGlowing ();
 		}
 
 		for (int i = 0; i < setNumber; i++) {
@@ -45,7 +45,8 @@ public class LineSegmenter : MonoBehaviour {
 		}
 
 		_activeLine = _lineSegments [setNumber];
-		_activeLine.StartBlinking ();
+		_activeLine.UpdateSpriteToWhite ();
+		_activeLine.StartGlowing ();
 	}
 
 	public void ShowSegmentLit(int segmentIndex)

@@ -11,6 +11,7 @@ public class ExerciseMenuItem : UIPanel {
 	public TMP_InputField exerciseName;
 	public FitBoyAnimator fitBoyAnimator;
 	[SerializeField] private Button editButton;
+	[SerializeField] private TextMeshProUGUI _setsCompleteText;
 
 	void Awake()
 	{
@@ -94,5 +95,14 @@ public class ExerciseMenuItem : UIPanel {
 			+ "   " + exerciseData.weight + PlayerPrefs.GetString ("weightType")
 			+ "   " + exerciseData.secondsToCompleteSet
 			+ "s";
+	}
+
+	public void UpdateSetsCompleteDisplay(int completedSets, int totalSets)
+	{
+		if (completedSets == totalSets) {
+			_setsCompleteText = "COMPLETE";
+		}else{
+			_setsCompleteText = completedSets + "/" + totalSets + "complete";
+		}
 	}
 }

@@ -7,7 +7,7 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
-		workoutData.workoutType = WorkoutType.fullBody;
+		workoutData.workoutType = WorkoutType._singleDumbell;
 
         workoutData.name = "Advanced Core & More";
         workoutData.exerciseData = new List<ExerciseData>();
@@ -29,7 +29,7 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
         workoutData.exerciseData.Add(cleans);
       
         ExerciseData deadlift = new ExerciseData();
-        deadlift.Init("Cleans", 90, 5, 5, 135, ExerciseType.deadlifts);
+        deadlift.Init("Deadlifts", 90, 5, 5, 135, ExerciseType.deadlifts);
         workoutData.exerciseData.Add(deadlift);
 
         ExerciseData frontPlanks = new ExerciseData();
@@ -41,7 +41,7 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
         workoutData.exerciseData.Add(leftSidePlanks);
 
         ExerciseData rightSidePlanks = new ExerciseData();
-        rightSidePlanks.Init("Right Side Planks - 30 sec", 60, 3, 1, 0, ExerciseType._custom);
+		rightSidePlanks.Init("Right Side Planks - 30 sec", 60, 3, 1, 0, ExerciseType.planksSide);
         workoutData.exerciseData.Add(rightSidePlanks);
 
         ExerciseData backPlanks = new ExerciseData();

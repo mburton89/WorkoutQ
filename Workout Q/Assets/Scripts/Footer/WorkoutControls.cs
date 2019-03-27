@@ -48,6 +48,8 @@ public class WorkoutControls : MonoBehaviour {
 			PlayModeManager.Instance.Resume();
 		}else{
 			//WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
+
+			Header.Instance.lineSegmenter.gameObject.SetActive (true);
 			WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
 		}
 	}

@@ -144,6 +144,11 @@ public class AddPlanPanel : MonoBehaviour {
 		}
 	}
 
+	public void Show()
+	{
+		_container.SetActive (true);
+	}
+
 	void Exit()
 	{
 		_container.SetActive (false);

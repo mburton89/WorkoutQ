@@ -27,7 +27,7 @@ public class UpperBodyFiveByFives : MonoBehaviour
         workoutData.exerciseData.Add(bentOverRows);
 
         ExerciseData militaryPress = new ExerciseData();
-        militaryPress.Init("Military Press", 140, 5, 5, 135, ExerciseType.db_shoulder_press); //TODO update this
+		militaryPress.Init("Military Press", 140, 5, 5, 135, ExerciseType.militaryPress);
         workoutData.exerciseData.Add(militaryPress);
 
         return workoutData;

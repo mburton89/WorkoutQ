@@ -11,17 +11,23 @@ public class AddPanel : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI _title;
 	[SerializeField] private ShadowTextButton _addCustomButton;
 	[SerializeField] private ShadowTextButton _doneButton;
+	[SerializeField] private ShadowButton _backButton;
+	[SerializeField] private ShadowButton _addWorkoutButton;
 	[SerializeField] private Button _clickOverlay;
 	[SerializeField] private WorkoutPanel _addWorkoutItemPrefab;
 	[SerializeField] private ExerciseMenuItem _addExerciseItemPrefab;
+	[SerializeField] private ExerciseMenuItem _nonClickableExerciseItemPrefab;
 	[SerializeField] private GridLayoutGroup _gridLayout;
 	[SerializeField] private TMP_InputField _searchInputField;
+	[SerializeField] private GameObject _searchContainer;
 	[SerializeField] private Image _searchIcon;
 
 	private List<WorkoutPanel> _workoutPanels = new List<WorkoutPanel>();
 	private List<ExerciseMenuItem> _exerciseMenuItems = new List<ExerciseMenuItem>();
 
 	private bool _isForWorkouts;
+
+	[HideInInspector] public WorkoutData currentWorkoutData;
 
 	private void Awake()
 	{
@@ -34,6 +40,8 @@ public class AddPanel : MonoBehaviour {
 		_doneButton.onShortClick.AddListener(Exit);
 		_clickOverlay.onClick.AddListener(Exit);
 		_searchInputField.onValueChanged.AddListener (HandleSearch);
+		_backButton.onShortClick.AddListener (HandleBackPressed);
+		_addWorkoutButton.onShortClick.AddListener (HandleAddWorkoutPressed);
 	}
 
 	private void OnDisable()
@@ -42,22 +50,26 @@ public class AddPanel : MonoBehaviour {
 		_doneButton.onShortClick.RemoveListener(Exit);
 		_clickOverlay.onClick.RemoveListener(Exit);
 		_searchInputField.onValueChanged.RemoveListener (HandleSearch);
+		_backButton.onShortClick.RemoveListener (HandleBackPressed);
+		_addWorkoutButton.onShortClick.RemoveListener (HandleAddWorkoutPressed);
 	}
 
     public void ShowForAddWorkouts()
 	{
 		_container.SetActive(true);
-		_title.text = "Add Workouts";
+		_title.text = "Add Workout";
 		ShowPreloadedWorkouts();
 		_isForWorkouts = true;
+		_searchContainer.SetActive (true);
 	}
 
 	public void ShowForAddExercises()
     {
         _container.SetActive(true);
-		_title.text = "Add Exercises";
+		_title.text = "Add Exercise";
         ShowPreloadedExercises();
 		_isForWorkouts = false;
+		_searchContainer.SetActive (true);
 	}
 
 	public void Exit () 
@@ -70,7 +82,9 @@ public class AddPanel : MonoBehaviour {
 	{
 		if(_isForWorkouts)
 		{
-			WorkoutHUD.Instance.AddWorkoutPanel(null, true);
+			WorkoutData emptyWorkoutData = new WorkoutData ();
+			emptyWorkoutData.name = "New Workout";
+			EditWorkoutPanel.Instance.Init (emptyWorkoutData, true, false);
 		}
 		else
 		{
@@ -179,8 +193,73 @@ public class AddPanel : MonoBehaviour {
 					exerciseMenuItem.fitBoyAnimator.Play ();
 				}
 			}
-
-			_searchIcon.gameObject.SetActive (false);
 		}
+	}
+
+	public void ShowExercisesForWorkout(WorkoutData workout)
+	{
+		TryClear ();
+
+		currentWorkoutData = workout;
+
+		foreach (ExerciseData exercise in currentWorkoutData.exerciseData)
+		{
+			ExerciseMenuItem exerciseMenuItem = Instantiate(_nonClickableExerciseItemPrefab);
+			exerciseMenuItem.Init (exercise);
+			exerciseMenuItem.transform.SetParent(_gridLayout.transform);
+			exerciseMenuItem.transform.localScale = Vector3.one;
+			_exerciseMenuItems.Add (exerciseMenuItem);
+		}
+
+		_title.text = currentWorkoutData.name;
+
+		_backButton.gameObject.SetActive (true);
+		_addWorkoutButton.gameObject.SetActive (true);
+		_searchContainer.SetActive (false);
+	}
+
+	void HandleBackPressed()
+	{
+		_backButton.gameObject.SetActive (false);
+		_addWorkoutButton.gameObject.SetActive (false);
+
+		TryClear ();
+
+		ShowForAddWorkouts ();
+	}
+
+	void HandleAddWorkoutPressed()
+	{
+		_backButton.gameObject.SetActive (false);
+		_addWorkoutButton.gameObject.SetActive (false);
+
+		WorkoutData copiedWorkout = new WorkoutData ();
+		copiedWorkout.name = currentWorkoutData.name;
+		copiedWorkout.workoutType = currentWorkoutData.workoutType;
+		copiedWorkout.exerciseData = new List<ExerciseData> ();
+
+		foreach(ExerciseData exercise in currentWorkoutData.exerciseData){
+
+			ExerciseData copiedExercise = ExerciseData.Copy(
+				exercise.name,
+				exercise.secondsToCompleteSet,
+				exercise.totalSets,
+				exercise.repsPerSet,
+				exercise.weight,
+				exercise.exerciseType
+			);
+
+			copiedWorkout.exerciseData.Add(copiedExercise);
+		}
+
+		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout, false);
+        SoundManager.Instance.PlayButtonPressSound();
+		WorkoutManager.Instance.Save();
+
+		AddPanel.Instance.Exit ();
+
+//		Canvas.ForceUpdateCanvases ();
+//		WorkoutHUD.Instance.workoutsScrollRect.verticalScrollbar.value = 0f;
+//		Canvas.ForceUpdateCanvases ();
 	}
 }

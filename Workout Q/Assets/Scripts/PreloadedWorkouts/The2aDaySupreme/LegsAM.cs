@@ -19,7 +19,7 @@ public class LegsAM : MonoBehaviour
         workoutData.exerciseData.Add(boxJumps);
 
         ExerciseData squatJumps = new ExerciseData();
-        squatJumps.Init("Squat Jumps", 60, 3, 10, 0, ExerciseType.squats); //TODO Update Animation
+		squatJumps.Init("Squat Jumps", 60, 3, 10, 0, ExerciseType.squatJumps);
         workoutData.exerciseData.Add(squatJumps);
 
         ExerciseData squats = new ExerciseData();

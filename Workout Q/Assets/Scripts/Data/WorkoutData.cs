@@ -4,13 +4,31 @@ using UnityEngine;
 
 public enum WorkoutType
 {
-	_custom,
-	backBiceps,
-	chestTriceps,
-	fullBody,
-	legsCore,
-	shoulders,
-	upperBody
+	_singleDumbell,
+	doubleDumbell,
+	dumbellsOnBench,
+	benchRack,
+	squatRack,
+	pullupBar,
+	barbell,
+	kettleBell,
+	noWeights,
+	stopWatch,
+	heartRate,
+	mon,
+	tue,
+	wed,
+	thu,
+	fri,
+	sat,
+	sun,
+	day1,
+	day2,
+	day3,
+	day4,
+	day5,
+	day6,
+	day7
 }
 
 [System.Serializable]

@@ -27,7 +27,7 @@ public class ChestTricepPM : MonoBehaviour
         workoutData.exerciseData.Add(palmOutFrontRaises);
 
         ExerciseData overheadTricepExtensions = new ExerciseData();
-        overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 0, ExerciseType._custom); //TODO Update Animation
+		overheadTricepExtensions.Init("Overhead Tricep Extensions", 75, 3, 10, 0, ExerciseType.overheadTricepExtensions);
         workoutData.exerciseData.Add(overheadTricepExtensions);
 
         ExerciseData tricepKickBacks = new ExerciseData();

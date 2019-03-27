@@ -7,7 +7,7 @@ public class HomeGymIntermediateChestTriceps : MonoBehaviour
 
 	public WorkoutData GetWorkoutData()
 	{
-		workoutData.workoutType = WorkoutType.chestTriceps;
+		workoutData.workoutType = WorkoutType.dumbellsOnBench;
 
         workoutData.name = "Intermediate Chest & Triceps";
         workoutData.exerciseData = new List<ExerciseData>();

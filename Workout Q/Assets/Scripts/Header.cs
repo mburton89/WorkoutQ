@@ -54,6 +54,8 @@ public class Header : MonoBehaviour {
 		}
 		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
+			lineSegmenter.gameObject.SetActive (false);
+			Footer.Instance.timeSlider.gameObject.SetActive (false);
 			WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout (WorkoutManager.Instance.ActiveWorkout);
 			_middleLabel.text = WorkoutManager.Instance.ActiveWorkout.name;
 			PlayModeManager.Instance.Reset();
