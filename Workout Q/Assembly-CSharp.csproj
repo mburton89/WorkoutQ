@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\Data\WorkoutData.cs" />
      <Compile Include="Assets\Scripts\Exercise.cs" />
      <Compile Include="Assets\Scripts\ExercisePanel.cs" />
+     <Compile Include="Assets\Scripts\ExerciseSlider.cs" />
      <Compile Include="Assets\Scripts\FitBoyAnimator.cs" />
      <Compile Include="Assets\Scripts\FitBoyDifficulty.cs" />
      <Compile Include="Assets\Scripts\FitBoyIlluminator.cs" />

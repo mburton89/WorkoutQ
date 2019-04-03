@@ -102,6 +102,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 	public void ShowExercisesForWorkout(WorkoutData workoutToOpen)
 	{
+		print ("workoutToOpen.exerciseData.Count:" + workoutToOpen.exerciseData.Count);
+
 		foreach(ExerciseMenuItem panel in exercisePanelsGridLayoutGroup.GetComponentsInChildren<ExerciseMenuItem>()){
 			Destroy(panel.gameObject);
 		}
@@ -117,15 +119,21 @@ public class WorkoutHUD : MonoBehaviour {
 		_editExerciseView.Hide ();
 		_viewExerciseView.Hide ();
 
+		print ("workoutToOpen.exerciseData.Count:" + workoutToOpen.exerciseData.Count);
+
 		foreach(ExerciseData exercise in workoutToOpen.exerciseData){
 			AddExercisePanel(null, exercise, false);
 		}
+
+		print ("workoutToOpen.exerciseData.Count:" + workoutToOpen.exerciseData.Count);
+
+		currentMode = Mode.ViewingExercises;
 
 		Footer.Instance.ShowWorkoutControls();
 		Footer.Instance.WorkoutControlsContatiner.ShowPausedMenu();
 		Footer.Instance.UpdateTitle ("");
 
-		currentMode = Mode.ViewingExercises;
+		ExerciseSlider.Instance.Hide ();
 	}
 
 	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen){
@@ -142,11 +150,20 @@ public class WorkoutHUD : MonoBehaviour {
 		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
 		Header.Instance.UpdateMiddleLabel ("XRC " + (exerciseIndex + 1) + " of " + exerciseCount);
 
+		print ("exerciseToOpen: " + exerciseToOpen);
+		print ("exerciseIndex: " + exerciseIndex);
+		print ("exerciseCount: " + exerciseCount);
+
 		_editExerciseView.Init (exerciseToOpen, false, false);
 		_viewExerciseView.Init (exerciseToOpen, exerciseIndex, exerciseCount);
 
-		Footer.Instance.ShowWorkoutControls();
-		Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu();
+//		Footer.Instance.ShowWorkoutControls();
+//
+//		if (exerciseToOpen.totalSets <= 0) {
+//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (true);
+//		} else {
+//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (false);
+//		}
 
 		currentMode = Mode.EditingExercise;
 	}
@@ -171,9 +188,17 @@ public class WorkoutHUD : MonoBehaviour {
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
 		WorkoutManager.Instance.ActiveExercise = nextExercise;
+
+//		Footer.Instance.ShowWorkoutControls();
+//
+//		if (nextExercise.totalSets <= 0) {
+//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (true);
+//		} else {
+//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (false);
+//		}
 	}
 
-	public void PlayActiveWorkout(int exerciseIndex)
+	public void SetupExerciseToPlay(int exerciseIndex)
 	{
 		//Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
 		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
@@ -187,7 +212,7 @@ public class WorkoutHUD : MonoBehaviour {
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		_editExerciseView.Hide ();
 
-		if (currentMode == Mode.ViewingExercises) {
+		if (currentMode == Mode.ViewingExercises && !WorkoutManager.Instance.ActiveWorkout.inProgress) {
 			exerciseIndex = 0;
 		}
 
@@ -196,9 +221,13 @@ public class WorkoutHUD : MonoBehaviour {
 			exerciseIndex,
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
-		PlayModeManager.Instance.PlayWorkout(WorkoutManager.Instance.ActiveWorkout, exerciseIndex);
+		PlayModeManager.Instance.SetUpExercise(WorkoutManager.Instance.ActiveWorkout, exerciseIndex);
 
 		currentMode = Mode.PlayingExercise;
+
+		WorkoutManager.Instance.ActiveExercise = exerciseToPlay;
+
+		ExerciseSlider.Instance.Init (exerciseCount, exerciseIndex);
 	}
 
 	public void AddWorkoutPanel(WorkoutData workoutData, bool isFromButton){

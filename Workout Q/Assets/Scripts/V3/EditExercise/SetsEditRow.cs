@@ -7,7 +7,7 @@ public class SetsEditRow : StatEditRow
 	public void Init(EditExerciseView editExerciseView)
 	{
 		controller = editExerciseView;
-		value = controller.currentExerciseData.totalSets;
+		value = controller.currentExerciseData.totalInitialSets;
 		numberInput.text = value.ToString();
 		labelString = "Sets:";
 		UpdateStatView ();

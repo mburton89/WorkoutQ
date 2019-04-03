@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class WorkoutControls : MonoBehaviour {
-	
+
+	[SerializeField]private ShadowButton _startWorkoutButton;
+	[SerializeField]private ShadowButton _completeWorkoutButton;
 	[SerializeField]private ShadowButton _playButton;
+	[SerializeField]private ShadowButton _restartButton;
 	[SerializeField]private ShadowButton _pauseButton;
 	[SerializeField]private ShadowButton _previousSetButton;
 	[SerializeField]private ShadowButton _nextSetButton;
@@ -14,9 +17,28 @@ public class WorkoutControls : MonoBehaviour {
 	[SerializeField]private ShadowButton _peakNextButton;
 	public ShadowButton editButton;
 
+	[SerializeField] private List<ShadowButton> _allButtons;
+
+//	void Awake()
+//	{
+//		_allButtons.Add (_startWorkoutButton);
+//		_allButtons.Add (_completeWorkoutButton);
+//		_allButtons.Add (_playButton);
+//		_allButtons.Add (_restartButton);
+//		_allButtons.Add (_pauseButton);
+//		_allButtons.Add (_previousSetButton);
+//		_allButtons.Add (_nextSetButton);
+//		_allButtons.Add (_previousExerciseButton);
+//		_allButtons.Add (_nextExerciseButton);
+//		_allButtons.Add (_peakNextButton);
+//	}
+
 	void OnEnable()
 	{
+		_startWorkoutButton.onShortClick.AddListener(HandlePlayPressed);
+		_completeWorkoutButton.onShortClick.AddListener(HandleCompleteWorkoutPressed);
 		_playButton.onShortClick.AddListener(HandlePlayPressed);
+		_restartButton.onShortClick.AddListener(HandleRestartPressed);
 		_pauseButton.onShortClick.AddListener(HandlePausePressed);
 		_previousSetButton.onShortClick.AddListener(HandlePreviousSetPressed);
 		_nextSetButton.onShortClick.AddListener(HandleNextSetPressed);
@@ -29,8 +51,10 @@ public class WorkoutControls : MonoBehaviour {
 
 	void OnDisable()
 	{
+		_startWorkoutButton.onShortClick.RemoveListener(HandlePlayPressed);
+		_completeWorkoutButton.onShortClick.RemoveListener(HandleCompleteWorkoutPressed);
 		_playButton.onShortClick.RemoveListener(HandlePlayPressed);
-		_pauseButton.onShortClick.RemoveListener(HandlePausePressed);
+		_restartButton.onShortClick.AddListener(HandleRestartPressed);
 		_previousSetButton.onShortClick.RemoveListener(HandlePreviousSetPressed);
 		_nextSetButton.onShortClick.RemoveListener(HandleNextSetPressed);
 		_previousExerciseButton.onShortClick.RemoveListener(HandlePreviousExercisePressed);
@@ -42,19 +66,34 @@ public class WorkoutControls : MonoBehaviour {
 
 	void HandlePlayPressed()
 	{
+		//ShowCurrentlyPlayingMenu();
+
+		if (!PlayModeManager.Instance.isPaused) {
+			print ("WorkoutManager.Instance.ActiveExercise.name: " + WorkoutManager.Instance.ActiveExercise.name);
+			WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
+			print ("WorkoutManager.Instance.ActiveExercise.name: " + WorkoutManager.Instance.ActiveExercise.name);
+		}
+
+		PlayModeManager.Instance.Play ();
+
+		ShowCurrentlyPlayingMenu ();
+	}
+
+	void HandleRestartPressed()
+	{
 		ShowCurrentlyPlayingMenu();
 
 		if(PlayModeManager.Instance.isPaused){
-			PlayModeManager.Instance.Resume();
+			PlayModeManager.Instance.RestartExerciseAndPlay();
 		}else{
-			//WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
-
-			Header.Instance.lineSegmenter.gameObject.SetActive (true);
-			WorkoutHUD.Instance.PlayActiveWorkout((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
+			//WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
+			PlayModeManager.Instance.RestartExerciseAndPlay ();
 		}
+
+		ShowCurrentlyPlayingMenu ();
 	}
 
-	void HandlePausePressed()
+	public void HandlePausePressed()
 	{
 		ShowPausedMenu();
 
@@ -62,7 +101,7 @@ public class WorkoutControls : MonoBehaviour {
 		_pauseButton.gameObject.SetActive(false);
 		_previousSetButton.gameObject.SetActive(false);
 		_nextSetButton.gameObject.SetActive(false);
-		editButton.gameObject.SetActive(true);
+		//editButton.gameObject.SetActive(true);
 
 		PlayModeManager.Instance.Pause();
 	}
@@ -77,63 +116,88 @@ public class WorkoutControls : MonoBehaviour {
 		PlayModeManager.Instance.DecrementSetsRemaining();
 	}
 
-	void HandlePreviousExercisePressed()
+	public void HandlePreviousExercisePressed()
 	{
 		int index = WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) - 1;
 		if (index > -1) {
-			WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (index);
+			//WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (index);
+			WorkoutHUD.Instance.SetupExerciseToPlay(index);
 		}
 	}
 
-	void HandleNextExercisePressed()
+	public void HandleNextExercisePressed()
 	{
 		int index = WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1;
 		if (index < WorkoutManager.Instance.ActiveWorkout.exerciseData.Count) {
-			WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1);
+			//WorkoutHUD.Instance.ShowEditStatsViewForExerciseAtIndex (WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise) + 1);
+			WorkoutHUD.Instance.SetupExerciseToPlay(index);
 		}
 	}
 
 	public void ShowPausedMenu(){
-		_playButton.gameObject.SetActive(true);
-		_pauseButton.gameObject.SetActive(false);
-		_previousSetButton.gameObject.SetActive(false);
-		_nextSetButton.gameObject.SetActive(false);
-		_previousExerciseButton.gameObject.SetActive(false);
-		_nextExerciseButton.gameObject.SetActive(false);
-		_peakNextButton.gameObject.SetActive (false);
+		HideAllButtons ();
+
+		if (!WorkoutManager.Instance.ActiveWorkout.inProgress) {
+			_startWorkoutButton.gameObject.SetActive (true);
+		} else {
+			if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) {
+				_completeWorkoutButton.gameObject.SetActive (true);
+			} else {
+				_playButton.gameObject.SetActive(true);
+				_previousExerciseButton.gameObject.SetActive(true);
+				_nextExerciseButton.gameObject.SetActive(true);
+			}
+		}
 	}
 
 	public void ShowCurrentlyPlayingMenu(){
-		_playButton.gameObject.SetActive(false);
+		HideAllButtons ();
 		_pauseButton.gameObject.SetActive(true);
 		_previousSetButton.gameObject.SetActive(true);
 		_nextSetButton.gameObject.SetActive(true);
-		_previousExerciseButton.gameObject.SetActive(false);
-		_nextExerciseButton.gameObject.SetActive(false);
 		_peakNextButton.gameObject.SetActive (true);
-		editButton.gameObject.SetActive(false);
 		Footer.Instance.UpdateTitle ("SEC: ");
 	}
 
-	public void ShowEditingExerciseMenu()
+	public void ShowEditingExerciseMenu(bool shouldRestartExercise)
 	{
-		_playButton.gameObject.SetActive(true);
-		_pauseButton.gameObject.SetActive(false);
-		_previousSetButton.gameObject.SetActive(false);
-		_nextSetButton.gameObject.SetActive(false);
+		HideAllButtons ();
+
+		if (shouldRestartExercise) {
+			_restartButton.gameObject.SetActive (true);
+		} else {
+			_playButton.gameObject.SetActive (true);
+		}
+
 		_previousExerciseButton.gameObject.SetActive(true);
 		_nextExerciseButton.gameObject.SetActive(true);
-		_peakNextButton.gameObject.SetActive (false);
 	}
+
+//	public void HandleEditPressed()
+//	{
+//		HideAllButtons ();
+//
+//		PlayModeManager.Instance.isPaused = false;
+//		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
+//		_previousExerciseButton.gameObject.SetActive(true);
+//		_nextExerciseButton.gameObject.SetActive(true);
+//	}
 
 	public void HandleEditPressed()
 	{
-		editButton.gameObject.SetActive(false);
-		PlayModeManager.Instance.isPaused = false;
-		WorkoutManager.Instance.workoutHUD.ShowEditStatsViewForExerciseAtIndex(PlayModeManager.Instance.activeExerciseIndex);
-		_previousExerciseButton.gameObject.SetActive(true);
-		_nextExerciseButton.gameObject.SetActive(true);
-		_peakNextButton.gameObject.SetActive (false);
+		EditExercisePanel.Instance.Init (WorkoutManager.Instance.ActiveExercise, false, false);
+	}
+
+	public void ShowForWorkoutPreStarted()
+	{
+		HideAllButtons ();
+		_startWorkoutButton.gameObject.SetActive (true);
+	}
+
+	public void ShowForWorkoutPostStarted()
+	{
+		HideAllButtons ();
+		_completeWorkoutButton.gameObject.SetActive (true);
 	}
 
 	void HandlePeakPressed()
@@ -154,5 +218,19 @@ public class WorkoutControls : MonoBehaviour {
 	public void HidePeakButton()
 	{
 		_peakNextButton.gameObject.SetActive(false);	
+	}
+
+	void HideAllButtons()
+	{
+		foreach (ShadowButton button in _allButtons) {
+			button.gameObject.SetActive (false);
+		}
+	}
+
+	void HandleCompleteWorkoutPressed()
+	{
+		WorkoutManager.Instance.ActiveWorkout.Reset ();
+		WorkoutHUD.Instance.ShowExercisesForWorkout (WorkoutManager.Instance.ActiveWorkout);
+		WorkoutManager.Instance.Save ();
 	}
 }

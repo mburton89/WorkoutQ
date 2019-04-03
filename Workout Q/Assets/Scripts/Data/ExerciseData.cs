@@ -59,6 +59,7 @@ public class ExerciseData
 {
 	public string name;
 	public int secondsToCompleteSet;
+	public int secondsRemainingInSet;
 	public int totalInitialSets;
 	public int totalSets;
 	public int repsPerSet;
@@ -72,6 +73,7 @@ public class ExerciseData
 
 		newExercise.name = newName;
 		newExercise.secondsToCompleteSet = newSeconds;
+		newExercise.secondsRemainingInSet = newSeconds;
 		newExercise.totalInitialSets = newTotalSets;
 		newExercise.totalSets = newTotalSets;
 		newExercise.repsPerSet = newRepsPerSet;
@@ -85,11 +87,18 @@ public class ExerciseData
 	{
 		this.name = name;
 		this.secondsToCompleteSet = seconds;
+		this.secondsRemainingInSet = seconds;
 		this.totalInitialSets = totalSets;
 		this.totalSets = totalSets;
 		this.repsPerSet = reps;
 		this.weight = weight;
 		this.exerciseType = exerciseType;
+	}
+
+	public void Reset()
+	{
+		secondsRemainingInSet = secondsToCompleteSet;
+		totalSets = totalInitialSets;
 	}
 }
 

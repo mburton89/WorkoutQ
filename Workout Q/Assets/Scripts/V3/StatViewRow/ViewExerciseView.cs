@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ViewExerciseView : MonoBehaviour {
@@ -18,6 +19,10 @@ public class ViewExerciseView : MonoBehaviour {
 	public StatViewRow setsViewRow;
 
 	public FitBoyAnimator fitBoyAnimator;
+	[SerializeField] private Image _previousFitBoy;
+	[SerializeField] private Image _nextFitBoy;
+//	[SerializeField] private LongClickButton _previousFitBoyButton;
+//	[SerializeField] private LongClickButton _nextFitBoyButton;
 
 	void Awake()
 	{
@@ -30,6 +35,9 @@ public class ViewExerciseView : MonoBehaviour {
 		UpdateExerciseView (exercise.name, currentExerciseIndex, totalExercises);
 		fitBoyAnimator.Init(exercise.exerciseType);
 		_weightLabel.text = PlayerPrefs.GetString ("weightType") + "s";
+
+		_previousFitBoy.color = ColorManager.Instance.ActiveColorDark;
+		_nextFitBoy.color = ColorManager.Instance.ActiveColorDark;
 	}
 
 	public void Show()
@@ -64,7 +72,11 @@ public class ViewExerciseView : MonoBehaviour {
 
 	public void UpdateSetsView(int currentSet, int totalSets)
 	{
-		_setsText.text = currentSet + " of " + totalSets;
+		if (currentSet > totalSets) {
+			_setsText.text = "COMPLETE";
+		} else {
+			_setsText.text = currentSet + " of " + totalSets;
+		}
 	}
 
 	public void UpdateRepsView(int reps)
@@ -81,4 +93,63 @@ public class ViewExerciseView : MonoBehaviour {
 	{
 		_exerciseName.text = exerciseName;
 	}
+
+	public void SetupPreviousFitBoy(Sprite sprite)
+	{
+		_previousFitBoy.gameObject.SetActive (true);
+		_previousFitBoy.sprite = sprite;
+	}
+
+	public void HidePreviousFitBoy()
+	{
+		_previousFitBoy.gameObject.SetActive (false);
+	}
+
+	public void SetupNextFitBoy(Sprite sprite)
+	{
+		_nextFitBoy.gameObject.SetActive (true);
+		_nextFitBoy.sprite = sprite;
+	}
+
+	public void HideNextFitBoy()
+	{
+		_nextFitBoy.gameObject.SetActive (false);
+	}
+
+	public void HandlePreviousFitBoyPointerDown(){
+		if (PlayModeManager.Instance.isPaused) {
+			_previousFitBoy.color = ColorManager.Instance.ActiveColorLight;
+		}
+	}
+
+	public void HandlePreviousFitBoyPointerUp(){
+		if (PlayModeManager.Instance.isPaused) {
+			_previousFitBoy.color = ColorManager.Instance.ActiveColorDark;
+		}
+	}
+
+	public void HandlePreviousFitBoyClicked(){
+		if (PlayModeManager.Instance.isPaused) {
+			Footer.Instance.WorkoutControlsContatiner.HandlePreviousExercisePressed ();
+		}
+	}
+
+	public void HandleNextFitBoyPointerDown(){
+		if (PlayModeManager.Instance.isPaused) {
+			_nextFitBoy.color = ColorManager.Instance.ActiveColorLight;
+		}
+	}
+
+	public void HandleNextFitBoyPointerUp(){
+		if (PlayModeManager.Instance.isPaused) {
+			_nextFitBoy.color = ColorManager.Instance.ActiveColorDark;
+		}
+	}
+
+	public void HandleNextFitBoyClicked(){
+		if (PlayModeManager.Instance.isPaused) {
+			Footer.Instance.WorkoutControlsContatiner.HandleNextExercisePressed ();
+		}
+	}
+
 }

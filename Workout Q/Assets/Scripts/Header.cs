@@ -51,6 +51,8 @@ public class Header : MonoBehaviour {
 			_middleLabel.text = PlayerPrefs.GetString("userTitle");
 			lineSegmenter.Clear ();
 			_settingsButton.gameObject.SetActive (true);
+
+			WorkoutManager.Instance.ActiveWorkout.Reset ();
 		}
 		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{

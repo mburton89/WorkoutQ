@@ -11,7 +11,10 @@ public class ExerciseMenuItem : UIPanel {
 	public TMP_InputField exerciseName;
 	public FitBoyAnimator fitBoyAnimator;
 	[SerializeField] private Button editButton;
-	[SerializeField] private TextMeshProUGUI _setsCompleteText;
+	//[SerializeField] private Image _progressMeter;
+	[SerializeField] private Image _progressCircle;
+	[SerializeField] private Image _progressCircleBG;
+	[SerializeField] private GameObject _checkMark;
 
 	void Awake()
 	{
@@ -42,9 +45,11 @@ public class ExerciseMenuItem : UIPanel {
 	{
 		this.exerciseData = exerciseData;
 		exerciseName.text = exerciseData.name;
-		UpdateStatsText (exerciseData.totalSets, exerciseData.repsPerSet, exerciseData.weight, exerciseData.secondsToCompleteSet);
+		UpdateStatsText (exerciseData.totalInitialSets, exerciseData.repsPerSet, exerciseData.weight, exerciseData.secondsToCompleteSet);
    		fitBoyAnimator.Init(exerciseData.exerciseType);
 		UpdateColor(); 
+
+		UpdateSetsCompleteDisplay (exerciseData.totalSets, exerciseData.totalInitialSets);
 	}
 
 	public void UpdateText(){
@@ -60,6 +65,8 @@ public class ExerciseMenuItem : UIPanel {
 		Unhighlight ();
 		WorkoutManager.Instance.ActiveExercise = exerciseData;
 		WorkoutHUD.Instance.ShowEditStatsViewForExercise(exerciseData);
+		//WorkoutHUD.Instance.play
+		WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseData)));
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
@@ -97,12 +104,28 @@ public class ExerciseMenuItem : UIPanel {
 			+ "s";
 	}
 
-	public void UpdateSetsCompleteDisplay(int completedSets, int totalSets)
+	public void UpdateSetsCompleteDisplay(int remainingSets, int totalSets)
 	{
-		if (completedSets == totalSets) {
-			_setsCompleteText = "COMPLETE";
-		}else{
-			_setsCompleteText = completedSets + "/" + totalSets + "complete";
+//		if (remainingSets == 0) {
+//			_setsCompleteText.text = "COMPLETE";
+//		}else if (remainingSets == totalSets) {
+//			_setsCompleteText.text = "";
+//		}else{
+//			int setsComplete = totalSets - remainingSets;
+//			_setsCompleteText.text = setsComplete + "/" + totalSets + "complete";
+//		}
+
+		float setsComplete = totalSets - remainingSets;
+		float percentComplete = setsComplete / totalSets;
+
+		//_progressMeter.fillAmount = percentComplete;
+		if (_progressCircle != null) {
+			_progressCircle.fillAmount = percentComplete;
+			_progressCircle.color = ColorManager.Instance.ActiveColorLight;
+			_progressCircleBG.color = ColorManager.Instance.ActiveColorDark;
+			if (percentComplete >= 1) {
+				_checkMark.SetActive (true);
+			}
 		}
 	}
 }

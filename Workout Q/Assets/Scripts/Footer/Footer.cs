@@ -11,7 +11,7 @@ public class Footer : MonoBehaviour
 	public PanelMover MovePanelContatiner;
 	public WorkoutControls WorkoutControlsContatiner;
 	//public Image timerLine;
-	public TextMeshProUGUI title;
+	//public TextMeshProUGUI title;
 	public TextMeshProUGUI seconds;
 
 	public TimeSlider timeSlider;

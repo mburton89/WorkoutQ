@@ -42,11 +42,13 @@ public class WorkoutData {
 
 	public WorkoutType workoutType;
 
+	public bool inProgress;
+
 	public void EstablishMinutes()
 	{
 		minutes = 0;
 		foreach(ExerciseData exercise in exerciseData){
-			minutes = minutes + ((exercise.totalSets * exercise.secondsToCompleteSet) / 60);
+			minutes = minutes + ((exercise.totalInitialSets * exercise.secondsToCompleteSet) / 60);
 		}
 	}
 
@@ -72,5 +74,14 @@ public class WorkoutData {
 		}
 
 		return copiedWorkout;
+	}
+
+	public void Reset()
+	{
+		inProgress = false;
+
+		foreach (ExerciseData exercise in exerciseData) {
+			exercise.Reset ();
+		}
 	}
 }

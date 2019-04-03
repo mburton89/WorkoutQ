@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a589fb34a52c1d48b494155ae47b261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerIsDown: 0
   requiredHoldTime: 0.5
   onPointerDown:
     m_PersistentCalls:
@@ -308,7 +309,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  ScrollRectParent: {fileID: 0}
 --- !u!114 &114152344788891660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames: []
   activeFrame: {fileID: 114152344788891660}
+  exerciseType: 0
 --- !u!114 &114408531801892226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -995,6 +996,7 @@ MonoBehaviour:
   exerciseData:
     name: 
     secondsToCompleteSet: 0
+    secondsRemainingInSet: 0
     totalInitialSets: 0
     totalSets: 0
     repsPerSet: 0
@@ -1003,6 +1005,10 @@ MonoBehaviour:
   statsText: {fileID: 114866582362237046}
   exerciseName: {fileID: 114346330293942294}
   fitBoyAnimator: {fileID: 114389741593301006}
+  editButton: {fileID: 0}
+  _progressCircle: {fileID: 0}
+  _progressCircleBG: {fileID: 0}
+  _checkMark: {fileID: 0}
 --- !u!222 &222137038182691444
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1156,7 +1162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 44.50006, y: 22}
+  m_AnchoredPosition: {x: 44.50006, y: 0}
   m_SizeDelta: {x: -172.99988, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224661972639439726
@@ -1259,7 +1265,7 @@ RectTransform:
   m_GameObject: {fileID: 1604245389395220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_LocalScale: {x: 0, y: 0, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 224238577222096302}
   m_RootOrder: 3

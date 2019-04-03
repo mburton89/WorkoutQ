@@ -71,25 +71,26 @@ public class PlayModeManager : MonoBehaviour {
 			secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 			return;
 		}
-			
-		if (secondsRemaining >= ActiveExercise.secondsToCompleteSet - 1) 
-		{
-			if (ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
-				activeExerciseIndex--;
-				EstablishPreviousExercise ();
-				EstablishActiveExercise ();
-				EstablishNextExercise ();
-			} else {
-				ActiveExercise.totalSets++;
-				//ActiveExercisePanel.setsNumberCircle.UpdateValue (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 
-				int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
-				string totalSets = ActiveExercise.totalInitialSets.ToString ();	
-
-				ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
-				ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
-			}
-		}
+		//UNCOMMENT IF YOU WANT ABILITY TO DEDUCT COMPLETION OF A SET
+//		if (secondsRemaining >= ActiveExercise.secondsToCompleteSet - 1) 
+//		{
+//			if (ActiveExercise.totalSets == ActiveExercise.totalInitialSets) {
+//				activeExerciseIndex--;
+//				EstablishPreviousExercise ();
+//				EstablishActiveExercise ();
+//				EstablishNextExercise ();
+//			} else {
+//				ActiveExercise.totalSets++;
+//				//ActiveExercisePanel.setsNumberCircle.UpdateValue (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+//
+//				int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
+//				string totalSets = ActiveExercise.totalInitialSets.ToString ();	
+//
+//				ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
+//				ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
+//			}
+//		}
 			
 		secondsRemaining = ActiveExercise.secondsToCompleteSet + 1;
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
@@ -98,81 +99,84 @@ public class PlayModeManager : MonoBehaviour {
 	}
 
 	public void DecrementSetsRemaining(){
-		if(ActiveExercise.totalSets == 1){
-
+		if(ActiveExercise.totalSets == 1)
+		{
+			ActiveExercise.totalSets--;
 			activeExerciseIndex ++;
 
-			if (activeExerciseIndex == ActiveWorkout.exerciseData.Count) {
+			if (activeExerciseIndex == ActiveWorkout.exerciseData.Count) 
+			{
 				HandleWorkoutFinished ();
 				return;
 			}
 
-			//EstablishPreviousExercise ();
+			EstablishPreviousExercise ();
 			EstablishActiveExercise();
 			EstablishNextExercise();
 			SoundManager.Instance.PlayNewExerciseSound ();
-		}else{
+		}
+		else
+		{
 			ActiveExercise.totalSets --;
-			//ActiveExercisePanel.setsNumberCircle.UpdateValue(ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
-
 			int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 			string totalSets = ActiveExercise.totalInitialSets.ToString ();
 			ViewExerciseView.Instance.setsViewRow.UpdateLabel("SET: " + activeSet + " / " + totalSets);
 			ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
-
 			SoundManager.Instance.PlayNewSetSound ();
+			ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 		}
 
 		secondsRemaining = ActiveExercise.secondsToCompleteSet;
-		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
 	}
 
 	void EstablishPreviousExercise(){
-//		if(_activeExerciseIndex < ActiveWorkout.exerciseData.Count && _activeExerciseIndex > 0){
-//			PreviousExercise = ActiveWorkout.exerciseData[_activeExerciseIndex - 1];
-//			PreviousExercisePanel.PopulateFields(
-//				PreviousExercise.name,
-//				PreviousExercise.secondsToCompleteSet,
-//				PreviousExercise.totalSets,
-//				PreviousExercise.repsPerSet,
-//				PreviousExercise.weight
-//			);
-//			PreviousExercisePanel.transform.localScale = Vector3.one;
-//		}else{
-//			PreviousExercisePanel.transform.localScale = Vector3.zero;
-//		}
+		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count && activeExerciseIndex > 0){
+			PreviousExercise = ActiveWorkout.exerciseData[activeExerciseIndex - 1];
+			ViewExerciseView.Instance.SetupPreviousFitBoy (WorkoutGenerator.Instance.GetSpritesForExercise (PreviousExercise.exerciseType) [0]);
+		}else{
+			ViewExerciseView.Instance.HidePreviousFitBoy (); 
+		}
 	}
 
-	void EstablishActiveExercise(){
+	void EstablishActiveExercise()
+	{
+		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count){
+			ActiveExercise = ActiveWorkout.exerciseData[activeExerciseIndex];
+			WorkoutManager.Instance.ActiveExercise = ActiveExercise;
+		}
 
 		Header.Instance.UpdateMiddleLabel ("XRC " + (activeExerciseIndex + 1) + " of " + ActiveWorkout.exerciseData.Count);
 
-		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count){
-			ActiveExercise = ActiveWorkout.exerciseData[activeExerciseIndex];
-//			ActiveExercisePanel.PopulateFields(
-//				ActiveExercise.name,
-//				ActiveExercise.secondsToCompleteSet,
-//				ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1),
-//				ActiveExercise.repsPerSet,
-//				ActiveExercise.weight
-//			);
-		}
-		//		else{
-		//			ActiveExercisePanel.transform.localScale = Vector3.zero;
-		//		}
-
 		ViewExerciseView.Instance.UpdateExerciseName (ActiveExercise.name);
 		//TODO Init exerciseViewRow.lineSegmenter if not already
-		ViewExerciseView.Instance.exerciseViewRow.lineSegmenter.ShowSegmentCummulativelyLit (ActiveWorkout.exerciseData.IndexOf(ActiveExercise));
+		print("ActiveWorkout.exerciseData.IndexOf(ActiveExercise): " + ActiveWorkout.exerciseData.IndexOf(ActiveExercise));
+
+		int index = ActiveWorkout.exerciseData.IndexOf (ActiveExercise);
+		ViewExerciseView.Instance.exerciseViewRow.lineSegmenter.ShowSegmentCummulativelyLit (index);
+		ExerciseSlider.Instance.slider.value = index;
 
 		ViewExerciseView.Instance.setsViewRow.lineSegmenter.Init (ActiveExercise.totalInitialSets);
-		ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+
+//		print ("ActiveExercise.totalInitialSets: " + ActiveExercise.totalInitialSets);
+//		print ("ActiveExercise.totalSets: " + ActiveExercise.totalSets);
+//		print ("ActiveExercise.name: " + ActiveExercise.name);
+
+		Pause ();
+
+		if (ActiveExercise.totalSets <= 0) {
+			ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentCummulativelyLit  (ActiveExercise.totalInitialSets - 1);
+			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (true);
+		} else {
+			ViewExerciseView.Instance.setsViewRow.lineSegmenter.ShowSegmentBlinking (ActiveExercise.totalInitialSets - ActiveExercise.totalSets);
+			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (false);
+		}
 
 		int activeSet = (ActiveExercise.totalInitialSets - (ActiveExercise.totalSets - 1));
 
 		ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
 		ViewExerciseView.Instance.UpdateRepsView (ActiveExercise.repsPerSet);
 		ViewExerciseView.Instance.UpdateWeightView (ActiveExercise.weight);
+		ViewExerciseView.Instance.fitBoyAnimator.Init(ActiveExercise.exerciseType);
 
 		ViewExerciseView.Instance.fitBoyAnimator.Init(ActiveExercise.exerciseType);
 	}
@@ -182,9 +186,12 @@ public class PlayModeManager : MonoBehaviour {
 			NextExercise = ActiveWorkout.exerciseData[activeExerciseIndex + 1];
 			Footer.Instance.WorkoutControlsContatiner.ShowPeakButton ();
 			_nextUpTextController.ShowNextExerciseText (NextExercise);
+			ViewExerciseView.Instance.SetupNextFitBoy (WorkoutGenerator.Instance.GetSpritesForExercise(NextExercise.exerciseType)[0]);
 		}else{
 			NextExercise = null;
+			_nextUpTextController.ShowNothing ();
 			Footer.Instance.WorkoutControlsContatiner.HidePeakButton ();
+			ViewExerciseView.Instance.HideNextFitBoy ();
 		}
 	}
 
@@ -192,25 +199,28 @@ public class PlayModeManager : MonoBehaviour {
 		DecrementSetsRemaining();
 	}
 
-	public void PlayWorkout(WorkoutData workout, int exerciseIndex){
+	public void SetUpExercise(WorkoutData workout, int exerciseIndex){
 
-		if (ActiveWorkout != null) {
-			ActiveWorkout.exerciseData.Clear ();
-		}
+//		if (ActiveWorkout != null) {
+//			ActiveWorkout.exerciseData.Clear ();
+//		}
 
-		foreach(ExerciseData exercise in workout.exerciseData){
+//		foreach(ExerciseData exercise in workout.exerciseData){
+//
+//			ExerciseData newExercise = ExerciseData.Copy(
+//				exercise.name,
+//				exercise.secondsToCompleteSet,
+//				exercise.remainingSets,
+//				exercise.repsPerSet,
+//				exercise.weight,
+//				exercise.exerciseType
+//			);
+//
+//			ActiveWorkout.exerciseData.Add(newExercise);
+//		}
 
-			ExerciseData newExercise = ExerciseData.Copy(
-				exercise.name,
-				exercise.secondsToCompleteSet,
-				exercise.totalSets,
-				exercise.repsPerSet,
-				exercise.weight,
-				exercise.exerciseType
-			);
 
-			ActiveWorkout.exerciseData.Add(newExercise);
-		}
+		ActiveWorkout = workout;
 
 		timeSlider.gameObject.SetActive (true);
 
@@ -219,11 +229,18 @@ public class PlayModeManager : MonoBehaviour {
 		EstablishActiveExercise();
 		EstablishNextExercise();
 		secondsRemaining = ActiveExercise.secondsToCompleteSet;
-		_isInPlayMode = true;
+		_isInPlayMode = false;
+
+		Footer.Instance.ShowWorkoutControls();
+		if (ActiveExercise.totalSets <= 0) {
+			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (true);
+		} else {
+			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (false);
+		}
 	}
 
 	public void Reset(){
-		ActiveWorkout.exerciseData.Clear();
+		//ActiveWorkout.exerciseData.Clear();
 		_isInPlayMode = false;
 		isPaused = false;
 //		ActiveExercisePanel.transform.localScale = Vector3.one;
@@ -235,7 +252,17 @@ public class PlayModeManager : MonoBehaviour {
 		isPaused = true;
 	}
 
-	public void Resume(){
+	public void Play(){
+		_isInPlayMode = true;
+		isPaused = false;
+
+		ActiveWorkout.inProgress = true;
+	}
+
+	public void RestartExerciseAndPlay(){
+
+		ActiveExercise.totalSets = ActiveExercise.totalInitialSets;
+		ViewExerciseView.Instance.UpdateSetsView (1, ActiveExercise.totalInitialSets);
 		_isInPlayMode = true;
 		isPaused = false;
 	}

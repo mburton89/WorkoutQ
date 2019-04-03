@@ -44,14 +44,13 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		{
 			if (onPointerUp != null) 
 			{
+				Debug.Log ("UP");
 				onPointerUp.Invoke ();
 			}	
 		}
 		//hasLongPressed = false;
 		pointerIsDown = false;
 		Reset();
-
-		Debug.Log ("UP");
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
@@ -60,13 +59,12 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		{
 			if (onShortClick != null) 
 			{
+				Debug.Log ("Clicks");
 				onShortClick.Invoke ();
 			}	
 		}
 		//hasLongPressed = false;
 		Reset();
-
-		Debug.Log ("Clicks");
 	}
 
 //	public void OnDrag(PointerEventData eventData)
