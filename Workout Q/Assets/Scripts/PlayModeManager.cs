@@ -138,7 +138,7 @@ public class PlayModeManager : MonoBehaviour {
 		}
 	}
 
-	void EstablishActiveExercise()
+	public void EstablishActiveExercise()
 	{
 		if(activeExerciseIndex < ActiveWorkout.exerciseData.Count){
 			ActiveExercise = ActiveWorkout.exerciseData[activeExerciseIndex];
@@ -176,6 +176,7 @@ public class PlayModeManager : MonoBehaviour {
 		ViewExerciseView.Instance.UpdateSetsView (activeSet, ActiveExercise.totalInitialSets);
 		ViewExerciseView.Instance.UpdateRepsView (ActiveExercise.repsPerSet);
 		ViewExerciseView.Instance.UpdateWeightView (ActiveExercise.weight);
+		_secondsLabel.SetText(ActiveExercise.secondsToCompleteSet.ToString());
 		ViewExerciseView.Instance.fitBoyAnimator.Init(ActiveExercise.exerciseType);
 
 		ViewExerciseView.Instance.fitBoyAnimator.Init(ActiveExercise.exerciseType);

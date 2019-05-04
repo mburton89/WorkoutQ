@@ -152,4 +152,9 @@ public class ViewExerciseView : MonoBehaviour {
 		}
 	}
 
+	public void Refresh()
+	{
+		_exerciseName.text = WorkoutManager.Instance.ActiveExercise.name;
+		PlayModeManager.Instance.EstablishActiveExercise ();
+	}
 }

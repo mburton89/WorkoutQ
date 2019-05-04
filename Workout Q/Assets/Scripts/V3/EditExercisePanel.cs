@@ -28,8 +28,8 @@ public class EditExercisePanel : EditExerciseView {
 
 	private void OnEnable()
 	{
-		_exerciseNameInputField.onSubmit.AddListener(HandleInputFieldSubmitted);
-		_clickOverlay.onClick.AddListener (Hide);
+		_exerciseNameInputField.onValueChanged.AddListener(HandleInputFieldSubmitted);
+		_clickOverlay.onClick.AddListener (HandleDonePressed);
 		_doneButton.onShortClick.AddListener (HandleDonePressed);
 		_editTitleButton.onShortClick.AddListener (_exerciseNameInputField.Select);
 		_editIconButton.onShortClick.AddListener (HandleEditIconPressed);
@@ -38,8 +38,8 @@ public class EditExercisePanel : EditExerciseView {
 
 	private void OnDisable()
 	{
-		_exerciseNameInputField.onSubmit.RemoveListener(HandleInputFieldSubmitted);
-		_clickOverlay.onClick.RemoveListener (Hide);
+		_exerciseNameInputField.onValueChanged.RemoveListener(HandleInputFieldSubmitted);
+		_clickOverlay.onClick.RemoveListener (HandleDonePressed);
 		_doneButton.onShortClick.RemoveListener (HandleDonePressed);
 		_editTitleButton.onShortClick.RemoveListener (_exerciseNameInputField.Select);
 		_editIconButton.onShortClick.RemoveListener (HandleEditIconPressed);
@@ -108,6 +108,11 @@ public class EditExercisePanel : EditExerciseView {
 		else 
 		{
 			Hide ();
+		}
+
+		if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
+		{
+			ViewExerciseView.Instance.Refresh ();
 		}
 	}
 }

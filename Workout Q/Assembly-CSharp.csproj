@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BetterSlider\BetterSlider\Examples\SmartCarouselTester.cs" />
+     <Compile Include="Assets\BetterSlider\BetterSlider\Scripts\SliderScrollBarHandle.cs" />
+     <Compile Include="Assets\BetterSlider\BetterSlider\Scripts\SmartCarousel.cs" />
+     <Compile Include="Assets\BetterSlider\BetterSlider\Scripts\SmartCarouselItem.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
@@ -58,6 +62,7 @@
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+     <Compile Include="Assets\Header\Scripts\HeaderV2.cs" />
      <Compile Include="Assets\Scripts\BugsList.cs" />
      <Compile Include="Assets\Scripts\ColorElement.cs" />
      <Compile Include="Assets\Scripts\Config\ColorConfigurer.cs" />
@@ -76,6 +81,7 @@
      <Compile Include="Assets\Scripts\Footer\PanelMover.cs" />
      <Compile Include="Assets\Scripts\Footer\WorkoutControls.cs" />
      <Compile Include="Assets\Scripts\Header.cs" />
+     <Compile Include="Assets\Scripts\HighlightButton.cs" />
      <Compile Include="Assets\Scripts\IconSelectMenu.cs" />
      <Compile Include="Assets\Scripts\NextUpTextController.cs" />
      <Compile Include="Assets\Scripts\NotchHeader.cs" />
@@ -181,6 +187,13 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Examples\WorkoutPlayerTester.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Scripts\ExerciseStatsController.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Scripts\ExerciseTitlesController.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Scripts\SetsDisplayController.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Scripts\SetsDisplaySegment.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Scripts\WorkoutControlsController.cs" />
+     <Compile Include="Assets\WorkoutPlayer\Scripts\WorkoutPlayerController.cs" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />

@@ -61,39 +61,30 @@ public class WorkoutPanel : UIPanel {
 		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
-//	public void HandleSelfClickedOnAddMenu()
-//    {
-//        Unhighlight();
-//
-//		WorkoutData copiedWorkout = new WorkoutData ();
-//		copiedWorkout.name = workoutData.name;
-//		copiedWorkout.workoutType = workoutData.workoutType;
-//		copiedWorkout.exerciseData = new List<ExerciseData> ();
-//
-//		foreach(ExerciseData exercise in workoutData.exerciseData){
-//
-//			ExerciseData copiedExercise = ExerciseData.Copy(
-//				exercise.name,
-//				exercise.secondsToCompleteSet,
-//				exercise.totalSets,
-//				exercise.repsPerSet,
-//				exercise.weight,
-//				exercise.exerciseType
-//			);
-//
-//			copiedWorkout.exerciseData.Add(copiedExercise);
-//		}
-//
-//		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout, false);
-//        SoundManager.Instance.PlayButtonPressSound();
-//		WorkoutManager.Instance.Save();
-//
-//		AddPanel.Instance.Exit ();
-//
-//		Canvas.ForceUpdateCanvases ();
-//		WorkoutHUD.Instance.workoutsScrollRect.verticalScrollbar.value = 0f;
-//		Canvas.ForceUpdateCanvases ();
-//    }
+	public void AddWorkoutFromPlanPanel()
+    {
+		WorkoutData copiedWorkout = new WorkoutData ();
+		copiedWorkout.name = workoutData.name;
+		copiedWorkout.workoutType = workoutData.workoutType;
+		copiedWorkout.exerciseData = new List<ExerciseData> ();
+
+		foreach(ExerciseData exercise in workoutData.exerciseData){
+
+			ExerciseData copiedExercise = ExerciseData.Copy(
+				exercise.name,
+				exercise.secondsToCompleteSet,
+				exercise.totalSets,
+				exercise.repsPerSet,
+				exercise.weight,
+				exercise.exerciseType
+			);
+
+			copiedWorkout.exerciseData.Add(copiedExercise);
+		}
+
+		WorkoutHUD.Instance.AddWorkoutPanel(copiedWorkout, false);
+		WorkoutManager.Instance.Save();
+    }
 
 	public void HandleSelfClickedOnAddMenu()
 	{

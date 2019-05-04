@@ -164,7 +164,7 @@ public class AddPlanPanel : MonoBehaviour {
 		ShowWorkoutsForPlan (_currentPlanData);
 		foreach (WorkoutPanel workoutPanel in _workoutPanels) 
 		{
-			workoutPanel.HandleSelfClickedOnAddMenu ();
+			workoutPanel.AddWorkoutFromPlanPanel ();
 		}
 
 		Exit ();
