@@ -12,6 +12,7 @@ public class SetupPanel : MonoBehaviour {
 	[SerializeField] private ShadowTextButton _changeColorButton;
 	[SerializeField] private ShadowTextButton _addWorkoutPlanButton;
 	[SerializeField] private ShadowTextButton _doneButton;
+	[SerializeField] private ShadowTextButton _testButton;
 	[SerializeField] private Button _clickOverlay;
 
 	void Awake()
@@ -25,6 +26,8 @@ public class SetupPanel : MonoBehaviour {
 		_addWorkoutPlanButton.onShortClick.AddListener (HandleAddWorkoutPlansPressed);
 		_doneButton.onShortClick.AddListener (Exit);
 		_clickOverlay.onClick.AddListener(Exit);
+
+		_testButton.onShortClick.AddListener (GoToPlayerTestScene);
 	}
 
 	void OnDisable()
@@ -33,6 +36,8 @@ public class SetupPanel : MonoBehaviour {
 		_addWorkoutPlanButton.onShortClick.RemoveListener (HandleAddWorkoutPlansPressed);
 		_doneButton.onShortClick.RemoveListener (Exit);
 		_clickOverlay.onClick.RemoveListener(Exit);
+
+		_testButton.onShortClick.RemoveListener (GoToPlayerTestScene);
 	}
 
 	void HandleChangeColorButtonPressed()
@@ -54,5 +59,10 @@ public class SetupPanel : MonoBehaviour {
 	void Exit()
 	{
 		_container.SetActive (false);
+	}
+
+	void GoToPlayerTestScene()
+	{
+		SceneManager.LoadScene (2);
 	}
 }

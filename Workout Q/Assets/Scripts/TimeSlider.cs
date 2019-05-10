@@ -11,13 +11,11 @@ public class TimeSlider : MonoBehaviour {
 	void OnEnable()
 	{
 		slider.onValueChanged.AddListener (HandleHandleMoved);
-
 	}
 
 	void OnDisable()
 	{
 		slider.onValueChanged.RemoveListener (HandleHandleMoved);
-
 	}
 
 	void HandleHandleMoved(float value)

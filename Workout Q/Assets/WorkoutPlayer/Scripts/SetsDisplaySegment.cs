@@ -8,7 +8,6 @@ using DG.Tweening;
 public class SetsDisplaySegment : MonoBehaviour 
 {
 	[SerializeField] private TextMeshProUGUI _label;
-	[SerializeField] private Image _bgLine;
 	[SerializeField] private Image _fillLine;
 
 	private const float GLOW_DURATION = .5f;
@@ -23,10 +22,9 @@ public class SetsDisplaySegment : MonoBehaviour
 		{
 			_label.text = setNumber.ToString();
 		}
-
-		//_bgLine.color = ColorManager.Instance.ActiveColorDark;
-
-		ShowAsIncomplete ();
+			
+		DarkenText ();
+		_fillLine.color = ColorManager.Instance.ActiveColorDark;
 	}
 
 	public void UpdateFillValue(float fillValue)
@@ -84,13 +82,23 @@ public class SetsDisplaySegment : MonoBehaviour
 	{
 		StopGlowing ();
 		DarkenText ();
-		_fillLine.color = ColorManager.Instance.ActiveColorLight;
+		GlowIn ();
 	}
 
 	public void ShowAsIncomplete()
 	{
 		StopGlowing ();
 		DarkenText ();
-		_fillLine.color = ColorManager.Instance.ActiveColorDark;
+		GlowOut ();
+	}
+
+	public void HideTextLabel()
+	{
+		_label.gameObject.SetActive (false);
+	}
+
+	public void ShowTextLabel()
+	{
+		_label.gameObject.SetActive (true);
 	}
 }

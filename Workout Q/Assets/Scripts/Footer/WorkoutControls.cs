@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class WorkoutControls : MonoBehaviour {
 
-	[SerializeField]private ShadowButton _startWorkoutButton;
 	[SerializeField]private ShadowButton _completeWorkoutButton;
-	[SerializeField]private ShadowButton _playButton;
+	//[SerializeField]private ShadowButton _playButton;
 	[SerializeField]private ShadowButton _restartButton;
 	[SerializeField]private ShadowButton _pauseButton;
 	[SerializeField]private ShadowButton _previousSetButton;
@@ -35,9 +34,8 @@ public class WorkoutControls : MonoBehaviour {
 
 	void OnEnable()
 	{
-		_startWorkoutButton.onShortClick.AddListener(HandlePlayPressed);
 		_completeWorkoutButton.onShortClick.AddListener(HandleCompleteWorkoutPressed);
-		_playButton.onShortClick.AddListener(HandlePlayPressed);
+		//_playButton.onShortClick.AddListener(HandlePlayPressed);
 		_restartButton.onShortClick.AddListener(HandleRestartPressed);
 		_pauseButton.onShortClick.AddListener(HandlePausePressed);
 		_previousSetButton.onShortClick.AddListener(HandlePreviousSetPressed);
@@ -51,9 +49,8 @@ public class WorkoutControls : MonoBehaviour {
 
 	void OnDisable()
 	{
-		_startWorkoutButton.onShortClick.RemoveListener(HandlePlayPressed);
 		_completeWorkoutButton.onShortClick.RemoveListener(HandleCompleteWorkoutPressed);
-		_playButton.onShortClick.RemoveListener(HandlePlayPressed);
+		//_playButton.onShortClick.RemoveListener(HandlePlayPressed);
 		_restartButton.onShortClick.AddListener(HandleRestartPressed);
 		_previousSetButton.onShortClick.RemoveListener(HandlePreviousSetPressed);
 		_nextSetButton.onShortClick.RemoveListener(HandleNextSetPressed);
@@ -64,19 +61,24 @@ public class WorkoutControls : MonoBehaviour {
 		editButton.onShortClick.RemoveListener (HandleEditPressed);
 	}
 
+//	void HandlePlayPressed()
+//	{
+//		//ShowCurrentlyPlayingMenu();
+//
+//		if (!PlayModeManager.Instance.isPaused) {
+//			print ("WorkoutManager.Instance.ActiveExercise.name: " + WorkoutManager.Instance.ActiveExercise.name);
+//			WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
+//			print ("WorkoutManager.Instance.ActiveExercise.name: " + WorkoutManager.Instance.ActiveExercise.name);
+//		}
+//
+//		PlayModeManager.Instance.Play ();
+//
+//		ShowCurrentlyPlayingMenu ();
+//	}
+
 	void HandlePlayPressed()
 	{
-		//ShowCurrentlyPlayingMenu();
-
-		if (!PlayModeManager.Instance.isPaused) {
-			print ("WorkoutManager.Instance.ActiveExercise.name: " + WorkoutManager.Instance.ActiveExercise.name);
-			WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (WorkoutManager.Instance.ActiveExercise)));
-			print ("WorkoutManager.Instance.ActiveExercise.name: " + WorkoutManager.Instance.ActiveExercise.name);
-		}
-
-		PlayModeManager.Instance.Play ();
-
-		ShowCurrentlyPlayingMenu ();
+	
 	}
 
 	void HandleRestartPressed()
@@ -97,7 +99,6 @@ public class WorkoutControls : MonoBehaviour {
 	{
 		ShowPausedMenu();
 
-		_playButton.gameObject.SetActive(true);
 		_pauseButton.gameObject.SetActive(false);
 		_previousSetButton.gameObject.SetActive(false);
 		_nextSetButton.gameObject.SetActive(false);
@@ -138,12 +139,12 @@ public class WorkoutControls : MonoBehaviour {
 		HideAllButtons ();
 
 		if (!WorkoutManager.Instance.ActiveWorkout.inProgress) {
-			_startWorkoutButton.gameObject.SetActive (true);
+			//_startWorkoutButton.gameObject.SetActive (true);
 		} else {
 			if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) {
 				_completeWorkoutButton.gameObject.SetActive (true);
 			} else {
-				_playButton.gameObject.SetActive(true);
+				//_playButton.gameObject.SetActive(true);
 				_previousExerciseButton.gameObject.SetActive(true);
 				_nextExerciseButton.gameObject.SetActive(true);
 			}
@@ -166,7 +167,7 @@ public class WorkoutControls : MonoBehaviour {
 		if (shouldRestartExercise) {
 			_restartButton.gameObject.SetActive (true);
 		} else {
-			_playButton.gameObject.SetActive (true);
+			//_playButton.gameObject.SetActive (true);
 		}
 
 		_previousExerciseButton.gameObject.SetActive(true);
@@ -191,7 +192,7 @@ public class WorkoutControls : MonoBehaviour {
 	public void ShowForWorkoutPreStarted()
 	{
 		HideAllButtons ();
-		_startWorkoutButton.gameObject.SetActive (true);
+		//_startWorkoutButton.gameObject.SetActive (true);
 	}
 
 	public void ShowForWorkoutPostStarted()

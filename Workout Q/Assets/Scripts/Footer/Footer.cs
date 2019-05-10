@@ -27,14 +27,14 @@ public class Footer : MonoBehaviour
 		MovePanelContatiner.gameObject.SetActive(false);
 		WorkoutControlsContatiner.gameObject.SetActive(false);
 
-		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
-		{
-			WorkoutHUD.Instance.addWorkoutButton.gameObject.SetActive (true);
-		}
-		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
-		{
-			WorkoutHUD.Instance.addExerciseButton.gameObject.SetActive (true);
-		}
+//		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
+//		{
+//			WorkoutHUD.Instance.addWorkoutButton.gameObject.SetActive (true);
+//		}
+//		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
+//		{
+//			WorkoutHUD.Instance.addExerciseButton.gameObject.SetActive (true);
+//		}
 	}
 
 	public void ShowPanelMover()
@@ -42,14 +42,14 @@ public class Footer : MonoBehaviour
 		MovePanelContatiner.gameObject.SetActive(true);
 		WorkoutControlsContatiner.gameObject.SetActive(false);
 
-		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
-		{
-			WorkoutHUD.Instance.addWorkoutButton.gameObject.SetActive (false);
-		}
-		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
-		{
-			WorkoutHUD.Instance.addExerciseButton.gameObject.SetActive (false);
-		}
+//		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) 
+//		{
+//			WorkoutHUD.Instance.addWorkoutButton.gameObject.SetActive (false);
+//		}
+//		else if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) 
+//		{
+//			WorkoutHUD.Instance.addExerciseButton.gameObject.SetActive (false);
+//		}
 	}
 
 	public void ShowWorkoutControls()

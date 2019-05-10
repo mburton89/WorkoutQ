@@ -22,17 +22,17 @@ public class HighlightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	public void Highlight()
 	{
 		_background.color = ColorManager.Instance.ActiveColorLight;
-		_icon.color = Color.black;
+		_icon.color = ColorManager.Instance.ActiveColorDark;
 	
 		if (_label != null)
 		{
-			_label.color = Color.black;
+			_label.color = ColorManager.Instance.ActiveColorDark;
 		}
 	}
 
 	public void Unhighlight()
 	{
-		_background.color = Color.black;
+		_background.color = ColorManager.Instance.ActiveColorDark;
 		_icon.color = ColorManager.Instance.ActiveColorLight;
 
 		if (_label != null) 

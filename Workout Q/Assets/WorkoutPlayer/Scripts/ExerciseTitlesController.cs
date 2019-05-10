@@ -9,12 +9,14 @@ public class ExerciseTitlesController : MonoBehaviour {
 
 	[SerializeField] private TextMeshProUGUI _activeExerciseTitle;
 	[SerializeField] private TextMeshProUGUI _nextExerciseTitle;
-
-	private const string NEXT_PREFIX_LABEL = "Next: ";
+	[SerializeField] private TextMeshProUGUI _nextExerciseLabel;
 
 	public void Init(WorkoutPlayerController controller)
 	{
 		_controller = controller;
+		_activeExerciseTitle.color = ColorManager.Instance.ActiveColorLight;
+		_nextExerciseTitle.color = ColorManager.Instance.ActiveColorLight;
+		_nextExerciseLabel.color = ColorManager.Instance.ActiveColorLight;
 	}
 
 	public void UpdateActiveExerciseTitle(string currentExerciseTitle)
@@ -24,7 +26,7 @@ public class ExerciseTitlesController : MonoBehaviour {
 
 	public void UpdateNextExerciseTitle(string nextExerciseTitle, int weightValue)
 	{
-		_nextExerciseTitle.text = NEXT_PREFIX_LABEL + nextExerciseTitle + " " + weightValue + PlayerPrefs.GetString ("weightType") + "s";
+		_nextExerciseTitle.text = nextExerciseTitle + " " + weightValue + PlayerPrefs.GetString ("weightType") + "s";
 	}
 
 	public void HideNextExerciseText()

@@ -11,7 +11,7 @@ public class NotchHeader : MonoBehaviour {
 
 	void Start()
 	{
-		InvokeRepeating ("ShowStats", 0f, 1f);
+		InvokeRepeating ("ShowStats", 0f, 5f);
 	}
 
 	void ShowStats () 

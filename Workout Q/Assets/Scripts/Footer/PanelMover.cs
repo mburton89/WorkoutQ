@@ -5,25 +5,25 @@ using UnityEngine.UI;
 
 public class PanelMover : MonoBehaviour 
 {
-	[SerializeField]private ShadowButton _deleteButton;
-	[SerializeField]private ShadowButton _moveUpButton;
-	[SerializeField]private ShadowButton _moveDownButton;
-	[SerializeField]private ShadowButton _dismissButton;
+	[SerializeField]private HighlightButton _deleteButton;
+	[SerializeField]private HighlightButton _moveUpButton;
+	[SerializeField]private HighlightButton _moveDownButton;
+	[SerializeField]private HighlightButton _dismissButton;
 
 	void OnEnable()
 	{
-		_moveUpButton.onShortClick.AddListener(MovePanelUp);
-		_deleteButton.onShortClick.AddListener(DeletePanel);
-		_moveDownButton.onShortClick.AddListener(MovePanelDown);
-		_dismissButton.onShortClick.AddListener(Hide);
+		_moveUpButton.onClick.AddListener(MovePanelUp);
+		_deleteButton.onClick.AddListener(DeletePanel);
+		_moveDownButton.onClick.AddListener(MovePanelDown);
+		_dismissButton.onClick.AddListener(Confirm);
 	}
 
 	void OnDisable()
 	{
-		_moveUpButton.onShortClick.RemoveListener(MovePanelUp);
-		_deleteButton.onShortClick.RemoveListener(DeletePanel);
-		_moveDownButton.onShortClick.RemoveListener(MovePanelDown);
-		_dismissButton.onShortClick.RemoveListener(Hide);
+		_moveUpButton.onClick.RemoveListener(MovePanelUp);
+		_deleteButton.onClick.RemoveListener(DeletePanel);
+		_moveDownButton.onClick.RemoveListener(MovePanelDown);
+		_dismissButton.onClick.RemoveListener(Confirm);
 	}
 
 	void DeletePanel()
@@ -31,7 +31,7 @@ public class PanelMover : MonoBehaviour
 		TrashBin.Instance.ThrowInTrash(WorkoutManager.Instance.workoutHUD.selectedPanel.gameObject.transform);
 		SaveExercisePanelOrder();
 		WorkoutManager.Instance.Save();
-		Hide();
+		Confirm();
 	}
 
 	void MovePanelUp()
@@ -59,15 +59,15 @@ public class PanelMover : MonoBehaviour
 		WorkoutManager.Instance.Save();
 	}
 
-	void Hide()
+	void Confirm()
 	{
 		WorkoutManager.Instance.workoutHUD.selectedPanel.Deselect();
-
-		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) {
-			Footer.Instance.Hide ();		
-		} else {
-			Footer.Instance.ShowWorkoutControls ();
-		}
+		gameObject.SetActive (false);
+//		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) {
+//			Footer.Instance.Hide ();		
+//		} else {
+//			Footer.Instance.ShowWorkoutControls ();
+//		}
 	}
 
 	public void Show()

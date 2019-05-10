@@ -48,7 +48,6 @@ public class UIPanel : MonoBehaviour {
 
 	public void Deselect(){
 		isOn = false;
-		Footer.Instance.Hide();
 		Unhighlight ();
 	}
 

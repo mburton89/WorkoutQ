@@ -16,8 +16,9 @@ public class SmartCarousel : MonoBehaviour
     private bool _isDragging;
 	private int _activeIndex;
 
-    private const float INIT_DURATION = 0.1f;
+	private const float INIT_DURATION = 0.1f;
     private const float SNAP_SPEED = 0.5f;
+	private const float FLICK_BUFFER_TIME = .3f;
 
 	public UnityEvent onEndDrag;
 
@@ -33,6 +34,8 @@ public class SmartCarousel : MonoBehaviour
 
     public void Init(List<List<Sprite>> spriteLists, int currentIndex)
     {
+		TryClear ();
+
         foreach (List<Sprite> sprites in spriteLists)
         {
             SmartCarouselItem newCarouselItem = CreateCarouselItem(sprites);
@@ -46,6 +49,8 @@ public class SmartCarousel : MonoBehaviour
 
 	public void Init(WorkoutData workout, int currentIndex)
 	{
+		TryClear ();
+
 		foreach (ExerciseData exercise in workout.exerciseData) 
 		{
 			SmartCarouselItem newCarouselItem = CreateCarouselItem(exercise);
@@ -115,18 +120,17 @@ public class SmartCarousel : MonoBehaviour
         _isDragging = true;
     }
 
-    public void EndDrag()
-    {
-        _isDragging = false;
-        DetermineCenterMostItem();
-        TweenToCenterMostItem();
+	public void EndDrag()
+	{
+		_isDragging = false;
+		DetermineCenterMostItem();
+		TweenToCenterMostItem();
 
 		if (onEndDrag != null) 
 		{
-			print ("onEndDrag");
 			onEndDrag.Invoke ();
-		}	
-    }
+		}
+	}
 
     public void TweenToItemByIndex(int index)
     {
@@ -148,5 +152,17 @@ public class SmartCarousel : MonoBehaviour
 	public int GetActiveIndex()
 	{
 		return _activeIndex;
+	}
+
+	void TryClear()
+	{
+		if (_carouselItems != null) 
+		{
+			foreach (SmartCarouselItem item in _carouselItems)
+			{
+				Destroy (item.gameObject);
+			}
+			_carouselItems.Clear ();
+		}
 	}
 }

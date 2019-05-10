@@ -112,7 +112,8 @@ public class EditExercisePanel : EditExerciseView {
 
 		if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
-			ViewExerciseView.Instance.Refresh ();
+			//ViewExerciseView.Instance.Refresh ();
+			WorkoutPlayerController.Instance.Refresh();
 		}
 	}
 }

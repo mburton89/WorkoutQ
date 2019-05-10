@@ -64,8 +64,7 @@ public class ExerciseMenuItem : UIPanel {
 	public void HandleSelfClicked(){
 		Unhighlight ();
 		WorkoutManager.Instance.ActiveExercise = exerciseData;
-		WorkoutHUD.Instance.ShowEditStatsViewForExercise(exerciseData);
-		//WorkoutHUD.Instance.play
+		//WorkoutHUD.Instance.ShowEditStatsViewForExercise(exerciseData);
 		WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseData)));
 		SoundManager.Instance.PlayButtonPressSound ();
 	}

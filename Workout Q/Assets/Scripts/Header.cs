@@ -51,7 +51,6 @@ public class Header : MonoBehaviour {
 			_backButton.gameObject.SetActive(false);
 			_editButton.gameObject.SetActive(false);
 			WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
-			Footer.Instance.Hide();
 			_middleLabel.text = PlayerPrefs.GetString("userTitle");
 			lineSegmenter.Clear ();
 			_settingsButton.gameObject.SetActive (true);
@@ -61,7 +60,6 @@ public class Header : MonoBehaviour {
 		else if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
 			lineSegmenter.gameObject.SetActive (false);
-			Footer.Instance.timeSlider.gameObject.SetActive (false);
 			WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout (WorkoutManager.Instance.ActiveWorkout);
 			_middleLabel.text = WorkoutManager.Instance.ActiveWorkout.name;
 			PlayModeManager.Instance.Reset();

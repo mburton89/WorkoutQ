@@ -18,7 +18,7 @@ public class PlayModeManager : MonoBehaviour {
 //	public ExercisePanel NextExercisePanel;
 
 //	public Image timerLine;
-	public TimeSlider timeSlider;
+
 
 	[HideInInspector] public float secondsRemaining;
 	private bool _isInPlayMode;
@@ -34,22 +34,17 @@ public class PlayModeManager : MonoBehaviour {
 			Instance = this;
 		}
 	}
-
-	void Start()
-	{
-		timeSlider = Footer.Instance.timeSlider;
-	}
-
+		
 	void Update(){
 
 		if(_isInPlayMode){
 			
 			//ActiveExercisePanel.timeNumberCircle.UpdateValue((int)_secondsRemaining);
 
-			if (!timeSlider.selectHandler.pointerIsDown) {
-				secondsRemaining -= Time.deltaTime;
-				timeSlider.slider.value = 1 - secondsRemaining/ActiveExercise.secondsToCompleteSet;
-			}
+//			if (!timeSlider.selectHandler.pointerIsDown) {
+//				secondsRemaining -= Time.deltaTime;
+//				timeSlider.slider.value = 1 - secondsRemaining/ActiveExercise.secondsToCompleteSet;
+//			}
 
 			_secondsLabel.SetText (secondsRemaining.ToString ("F0") + "s");
 
@@ -223,7 +218,7 @@ public class PlayModeManager : MonoBehaviour {
 
 		ActiveWorkout = workout;
 
-		timeSlider.gameObject.SetActive (true);
+		//timeSlider.gameObject.SetActive (true);
 
 		activeExerciseIndex = exerciseIndex;
 		EstablishPreviousExercise ();

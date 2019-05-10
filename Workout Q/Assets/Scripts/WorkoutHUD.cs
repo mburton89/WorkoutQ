@@ -23,8 +23,8 @@ public class WorkoutHUD : MonoBehaviour {
 	[SerializeField]private WorkoutPanel WorkoutMenuItemPrefab;
 	[SerializeField]private ExerciseMenuItem _exerciseMenuItemPrefab;
 
-	public ShadowButton addWorkoutButton;
-	public ShadowButton addExerciseButton;
+//	public ShadowButton addWorkoutButton;
+//	public ShadowButton addExerciseButton;
 
 	[HideInInspector]public UIPanel selectedPanel;
 	[HideInInspector]public GridLayoutGroup activeGridLayout;
@@ -37,17 +37,17 @@ public class WorkoutHUD : MonoBehaviour {
 	public ScrollRect exercisesScrollRect;
 	public ScrollRect workoutsScrollRect;
 
-	void OnEnable()
-	{
-		addWorkoutButton.onShortClick.AddListener(HandleAddWorkoutPressed);
-		addExerciseButton.onShortClick.AddListener(HandleAddExercisePressed);
-	}
-
-	void OnDisable()
-	{
-		addWorkoutButton.onShortClick.RemoveListener(HandleAddWorkoutPressed);
-		addExerciseButton.onShortClick.RemoveListener(HandleAddExercisePressed);
-	}
+//	void OnEnable()
+//	{
+//		addWorkoutButton.onShortClick.AddListener(HandleAddWorkoutPressed);
+//		addExerciseButton.onShortClick.AddListener(HandleAddExercisePressed);
+//	}
+//
+//	void OnDisable()
+//	{
+//		addWorkoutButton.onShortClick.RemoveListener(HandleAddWorkoutPressed);
+//		addExerciseButton.onShortClick.RemoveListener(HandleAddExercisePressed);
+//	}
 
 	void Awake(){
 		if(Instance == null){
@@ -74,8 +74,8 @@ public class WorkoutHUD : MonoBehaviour {
 	{
 		Header.Instance.UpdateTopLabel ("");
 
-		addWorkoutButton.transform.localScale = Vector3.one;
-		addExerciseButton.transform.localScale = Vector3.zero;
+//		addWorkoutButton.transform.localScale = Vector3.one;
+//		addExerciseButton.transform.localScale = Vector3.zero;
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.one;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
@@ -95,7 +95,7 @@ public class WorkoutHUD : MonoBehaviour {
 			AddWorkoutPanel(workout, false);
 		}
 
-		Footer.Instance.Hide();
+		FooterV2.Instance.ShowViewingPlanButtonGroup ();
 
 		currentMode = Mode.ViewingWorkouts;
 	}
@@ -110,8 +110,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 		Header.Instance.SetUpForExercisesMenu(workoutToOpen);
 		Header.Instance.UpdateTopLabel (PlayerPrefs.GetString("userTitle"));
-		addWorkoutButton.transform.localScale = Vector3.zero;
-		addExerciseButton.transform.localScale = Vector3.one;
+//		addWorkoutButton.transform.localScale = Vector3.zero;
+//		addExerciseButton.transform.localScale = Vector3.one;
 
 		workoutPanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.one;
@@ -129,16 +129,12 @@ public class WorkoutHUD : MonoBehaviour {
 
 		currentMode = Mode.ViewingExercises;
 
-		Footer.Instance.ShowWorkoutControls();
-		Footer.Instance.WorkoutControlsContatiner.ShowPausedMenu();
-		Footer.Instance.UpdateTitle ("");
-
-		ExerciseSlider.Instance.Hide ();
+		FooterV2.Instance.ShowViewingWorkoutButtonGroup ();
 	}
 
 	public void ShowEditStatsViewForExercise(ExerciseData exerciseToOpen){
 
-		addExerciseButton.transform.localScale = Vector3.zero;
+//		addExerciseButton.transform.localScale = Vector3.zero;
 
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		//playModeExercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
@@ -156,14 +152,6 @@ public class WorkoutHUD : MonoBehaviour {
 
 		_editExerciseView.Init (exerciseToOpen, false, false);
 		_viewExerciseView.Init (exerciseToOpen, exerciseIndex, exerciseCount);
-
-//		Footer.Instance.ShowWorkoutControls();
-//
-//		if (exerciseToOpen.totalSets <= 0) {
-//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (true);
-//		} else {
-//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (false);
-//		}
 
 		currentMode = Mode.EditingExercise;
 	}
@@ -188,46 +176,41 @@ public class WorkoutHUD : MonoBehaviour {
 			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
 		WorkoutManager.Instance.ActiveExercise = nextExercise;
-
-//		Footer.Instance.ShowWorkoutControls();
-//
-//		if (nextExercise.totalSets <= 0) {
-//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (true);
-//		} else {
-//			Footer.Instance.WorkoutControlsContatiner.ShowEditingExerciseMenu (false);
-//		}
 	}
 
 	public void SetupExerciseToPlay(int exerciseIndex)
 	{
-		//Header.Instance.SetUpForExercisesMenu(WorkoutManager.Instance.ActiveWorkout);
+		print ("exerciseIndexexerciseIndex " + exerciseIndex);
+
 		int exerciseCount = WorkoutManager.Instance.ActiveWorkout.exerciseData.Count;
 
 		Header.Instance.lineSegmenter.gameObject.SetActive (true);
 		Header.Instance.UpdateTopLabel (WorkoutManager.Instance.ActiveWorkout.name);
 		Header.Instance.UpdateMiddleLabel ("XRC " + (exerciseIndex + 1) + " of " + exerciseCount);
 
-		addExerciseButton.transform.localScale = Vector3.zero;
+		//addExerciseButton.transform.localScale = Vector3.zero;
 
 		exercisePanelsGridLayoutGroup.transform.localScale = Vector3.zero;
 		_editExerciseView.Hide ();
 
-		if (currentMode == Mode.ViewingExercises && !WorkoutManager.Instance.ActiveWorkout.inProgress) {
-			exerciseIndex = 0;
-		}
+//		if (currentMode == Mode.ViewingExercises && !WorkoutManager.Instance.ActiveWorkout.inProgress) {
+//			exerciseIndex = 0;
+//		}
 
 		ExerciseData exerciseToPlay = WorkoutManager.Instance.ActiveWorkout.exerciseData [exerciseIndex];
-		_viewExerciseView.Init (exerciseToPlay,
-			exerciseIndex,
-			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
+//		_viewExerciseView.Init (exerciseToPlay,
+//			exerciseIndex,
+//			WorkoutManager.Instance.ActiveWorkout.exerciseData.Count);
 
-		PlayModeManager.Instance.SetUpExercise(WorkoutManager.Instance.ActiveWorkout, exerciseIndex);
+		//PlayModeManager.Instance.SetUpExercise(WorkoutManager.Instance.ActiveWorkout, exerciseIndex);
 
 		currentMode = Mode.PlayingExercise;
 
 		WorkoutManager.Instance.ActiveExercise = exerciseToPlay;
 
-		ExerciseSlider.Instance.Init (exerciseCount, exerciseIndex);
+		//ExerciseSlider.Instance.Init (exerciseCount, exerciseIndex);
+
+		WorkoutPlayerController.Instance.Init (WorkoutManager.Instance.ActiveWorkout, exerciseIndex);
 	}
 
 	public void AddWorkoutPanel(WorkoutData workoutData, bool isFromButton){
@@ -294,7 +277,7 @@ public class WorkoutHUD : MonoBehaviour {
 		selectedPanel = panel;
 		activeGridLayout = panel.GetComponentInParent<GridLayoutGroup>();
 
-		Footer.Instance.ShowPanelMover();
+		FooterV2.Instance.ShowPanelMoverButtonGroup();
 	}
 
 	void HandleAddWorkoutPressed()
