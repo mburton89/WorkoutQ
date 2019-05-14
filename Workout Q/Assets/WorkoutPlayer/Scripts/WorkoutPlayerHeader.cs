@@ -13,7 +13,7 @@ public class WorkoutPlayerHeader : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI _title;
 
 	private int _totalExercises;
-	private const string EXERCISE_PREFIX = "XRC ";
+	private const string EXERCISE_PREFIX = "EXERCISE ";
 
 	public void Init(WorkoutPlayerController controller, int totalExercises)
 	{
@@ -50,7 +50,6 @@ public class WorkoutPlayerHeader : MonoBehaviour {
 		if (Header.Instance != null) 
 		{
 			_controller.Exit ();
-			Header.Instance.HandleBackPressed ();
 		}
 		else 
 		{
