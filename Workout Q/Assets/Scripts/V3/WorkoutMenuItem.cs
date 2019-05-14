@@ -22,8 +22,10 @@ public class WorkoutMenuItem : UIPanel {
 		_workoutName.onSubmit.RemoveListener(delegate{HandleTitleChanged();});
 	}
 
-	void Awake(){
-		if(workoutData != null){
+	void Awake()
+	{
+		if(workoutData != null)
+		{
 			UpdateText();
 		}
 	}

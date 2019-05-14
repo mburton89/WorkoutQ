@@ -15,6 +15,7 @@ public class ExerciseMenuItem : UIPanel {
 	[SerializeField] private Image _progressCircle;
 	[SerializeField] private Image _progressCircleBG;
 	[SerializeField] private GameObject _checkMark;
+	[SerializeField] private GameObject _activeIndicator;
 
 	void Awake()
 	{
@@ -50,6 +51,11 @@ public class ExerciseMenuItem : UIPanel {
 		UpdateColor(); 
 
 		UpdateSetsCompleteDisplay (exerciseData.totalSets, exerciseData.totalInitialSets);
+
+		if (exerciseData.isInProgress) 
+		{
+			_activeIndicator.SetActive (true);
+		}
 	}
 
 	public void UpdateText(){

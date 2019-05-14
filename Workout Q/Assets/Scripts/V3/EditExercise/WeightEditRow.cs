@@ -84,6 +84,6 @@ public class WeightEditRow : StatEditRow
 
 	void UpdateStatView()
 	{
-		ViewExerciseView.Instance.UpdateWeightView (value);
+		//ViewExerciseView.Instance.UpdateWeightView (value);
 	}
 }

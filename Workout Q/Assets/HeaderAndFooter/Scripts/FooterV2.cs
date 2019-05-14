@@ -125,5 +125,6 @@ public class FooterV2 : MonoBehaviour
 	void HandleEDITEXERCISEButtonPressed()
 	{
 		EditExercisePanel.Instance.Init (WorkoutManager.Instance.ActiveExercise, false, false);
+		EditExercisePanel.Instance.StoreCurrentExerciseSetsAndTime ((int)WorkoutPlayerController.Instance.secondsRemaining, WorkoutPlayerController.Instance.GetAmountOfCompleteSets ());
 	}
 }

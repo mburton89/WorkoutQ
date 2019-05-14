@@ -9,9 +9,9 @@ public class AddPanel : MonoBehaviour {
     
 	[SerializeField] private GameObject _container;
 	[SerializeField] private TextMeshProUGUI _title;
-	[SerializeField] private ShadowTextButton _addCustomButton;
-	[SerializeField] private ShadowTextButton _doneButton;
-	[SerializeField] private ShadowButton _backButton;
+	[SerializeField] private ShadowButton _addCustomButton;
+	[SerializeField] private Button _doneButton;
+	[SerializeField] private Button _backButton;
 	[SerializeField] private ShadowButton _addWorkoutButton;
 	[SerializeField] private Button _clickOverlay;
 	[SerializeField] private WorkoutPanel _addWorkoutItemPrefab;
@@ -20,6 +20,7 @@ public class AddPanel : MonoBehaviour {
 	[SerializeField] private GridLayoutGroup _gridLayout;
 	[SerializeField] private TMP_InputField _searchInputField;
 	[SerializeField] private GameObject _searchContainer;
+	[SerializeField] private GameObject _headerLine2;
 	[SerializeField] private Image _searchIcon;
 
 	private List<WorkoutPanel> _workoutPanels = new List<WorkoutPanel>();
@@ -29,28 +30,44 @@ public class AddPanel : MonoBehaviour {
 
 	[HideInInspector] public WorkoutData currentWorkoutData;
 
+	[SerializeField] List<Image> _colorImages;
+	[SerializeField] List<TextMeshProUGUI> _texts;
+
 	private void Awake()
 	{
 		Instance = this;
 	}
 
+	void Start()
+	{
+		foreach (Image colorImage in _colorImages)
+		{
+			colorImage.color = ColorManager.Instance.ActiveColorLight;	
+		}	
+
+		foreach (TextMeshProUGUI text in _texts)
+		{
+			text.color = ColorManager.Instance.ActiveColorLight;	
+		}
+	}
+
 	private void OnEnable()
 	{
 		_addCustomButton.onShortClick.AddListener(AddCustom);
-		_doneButton.onShortClick.AddListener(Exit);
+		_doneButton.onClick.AddListener(Exit);
 		_clickOverlay.onClick.AddListener(Exit);
 		_searchInputField.onValueChanged.AddListener (HandleSearch);
-		_backButton.onShortClick.AddListener (HandleBackPressed);
+		_backButton.onClick.AddListener (HandleBackPressed);
 		_addWorkoutButton.onShortClick.AddListener (HandleAddWorkoutPressed);
 	}
 
 	private void OnDisable()
     {
 		_addCustomButton.onShortClick.RemoveListener(AddCustom);
-		_doneButton.onShortClick.RemoveListener(Exit);
+		_doneButton.onClick.RemoveListener(Exit);
 		_clickOverlay.onClick.RemoveListener(Exit);
 		_searchInputField.onValueChanged.RemoveListener (HandleSearch);
-		_backButton.onShortClick.RemoveListener (HandleBackPressed);
+		_backButton.onClick.RemoveListener (HandleBackPressed);
 		_addWorkoutButton.onShortClick.RemoveListener (HandleAddWorkoutPressed);
 	}
 
@@ -61,6 +78,9 @@ public class AddPanel : MonoBehaviour {
 		ShowPreloadedWorkouts();
 		_isForWorkouts = true;
 		_searchContainer.SetActive (true);
+		_headerLine2.SetActive (true);
+		_addCustomButton.gameObject.SetActive (true);
+		_addWorkoutButton.gameObject.SetActive (false);
 	}
 
 	public void ShowForAddExercises()
@@ -70,12 +90,14 @@ public class AddPanel : MonoBehaviour {
         ShowPreloadedExercises();
 		_isForWorkouts = false;
 		_searchContainer.SetActive (true);
+		_headerLine2.SetActive (true);
 	}
 
 	public void Exit () 
 	{
 		TryClear();
 		_container.SetActive(false);
+		_searchInputField.text = string.Empty;
 	}
 
     void AddCustom()
@@ -216,16 +238,21 @@ public class AddPanel : MonoBehaviour {
 		_backButton.gameObject.SetActive (true);
 		_addWorkoutButton.gameObject.SetActive (true);
 		_searchContainer.SetActive (false);
+		_headerLine2.SetActive (false);
+		_addCustomButton.gameObject.SetActive (false);
 	}
 
 	void HandleBackPressed()
 	{
 		_backButton.gameObject.SetActive (false);
 		_addWorkoutButton.gameObject.SetActive (false);
+		_addCustomButton.gameObject.SetActive (true);
 
 		TryClear ();
 
 		ShowForAddWorkouts ();
+
+		SoundManager.Instance.PlayButtonPressSound ();
 	}
 
 	void HandleAddWorkoutPressed()

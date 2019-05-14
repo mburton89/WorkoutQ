@@ -28,7 +28,6 @@ public class PeakView : MonoBehaviour {
 	{
 		_peakIndex = PlayModeManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseToPeakAt);
 		_container.SetActive (true);
-		Header.Instance.lineSegmenter.ShowSegmentLit(_peakIndex);
 		_lineSegmenter.Init(exerciseToPeakAt.totalInitialSets);
 		_fitBoy.Init(exerciseToPeakAt.exerciseType);
 		_exerciseName.text = exerciseToPeakAt.name.ToString();
@@ -40,7 +39,6 @@ public class PeakView : MonoBehaviour {
 
 	public void FinishPeaking()
 	{
-		Header.Instance.lineSegmenter.ShowSegmentLit(_peakIndex - 1);
 		_container.SetActive (false);
 	}
 }

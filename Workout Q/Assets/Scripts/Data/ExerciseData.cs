@@ -67,6 +67,8 @@ public class ExerciseData
 
 	public ExerciseType exerciseType;
 
+	public bool isInProgress;
+
 	public static ExerciseData Copy(string newName, int newSeconds, int newTotalSets, int newRepsPerSet, int newWeight, ExerciseType newExerciseType){
 
 		ExerciseData newExercise = new ExerciseData();

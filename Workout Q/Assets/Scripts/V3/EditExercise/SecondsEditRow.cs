@@ -84,6 +84,6 @@ public class SecondsEditRow : StatEditRow
 
 	void UpdateStatView()
 	{
-		Footer.Instance.UpdateTitle (labelString);
+		//Footer.Instance.UpdateTitle (labelString);
 	}
 }

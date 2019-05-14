@@ -44,7 +44,6 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		{
 			if (onPointerUp != null) 
 			{
-				Debug.Log ("UP");
 				onPointerUp.Invoke ();
 			}	
 		}
@@ -59,7 +58,6 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		{
 			if (onShortClick != null) 
 			{
-				Debug.Log ("Clicks");
 				onShortClick.Invoke ();
 			}	
 		}

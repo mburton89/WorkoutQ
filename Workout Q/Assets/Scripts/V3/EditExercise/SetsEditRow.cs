@@ -10,7 +10,6 @@ public class SetsEditRow : StatEditRow
 		value = controller.currentExerciseData.totalInitialSets;
 		numberInput.text = value.ToString();
 		labelString = "Sets:";
-		UpdateStatView ();
 	}
 
 	void OnEnable () 
@@ -78,12 +77,6 @@ public class SetsEditRow : StatEditRow
 			controller.currentExerciseMenuItem.UpdateStatsText();
 		}
 
-		UpdateStatView ();
 		WorkoutManager.Instance.Save();
-	}
-
-	void UpdateStatView()
-	{
-		ViewExerciseView.Instance.UpdateSetsView (controller.currentExerciseData.name, value);
 	}
 }

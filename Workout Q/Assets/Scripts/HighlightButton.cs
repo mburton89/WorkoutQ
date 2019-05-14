@@ -11,28 +11,40 @@ public class HighlightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	[SerializeField] private Image _background;
 	[SerializeField] private Image _icon;
 	[SerializeField] private TextMeshProUGUI _label;
+	[SerializeField] private bool _isBlack;
+
+	private Color _darkColor;
 
 	public UnityEvent onClick;
 
 	void Start()
 	{
+		if (_isBlack) 
+		{
+			_darkColor = Color.black;
+		}
+		else 
+		{
+			_darkColor = ColorManager.Instance.ActiveColorDark;
+		}
+
 		Unhighlight ();
 	}
 
 	public void Highlight()
 	{
 		_background.color = ColorManager.Instance.ActiveColorLight;
-		_icon.color = ColorManager.Instance.ActiveColorDark;
+		_icon.color = _darkColor;
 	
 		if (_label != null)
 		{
-			_label.color = ColorManager.Instance.ActiveColorDark;
+			_label.color = _darkColor;
 		}
 	}
 
 	public void Unhighlight()
 	{
-		_background.color = ColorManager.Instance.ActiveColorDark;
+		_background.color = _darkColor;
 		_icon.color = ColorManager.Instance.ActiveColorLight;
 
 		if (_label != null) 
@@ -56,6 +68,7 @@ public class HighlightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 		if (onClick != null) 
 		{
 			onClick.Invoke ();
+			SoundManager.Instance.PlayButtonPressSound ();
 		}	
 	}
 }

@@ -10,7 +10,6 @@ public class RepsEditRow : StatEditRow
 		value = controller.currentExerciseData.repsPerSet;
 		labelString = "Reps:";
 		numberInput.text = value.ToString();
-		UpdateStatView ();
 	}
 
 	void OnEnable () 
@@ -77,12 +76,6 @@ public class RepsEditRow : StatEditRow
 			controller.currentExerciseMenuItem.UpdateStatsText();
 		}
 
-		UpdateStatView ();
 		WorkoutManager.Instance.Save();
-	}
-
-	void UpdateStatView()
-	{
-		ViewExerciseView.Instance.UpdateRepsView (value);
 	}
 }

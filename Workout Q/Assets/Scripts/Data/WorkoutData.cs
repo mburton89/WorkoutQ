@@ -32,13 +32,14 @@ public enum WorkoutType
 }
 
 [System.Serializable]
-public class WorkoutData {
-
+public class WorkoutData 
+{
 	public string name;
 	public List<ExerciseData> exerciseData;
 
 	public int seconds;
 	public int minutes;
+	public int secondsBetweenExercises;
 
 	public WorkoutType workoutType;
 

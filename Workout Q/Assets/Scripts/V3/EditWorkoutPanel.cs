@@ -3,16 +3,15 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
-public class EditWorkoutPanel : MonoBehaviour {
-
+public class EditWorkoutPanel : MonoBehaviour 
+{
 	public static EditWorkoutPanel Instance;
 	public WorkoutData currentWorkoutData;
 	[HideInInspector] public WorkoutPanel currentWorkoutPanel;
 	[SerializeField] private GameObject _container;
-	[SerializeField] private TextMeshProUGUI topTitle;
 	[SerializeField] private TextMeshProUGUI bottomTitle;
 	[SerializeField] private TMP_InputField _workoutNameInputField;
-	[SerializeField] private ShadowButton _backButton;
+	[SerializeField] private Button _backButton;
 	[SerializeField] private ShadowButton _doneButton;
 	[SerializeField] private ShadowButton _editTitleButton;
 	[SerializeField] private ShadowButton _editIconButton;
@@ -20,6 +19,10 @@ public class EditWorkoutPanel : MonoBehaviour {
 	public WorkoutIconSelectMenu iconSelectMenu;
 	[HideInInspector] public bool isCreatingNewWorkout;
 	public FitBoyIlluminator workoutIconShower;
+
+	[SerializeField] private TMP_InputField _secondsBetweenExercisesInputField;
+	[SerializeField] private  ShadowButton _lessButton;
+	[SerializeField] private  ShadowButton _moreButton;
 
 	[SerializeField] List<Image> _colorImages;
 	[SerializeField] List<TextMeshProUGUI> _texts;
@@ -40,9 +43,6 @@ public class EditWorkoutPanel : MonoBehaviour {
 		{
 			text.color = ColorManager.Instance.ActiveColorLight;	
 		}	
-
-		topTitle.color = ColorManager.Instance.ActiveColorDark;
-		bottomTitle.color = ColorManager.Instance.ActiveColorLight;
 	}
 
 	public void Init(WorkoutData workoutToEdit, bool isCreatingNewWorkout, bool shouldAutoSelectInputField)
@@ -62,6 +62,8 @@ public class EditWorkoutPanel : MonoBehaviour {
 		if (shouldAutoSelectInputField) {
 			_workoutNameInputField.Select ();
 		}
+
+		_secondsBetweenExercisesInputField.text = workoutToEdit.secondsBetweenExercises.ToString ();
 	}
 
 	public void Init(WorkoutPanel workoutPanel, bool isCreatingNewWorkout, bool shouldAutoSelectInputField)
@@ -82,6 +84,8 @@ public class EditWorkoutPanel : MonoBehaviour {
 		if (shouldAutoSelectInputField) {
 			_workoutNameInputField.Select ();
 		}
+
+		_secondsBetweenExercisesInputField.text = workoutToEdit.secondsBetweenExercises.ToString ();
 	}
 
 	private void OnEnable()
@@ -91,7 +95,10 @@ public class EditWorkoutPanel : MonoBehaviour {
 		_doneButton.onShortClick.AddListener (HandleDonePressed);
 		_editTitleButton.onShortClick.AddListener (_workoutNameInputField.Select);
 		_editIconButton.onShortClick.AddListener (HandleEditIconPressed);
-		_backButton.onShortClick.AddListener (ShowEditPage);
+		_backButton.onClick.AddListener (ShowEditPage);
+		_lessButton.onShortClick.AddListener (Decrement);
+		_moreButton.onShortClick.AddListener (Increment);
+		_secondsBetweenExercisesInputField.onValueChanged.AddListener (HandleSecondsBetweenExercisesInputFieldChanged);
 	}
 
 	private void OnDisable()
@@ -101,7 +108,10 @@ public class EditWorkoutPanel : MonoBehaviour {
 		_doneButton.onShortClick.RemoveListener (HandleDonePressed);
 		_editTitleButton.onShortClick.RemoveListener (_workoutNameInputField.Select);
 		_editIconButton.onShortClick.RemoveListener (HandleEditIconPressed);
-		_backButton.onShortClick.RemoveListener (ShowEditPage);
+		_backButton.onClick.RemoveListener (ShowEditPage);
+		_lessButton.onShortClick.RemoveListener (Decrement);
+		_moreButton.onShortClick.RemoveListener (Increment);
+		_secondsBetweenExercisesInputField.onValueChanged.AddListener (HandleSecondsBetweenExercisesInputFieldChanged);
 	}
 
 	void HandleEditIconPressed()
@@ -110,7 +120,6 @@ public class EditWorkoutPanel : MonoBehaviour {
 		iconSelectMenu.ShowWorkoutIcons ();
 		_doneButton.gameObject.SetActive (false);
 		_backButton.gameObject.SetActive (true);
-		topTitle.text = "Edit Workout";
 		bottomTitle.text = "Choose Icon";
 	}
 
@@ -132,7 +141,6 @@ public class EditWorkoutPanel : MonoBehaviour {
 		iconSelectMenu.Hide ();
 		_doneButton.gameObject.SetActive (true);
 		_backButton.gameObject.SetActive (false);
-		topTitle.text = "";
 		bottomTitle.text = "Edit Workout";
 	}
 
@@ -205,5 +213,55 @@ public class EditWorkoutPanel : MonoBehaviour {
 	public void Hide()
 	{
 		_container.SetActive (false);
+	}
+
+	void Decrement()
+	{
+		if (currentWorkoutData.secondsBetweenExercises > 0) 
+		{
+			currentWorkoutData.secondsBetweenExercises = currentWorkoutData.secondsBetweenExercises - 5;			
+		}
+
+		if (currentWorkoutData.secondsBetweenExercises < 0)
+		{
+			currentWorkoutData.secondsBetweenExercises = 0;
+		}
+
+		_secondsBetweenExercisesInputField.text = currentWorkoutData.secondsBetweenExercises.ToString();
+
+		SoundManager.Instance.PlayButtonPressSound ();
+	}
+
+	void Increment()
+	{
+		if (currentWorkoutData.secondsBetweenExercises < 995) 
+		{
+			currentWorkoutData.secondsBetweenExercises = currentWorkoutData.secondsBetweenExercises + 5;			
+		}
+
+		if (currentWorkoutData.secondsBetweenExercises > 999)
+		{
+			currentWorkoutData.secondsBetweenExercises = 999;
+		}
+
+		_secondsBetweenExercisesInputField.text = currentWorkoutData.secondsBetweenExercises.ToString();
+
+		SoundManager.Instance.PlayButtonPressSound ();
+	}
+
+	void HandleSecondsBetweenExercisesInputFieldChanged(string value)
+	{
+		int newValue;
+
+		if(string.IsNullOrEmpty(value))
+		{
+			newValue = 0;
+		}
+		else
+		{
+			newValue = int.Parse(value);
+		}
+
+		currentWorkoutData.secondsBetweenExercises = newValue;
 	}
 }

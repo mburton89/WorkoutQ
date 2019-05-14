@@ -7,7 +7,7 @@ using DG.Tweening;
 public class FitBoyIlluminator : MonoBehaviour {
 
 	private const float GLOW_DURATION = .5f;
-	private const float FADE_OUT_AMOUNT = .75f;
+	private const float FADE_OUT_AMOUNT = .90f;
 	[HideInInspector] public Sprite glowFrameSprite;
 	public Image activeFrame;
 	[HideInInspector] public WorkoutType workoutType;

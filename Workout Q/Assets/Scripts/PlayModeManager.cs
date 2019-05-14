@@ -265,6 +265,6 @@ public class PlayModeManager : MonoBehaviour {
 
 	void HandleWorkoutFinished()
 	{
-		Header.Instance.HandleBackPressed ();
+
 	}
 }

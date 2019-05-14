@@ -12,8 +12,8 @@ public class AddPlanPanel : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI _topTitle;
 	[SerializeField] private TextMeshProUGUI _bottomTitle;
 	[SerializeField] private TextMeshProUGUI _textBody;
-	[SerializeField] private ShadowTextButton _skipButton;
-	[SerializeField] private ShadowTextButton _choosePlanButton;
+	[SerializeField] private ShadowButton _skipButton;
+	[SerializeField] private ShadowButton _choosePlanButton;
 	[SerializeField] private ShadowButton _backButton;
 	[SerializeField] private Button _clickOverlay;
 	[SerializeField] private PlanMenuItem _addPlanItemPrefab;
@@ -29,6 +29,8 @@ public class AddPlanPanel : MonoBehaviour {
 	private const string CHOOSE_PLAN_INFO = "Or tap 'SKIP' to plug in your own workouts and exercises.";
 	private PlanData _currentPlanData;
 
+	[SerializeField] List<Image> _colorImages;
+
 	private enum PlanPanelViewMode{
 		ShowingPlans,
 		ShowingWorkouts,
@@ -40,6 +42,16 @@ public class AddPlanPanel : MonoBehaviour {
 	void Awake()
 	{
 		Instance = this;
+	}
+
+	void Start()
+	{
+		foreach (Image colorImage in _colorImages)
+		{
+			colorImage.color = ColorManager.Instance.ActiveColorLight;	
+		}	
+
+		_topTitle.color = ColorManager.Instance.ActiveColorMedium;
 	}
 
 	void OnEnable()

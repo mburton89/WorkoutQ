@@ -24,6 +24,7 @@ public class WorkoutIconSelectMenu : MonoBehaviour {
 			newSelectableWorkoutIcon.Init (workoutType);
 			newSelectableWorkoutIcon.transform.SetParent (gridLayoutGroup.transform);
 			newSelectableWorkoutIcon.transform.localScale = Vector3.one;
+			newSelectableWorkoutIcon.bg.color = ColorManager.Instance.ActiveColorLight;
 		}
 	}
 

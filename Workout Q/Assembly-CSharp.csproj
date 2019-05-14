@@ -62,6 +62,7 @@
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+     <Compile Include="Assets\HeaderAndFooter\Scripts\FooterPressButton.cs" />
      <Compile Include="Assets\HeaderAndFooter\Scripts\FooterV2.cs" />
      <Compile Include="Assets\HeaderAndFooter\Scripts\HeaderV2.cs" />
      <Compile Include="Assets\Scripts\BugsList.cs" />

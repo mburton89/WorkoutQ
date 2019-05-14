@@ -7,6 +7,7 @@ public class SelectableWorkoutIcon : FitBoyIlluminator {
 
 	[HideInInspector] public EditWorkoutPanel controller;
 	[SerializeField] private Button _button;
+	public Image bg;
 
 //	public void Init(WorkoutType workoutType)
 //	{

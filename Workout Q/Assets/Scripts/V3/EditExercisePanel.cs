@@ -6,24 +6,20 @@ using System.Collections.Generic;
 public class EditExercisePanel : EditExerciseView {
 
 	public static EditExercisePanel Instance;
-	[SerializeField] private TextMeshProUGUI topTitle;
 	[SerializeField] private TextMeshProUGUI bottomTitle;
-	[SerializeField] private ShadowButton _backButton;
+	[SerializeField] private Button _backButton;
 	[SerializeField] private ShadowButton _doneButton;
 	[SerializeField] private ShadowButton _editTitleButton;
 	[SerializeField] private ShadowButton _editIconButton;
 	[SerializeField] private Button _clickOverlay;
 	public IconSelectMenu iconSelectMenu;
 
-	private void Awake()
+	private int _currentExerciseSecRemaining;
+	private int _currentExerciseSetsComplete;
+
+	private void Start()
 	{
 		Instance = this;
-	}
-
-	void Start()
-	{
-		topTitle.color = ColorManager.Instance.ActiveColorDark;
-		bottomTitle.color = ColorManager.Instance.ActiveColorLight;
 	}
 
 	private void OnEnable()
@@ -33,7 +29,7 @@ public class EditExercisePanel : EditExerciseView {
 		_doneButton.onShortClick.AddListener (HandleDonePressed);
 		_editTitleButton.onShortClick.AddListener (_exerciseNameInputField.Select);
 		_editIconButton.onShortClick.AddListener (HandleEditIconPressed);
-		_backButton.onShortClick.AddListener (ShowEditPage);
+		_backButton.onClick.AddListener (ShowEditPage);
 	}
 
 	private void OnDisable()
@@ -43,7 +39,7 @@ public class EditExercisePanel : EditExerciseView {
 		_doneButton.onShortClick.RemoveListener (HandleDonePressed);
 		_editTitleButton.onShortClick.RemoveListener (_exerciseNameInputField.Select);
 		_editIconButton.onShortClick.RemoveListener (HandleEditIconPressed);
-		_backButton.onShortClick.RemoveListener (ShowEditPage);
+		_backButton.onClick.RemoveListener (ShowEditPage);
 	}
 
 	void HandleEditIconPressed()
@@ -52,7 +48,6 @@ public class EditExercisePanel : EditExerciseView {
 		iconSelectMenu.ShowExerciseIcons ();
 		_doneButton.gameObject.SetActive (false);
 		_backButton.gameObject.SetActive (true);
-		topTitle.text = "Edit Exercise";
 		bottomTitle.text = "Choose Icon";
 	}
 
@@ -71,7 +66,6 @@ public class EditExercisePanel : EditExerciseView {
 		iconSelectMenu.Hide ();
 		_doneButton.gameObject.SetActive (true);
 		_backButton.gameObject.SetActive (false);
-		topTitle.text = "";
 		bottomTitle.text = "Edit Exercise";
 	}
 
@@ -112,8 +106,20 @@ public class EditExercisePanel : EditExerciseView {
 
 		if (WorkoutHUD.Instance.currentMode == Mode.EditingExercise || WorkoutHUD.Instance.currentMode == Mode.PlayingExercise) 
 		{
-			//ViewExerciseView.Instance.Refresh ();
-			WorkoutPlayerController.Instance.Refresh();
+			WorkoutPlayerController.Instance.Refresh (_currentExerciseSecRemaining, _currentExerciseSetsComplete);
+			ResetCurrentExerciseStats ();
 		}
+	}
+
+	public void StoreCurrentExerciseSetsAndTime(int sec, int setsComplete)
+	{
+		_currentExerciseSecRemaining = sec;
+		_currentExerciseSetsComplete = setsComplete;
+	}
+
+	void ResetCurrentExerciseStats()
+	{
+		_currentExerciseSecRemaining = 0;
+		_currentExerciseSetsComplete = 0;
 	}
 }
