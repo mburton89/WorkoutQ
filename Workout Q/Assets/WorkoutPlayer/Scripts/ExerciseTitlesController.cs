@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ExerciseTitlesController : MonoBehaviour
-{
+public class ExerciseTitlesController : MonoBehaviour {
+
     private WorkoutPlayerController _controller;
 
     [SerializeField] private TextMeshProUGUI _activeExerciseTitle;
