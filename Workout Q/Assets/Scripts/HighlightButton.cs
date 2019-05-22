@@ -21,7 +21,7 @@ public class HighlightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	{
 		if (_isBlack) 
 		{
-			_darkColor = Color.black;
+			_darkColor = Color.clear;
 		}
 		else 
 		{

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WorkoutPlayerTester : MonoBehaviour 
 {
@@ -10,7 +7,7 @@ public class WorkoutPlayerTester : MonoBehaviour
 
 	void Awake()
 	{
-		_workoutPlayerController.Init (_testWorkout, 0);
+		_workoutPlayerController.Init (_testWorkout, 3);
 	}
 
 #if UNITY_EDITOR

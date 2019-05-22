@@ -213,7 +213,12 @@ public class EditWorkoutPanel : MonoBehaviour
 	public void Hide()
 	{
 		_container.SetActive (false);
-	}
+
+        if (currentWorkoutPanel != null)
+        {
+            currentWorkoutPanel.UpdateText();
+        }
+    }
 
 	void Decrement()
 	{
@@ -230,9 +235,11 @@ public class EditWorkoutPanel : MonoBehaviour
 		_secondsBetweenExercisesInputField.text = currentWorkoutData.secondsBetweenExercises.ToString();
 
 		SoundManager.Instance.PlayButtonPressSound ();
-	}
 
-	void Increment()
+        WorkoutManager.Instance.Save();
+    }
+
+    void Increment()
 	{
 		if (currentWorkoutData.secondsBetweenExercises < 995) 
 		{
@@ -247,9 +254,11 @@ public class EditWorkoutPanel : MonoBehaviour
 		_secondsBetweenExercisesInputField.text = currentWorkoutData.secondsBetweenExercises.ToString();
 
 		SoundManager.Instance.PlayButtonPressSound ();
-	}
 
-	void HandleSecondsBetweenExercisesInputFieldChanged(string value)
+        WorkoutManager.Instance.Save();
+    }
+
+    void HandleSecondsBetweenExercisesInputFieldChanged(string value)
 	{
 		int newValue;
 
@@ -263,5 +272,7 @@ public class EditWorkoutPanel : MonoBehaviour
 		}
 
 		currentWorkoutData.secondsBetweenExercises = newValue;
-	}
+
+        WorkoutManager.Instance.Save();
+    }
 }

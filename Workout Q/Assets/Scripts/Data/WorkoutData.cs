@@ -47,11 +47,19 @@ public class WorkoutData
 
 	public void EstablishMinutes()
 	{
-		minutes = 0;
-		foreach(ExerciseData exercise in exerciseData){
-			minutes = minutes + ((exercise.totalInitialSets * exercise.secondsToCompleteSet) / 60);
-		}
-	}
+		//minutes = 0;
+		//foreach(ExerciseData exercise in exerciseData){
+		//	minutes = minutes + ((exercise.totalInitialSets * exercise.secondsToCompleteSet) / 60) + secondsBetweenExercises / 60;
+		//}
+
+        seconds = 0;
+        foreach (ExerciseData exercise in exerciseData)
+        {
+            seconds = seconds + (exercise.totalInitialSets * exercise.secondsToCompleteSet) + secondsBetweenExercises;
+        }
+
+        minutes = seconds / 60;
+    }
 
 	public static WorkoutData Copy(WorkoutData workoutDataToCopy){
 

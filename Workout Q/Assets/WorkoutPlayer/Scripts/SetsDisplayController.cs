@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class SetsDisplayController : MonoBehaviour 
@@ -12,9 +13,18 @@ public class SetsDisplayController : MonoBehaviour
 
 	[SerializeField] SetsDisplaySegment _setDisplaySegmentPrefab;
 	[SerializeField] Transform _segmentParent;
-	[SerializeField] TextMeshProUGUI _completeLabel;
+    [SerializeField] TextMeshProUGUI _completeLabel;
+    [SerializeField] TextMeshProUGUI _introTimerText;
+    [SerializeField] GameObject _introTimerContainer;
+    [SerializeField] Image _radialFill;
+    [SerializeField] Image _radialFillInner;
 
-	public void Init(WorkoutPlayerController controller, int totalSets)
+    private const string INTRO_TIMER_PREFIX = "Starts in ";
+
+    [HideInInspector] public float secondsRemaining;
+    [HideInInspector] public bool isInIntroTimerMode;
+
+    public void Init(WorkoutPlayerController controller, int totalSets)
 	{
 		_controller = controller;
 
@@ -37,9 +47,20 @@ public class SetsDisplayController : MonoBehaviour
 		}
 
 		_completeLabel.color = ColorManager.Instance.ActiveColorLight;
-	}
+        _introTimerText.color = ColorManager.Instance.ActiveColorLight;
+        _radialFill.color = ColorManager.Instance.ActiveColorLight;
+        _radialFillInner.color = Color.black;
+    }
 
-	public void Clear()
+    void Update()
+    {
+        if (isInIntroTimerMode)
+        {
+            DeductTime();
+        }
+    }
+
+    public void Clear()
 	{
 		if (_setDisplaySegments != null) 
 		{
@@ -82,7 +103,16 @@ public class SetsDisplayController : MonoBehaviour
 		_activeSetDisplaySegment = _setDisplaySegments [setNumber - 1];
 		_activeSetDisplaySegment.StartGlowing ();
 		_activeSetDisplaySegment.LightUpText ();
-	}
+
+        if (_controller.initialSecondsBetweenExercises > 0 && setNumber == 1)
+        {
+            StartIntroTimer();
+        }
+        else 
+        {
+            StopIntroTimer();
+        }
+    }
 
 	public void MarkAllSetsComplete()
 	{
@@ -104,4 +134,59 @@ public class SetsDisplayController : MonoBehaviour
 	{
 		_completeLabel.gameObject.SetActive (true);
 	}
+
+    void StartIntroTimer()
+    {
+        secondsRemaining = _controller.initialSecondsBetweenExercises;
+        _introTimerContainer.SetActive(true);
+        _radialFill.gameObject.SetActive(true);
+        isInIntroTimerMode = true;
+    }
+
+    public void StopIntroTimer()
+    {
+        _introTimerContainer.SetActive(false);
+        isInIntroTimerMode = false;
+        _radialFill.gameObject.SetActive(false);
+        secondsRemaining = _controller.initialSecondsBetweenExercises;
+    }
+
+    public void UpdateIntroTimerValue(float timeValue)
+    {
+        int minutes = (int)timeValue / 60;
+        int seconds = (int)timeValue % 60;
+        string secondsString;
+
+        if (seconds < 10)
+        {
+            secondsString = "0" + seconds.ToString();
+        }
+        else
+        {
+            secondsString = seconds.ToString();
+        }
+
+        _introTimerText.text = INTRO_TIMER_PREFIX + minutes + ":" + secondsString;
+
+        _radialFill.fillAmount = timeValue / _controller.initialSecondsBetweenExercises;
+    }
+
+    void DeductTime()
+    {
+        secondsRemaining -= Time.deltaTime;
+
+        UpdateIntroTimerValue(secondsRemaining);
+
+        if (secondsRemaining < 0)
+        {
+            HandleTimerHittingZero();
+        }
+    }
+
+    void HandleTimerHittingZero()
+    {
+        SoundManager.Instance.PlayNewExerciseSound();
+        StopIntroTimer();
+        _controller.Play();
+    }
 }
