@@ -49,6 +49,8 @@ public class WorkoutPlayerNotchHeader : MonoBehaviour {
 
 		int batteryPercentage = (int)(SystemInfo.batteryLevel * 100f);
 		_batteryText.text = batteryPercentage + "%";
+
+		DetermineETA (_controller.GetActiveWorkout());
 	}
 
 	public int DetermineMinutesRemaining(WorkoutData workout)
@@ -59,9 +61,16 @@ public class WorkoutPlayerNotchHeader : MonoBehaviour {
 		foreach (ExerciseData exercise in workout.exerciseData) 
 		{
 			int secondsRemainingInExercise = exercise.totalSets * exercise.secondsToCompleteSet;
+
+			if (secondsRemainingInExercise > 0)
+			{
+				secondsRemainingInExercise = secondsRemainingInExercise + workout.secondsBetweenExercises;
+			}
+
 			secondsRemainingInWorkout = secondsRemainingInWorkout + secondsRemainingInExercise;
 		}
 			
+		secondsRemainingInWorkout = secondsRemainingInWorkout - workout.secondsBetweenExercises; //To compensate for the last exercise which has not secondsBetweenExercises
 		minutesRemainingInWorkout = secondsRemainingInWorkout / 60;
 		return minutesRemainingInWorkout;
 	}
@@ -103,10 +112,5 @@ public class WorkoutPlayerNotchHeader : MonoBehaviour {
 		string time = dateTime.ToString (hour + ":" + minuteString);
 
 		_etaText.text = "ETA " + time;
-	}
-
-	public void RefreshETA(WorkoutData workout)
-	{
-		DetermineETA (workout);
 	}
 }

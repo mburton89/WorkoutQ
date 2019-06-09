@@ -16,7 +16,8 @@ public class SetsDisplayController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _completeLabel;
     [SerializeField] TextMeshProUGUI _introTimerText;
     [SerializeField] GameObject _introTimerContainer;
-    [SerializeField] Image _radialFill;
+	[SerializeField] Image _radialFill;
+	[SerializeField] Image _radialFillBG;
     [SerializeField] Image _radialFillInner;
 
     private const string INTRO_TIMER_PREFIX = "Starts in ";
@@ -49,6 +50,7 @@ public class SetsDisplayController : MonoBehaviour
 		_completeLabel.color = ColorManager.Instance.ActiveColorLight;
         _introTimerText.color = ColorManager.Instance.ActiveColorLight;
         _radialFill.color = ColorManager.Instance.ActiveColorLight;
+		_radialFillBG.color = ColorManager.Instance.ActiveColorDark;
         _radialFillInner.color = Color.black;
     }
 
@@ -139,7 +141,8 @@ public class SetsDisplayController : MonoBehaviour
     {
         secondsRemaining = _controller.initialSecondsBetweenExercises;
         _introTimerContainer.SetActive(true);
-        _radialFill.gameObject.SetActive(true);
+		_radialFillBG.gameObject.SetActive(true);
+		_radialFill.gameObject.SetActive(true);
         isInIntroTimerMode = true;
     }
 
@@ -147,7 +150,8 @@ public class SetsDisplayController : MonoBehaviour
     {
         _introTimerContainer.SetActive(false);
         isInIntroTimerMode = false;
-        _radialFill.gameObject.SetActive(false);
+		_radialFillBG.gameObject.SetActive(false);
+		_radialFill.gameObject.SetActive(false);
         secondsRemaining = _controller.initialSecondsBetweenExercises;
     }
 
@@ -168,7 +172,7 @@ public class SetsDisplayController : MonoBehaviour
 
         _introTimerText.text = INTRO_TIMER_PREFIX + minutes + ":" + secondsString;
 
-        _radialFill.fillAmount = timeValue / _controller.initialSecondsBetweenExercises;
+		_radialFill.fillAmount = 1 - (timeValue / _controller.initialSecondsBetweenExercises);
     }
 
     void DeductTime()
