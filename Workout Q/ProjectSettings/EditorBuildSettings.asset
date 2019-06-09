@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 4573c32c9b39d2243b7218b83df752b8
+  - enabled: 1
+    path: Assets/Scenes/Config.unity
+    guid: 8e4b2b34d24d41e4bb67dc0d17387339
+  - enabled: 0
+    path: Assets/WorkoutPlayer/Examples/WorkoutPlayerExample.unity
+    guid: 3d17cb3480fc0ec4598dffb16cb2033e
