@@ -40,6 +40,8 @@ public class HomeGymBeginnerPull : MonoBehaviour
         curls.Init("Curls", 75, 3, 10, 0, ExerciseType.curls);
         workoutData.exerciseData.Add(curls);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

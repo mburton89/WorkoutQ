@@ -40,6 +40,8 @@ public class HomeGymIntermediateChestTriceps : MonoBehaviour
 		crunches.Init("Crunches", 60, 3, 10, 0, ExerciseType.crunches);
         workoutData.exerciseData.Add(crunches);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

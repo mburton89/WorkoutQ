@@ -48,6 +48,8 @@ public class GymAdvancedShoulders : MonoBehaviour
 		reverseFlies.Init("Reverse Flies", 75, 3, 10, 10, ExerciseType.reverseFlies);
         workoutData.exerciseData.Add(reverseFlies);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

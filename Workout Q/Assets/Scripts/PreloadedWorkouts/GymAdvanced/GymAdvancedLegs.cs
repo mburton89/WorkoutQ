@@ -48,6 +48,8 @@ public class GymAdvancedLegs : MonoBehaviour
 		obliqueSideRaisesRight.Init("Oblique Side Raises - Right Side", 60, 3, 10, 15, ExerciseType.obliqueSideRaises);
         workoutData.exerciseData.Add(obliqueSideRaisesRight);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

@@ -263,6 +263,7 @@ public class AddPanel : MonoBehaviour {
 		WorkoutData copiedWorkout = new WorkoutData ();
 		copiedWorkout.name = currentWorkoutData.name;
 		copiedWorkout.workoutType = currentWorkoutData.workoutType;
+		copiedWorkout.secondsBetweenExercises = currentWorkoutData.secondsBetweenExercises;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in currentWorkoutData.exerciseData){

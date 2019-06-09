@@ -48,6 +48,8 @@ public class GymAdvancedChestTriceps : MonoBehaviour
         abWheel.Init("Ab Wheel", 60, 3, 5, 0, ExerciseType.abWheel);
         workoutData.exerciseData.Add(abWheel);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

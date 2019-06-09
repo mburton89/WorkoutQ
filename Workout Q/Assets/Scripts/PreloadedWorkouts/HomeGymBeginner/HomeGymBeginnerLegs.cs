@@ -36,6 +36,8 @@ public class HomeGymBeginnerLegs : MonoBehaviour
 		backPlanks.Init("Back Plank - 15 sec", 75, 3, 10, 0, ExerciseType.planksBack);
         workoutData.exerciseData.Add(backPlanks);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

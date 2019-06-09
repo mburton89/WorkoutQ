@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip buttonPress;
 	public AudioClip levelUp;
 	public AudioClip goBack;
+	public AudioClip countdownBeep;
 
 	public AudioSource audioSource;
 
@@ -40,6 +41,11 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlayGoBackSound(){
 		audioSource.clip = goBack;
+		audioSource.Play ();
+	}
+
+	public void PlayCountDownBeep(){
+		audioSource.clip = countdownBeep;
 		audioSource.Play ();
 	}
 }

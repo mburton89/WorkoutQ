@@ -48,6 +48,8 @@ public class GymAdvancedBackBiceps : MonoBehaviour
 		reverseCurls.Init("Reverse Curls", 75, 3, 10, 20, ExerciseType.reverseCurls);
         workoutData.exerciseData.Add(reverseCurls);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

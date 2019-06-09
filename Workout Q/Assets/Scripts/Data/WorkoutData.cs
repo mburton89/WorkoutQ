@@ -58,6 +58,8 @@ public class WorkoutData
             seconds = seconds + (exercise.totalInitialSets * exercise.secondsToCompleteSet) + secondsBetweenExercises;
         }
 
+		seconds = seconds - secondsBetweenExercises; //To compensate for the last exercise which has not secondsBetweenExercises
+
         minutes = seconds / 60;
     }
 
@@ -66,6 +68,7 @@ public class WorkoutData
 		WorkoutData copiedWorkout = new WorkoutData();
 		copiedWorkout.name = workoutDataToCopy.name;
 		copiedWorkout.workoutType = workoutDataToCopy.workoutType;
+		copiedWorkout.secondsBetweenExercises = workoutDataToCopy.secondsBetweenExercises;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in workoutDataToCopy.exerciseData){

@@ -48,6 +48,8 @@ public class GymAdvancedCoreAndMore : MonoBehaviour
 		backPlanks.Init("Back Planks - 30 sec", 60, 3, 1, 0, ExerciseType.planksBack);
         workoutData.exerciseData.Add(backPlanks);
 
+		workoutData.secondsBetweenExercises = 60;
+
 		return workoutData;
     }
 }

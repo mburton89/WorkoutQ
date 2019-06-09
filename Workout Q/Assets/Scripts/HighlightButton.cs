@@ -21,7 +21,7 @@ public class HighlightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	{
 		if (_isBlack) 
 		{
-			_darkColor = Color.clear;
+			_darkColor = Color.clear; //TODO Find out best solution for light mode
 		}
 		else 
 		{
@@ -34,11 +34,11 @@ public class HighlightButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 	public void Highlight()
 	{
 		_background.color = ColorManager.Instance.ActiveColorLight;
-		_icon.color = _darkColor;
+		_icon.color = Color.black; //TODO Find out best solution for light mode
 	
 		if (_label != null)
 		{
-			_label.color = _darkColor;
+			_label.color = Color.black;  //TODO Find out best solution for light mode
 		}
 	}
 

@@ -66,6 +66,7 @@ public class WorkoutPanel : UIPanel {
 		WorkoutData copiedWorkout = new WorkoutData ();
 		copiedWorkout.name = workoutData.name;
 		copiedWorkout.workoutType = workoutData.workoutType;
+		copiedWorkout.secondsBetweenExercises = workoutData.secondsBetweenExercises;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in workoutData.exerciseData){
