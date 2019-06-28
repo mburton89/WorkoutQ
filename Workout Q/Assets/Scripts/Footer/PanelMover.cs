@@ -5,12 +5,19 @@ using UnityEngine.UI;
 
 public class PanelMover : MonoBehaviour 
 {
+    public static PanelMover Instance;
+
 	[SerializeField]private HighlightButton _deleteButton;
 	[SerializeField]private HighlightButton _moveUpButton;
 	[SerializeField]private HighlightButton _moveDownButton;
 	[SerializeField]private HighlightButton _dismissButton;
 
-	void OnEnable()
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    void OnEnable()
 	{
 		_moveUpButton.onClick.AddListener(MovePanelUp);
 		_deleteButton.onClick.AddListener(DeletePanel);
@@ -28,10 +35,17 @@ public class PanelMover : MonoBehaviour
 
 	void DeletePanel()
 	{
-		TrashBin.Instance.ThrowInTrash(WorkoutManager.Instance.workoutHUD.selectedPanel.gameObject.transform);
-		SaveExercisePanelOrder();
-		WorkoutManager.Instance.Save();
-		Confirm();
+        if(WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts)
+        {
+            AreYouSurePanel.Instance.Show();
+        }
+        else
+        {
+            TrashBin.Instance.ThrowInTrash(WorkoutManager.Instance.workoutHUD.selectedPanel.gameObject.transform);
+            SaveExercisePanelOrder();
+            WorkoutManager.Instance.Save();
+            Confirm();
+        }
 	}
 
 	void MovePanelUp()
@@ -59,15 +73,10 @@ public class PanelMover : MonoBehaviour
 		WorkoutManager.Instance.Save();
 	}
 
-	void Confirm()
+	public void Confirm()
 	{
 		WorkoutManager.Instance.workoutHUD.selectedPanel.Deselect();
 		gameObject.SetActive (false);
-//		if (WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts) {
-//			Footer.Instance.Hide ();		
-//		} else {
-//			Footer.Instance.ShowWorkoutControls ();
-//		}
 	}
 
 	public void Show()

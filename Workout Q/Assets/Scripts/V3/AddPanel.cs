@@ -6,10 +6,10 @@ using System.Collections.Generic;
 public class AddPanel : MonoBehaviour {
 
 	public static AddPanel Instance;
-    
-	[SerializeField] private GameObject _container;
-	[SerializeField] private TextMeshProUGUI _title;
-	[SerializeField] private ShadowButton _addCustomButton;
+
+    [SerializeField] private GameObject _container;
+    [SerializeField] private TextMeshProUGUI _title;
+    [SerializeField] private ShadowButton _addCustomButton;
 	[SerializeField] private Button _doneButton;
 	[SerializeField] private Button _backButton;
 	[SerializeField] private ShadowButton _addWorkoutButton;
