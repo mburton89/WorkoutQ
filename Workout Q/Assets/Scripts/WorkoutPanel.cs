@@ -17,7 +17,8 @@ public class WorkoutPanel : UIPanel {
 	{
 		_workoutName.onSubmit.AddListener(delegate{HandleTitleChanged();});
 
-		if (editButton != null) {
+		if (editButton != null) 
+        {
 			editButton.onClick.AddListener (HandleEditPressed);		
 		}
 	}
