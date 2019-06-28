@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip levelUp;
 	public AudioClip goBack;
 	public AudioClip countdownBeep;
+	public AudioClip Robo321;
 
 	public AudioSource audioSource;
 
@@ -46,6 +47,11 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlayCountDownBeep(){
 		audioSource.clip = countdownBeep;
+		audioSource.Play ();
+	}
+
+	public void PlayRobo321(){
+		audioSource.clip = Robo321;
 		audioSource.Play ();
 	}
 }

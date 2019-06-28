@@ -53,5 +53,19 @@ public class FitBoyAnimator : MonoBehaviour {
 		activeFrame.sprite = frames[_frameIndex];
 		_frameIndex++;
 	}
+
+	public void PlayOnce()
+	{
+		StartCoroutine("playOnceCo");
+	}
+
+	private IEnumerator playOnceCo()
+	{
+		foreach (Sprite frame in frames) 
+		{
+			ShowNextFrame();
+			yield return new WaitForSeconds(FRAME_RATE);
+		}
+	}
 }
    
