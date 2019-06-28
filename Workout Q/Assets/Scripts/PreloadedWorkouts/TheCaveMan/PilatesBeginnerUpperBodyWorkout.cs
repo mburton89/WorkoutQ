@@ -7,7 +7,9 @@ public class PilatesBeginnerUpperBodyWorkout : MonoBehaviour
 
     public WorkoutData GetWorkoutData()
     {
-        name = "Upper Body Pilates";
+		workoutData.workoutType = WorkoutType.noWeights;
+
+		workoutData.name = "Upper Body - No Weights";
         workoutData.exerciseData = new List<ExerciseData>();
 
 		ExerciseData jumpingJacks = new ExerciseData ();
@@ -31,12 +33,14 @@ public class PilatesBeginnerUpperBodyWorkout : MonoBehaviour
         workoutData.exerciseData.Add (chairDips);
 
 		ExerciseData leftSidePlanks = new ExerciseData ();
-		leftSidePlanks.Init ("Left Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
+		leftSidePlanks.Init ("Left Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksSide);
         workoutData.exerciseData.Add (leftSidePlanks);
 
 		ExerciseData rightSidePlanks = new ExerciseData ();
-		rightSidePlanks.Init ("Right Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksFront);
+		rightSidePlanks.Init ("Right Side Planks - 15sec", 60, 3, 10, 0, ExerciseType.planksSide);
         workoutData.exerciseData.Add (rightSidePlanks);
+
+		workoutData.secondsBetweenExercises = 30;
 
         return workoutData;
 	}

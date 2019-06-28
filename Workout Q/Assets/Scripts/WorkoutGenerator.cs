@@ -15,6 +15,10 @@ public class WorkoutGenerator : MonoBehaviour {
 	public HomeIntermediatePlan homeIntermediatePlan;
 	public GymAdvancedPlan gymAdvancedPlan;
 
+	//STANDALONE WORKOUTS;
+	public PilatesBeginnerLowerBodyWorkout pilatesLowerBody;
+	public PilatesBeginnerUpperBodyWorkout pilatesUpperBody;
+
 	//PRELOADED EXERCISES
 	ExerciseData abWheelExercise = new ExerciseData();
 	ExerciseData bandsExternalExercise = new ExerciseData(); //2/19/2019
@@ -195,6 +199,9 @@ public class WorkoutGenerator : MonoBehaviour {
 
     void AddWorkoutsToPreloadedWorkoutsList()
 	{
+		preloadedWorkouts.Add (pilatesLowerBody.GetWorkoutData());
+		preloadedWorkouts.Add (pilatesUpperBody.GetWorkoutData());
+
 		foreach (WorkoutData workout in homeBeginnerPlan.planData.workoutData) 
 		{
 			preloadedWorkouts.Add (workout);
