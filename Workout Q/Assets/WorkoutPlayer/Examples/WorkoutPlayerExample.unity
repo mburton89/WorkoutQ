@@ -194,6 +194,8 @@ MonoBehaviour:
   homeBeginnerPlan: {fileID: 934839301}
   homeIntermediatePlan: {fileID: 2005698293}
   gymAdvancedPlan: {fileID: 744982073}
+  pilatesLowerBody: {fileID: 1995180498}
+  pilatesUpperBody: {fileID: 797121235}
   _generic:
   - {fileID: 21300000, guid: d1f5166a1be944c728d77afd922eaebb, type: 3}
   - {fileID: 21300000, guid: e97eb5536f337448ab4aa650a870dd71, type: 3}
@@ -479,6 +481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1438533544}
+  - {fileID: 714528609}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1490,6 +1493,7 @@ MonoBehaviour:
   levelUp: {fileID: 8300000, guid: 49ca76b07a6f60944971896cf64c6244, type: 3}
   goBack: {fileID: 8300000, guid: 36a9589d3ddface419bec86dbfe68c90, type: 3}
   countdownBeep: {fileID: 8300000, guid: 4dbf3717a95658b438bf2a0b80c47436, type: 3}
+  Robo321: {fileID: 0}
   audioSource: {fileID: 451610443}
 --- !u!4 &451610445
 Transform:
@@ -1648,6 +1652,36 @@ MonoBehaviour:
     secondsBetweenExercises: 0
     workoutType: 0
     inProgress: 0
+--- !u!1 &714528608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 714528609}
+  m_Layer: 0
+  m_Name: StandaloneWorkouts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &714528609
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 714528608}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1995180497}
+  - {fileID: 797121236}
+  m_Father: {fileID: 134829905}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744982072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1738,54 @@ Transform:
   - {fileID: 1483493072}
   m_Father: {fileID: 1438533544}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &797121234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 797121236}
+  - component: {fileID: 797121235}
+  m_Layer: 0
+  m_Name: PilatesUpper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &797121235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797121234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a106dbf3df80db4c8cb53557f535322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workoutData:
+    name: 
+    exerciseData: []
+    seconds: 0
+    minutes: 0
+    secondsBetweenExercises: 0
+    workoutType: 0
+    inProgress: 0
+--- !u!4 &797121236
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797121234}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 714528609}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &804459316
 GameObject:
@@ -2317,6 +2399,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1995180496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1995180497}
+  - component: {fileID: 1995180498}
+  m_Layer: 0
+  m_Name: PilatesLower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1995180497
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1995180496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 714528609}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1995180498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1995180496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cd44efcd2c98847b624bb0dc8751f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workoutData:
+    name: 
+    exerciseData: []
+    seconds: 0
+    minutes: 0
+    secondsBetweenExercises: 0
+    workoutType: 0
+    inProgress: 0
 --- !u!1 &2005698291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,7 +2588,7 @@ MonoBehaviour:
       totalSets: 2
       repsPerSet: 10
       weight: 35
-      exerciseType: 17
+      exerciseType: 0
       isInProgress: 0
     - name: Military Press
       secondsToCompleteSet: 70

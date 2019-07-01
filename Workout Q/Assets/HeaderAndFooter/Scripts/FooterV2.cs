@@ -30,6 +30,14 @@ public class FooterV2 : MonoBehaviour
 		Instance = this;
 	}
 
+	void Start()
+	{
+		if (Camera.main.aspect < (9f / 16f)) 
+		{
+			GetComponent<RectTransform> ().sizeDelta = new Vector2 (GetComponent<RectTransform> ().sizeDelta.x, GetComponent<RectTransform> ().sizeDelta.y + 80f);
+		}
+	}
+
 	void OnEnable()
 	{
 		_settingsButton.onClick.AddListener (HandleSETTINGSButtonPressed);

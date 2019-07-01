@@ -12,4 +12,13 @@ public class StatEditRow : MonoBehaviour
 	public ShadowButton moreButton;
 	[HideInInspector] public string labelString;
 	[HideInInspector] public EditExerciseView controller;
+
+	void Start()
+	{
+		#if UNITY_ANDROID
+		//Do nothing
+		#else
+		numberInput.shouldHideMobileInput = false;
+		#endif
+	}
 }

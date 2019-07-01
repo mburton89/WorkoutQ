@@ -43,6 +43,12 @@ public class EditWorkoutPanel : MonoBehaviour
 		{
 			text.color = ColorManager.Instance.ActiveColorLight;	
 		}	
+
+		#if UNITY_ANDROID
+		//Do nothing
+		#else
+		_secondsBetweenExercisesInputField.shouldHideMobileInput = false;
+		#endif
 	}
 
 	public void Init(WorkoutData workoutToEdit, bool isCreatingNewWorkout, bool shouldAutoSelectInputField)
@@ -91,6 +97,7 @@ public class EditWorkoutPanel : MonoBehaviour
 	private void OnEnable()
 	{
 		_workoutNameInputField.onValueChanged.AddListener(HandleInputFieldSubmitted);
+		_workoutNameInputField.onSubmit.AddListener(HandleInputFieldSubmitted);
 		_clickOverlay.onClick.AddListener (Hide);
 		_doneButton.onShortClick.AddListener (HandleDonePressed);
 		_editTitleButton.onShortClick.AddListener (_workoutNameInputField.Select);
@@ -104,6 +111,7 @@ public class EditWorkoutPanel : MonoBehaviour
 	private void OnDisable()
 	{
 		_workoutNameInputField.onValueChanged.RemoveListener(HandleInputFieldSubmitted);
+		_workoutNameInputField.onSubmit.RemoveListener(HandleInputFieldSubmitted);
 		_clickOverlay.onClick.RemoveListener (Hide);
 		_doneButton.onShortClick.RemoveListener (HandleDonePressed);
 		_editTitleButton.onShortClick.RemoveListener (_workoutNameInputField.Select);

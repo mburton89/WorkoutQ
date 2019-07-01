@@ -72,4 +72,5 @@ public class WorkoutTimelineController : MonoBehaviour {
 	{
 		_activeWorkoutTimelineSegment.UpdateFillAmount (amountComplete);
 	}
+
 }

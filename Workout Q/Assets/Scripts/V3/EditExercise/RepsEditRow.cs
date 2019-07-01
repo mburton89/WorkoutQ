@@ -16,6 +16,7 @@ public class RepsEditRow : StatEditRow
 	{
 		lessButton.onShortClick.AddListener (Decrement);
 		moreButton.onShortClick.AddListener (Increment);
+		numberInput.onValueChanged.AddListener(delegate{HandleInputFieldSubmitted();});
 		numberInput.onSubmit.AddListener(delegate{HandleInputFieldSubmitted();});
 	}
 
@@ -23,6 +24,7 @@ public class RepsEditRow : StatEditRow
 	{
 		lessButton.onShortClick.RemoveListener (Decrement);
 		moreButton.onShortClick.RemoveListener (Increment);
+		numberInput.onValueChanged.RemoveListener(delegate{HandleInputFieldSubmitted();});
 		numberInput.onSubmit.RemoveListener(delegate{HandleInputFieldSubmitted();});
 	}
 
