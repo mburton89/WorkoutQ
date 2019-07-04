@@ -40,8 +40,8 @@ public class SplashAnimationController : MonoBehaviour
 
 	void Start()
 	{
-		_initialColor = ColorManager.Instance.ActiveColorDark;
-		_selectedColor = ColorManager.Instance.ActiveColorLight;
+//		_initialColor = ColorManager.Instance.ActiveColorDark;
+//		_selectedColor = ColorManager.Instance.ActiveColorLight;
 		ResetAnimation ();
 		PlayWholeShebang ();
 	}
@@ -68,7 +68,7 @@ public class SplashAnimationController : MonoBehaviour
 	{
 		_text3.color = _selectedColor;
 		//SoundManager.Instance.PlayCountDownBeep ();
-		SoundManager.Instance.PlayRobo321();
+		SoundManager.Instance.PlayAirHorn();
 		yield return new WaitForSeconds (NUMBER_LIGHTUP_DURATION);
 		_text2.color = _selectedColor;
 		//SoundManager.Instance.PlayCountDownBeep ();

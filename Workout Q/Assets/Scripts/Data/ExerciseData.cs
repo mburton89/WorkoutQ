@@ -101,6 +101,7 @@ public class ExerciseData
 	{
 		secondsRemainingInSet = secondsToCompleteSet;
 		totalSets = totalInitialSets;
+		isInProgress = false;
 	}
 }
 

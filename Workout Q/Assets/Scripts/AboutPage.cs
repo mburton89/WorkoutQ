@@ -38,7 +38,8 @@ public class AboutPage : MonoBehaviour
 
 	void HandleD10ButtonPressed()
 	{
-		Application.OpenURL ("https://chicago.thed10.com/competitors/1222");
+		//Application.OpenURL ("https://chicago.thed10.com/competitors/1222");
+		Application.OpenURL ("https://www.instagram.com/321FITapp/");
 	}
 
 	void HandleReviewButtonPressed()

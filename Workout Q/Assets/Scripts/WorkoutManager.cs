@@ -30,18 +30,26 @@ public class WorkoutManager : MonoBehaviour {
 		}
 
 		Application.runInBackground = true;
+
+		if (PlayerPrefs.GetInt ("hasSeenApp") != 1) 
+		{
+			PlayerPrefs.SetInt ("hasSeenApp", 1);
+		}
 	}
 
-	void Start(){
+	void Start()
+	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 
-	void OnEnable(){
-		SaveButton.onClick.AddListener(Save);
+	void OnEnable()
+	{
+		//SaveButton.onClick.AddListener(Save);
 	}
 
-	void OnDisable(){
-		SaveButton.onClick.RemoveListener(Save);
+	void OnDisable()
+	{
+		//SaveButton.onClick.RemoveListener(Save);
 	}
 
 	public void Save(){

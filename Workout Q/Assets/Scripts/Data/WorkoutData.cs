@@ -43,7 +43,7 @@ public class WorkoutData
 
 	public WorkoutType workoutType;
 
-	public bool inProgress;
+	public bool inProgress = false;
 
 	public void EstablishMinutes()
 	{
@@ -90,10 +90,16 @@ public class WorkoutData
 
 	public void Reset()
 	{
-		inProgress = false;
-
-		foreach (ExerciseData exercise in exerciseData) {
+		foreach (ExerciseData exercise in exerciseData)
+		{
 			exercise.Reset ();
 		}
+
+		inProgress = false;
 	}
+
+//	public void MarkExerciseAsActive()
+//	{
+//		
+//	}
 }

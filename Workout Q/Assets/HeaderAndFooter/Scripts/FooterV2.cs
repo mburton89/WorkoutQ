@@ -18,6 +18,7 @@ public class FooterV2 : MonoBehaviour
 	//Viewing WORKOUT Buttons
 	[SerializeField] private HighlightButton _backToPlanButton;
 	[SerializeField] private HighlightButton _startWorkoutButton;
+	[SerializeField] private HighlightButton _stopWorkoutButton;
 	[SerializeField] private HighlightButton _addExerciseButton;
 	[SerializeField] private HighlightButton _editWorkoutButton;
 
@@ -44,6 +45,7 @@ public class FooterV2 : MonoBehaviour
 		_addWorkoutButton.onClick.AddListener (HandleADDWORKOUTButtonPressed);
 		_backToPlanButton.onClick.AddListener (HandleBACKTOPLANButtonPressed);
 		_startWorkoutButton.onClick.AddListener (HandleSTARTWORKOUTButtonPressed);
+		_stopWorkoutButton.onClick.AddListener (HandleSTOPWORKOUTButtonPressed);
 		_addExerciseButton.onClick.AddListener (HandleADDEXERCISEButtonPressed);
 		_editWorkoutButton.onClick.AddListener (HandleEDITWORKOUTButtonPressed);
 		_backToWorkoutButton.onClick.AddListener (HandleBACKTOWORKOUTButtonPressed);
@@ -56,6 +58,7 @@ public class FooterV2 : MonoBehaviour
 		_addWorkoutButton.onClick.RemoveListener (HandleADDWORKOUTButtonPressed);
 		_backToPlanButton.onClick.RemoveListener (HandleBACKTOPLANButtonPressed);
 		_startWorkoutButton.onClick.RemoveListener (HandleSTARTWORKOUTButtonPressed);
+		_stopWorkoutButton.onClick.AddListener (HandleSTOPWORKOUTButtonPressed);
 		_addExerciseButton.onClick.RemoveListener (HandleADDEXERCISEButtonPressed);
 		_editWorkoutButton.onClick.RemoveListener (HandleEDITWORKOUTButtonPressed);
 		_backToWorkoutButton.onClick.RemoveListener (HandleBACKTOWORKOUTButtonPressed);
@@ -74,6 +77,8 @@ public class FooterV2 : MonoBehaviour
 		_viewingPlanButtonGroup.SetActive (false);
 		_viewingWorkoutButtonGroup.SetActive (true);
 		_viewingExerciseButtonGroup.SetActive (false);
+
+		EstablishPlayOrEndButton ();
 	}
 
 	public void ShowViewingExerciseButtonGroup()
@@ -102,7 +107,7 @@ public class FooterV2 : MonoBehaviour
 	{
 		WorkoutManager.Instance.workoutHUD.ShowWorkoutsMenu();
 		Header.Instance.UpdateMiddleLabel (PlayerPrefs.GetString("userTitle"));
-		WorkoutManager.Instance.ActiveWorkout.Reset ();
+		//WorkoutManager.Instance.ActiveWorkout.Reset ();
 		ShowViewingPlanButtonGroup ();
 	}
 
@@ -110,6 +115,11 @@ public class FooterV2 : MonoBehaviour
 	{
 		WorkoutHUD.Instance.SetupExerciseToPlay (0);
 		WorkoutPlayerController.Instance.Play ();
+	}
+
+	void HandleSTOPWORKOUTButtonPressed()
+	{
+		AreYouSurePanel.Instance.ShowForReset ();
 	}
 
 	void HandleADDEXERCISEButtonPressed()
@@ -122,7 +132,7 @@ public class FooterV2 : MonoBehaviour
 		EditWorkoutPanel.Instance.Init (WorkoutManager.Instance.ActiveWorkout, false, false);
 	}
 
-	void HandleBACKTOWORKOUTButtonPressed()
+	public void HandleBACKTOWORKOUTButtonPressed()
 	{
 		WorkoutPlayerController.Instance.Exit ();
 		WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout (WorkoutManager.Instance.ActiveWorkout);
@@ -134,5 +144,31 @@ public class FooterV2 : MonoBehaviour
 	{
 		EditExercisePanel.Instance.Init (WorkoutManager.Instance.ActiveExercise, false, false);
 		EditExercisePanel.Instance.StoreCurrentExerciseSetsAndTime ((int)WorkoutPlayerController.Instance.secondsRemaining, WorkoutPlayerController.Instance.GetAmountOfCompleteSets ());
+	}
+
+	public void EstablishPlayOrEndButton()
+	{
+		WorkoutData activeWorkout = WorkoutManager.Instance.ActiveWorkout;
+
+		bool inProgress = false;
+
+		foreach (ExerciseData exercise in activeWorkout.exerciseData) 
+		{
+			if (exercise.totalSets < exercise.totalInitialSets) 
+			{
+				inProgress = true;
+			} 
+		}
+
+		if (inProgress == true) 
+		{
+			_startWorkoutButton.gameObject.SetActive (false);
+			_stopWorkoutButton.gameObject.SetActive (true);
+		} 
+		else 
+		{
+			_startWorkoutButton.gameObject.SetActive (true);
+			_stopWorkoutButton.gameObject.SetActive (false);
+		}
 	}
 }

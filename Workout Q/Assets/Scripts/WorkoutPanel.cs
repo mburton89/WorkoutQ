@@ -55,6 +55,12 @@ public class WorkoutPanel : UIPanel {
 	}
 
 	public void HandleSelfClicked(){
+
+		foreach (ExerciseData exercise in workoutData.exerciseData)
+		{
+			exercise.isInProgress = false;
+		}
+
 		WorkoutManager.Instance.ActiveWorkout = workoutData;
 		WorkoutManager.Instance.workoutHUD.ShowExercisesForWorkout(workoutData);
 		Unhighlight ();

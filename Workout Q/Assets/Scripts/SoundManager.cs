@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip levelUp;
 	public AudioClip goBack;
 	public AudioClip countdownBeep;
-	public AudioClip Robo321;
+	public AudioClip airHorn;
 
 	public AudioSource audioSource;
 
@@ -50,8 +50,8 @@ public class SoundManager : MonoBehaviour {
 		audioSource.Play ();
 	}
 
-	public void PlayRobo321(){
-		audioSource.clip = Robo321;
+	public void PlayAirHorn(){
+		audioSource.clip = airHorn;
 		audioSource.Play ();
 	}
 }

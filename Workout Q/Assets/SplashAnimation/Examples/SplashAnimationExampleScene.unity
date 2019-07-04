@@ -486,6 +486,36 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114367725065933184, guid: 22edbb80e6751e947a9b50fa05307a48,
+        type: 2}
+      propertyPath: _selectedColor.g
+      value: 0.32549018
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367725065933184, guid: 22edbb80e6751e947a9b50fa05307a48,
+        type: 2}
+      propertyPath: _selectedColor.b
+      value: 0.3593097
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367725065933184, guid: 22edbb80e6751e947a9b50fa05307a48,
+        type: 2}
+      propertyPath: _initialColor.r
+      value: 0.39215684
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367725065933184, guid: 22edbb80e6751e947a9b50fa05307a48,
+        type: 2}
+      propertyPath: _initialColor.b
+      value: 0.14090577
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367725065933184, guid: 22edbb80e6751e947a9b50fa05307a48,
+        type: 2}
+      propertyPath: _initialColor.g
+      value: 0.1276432
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367725065933184, guid: 22edbb80e6751e947a9b50fa05307a48,
+        type: 2}
+      propertyPath: _selectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22edbb80e6751e947a9b50fa05307a48, type: 2}
   m_IsPrefabParent: 0
@@ -603,7 +633,7 @@ MonoBehaviour:
   levelUp: {fileID: 8300000, guid: 49ca76b07a6f60944971896cf64c6244, type: 3}
   goBack: {fileID: 8300000, guid: 36a9589d3ddface419bec86dbfe68c90, type: 3}
   countdownBeep: {fileID: 8300000, guid: d13c287a37c0975459cb25148828e947, type: 3}
-  Robo321: {fileID: 8300000, guid: dec6957b19f89914e8c03f6f69f914a6, type: 3}
+  airHorn: {fileID: 0}
   audioSource: {fileID: 1829651348}
 --- !u!4 &1829651350
 Transform:

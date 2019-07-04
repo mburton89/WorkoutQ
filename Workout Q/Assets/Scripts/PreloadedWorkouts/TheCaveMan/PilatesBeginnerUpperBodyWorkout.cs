@@ -29,7 +29,7 @@ public class PilatesBeginnerUpperBodyWorkout : MonoBehaviour
         workoutData.exerciseData.Add (backPlanks);
 
 		ExerciseData chairDips = new ExerciseData ();
-		chairDips.Init ("Chair Dips", 90, 3, 10, 0, ExerciseType.dips);
+		chairDips.Init ("Chair Dips", 90, 3, 10, 0, ExerciseType.chairDips);
         workoutData.exerciseData.Add (chairDips);
 
 		ExerciseData leftSidePlanks = new ExerciseData ();

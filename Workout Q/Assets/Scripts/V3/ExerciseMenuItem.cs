@@ -24,7 +24,8 @@ public class ExerciseMenuItem : UIPanel {
 		}
 	}
 
-	void OnEnable(){
+	void OnEnable()
+	{
 		exerciseName.onSubmit.AddListener(delegate{HandleTitleChanged();});
 
 		if (editButton != null) 

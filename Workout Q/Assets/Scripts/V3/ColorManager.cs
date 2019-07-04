@@ -16,8 +16,13 @@ public class ColorManager : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI[] _texts;
 	[SerializeField] private Image[] _images;
 
-	private const float DEFAULT_HUE = 48f/359f;
-	private const float DEFAULT_SATURATION = 204f/255f;
+	//RED
+//	private const float DEFAULT_HUE = 356f/359f;
+//	private const float DEFAULT_SATURATION = 172f/255f;
+
+	//BLUE
+	private const float DEFAULT_HUE = 191f/359f;
+	private const float DEFAULT_SATURATION = 115f/255f;
 
 	private const float MEDIUM_DARKENER_DIVIDER = 1.75f;
 	private const float DARK_DARKENER_DIVIDER = 3f;

@@ -37,7 +37,7 @@ public class PanelMover : MonoBehaviour
 	{
         if(WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts)
         {
-            AreYouSurePanel.Instance.Show();
+            AreYouSurePanel.Instance.ShowForDelete();
         }
         else
         {

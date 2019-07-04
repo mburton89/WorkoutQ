@@ -138,17 +138,17 @@ public class WorkoutControls : MonoBehaviour {
 	public void ShowPausedMenu(){
 		HideAllButtons ();
 
-		if (!WorkoutManager.Instance.ActiveWorkout.inProgress) {
-			//_startWorkoutButton.gameObject.SetActive (true);
-		} else {
-			if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) {
-				_completeWorkoutButton.gameObject.SetActive (true);
-			} else {
-				//_playButton.gameObject.SetActive(true);
-				_previousExerciseButton.gameObject.SetActive(true);
-				_nextExerciseButton.gameObject.SetActive(true);
-			}
-		}
+//		if (!WorkoutManager.Instance.ActiveWorkout.inProgress) {
+//			//_startWorkoutButton.gameObject.SetActive (true);
+//		} else {
+//			if (WorkoutHUD.Instance.currentMode == Mode.ViewingExercises) {
+//				_completeWorkoutButton.gameObject.SetActive (true);
+//			} else {
+//				//_playButton.gameObject.SetActive(true);
+//				_previousExerciseButton.gameObject.SetActive(true);
+//				_nextExerciseButton.gameObject.SetActive(true);
+//			}
+//		}
 	}
 
 	public void ShowCurrentlyPlayingMenu(){

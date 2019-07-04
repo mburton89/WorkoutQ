@@ -31,6 +31,10 @@ public class NotchHeader : MonoBehaviour {
 			minuteString = minute.ToString ();
 		}
 
+		if (hour == 0) {
+			hour = 12;
+		}
+
 		//string time = dateTime.ToString ("HH:mm");
 		string time = dateTime.ToString (hour + ":" + minuteString);
 		timeText.text = time;
