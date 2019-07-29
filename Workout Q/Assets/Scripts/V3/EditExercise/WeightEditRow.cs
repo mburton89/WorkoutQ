@@ -51,7 +51,14 @@ public class WeightEditRow : StatEditRow
 	{
 		if (value > 0) 
 		{
-			value = value - 5;			
+			if (PlayerPrefs.GetString ("weightType") == "lb")
+			{
+				value = value - 5;			
+			}
+			else 
+			{
+				value = value - 1;	
+			}
 		}
 
 		numberInput.text = value.ToString();
@@ -63,7 +70,14 @@ public class WeightEditRow : StatEditRow
 	{
 		if (value < 995) 
 		{
-			value = value + 5;			
+			if (PlayerPrefs.GetString ("weightType") == "lb")
+			{
+				value = value + 5;		
+			}
+			else 
+			{
+				value = value + 1;
+			}
 		}
 
 		numberInput.text = value.ToString();
