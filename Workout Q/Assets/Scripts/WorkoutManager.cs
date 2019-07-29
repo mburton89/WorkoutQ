@@ -27,6 +27,7 @@ public class WorkoutManager : MonoBehaviour {
 		} else {
 			PlayerPrefs.SetString("userTitle", "Workouts");
 			PlayerPrefs.SetString ("weightType", "lb");
+			PlayerPrefs.SetFloat ("scanlines", 0.5f);
 		}
 
 		Application.runInBackground = true;

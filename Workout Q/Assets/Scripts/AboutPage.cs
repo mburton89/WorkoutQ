@@ -39,13 +39,14 @@ public class AboutPage : MonoBehaviour
 	void HandleD10ButtonPressed()
 	{
 		//Application.OpenURL ("https://chicago.thed10.com/competitors/1222");
-		Application.OpenURL ("https://www.instagram.com/321FITapp/");
+		//Application.OpenURL ("https://www.instagram.com/321FITapp/");
+		SendEmail ();
 	}
 
 	void HandleReviewButtonPressed()
 	{
 		#if UNITY_ANDROID
-		Application.OpenURL ("https://play.google.com/store/apps/details?id=com.MatthewBurton.WorkoutQ");
+		Application.OpenURL ("https://play.google.com/store/apps/details?id=com.matthewburton.workoutq");
 		#else
 		Application.OpenURL ("https://apps.apple.com/us/app/321FIT/id1435831475");
 		#endif
@@ -53,6 +54,20 @@ public class AboutPage : MonoBehaviour
 
 	void HandleInstagramButtonPressed()
 	{
-		Application.OpenURL ("https://www.instagram.com/thundersneeze/");
+		Application.OpenURL ("https://www.instagram.com/thenerdlete/");
+	}
+
+	void SendEmail ()
+	{
+		string email = "m@ttburton.com";
+		string subject = MyEscapeURL("321FIT");
+		//string body = MyEscapeURL("My Body\r\nFull of non-escaped chars");
+		string body = "";
+		Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
+	}
+
+	string MyEscapeURL (string url)
+	{
+		return WWW.EscapeURL(url).Replace("+","%20");
 	}
 }

@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip nextSet;
 	public AudioClip nextExercise;
 	public AudioClip buttonPress;
+	public AudioClip splashIntro;
 	public AudioClip levelUp;
 	public AudioClip goBack;
 	public AudioClip countdownBeep;
@@ -52,6 +53,12 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlayAirHorn(){
 		audioSource.clip = airHorn;
+		audioSource.Play ();
+	}
+
+	public void PlaySplashIntro()
+	{
+		audioSource.clip = splashIntro;
 		audioSource.Play ();
 	}
 }

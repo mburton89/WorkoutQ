@@ -8,7 +8,7 @@ public class ScanlineController : MonoBehaviour
 {
 	public static ScanlineController Instance;
 
-	[SerializeField] private List<Image> _scanlines;
+	[SerializeField] private Image _scanline;
 
 	void Awake()
 	{
@@ -27,11 +27,7 @@ public class ScanlineController : MonoBehaviour
 
 	public void SetUpScanlines(float amount)
 	{
-		Color updatedColor = _scanlines[0].color;
-
-		foreach (Image scanline in _scanlines)
-		{
-			scanline.color = new Color (updatedColor.r, updatedColor.g, updatedColor.b, amount);
-		}
+		Color updatedColor = _scanline.color;
+		_scanline.color = new Color (updatedColor.r, updatedColor.g, updatedColor.b, amount);
 	}
 }

@@ -68,7 +68,7 @@ public class SplashAnimationController : MonoBehaviour
 	{
 		_text3.color = _selectedColor;
 		//SoundManager.Instance.PlayCountDownBeep ();
-		SoundManager.Instance.PlayAirHorn();
+		SoundManager.Instance.PlaySplashIntro();
 		yield return new WaitForSeconds (NUMBER_LIGHTUP_DURATION);
 		_text2.color = _selectedColor;
 		//SoundManager.Instance.PlayCountDownBeep ();

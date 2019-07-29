@@ -12,6 +12,7 @@ public class WorkoutCompletionController : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _title;
 	[SerializeField] private TextMeshProUGUI _body;
 	[SerializeField] private ShadowButton _doneButton;
+	[SerializeField] private ShadowButton _reviewButton;
 	[SerializeField] private List<Image> _images;
 	[SerializeField] private Button _overlay;
 
@@ -37,12 +38,14 @@ public class WorkoutCompletionController : MonoBehaviour
 	void OnEnable()
 	{
 		_doneButton.onShortClick.AddListener (HandleDonePressed);
+		_reviewButton.onShortClick.AddListener (HandleReviewPressed);
 		_overlay.onClick.AddListener(Exit);
 	}
 
 	void OnDisable()
 	{
 		_doneButton.onShortClick.RemoveListener (HandleDonePressed);
+		_reviewButton.onShortClick.AddListener (HandleReviewPressed);
 		_overlay.onClick.AddListener(Exit);
 	}
 
@@ -56,7 +59,7 @@ public class WorkoutCompletionController : MonoBehaviour
 
 	string GetRandomTitle()
 	{
-		int phraseInt = Random.Range (0, 8);
+		int phraseInt = Random.Range (0, 7);
 
 		if (phraseInt == 1) {
 			return "Booyah";
@@ -82,5 +85,14 @@ public class WorkoutCompletionController : MonoBehaviour
 	{
 		yield return new WaitForSeconds (0.2f);
 		SoundManager.Instance.PlayAirHorn ();
+	}
+
+	private void HandleReviewPressed()
+	{
+		#if UNITY_ANDROID
+		Application.OpenURL ("https://play.google.com/store/apps/details?id=com.matthewburton.workoutq");
+		#else
+		Application.OpenURL ("https://apps.apple.com/us/app/321FIT/id1435831475");
+		#endif
 	}
 }

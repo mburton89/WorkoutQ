@@ -33,8 +33,9 @@ public class FooterV2 : MonoBehaviour
 
 	void Start()
 	{
-		if (Camera.main.aspect < (9f / 16f)) 
+		if (Camera.main.aspect < (0.512f)) 
 		{
+			print ("Camera.main.aspect: " + Camera.main.aspect);
 			GetComponent<RectTransform> ().sizeDelta = new Vector2 (GetComponent<RectTransform> ().sizeDelta.x, GetComponent<RectTransform> ().sizeDelta.y + 80f);
 		}
 	}
