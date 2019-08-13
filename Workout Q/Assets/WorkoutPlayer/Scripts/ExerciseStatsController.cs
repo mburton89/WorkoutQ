@@ -17,13 +17,11 @@ public class ExerciseStatsController : MonoBehaviour
 	public void Init(WorkoutPlayerController controller)
 	{
 		_controller = controller;
-		UpdateWeightLabel ();
 		_repValue.color = ColorManager.Instance.ActiveColorLight;
 		_timeValue.color = ColorManager.Instance.ActiveColorLight;
-		_weightValue.color = ColorManager.Instance.ActiveColorLight;
 		_repLabel.color = ColorManager.Instance.ActiveColorLight;
 		_timeLabel.color = ColorManager.Instance.ActiveColorLight;
-		_weightLabel.color = ColorManager.Instance.ActiveColorLight;
+		UpdateWeightLabel ();
 	}
 
 	public void UpdateRepValue(int repValue)
@@ -51,7 +49,15 @@ public class ExerciseStatsController : MonoBehaviour
 
 	public void UpdateWeightValue(int weightValue)
 	{
-		_weightValue.text = weightValue.ToString();
+		if (weightValue > 0) {
+			_weightValue.text = weightValue.ToString ();
+			_weightValue.color = ColorManager.Instance.ActiveColorLight;
+			_weightLabel.color = ColorManager.Instance.ActiveColorLight;
+		} else {
+			_weightValue.text = "NA";
+			_weightValue.color = ColorManager.Instance.ActiveColorDark;
+			_weightLabel.color = ColorManager.Instance.ActiveColorDark;
+		}
 	}
 
 	void UpdateWeightLabel()
