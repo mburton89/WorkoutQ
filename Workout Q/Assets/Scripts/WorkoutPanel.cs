@@ -86,6 +86,7 @@ public class WorkoutPanel : UIPanel {
 			ExerciseData copiedExercise = ExerciseData.Copy(
 				exercise.name,
 				exercise.secondsToCompleteSet,
+				exercise.totalInitialSets,
 				exercise.totalSets,
 				exercise.repsPerSet,
 				exercise.weight,

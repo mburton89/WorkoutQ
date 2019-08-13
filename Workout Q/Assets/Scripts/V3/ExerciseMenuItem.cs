@@ -74,6 +74,7 @@ public class ExerciseMenuItem : UIPanel {
 		//WorkoutHUD.Instance.ShowEditStatsViewForExercise(exerciseData);
 		WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseData)));
 		SoundManager.Instance.PlayButtonPressSound ();
+		PanelMover.Instance.Confirm ();
 	}
 
 	public void HandleSelfClickedOnAddMenu()

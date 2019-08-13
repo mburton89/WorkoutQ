@@ -69,14 +69,14 @@ public class ExerciseData
 
 	public bool isInProgress;
 
-	public static ExerciseData Copy(string newName, int newSeconds, int newTotalSets, int newRepsPerSet, int newWeight, ExerciseType newExerciseType){
+	public static ExerciseData Copy(string newName, int newSeconds, int newTotalInitialSets, int newTotalSets, int newRepsPerSet, int newWeight, ExerciseType newExerciseType){
 
 		ExerciseData newExercise = new ExerciseData();
 
 		newExercise.name = newName;
 		newExercise.secondsToCompleteSet = newSeconds;
 		newExercise.secondsRemainingInSet = newSeconds;
-		newExercise.totalInitialSets = newTotalSets;
+		newExercise.totalInitialSets = newTotalInitialSets;
 		newExercise.totalSets = newTotalSets;
 		newExercise.repsPerSet = newRepsPerSet;
 		newExercise.weight = newWeight;

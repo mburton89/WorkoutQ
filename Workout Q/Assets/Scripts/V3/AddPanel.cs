@@ -271,6 +271,7 @@ public class AddPanel : MonoBehaviour {
 			ExerciseData copiedExercise = ExerciseData.Copy(
 				exercise.name,
 				exercise.secondsToCompleteSet,
+				exercise.totalInitialSets,
 				exercise.totalSets,
 				exercise.repsPerSet,
 				exercise.weight,

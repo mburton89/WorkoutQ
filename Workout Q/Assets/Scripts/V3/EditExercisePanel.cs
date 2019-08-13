@@ -74,6 +74,7 @@ public class EditExercisePanel : EditExerciseView {
 		ExerciseData copiedExercise = ExerciseData.Copy(
 			currentExerciseData.name,
 			currentExerciseData.secondsToCompleteSet,
+			currentExerciseData.totalInitialSets,
 			currentExerciseData.totalSets,
 			currentExerciseData.repsPerSet,
 			currentExerciseData.weight,

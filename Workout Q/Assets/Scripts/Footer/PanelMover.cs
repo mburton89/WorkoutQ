@@ -11,6 +11,7 @@ public class PanelMover : MonoBehaviour
 	[SerializeField]private HighlightButton _moveUpButton;
 	[SerializeField]private HighlightButton _moveDownButton;
 	[SerializeField]private HighlightButton _dismissButton;
+	[SerializeField]private HighlightButton _duplicateButton;
 
     private void Awake()
     {
@@ -22,7 +23,8 @@ public class PanelMover : MonoBehaviour
 		_moveUpButton.onClick.AddListener(MovePanelUp);
 		_deleteButton.onClick.AddListener(DeletePanel);
 		_moveDownButton.onClick.AddListener(MovePanelDown);
-		_dismissButton.onClick.AddListener(Confirm);
+		_dismissButton.onClick.AddListener (Confirm);
+		_duplicateButton.onClick.AddListener(Duplicate);
 	}
 
 	void OnDisable()
@@ -31,6 +33,7 @@ public class PanelMover : MonoBehaviour
 		_deleteButton.onClick.RemoveListener(DeletePanel);
 		_moveDownButton.onClick.RemoveListener(MovePanelDown);
 		_dismissButton.onClick.RemoveListener(Confirm);
+		_duplicateButton.onClick.RemoveListener(Duplicate);
 	}
 
 	void DeletePanel()
@@ -93,6 +96,44 @@ public class PanelMover : MonoBehaviour
 			{
 				WorkoutManager.Instance.ActiveWorkout.exerciseData.Add(panel.exerciseData);
 			}
+		}
+	}
+
+	void Duplicate()
+	{
+		if(WorkoutHUD.Instance.currentMode == Mode.ViewingWorkouts)
+		{
+			WorkoutPanel workoutPanelToCopy = WorkoutManager.Instance.workoutHUD.selectedPanel.GetComponent<WorkoutPanel> ();
+			int workoutPanelToCopyIndex = workoutPanelToCopy.transform.GetSiblingIndex ();
+			WorkoutData copiedWorkout = WorkoutData.Copy(workoutPanelToCopy.workoutData);
+			WorkoutPanel newWorkoutPanel = WorkoutHUD.Instance.AddWorkoutPanel (copiedWorkout, false);
+			newWorkoutPanel.transform.SetSiblingIndex (workoutPanelToCopyIndex + 1);
+			SaveExercisePanelOrder();
+			WorkoutManager.Instance.Save();
+			Confirm ();
+		}
+		else
+		{
+			ExerciseMenuItem exerciseMenuItemToCopy = WorkoutManager.Instance.workoutHUD.selectedPanel.GetComponent<ExerciseMenuItem> ();
+			int exerciseMenuItemToCopyIndex = exerciseMenuItemToCopy.transform.GetSiblingIndex ();
+
+			print ("exerciseMenuItemToCopy.exerciseData.name" + exerciseMenuItemToCopy.exerciseData.name);
+
+			ExerciseData copiedExercise = ExerciseData.Copy(
+				exerciseMenuItemToCopy.exerciseData.name,
+				exerciseMenuItemToCopy.exerciseData.secondsToCompleteSet,
+				exerciseMenuItemToCopy.exerciseData.totalInitialSets,
+				exerciseMenuItemToCopy.exerciseData.totalSets,
+				exerciseMenuItemToCopy.exerciseData.repsPerSet,
+				exerciseMenuItemToCopy.exerciseData.weight,
+				exerciseMenuItemToCopy.exerciseData.exerciseType
+			);
+
+			ExerciseMenuItem newExerciseMenuItem = WorkoutHUD.Instance.AddExercisePanel (null, copiedExercise, false);
+			newExerciseMenuItem.transform.SetSiblingIndex (exerciseMenuItemToCopyIndex + 1);
+			SaveExercisePanelOrder();
+			WorkoutManager.Instance.Save();
+			Confirm ();
 		}
 	}
 }

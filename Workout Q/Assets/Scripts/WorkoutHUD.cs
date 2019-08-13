@@ -139,7 +139,7 @@ public class WorkoutHUD : MonoBehaviour {
 		FooterV2.Instance.ShowViewingExerciseButtonGroup ();
 	}
 
-	public void AddWorkoutPanel(WorkoutData workoutData, bool isFromButton){
+	public WorkoutPanel AddWorkoutPanel(WorkoutData workoutData, bool isFromButton){
 		WorkoutPanel newWorkoutPanel = Instantiate(WorkoutMenuItemPrefab);
 
 		if (workoutData != null) {
@@ -162,9 +162,11 @@ public class WorkoutHUD : MonoBehaviour {
 		{
 			newWorkoutPanel.SelectTitle ();
 		}
+
+		return newWorkoutPanel;
 	}
 
-	public void AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData, bool isFromButton)
+	public ExerciseMenuItem AddExercisePanel(WorkoutData workoutData, ExerciseData exerciseData, bool isFromButton)
 	{
 		ExerciseMenuItem newExerciseMenuItem = Instantiate(_exerciseMenuItemPrefab);
 
@@ -192,6 +194,8 @@ public class WorkoutHUD : MonoBehaviour {
 
 		newExerciseMenuItem.transform.SetParent(exercisePanelsGridLayoutGroup.transform);
 		newExerciseMenuItem.transform.localScale = Vector3.one;
+
+		return newExerciseMenuItem;
 	}
 
 	public void HandlePanelSelected(UIPanel panel){
