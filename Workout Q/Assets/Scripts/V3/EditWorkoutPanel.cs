@@ -27,6 +27,10 @@ public class EditWorkoutPanel : MonoBehaviour
 	[SerializeField] List<Image> _colorImages;
 	[SerializeField] List<TextMeshProUGUI> _texts;
 
+	[SerializeField] private Slider _tenSecSlider;
+	[SerializeField] private Button _onButton;
+	[SerializeField] private Button _offButton;
+
 	private void Awake()
 	{
 		Instance = this;
@@ -74,6 +78,15 @@ public class EditWorkoutPanel : MonoBehaviour
 		}
 
 		_secondsBetweenExercisesInputField.text = workoutToEdit.secondsBetweenExercises.ToString ();
+
+		if (workoutToEdit.hasTenSecTimer)
+		{
+			_tenSecSlider.value = 0;	
+		}
+		else
+		{
+			_tenSecSlider.value = 1;			
+		}
 	}
 
 	public void Init(WorkoutPanel workoutPanel, bool isCreatingNewWorkout, bool shouldAutoSelectInputField)
@@ -96,6 +109,15 @@ public class EditWorkoutPanel : MonoBehaviour
 		}
 
 		_secondsBetweenExercisesInputField.text = workoutToEdit.secondsBetweenExercises.ToString ();
+
+		if (workoutToEdit.hasTenSecTimer)
+		{
+			_tenSecSlider.value = 0;	
+		}
+		else
+		{
+			_tenSecSlider.value = 1;			
+		}
 	}
 
 	private void OnEnable()
@@ -110,6 +132,9 @@ public class EditWorkoutPanel : MonoBehaviour
 		_lessButton.onShortClick.AddListener (Decrement);
 		_moreButton.onShortClick.AddListener (Increment);
 		_secondsBetweenExercisesInputField.onValueChanged.AddListener (HandleSecondsBetweenExercisesInputFieldChanged);
+		_tenSecSlider.onValueChanged.AddListener (Handle10SecTimerChanged);
+		_onButton.onClick.AddListener (HandleOnPressed);
+		_offButton.onClick.AddListener(HandleOffPressed);
 	}
 
 	private void OnDisable()
@@ -124,6 +149,9 @@ public class EditWorkoutPanel : MonoBehaviour
 		_lessButton.onShortClick.RemoveListener (Decrement);
 		_moreButton.onShortClick.RemoveListener (Increment);
 		_secondsBetweenExercisesInputField.onValueChanged.AddListener (HandleSecondsBetweenExercisesInputFieldChanged);
+		_tenSecSlider.onValueChanged.RemoveListener(Handle10SecTimerChanged);
+		_onButton.onClick.RemoveListener (HandleOnPressed);
+		_offButton.onClick.RemoveListener(HandleOffPressed);
 	}
 
 	void HandleEditIconPressed()
@@ -289,4 +317,29 @@ public class EditWorkoutPanel : MonoBehaviour
 
         WorkoutManager.Instance.Save();
     }
+
+	void Handle10SecTimerChanged(float tenSec)
+	{
+		if (tenSec == 0) {
+			currentWorkoutData.hasTenSecTimer = true;
+		}
+		else
+		{
+			currentWorkoutData.hasTenSecTimer = false;
+		}
+
+		WorkoutManager.Instance.Save ();
+	}
+
+	void HandleOnPressed()
+	{
+		_tenSecSlider.value = 0;
+		WorkoutManager.Instance.Save ();
+	}
+
+	void HandleOffPressed()
+	{
+		_tenSecSlider.value = 1;
+		WorkoutManager.Instance.Save ();
+	}
 }

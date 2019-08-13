@@ -45,6 +45,8 @@ public class WorkoutData
 
 	public bool inProgress = false;
 
+	public bool hasTenSecTimer = false;
+
 	public void EstablishMinutes()
 	{
 		//minutes = 0;
@@ -69,6 +71,7 @@ public class WorkoutData
 		copiedWorkout.name = workoutDataToCopy.name;
 		copiedWorkout.workoutType = workoutDataToCopy.workoutType;
 		copiedWorkout.secondsBetweenExercises = workoutDataToCopy.secondsBetweenExercises;
+		copiedWorkout.hasTenSecTimer = workoutDataToCopy.hasTenSecTimer;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in workoutDataToCopy.exerciseData){

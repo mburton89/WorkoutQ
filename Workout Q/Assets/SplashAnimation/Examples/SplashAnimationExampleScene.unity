@@ -635,6 +635,7 @@ MonoBehaviour:
   goBack: {fileID: 8300000, guid: 36a9589d3ddface419bec86dbfe68c90, type: 3}
   countdownBeep: {fileID: 8300000, guid: d13c287a37c0975459cb25148828e947, type: 3}
   airHorn: {fileID: 8300000, guid: 2b5c70d02a5a3c2468c82f51cc2e6c17, type: 3}
+  tenSecWarning: {fileID: 8300000, guid: cfcb957a3211d8e4380e9adb2ad720d6, type: 3}
   audioSource: {fileID: 1829651348}
 --- !u!4 &1829651350
 Transform:

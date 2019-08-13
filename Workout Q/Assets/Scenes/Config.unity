@@ -6525,10 +6525,12 @@ MonoBehaviour:
   nextSet: {fileID: 8300000, guid: 300af80482d4c684fa6964c98255287f, type: 3}
   nextExercise: {fileID: 8300000, guid: 8d8180ae53899154b895d74d5d153188, type: 3}
   buttonPress: {fileID: 8300000, guid: 30d90c7af2bfec64f940d3361e853d71, type: 3}
+  splashIntro: {fileID: 8300000, guid: dec6957b19f89914e8c03f6f69f914a6, type: 3}
   levelUp: {fileID: 8300000, guid: 49ca76b07a6f60944971896cf64c6244, type: 3}
   goBack: {fileID: 8300000, guid: 36a9589d3ddface419bec86dbfe68c90, type: 3}
-  countdownBeep: {fileID: 0}
-  airHorn: {fileID: 0}
+  countdownBeep: {fileID: 8300000, guid: d13c287a37c0975459cb25148828e947, type: 3}
+  airHorn: {fileID: 8300000, guid: 2b5c70d02a5a3c2468c82f51cc2e6c17, type: 3}
+  tenSecWarning: {fileID: 8300000, guid: cfcb957a3211d8e4380e9adb2ad720d6, type: 3}
   audioSource: {fileID: 798186669}
 --- !u!4 &798186671
 Transform:
@@ -12087,6 +12089,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weightTypeSlider: {fileID: 104294973}
+  _lbButton: {fileID: 0}
+  _kgButton: {fileID: 0}
 --- !u!1 &1938761847
 GameObject:
   m_ObjectHideFlags: 0

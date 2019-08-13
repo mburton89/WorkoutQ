@@ -74,14 +74,18 @@ public class ExerciseMenuItem : UIPanel {
 		//WorkoutHUD.Instance.ShowEditStatsViewForExercise(exerciseData);
 		WorkoutHUD.Instance.SetupExerciseToPlay((WorkoutManager.Instance.ActiveWorkout.exerciseData.IndexOf (exerciseData)));
 		SoundManager.Instance.PlayButtonPressSound ();
-		PanelMover.Instance.Confirm ();
+
+		if (PanelMover.Instance != null)
+		{
+			PanelMover.Instance.Confirm ();
+		}
 	}
 
 	public void HandleSelfClickedOnAddMenu()
     {
         Unhighlight();
 		AddPanel.Instance.Exit ();
-		EditExercisePanel.Instance.Init (exerciseData, true, false);
+		EditExercisePanel.Instance.CopyAndInit (exerciseData, true, false);
     }
 
 	public void SelectTitle(){

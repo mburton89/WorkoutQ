@@ -51,6 +51,12 @@ public class WorkoutHUD : MonoBehaviour {
 			WorkoutManager.Instance.Save();
 			WorkoutManager.Instance.ShowWelcomeMenu ();
 		}
+
+		if (Camera.main.aspect < (0.512f)) 
+		{
+			exercisesScrollRect.GetComponent<RectTransform> ().offsetMin = new Vector2(exercisesScrollRect.GetComponent<RectTransform> ().offsetMin.x, 195f);
+			workoutsScrollRect.GetComponent<RectTransform> ().offsetMin = new Vector2(exercisesScrollRect.GetComponent<RectTransform> ().offsetMin.x, 195f);
+		}
 	}
 
 	public void ShowWorkoutsMenu()

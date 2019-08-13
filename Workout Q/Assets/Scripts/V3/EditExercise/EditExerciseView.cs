@@ -62,6 +62,38 @@ public class EditExerciseView : MonoBehaviour {
 		}
 	}
 
+	public void CopyAndInit(ExerciseData exerciseToCopy, bool isCreatingNewExercise, bool shouldAutoSelectInputField)
+	{
+		ExerciseData copiedExercise = ExerciseData.Copy(
+			exerciseToCopy.name,
+			exerciseToCopy.secondsToCompleteSet,
+			exerciseToCopy.totalInitialSets,
+			exerciseToCopy.totalSets,
+			exerciseToCopy.repsPerSet,
+			exerciseToCopy.weight,
+			exerciseToCopy.exerciseType
+		);
+	
+		currentExerciseMenuItem = null;
+		currentExerciseData = copiedExercise;
+		_exerciseNameInputField.text = copiedExercise.name;
+		_setsRow.Init (this);
+		_repsRow.Init (this);
+		_weightRow.Init (this);
+		_secondsRow.Init (this);
+		Show ();
+
+		if (fitBoyAnimator != null) {
+			fitBoyAnimator.Init(copiedExercise.exerciseType);
+		}
+
+		this.isCreatingNewExercise = isCreatingNewExercise;
+
+		if (shouldAutoSelectInputField) {
+			_exerciseNameInputField.Select ();
+		}
+	}
+
 	public void Show()
 	{
 		_container.SetActive (true);

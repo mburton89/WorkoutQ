@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip goBack;
 	public AudioClip countdownBeep;
 	public AudioClip airHorn;
+	public AudioClip tenSecWarning;
 
 	public AudioSource audioSource;
 
@@ -59,6 +60,12 @@ public class SoundManager : MonoBehaviour {
 	public void PlaySplashIntro()
 	{
 		audioSource.clip = splashIntro;
+		audioSource.Play ();
+	}
+
+	public void Play10SecWarning()
+	{
+		audioSource.clip = tenSecWarning;
 		audioSource.Play ();
 	}
 }

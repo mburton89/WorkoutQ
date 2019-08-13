@@ -71,6 +71,11 @@ public class WorkoutPanel : UIPanel {
 		Unhighlight ();
 
 		SoundManager.Instance.PlayButtonPressSound ();
+
+		if (PanelMover.Instance != null)
+		{
+			PanelMover.Instance.Confirm ();
+		}
 	}
 
 	public void AddWorkoutFromPlanPanel()
