@@ -51,7 +51,12 @@ public class WorkoutPanel : UIPanel {
 	{
 		workoutData.EstablishMinutes();
 		_workoutName.text = workoutData.name;
-		_minutesLabel.text = workoutData.minutes + " min";
+
+		if (workoutData.minutes < 1) {
+			_minutesLabel.text = "0 min";
+		} else {
+			_minutesLabel.text = workoutData.minutes + " min";
+		}
 	}
 
 	public void HandleSelfClicked(){

@@ -53,6 +53,10 @@ public class EditWorkoutPanel : MonoBehaviour
 
 	public void Init(WorkoutData workoutToEdit, bool isCreatingNewWorkout, bool shouldAutoSelectInputField)
 	{
+		if (isCreatingNewWorkout) {
+			workoutToEdit.secondsBetweenExercises = 60;
+		}
+
 		currentWorkoutPanel = null;
 		currentWorkoutData = workoutToEdit;
 		_workoutNameInputField.text = workoutToEdit.name;
@@ -157,6 +161,7 @@ public class EditWorkoutPanel : MonoBehaviour
 		WorkoutData copiedWorkout = new WorkoutData ();
 		copiedWorkout.name = currentWorkoutData.name;
 		copiedWorkout.workoutType = currentWorkoutData.workoutType;
+		copiedWorkout.secondsBetweenExercises = currentWorkoutData.secondsBetweenExercises;
 		copiedWorkout.exerciseData = new List<ExerciseData> ();
 
 		foreach(ExerciseData exercise in copiedWorkout.exerciseData){
