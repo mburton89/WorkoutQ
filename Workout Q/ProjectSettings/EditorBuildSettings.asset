@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/VideoCanvas.unity
+    guid: e02791dfa72d47c4db0c392586cebd67
   - enabled: 1
     path: Assets/SplashAnimation/Examples/SplashAnimationExampleScene.unity
     guid: 199b9dc0bb751d2408809d703df7bae9
