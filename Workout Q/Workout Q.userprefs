@@ -1,24 +1,49 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\V3\StatEditRow\SetsEditRow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WorkoutHUD.cs">
     <Files>
-      <File FileName="Assets\Scripts\WorkoutManager.cs" Line="15" Column="36" />
-      <File FileName="Assets\Scripts\Exercise.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WorkoutHUD.cs" Line="125" Column="29" />
-      <File FileName="Assets\Scripts\ExercisePanel.cs" Line="7" Column="14" />
-      <File FileName="Assets\Scripts\NumberCircle.cs" Line="37" Column="3" />
-      <File FileName="Assets\Scripts\UIPanel.cs" Line="65" Column="27" />
-      <File FileName="Assets\Scripts\Footer\PanelMover.cs" Line="83" Column="12" />
-      <File FileName="Assets\Scripts\PlayModeManager.cs" Line="17" Column="9" />
-      <File FileName="Assets\Scripts\V3\StatEditRow\RepsEditRow.cs" Line="5" Column="38" />
-      <File FileName="Assets\Scripts\V3\StatEditRow\SecondsEditRow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\V3\StatEditRow\SetsEditRow.cs" Line="6" Column="2" />
-      <File FileName="Assets\Scripts\V3\StatEditRow\StatEditRow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\V3\StatEditRow\WeightEditRow.cs" Line="5" Column="42" />
+      <File FileName="Assets\Scripts\FitBoyIlluminator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\V3\AddPlanPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WorkoutPanel.cs" Line="78" Column="4" />
+      <File FileName="Assets\Scripts\V3\PlanMenuItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Header.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\V3\EditExercisePanel.cs" Line="77" Column="23" />
+      <File FileName="Assets\Scripts\V3\EditExercise\EditExerciseView.cs" Line="74" Column="18" />
+      <File FileName="Assets\Scripts\V3\StatViewRow\ViewExerciseView.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\V3\ExerciseMenuItem.cs" Line="78" Column="1" />
+      <File FileName="Assets\Scripts\WorkoutHUD.cs" Line="56" Column="4" />
+      <File FileName="Assets\Scripts\V3\EditExercise\SetsEditRow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayModeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UIPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\V3\LongClickButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HighlightButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\WorkoutPlayerController.cs" Line="341" Column="46" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\WorkoutControlsController.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorkoutPlayer\Examples\WorkoutPlayerTester.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\ExerciseStatsController.cs" Line="24" Column="1" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\ExerciseTitlesController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\V3\LineSegmenter.cs" Line="1" Column="1" />
+      <File FileName="Assets\BetterSlider\BetterSlider\Examples\SmartCarouselTester.cs" Line="1" Column="1" />
+      <File FileName="Assets\BetterSlider\BetterSlider\Scripts\SmartCarouselItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\SetsDisplayController.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\SetsDisplaySegment.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\V3\AddPanel.cs" Line="274" Column="5" />
+      <File FileName="Assets\Scripts\SetupPanel.cs" Line="8" Column="1" />
+      <File FileName="Assets\HeaderAndFooter\Scripts\FooterV2.cs" Line="36" Column="1" />
+      <File FileName="Assets\Scripts\Footer\WorkoutControls.cs" Line="189" Column="30" />
+      <File FileName="Assets\WorkoutPlayer\Scripts\WorkoutPlayerHeader.cs" Line="67" Column="31" />
+      <File FileName="Assets\Scripts\Footer\PanelMover.cs" Line="132" Column="85" />
+      <File FileName="Assets\Scripts\Data\WorkoutData.cs" Line="48" Column="37" />
+      <File FileName="Assets\Scripts\Data\ExerciseData.cs" Line="72" Column="31" />
+      <File FileName="Assets\Scripts\Config\WeightTypeConfigurer.cs" Line="14" Column="1" />
+      <File FileName="Assets\Scripts\V3\EditWorkoutPanel.cs" Line="331" Column="35" />
+      <File FileName="Assets\Scripts\SoundManager.cs" Line="68" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\burto\Documents\WorkoutQ\Workout Q\Assets\Scripts\V3\ExerciseMenuItem.cs" line="27" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

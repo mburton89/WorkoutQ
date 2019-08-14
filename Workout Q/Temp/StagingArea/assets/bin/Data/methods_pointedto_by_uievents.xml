@@ -1,0 +1,63 @@
+<linker>
+	<assembly fullname="Assembly-CSharp" ignoreIfMissing="1">
+		<type fullname="UIPanel">
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Select"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Select"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Select"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Select"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Select"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+			<method name="Highlight"/>
+			<method name="Unhighlight"/>
+		</type>
+		<type fullname="WorkoutPanel">
+			<method name="HandleSelfClickedOnAddMenu"/>
+			<method name="HandleSelfClicked"/>
+			<method name="HandleSelfClickedOnAddPlanMenu"/>
+			<method name="HandleSelfClicked"/>
+			<method name="HandleSelfClickedOnAddMenu"/>
+			<method name="HandleSelfClicked"/>
+			<method name="HandleSelfClickedOnAddPlanMenu"/>
+		</type>
+		<type fullname="PlanMenuItem">
+			<method name="HandleSelfClicked"/>
+			<method name="HandleSelfClicked"/>
+		</type>
+		<type fullname="ExerciseMenuItem">
+			<method name="HandleSelfClickedOnAddMenu"/>
+			<method name="HandleSelfClicked"/>
+			<method name="HandleSelfClicked"/>
+			<method name="HandleSelfClickedOnAddMenu"/>
+			<method name="HandleSelfClickedOnAddMenu"/>
+		</type>
+		<type fullname="SmartCarousel">
+			<method name="StartDrag"/>
+			<method name="EndDrag"/>
+		</type>
+	</assembly>
+</linker>
